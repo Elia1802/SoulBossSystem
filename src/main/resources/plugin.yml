@@ -1,0 +1,24 @@
+name: SoulBoss
+author: Elia, D1p4k, Zopnote
+main: de.elia.soulboss.SoulBoss
+version: 1.0
+api-version: 1.19
+description: The Boss Fight Plugin für Soul
+permissions:
+  soulboss.give:
+    description: If the player has this permission, he can execute the bossgive command.
+  soulboss.plugin:
+    description: With this permission, players can query all important information from this plugin.
+  soulboss.fight:
+    description: With this permission, players can spawn the boss.
+commands:
+  bosshelp:
+    description: Here every player can get all the information from the recipes, commands and the bosses.
+  mobidea:
+    description: The player can submit ideas for improvements or extensions of this plugin.
+  bossgive:
+    description: Gives the player the items he selects.
+  bossfight:
+    description: Players can use it to start the bossfight (or use the spawn egg method).
+  soulboss:
+    description: Players can use it to read information about the plugin.

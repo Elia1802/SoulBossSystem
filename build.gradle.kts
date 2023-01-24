@@ -1,28 +1,35 @@
-import net.minecrell.pluginyml.bukkit.BukkitPluginDescription
-
 plugins {
   `java-library`
   id("io.papermc.paperweight.userdev") version "1.4.0"
   id("xyz.jpenilla.run-paper") version "2.0.1" // Adds runServer and runMojangMappedServer tasks for testing
-  id("net.minecrell.plugin-yml.bukkit") version "0.5.2" // Generates plugin.yml
 }
 
-group = "io.papermc.paperweight"
-version = "1.0.0-SNAPSHOT"
-description = "Test plugin for paperweight-userdev"
+group = "de.elia.soulboss"
+version = "1.0"
+description = "The Boss Fight Plugin für Soul"
 
 java {
   // Configure the java toolchain. This allows gradle to auto-provision JDK 17 on systems that only have JDK 8 installed for example.
   toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 }
 
+repositories {
+  mavenCentral()
+  maven { setUrl("https://maven.enginehub.org/repo/")}
+  flatDir {
+    dirs ("libs")
+  }
+}
+
 dependencies {
   paperDevBundle("1.19.3-R0.1-SNAPSHOT")
+  compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.7")
+  compileOnly("de.elia.soulmain:SoulMain:1.1")
   // paperweightDevBundle("com.example.paperfork", "1.19.3-R0.1-SNAPSHOT")
 
   // You will need to manually specify the full dependency if using the groovy gradle dsl
   // (paperDevBundle and paperweightDevBundle functions do not work in groovy)
-  // paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.19.3-R0.1-SNAPSHOT")
+  paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.19.3-R0.1-SNAPSHOT")
 }
 
 tasks {
@@ -52,12 +59,4 @@ tasks {
     outputJar.set(layout.buildDirectory.file("libs/PaperweightTestPlugin-${project.version}.jar"))
   }
    */
-}
-
-// Configure plugin.yml generation
-bukkit {
-  load = BukkitPluginDescription.PluginLoadOrder.STARTUP
-  main = "io.papermc.paperweight.testplugin.TestPlugin"
-  apiVersion = "1.19"
-  authors = listOf("Author")
 }
