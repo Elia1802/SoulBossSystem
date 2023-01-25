@@ -1,6 +1,7 @@
 package de.elia.soulboss.commands.idea;
 
 import de.elia.soulboss.SoulBoss;
+import de.elia.soulboss.plugin.ThisPlugin;
 import de.elia.soulmain.allplugins.messages.builder.MessageBuilder;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -29,7 +30,7 @@ public class IdeaCommand implements CommandExecutor {
    */
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-    new MessageBuilder().message(sender, "If you have an idea send it to me on Discord. My Discord is:" + SoulBoss.soulBoss().contact());
+    new MessageBuilder().message(sender, "If you have an idea send it to me on Discord. My Discord is:" + new ThisPlugin().contact());
     return true;
   }
 }

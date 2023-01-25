@@ -13,11 +13,8 @@ import de.elia.soulboss.events.attacks.teleport.AttackTeleportEvent;
 import de.elia.soulboss.events.spawn.ZombieSpawnEvent;
 import de.elia.soulboss.functions.register.Register;
 import de.elia.soulmain.allplugins.messages.builder.MessageBuilder;
-import de.elia.soulmain.allplugins.messages.builder.Messages;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
-
-import java.util.logging.Level;
 
 /**
  * @author Elia
@@ -27,8 +24,6 @@ import java.util.logging.Level;
  */
 public class Function {
 
-  private static final Messages log = new MessageBuilder(); //Gets the Message class of SoulMain
-
   /**
    * @author Elia
    * @version 1.0
@@ -37,23 +32,24 @@ public class Function {
    * @param plugin Requires the Instance of the Main Class
    * @param pluginManager Requires the PluginManager of Bukkit
    */
-  public static void loadFunctions(Plugin plugin, PluginManager pluginManager){
-    log.log(Level.INFO, "Load SoulBoss...");
-      log.log(Level.INFO, "Load Commands...");
-        log.log(Level.INFO, "Load Command mobidea...");
+  public void loadFunctions(Plugin plugin, PluginManager pluginManager){
+    MessageBuilder log = new MessageBuilder();
+    log.infoLog("Load SoulBoss...");
+      log.infoLog("Load Commands...");
+        log.infoLog("Load Command mobidea...");
           Register.Commands.load("mobidea", new IdeaCommand());
           Register.Commands.load("bossgive", new ItemGiveCommand());
           Register.Commands.load("bossfight", new SpawnMobCommand());
           Register.Commands.load("soulboss", new PluginCommand());
-        log.log(Level.INFO, "Command mobidea loaded!");
-        log.log(Level.INFO, "Load Command bossfight...");
+        log.infoLog("Command mobidea loaded!");
+        log.infoLog("Load Command bossfight...");
           Register.Commands.load("bossfight", new SpawnMobCommand());
-        log.log(Level.INFO, "Command bossfight loaded!");
-        log.log(Level.INFO, "Load Command soulboss...");
+        log.infoLog("Command bossfight loaded!");
+        log.infoLog("Load Command soulboss...");
           Register.Commands.load("soulboss", new PluginCommand());
-        log.log(Level.INFO, "Command soulboss loaded!");
-      log.log(Level.INFO, "Commands loaded!");
-      log.log(Level.INFO, "Load Events...");
+        log.infoLog("Command soulboss loaded!");
+      log.infoLog("Commands loaded!");
+      log.infoLog("Load Events...");
         Register.Events.load(pluginManager, new AchievementBossFightEvent(), plugin);
         Register.Events.load(pluginManager, new AchievementBossFightZombieEvent(), plugin);
         Register.Events.load(pluginManager, new AchievementBossFightZombieEndEvent(), plugin);
@@ -61,17 +57,17 @@ public class Function {
         Register.Events.load(pluginManager, new AttackStrikeLightningEvent(), plugin);
         Register.Events.load(pluginManager, new AttackTeleportEvent(), plugin);
         Register.Events.load(pluginManager, new ZombieSpawnEvent(), plugin);
-      log.log(Level.INFO, "Events loaded!");
-      log.log(Level.INFO, "Load Configurations...");
+      log.infoLog("Events loaded!");
+      log.infoLog("Load Configurations...");
         Register.Configuration.load();
-      log.log(Level.INFO, "Configurations loaded!");
-      log.log(Level.INFO, "load Utils...");
+      log.infoLog("Configurations loaded!");
+      log.infoLog("load Utils...");
         Register.Utils.load(plugin);
-      log.log(Level.INFO, "Utils loaded!");
-      log.log(Level.INFO, "load Recipes...");
+      log.infoLog("Utils loaded!");
+      log.infoLog("load Recipes...");
         Register.Recipes.load(plugin);
-      log.log(Level.INFO, "Recipes loaded");
-    log.log(Level.INFO, "All things loaded! Good Luck with this Plugin!");
-    log.log(Level.INFO, "SoulBoss loaded!");
+      log.infoLog("Recipes loaded");
+    log.infoLog("All things loaded! Good Luck with this Plugin!");
+    log.infoLog("SoulBoss loaded!");
   }
 }

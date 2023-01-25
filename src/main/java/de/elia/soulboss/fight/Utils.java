@@ -9,8 +9,6 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.logging.Level;
-
 /**
  * @author Elia
  * @version 1.0
@@ -43,7 +41,7 @@ public class Utils extends StartTasks {
             int seconds = ticks/20; //Use this to show seconds
             //run countdown
             String string = String.valueOf(seconds);
-            if (seconds == 10)message.log(Level.INFO, "Start Countdown with 10 seconds!");
+            if (seconds == 10)message.infoLog("Start Countdown with 10 seconds!");
             if (seconds == 10)message.broadcastWithPrefix(message.red("In").append(message.darkPurple(string).append(message.red("Sekunden wird ein Boss spawnen!"))));
             if (seconds == 3)message.broadcastWithPrefix(message.red("In").append(message.darkPurple(string).append(message.red("Sekunden wird ein Boss spawnen!"))));
             if (seconds == 2)message.broadcastWithPrefix(message.red("In").append(message.darkPurple(string).append(message.red("Sekunden wird ein Boss spawnen!"))));
@@ -58,12 +56,12 @@ public class Utils extends StartTasks {
           new BukkitRunnable() {
             @Override
             public void run(){
-              message.log(Level.INFO, "Countdown finished!");
+              message.infoLog("Countdown finished!");
               player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1F, 1F);
-              message.log(Level.INFO, "Spawn the Boss...");
+              message.infoLog("Spawn the Boss...");
               new Spawn().spawn(player);
-              message.log(Level.INFO, "Boss spawned!");
-              message.log(Level.INFO, "BossFight loaded! Good Luck with the new Mob! :)");
+              message.infoLog("Boss spawned!");
+              message.infoLog("BossFight loaded! Good Luck with the new Mob! :)");
             }
           }.runTask(SoulBoss.soulBoss());
         }

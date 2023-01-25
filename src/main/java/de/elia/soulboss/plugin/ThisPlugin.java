@@ -14,4 +14,9 @@ public class ThisPlugin {
     return "1.0";
   }
 
+  @NotNull
+  public String contact(){
+    return "～Elia～#0001";
+  }
+
 }

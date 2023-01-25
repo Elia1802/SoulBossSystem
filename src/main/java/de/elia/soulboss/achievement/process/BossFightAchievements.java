@@ -32,7 +32,7 @@ public class BossFightAchievements {
    * @return Register.Configuration.getConfiguration().get(player.getUniqueId() + ".Achievements." + achievementStorage.dataID()) != null;
    */
   public boolean hasAchievement(@NotNull Player player, @NotNull BossFightAchievementStorage achievementStorage) {
-    return Register.Configuration.getConfiguration().get(player.getUniqueId() + ".Achievements." + achievementStorage.dataID()) != null;
+    return Register.Configuration.achievementConfiguration().get(player.getUniqueId() + ".Achievements." + achievementStorage.dataID()) != null;
   }
 
   /**
@@ -45,7 +45,7 @@ public class BossFightAchievements {
    */
   public void giveAchievement(@NotNull Player player, @NotNull BossFightAchievementStorage achievementStorage) {
     if (!this.hasAchievement(player, achievementStorage)) {
-      Register.Configuration.getConfiguration().set(player.getUniqueId() + ".Achievements." + achievementStorage.dataID(), true);
+      Register.Configuration.achievementConfiguration().set(player.getUniqueId() + ".Achievements." + achievementStorage.dataID(), true);
       CustomMessages messageBuilder = new CustomMessages();
       messageBuilder.broadcast(messageBuilder.gradient("aqua", "purple", player.getName() + " hat den BossFight Erfolg " + achievementStorage.getName() + "erreicht"));
       player.giveExp(achievementStorage.xp());
@@ -65,7 +65,7 @@ public class BossFightAchievements {
   public void removeAchievement(@NotNull Player player, @NotNull BossFightAchievementStorage achievementStorage) {
     CustomMessages messageBuilder = new CustomMessages();
     if (this.hasAchievement(player, achievementStorage)) {
-      Register.Configuration.getConfiguration().set(player.getUniqueId() + ".Achievements." + achievementStorage.dataID(), null);
+      Register.Configuration.achievementConfiguration().set(player.getUniqueId() + ".Achievements." + achievementStorage.dataID(), null);
       messageBuilder.message(player, messageBuilder.green("Du hast dem Spieler den BossFight Erfolg " + achievementStorage.getName() + "(" + achievementStorage.dataID() + ")" + "abgenommen!"));
     } else {
       messageBuilder.message(player, messageBuilder.red("Dieser Spieler hat diesen BossFight Erfolg nicht!"));

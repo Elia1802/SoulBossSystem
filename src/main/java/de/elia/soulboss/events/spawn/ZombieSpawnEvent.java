@@ -1,7 +1,6 @@
 package de.elia.soulboss.events.spawn;
 
 import de.elia.soulboss.SoulBoss;
-import de.elia.soulboss.fight.Utils;
 import de.elia.soulboss.fight.start.Start;
 import de.elia.soulboss.spawn.SpawnEgg;
 import org.bukkit.entity.Player;

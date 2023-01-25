@@ -32,12 +32,9 @@ public class Stop {
     if (boss == null)return;
     if (boss.getBukkitEntity().getPersistentDataContainer().has(new NamespacedKey(SoulBoss.soulBoss(), "680035753"))) {
       CustomMessages message = new CustomMessages();
-      message.log(Level.INFO, "Remove Boss");
+      message.infoLog("Remove Boss");
       boss.remove(Entity.RemovalReason.KILLED);
-      message.log(Level.INFO, "Remove BossBar");
-      Boss.boss().bossBar().removeAll();
-      Boss.boss().bossBar().setVisible(false);
-      message.log(Level.WARNING, "BOSSFIGHT STOPPED!");
+      message.warningLog("BOSSFIGHT STOPPED!");
     }
   }
 

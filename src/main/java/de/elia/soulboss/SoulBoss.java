@@ -32,7 +32,8 @@ public class SoulBoss extends JavaPlugin {
   @Override
   public void onEnable(){
     if (soulMain == null)return;
-    Function.loadFunctions(this, Bukkit.getPluginManager());
+    soulBoss = this;
+    new Function().loadFunctions(this, Bukkit.getPluginManager());
   }
 
   /**
@@ -43,7 +44,7 @@ public class SoulBoss extends JavaPlugin {
    */
   public void onReload(){
     if (soulMain == null)return;
-    Function.loadFunctions(this, Bukkit.getPluginManager());
+    new Function().loadFunctions(this, Bukkit.getPluginManager());
   }
 
   /**
@@ -92,10 +93,5 @@ public class SoulBoss extends JavaPlugin {
   @NotNull
   public MiniMessage miniMessage() {
     return miniMessage;
-  }
-
-  @NotNull
-  public String contact(){
-    return "～Elia～#0001";
   }
 }

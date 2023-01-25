@@ -13,19 +13,13 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.ZombieAttackGoal;
 import net.minecraft.world.entity.monster.Zombie;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
-import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarFlag;
-import org.bukkit.boss.BarStyle;
-import org.bukkit.boss.BossBar;
 import org.bukkit.craftbukkit.v1_19_R2.CraftWorld;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
-import java.util.logging.Level;
 
 /**
  * @author Elia
@@ -38,8 +32,6 @@ public class Boss extends Zombie {
 
   private static Boss boss;
 
-  private final BossBar bossBar;
-
   /**
    * @author Elia
    * @version 1.0
@@ -51,32 +43,31 @@ public class Boss extends Zombie {
     super(EntityType.ZOMBIE, ((CraftWorld)location.getWorld()).getHandle());
     CustomMessages message = new CustomMessages();
     boss = this;
-    message.log(Level.INFO, "Set NameSpacedKey");
+    message.infoLog("Set NameSpacedKey");
     this.getBukkitEntity().getPersistentDataContainer().set(new NamespacedKey(SoulBoss.soulBoss(), "680035753"), PersistentDataType.BYTE, (byte) 1);
-    message.log(Level.INFO, "Set Health");
+    message.infoLog("Set Health");
     this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(2000);
     this.setHealth(2000);
-    message.log(Level.INFO, "Set Baby false");
+    message.infoLog("Set Baby false");
     this.setBaby(false);
-    message.log(Level.INFO, "Set location");
+    message.infoLog("Set location");
     this.setPos(location.getX(), location.getY(), location.getZ());
-    message.log(Level.INFO, "Set Custom Name \"Boss\" ");
+    message.infoLog("Set Custom Name \"Boss\" ");
     this.setCustomName(Component.literal("Boss"));
-    message.log(Level.INFO, "Set can break doors true");
+    message.infoLog("Set can break doors true");
     this.setCanBreakDoors(true);
-    message.log(Level.INFO, "Set Aggressive true");
+    message.infoLog("Set Aggressive true");
     this.setAggressive(true);
-    message.log(Level.INFO, "Set Armors");
+    message.infoLog("Set Armors");
     new Helmet().helmet(this);
     new Chestplate().chestplate(this);
     new Leggins().leggins(this);
     new Boots().boots(this);
-    message.log(Level.INFO, "Set Tools");
+    message.infoLog("Set Tools");
     this.randomTool(this);
-    message.log(Level.INFO, "Add the Boss to fresh Entitys");
+    message.infoLog("Add the Boss to fresh Entitys");
     ((CraftWorld)location.getWorld()).getHandle().addFreshEntity(this);
-    message.log(Level.INFO, "Create BossBar");
-    bossBar = Bukkit.createBossBar(null, BarColor.GREEN, BarStyle.SEGMENTED_20, (BarFlag) null);
+    message.infoLog("Create BossBar");
   }
 
   /**
@@ -100,17 +91,6 @@ public class Boss extends Zombie {
   @NotNull
   public static Boss boss() {
     return boss;
-  }
-
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
-   * @description Gets the Bossbar of the Zombie
-   */
-  @NotNull
-  public BossBar bossBar() {
-    return bossBar;
   }
 
   /**

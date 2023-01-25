@@ -4,7 +4,6 @@ import de.elia.soulboss.SoulBoss;
 import de.elia.soulboss.block.BreakBlock;
 import de.elia.soulboss.spawn.SpawnEgg;
 import de.elia.soulmain.allplugins.messages.builder.MessageBuilder;
-import de.elia.soulmain.allplugins.messages.builder.Messages;
 import de.elia.soulmain.thisplugin.configuration.SoulConfiguration;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
@@ -13,8 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.logging.Level;
 
 /**
  * @author Elia
@@ -73,7 +70,7 @@ public class Register {
    */
   public static class Utils {
 
-    private static final Messages log = new MessageBuilder(); //Gets the Message class of SoulMain
+    private static final MessageBuilder log = new MessageBuilder(); //Gets the Message class of SoulMain
 
     /**
      * @author Elia
@@ -84,9 +81,9 @@ public class Register {
     public static void load(Plugin plugin){
       {
         String key = "680035753";
-        log.log(Level.INFO, "load BreakTask with the NamespacedKey: " + key + "...");
+        log.infoLog("load BreakTask with the NamespacedKey: " + key + "...");
         new BreakBlock(plugin).breakTask(new NamespacedKey(plugin, key));
-        log.log(Level.INFO, "BreakTasks loaded!");
+        log.infoLog("BreakTasks loaded!");
       }
     }
   }
@@ -99,7 +96,7 @@ public class Register {
    */
   public static class Disable {
 
-    private static final Messages log = new MessageBuilder(); //Gets the Message class of SoulMain
+    private static final MessageBuilder log = new MessageBuilder(); //Gets the Message class of SoulMain
 
     /**
      * @author Elia
@@ -108,11 +105,11 @@ public class Register {
      * @description Disable and save all thinks
      */
     public static void disable(){
-      log.log(Level.INFO, "Stop SoulBoss...");
-        log.log(Level.INFO, "Save all Configurations...");
+      log.infoLog("Stop SoulBoss...");
+        log.infoLog("Save all Configurations...");
           Register.Configuration.save();
-        log.log(Level.INFO, "Configuration saved");
-      log.log(Level.INFO, "SoulBoss stopped!");
+        log.infoLog("Configuration saved");
+      log.infoLog("SoulBoss stopped!");
     }
   }
 
@@ -123,20 +120,53 @@ public class Register {
    * @description This is the Configuration Class to save thinks in a file.
    */
   public static class Configuration {
-    private static final de.elia.soulmain.allplugins.configuration.Configuration configuration = new SoulConfiguration(SoulBoss.soulBoss(), "achievement/" , "BossAchievement.yml");
+    private static final SoulConfiguration achievementConfiguration = new SoulConfiguration(SoulBoss.soulBoss(), "achievement/" , "BossAchievement.yml");
+    private static final SoulConfiguration discordWebhookConfiguration = new SoulConfiguration(SoulBoss.soulBoss(), "discord/", "WebhookURL.yml");
 
+    /**
+     * @author Elia
+     * @version 1.0
+     * @since 1.0
+     * @description Load all Configuration files
+     */
     public static void load(){
-      configuration.copyDefaults(true);
-      configuration.save();
+      achievementConfiguration.copyDefaults(true);
+      achievementConfiguration.save();
+      discordWebhookConfiguration.copyDefaults(true);
+      discordWebhookConfiguration.addDefault("WebhookURL" , "https://discord.com/api/webhooks/YOUR_WEBHOOK");
+      discordWebhookConfiguration.save();
     }
 
+    /**
+     * @author Elia
+     * @version 1.0
+     * @since 1.0
+     * @description Save all Configuration files
+     */
     public static void save(){
-      configuration.save();
+      achievementConfiguration.save();
+      discordWebhookConfiguration.save();
     }
 
+    /**
+     * @author Elia
+     * @version 1.0
+     * @since 1.0
+     * @description Gets the Configuration for the achievements
+     */
     @NotNull
-    public static de.elia.soulmain.allplugins.configuration.Configuration getConfiguration() {
-      return configuration;
+    public static SoulConfiguration achievementConfiguration() {
+      return achievementConfiguration;
+    }
+
+    /**
+     * @author Elia
+     * @version 1.0
+     * @since 1.0
+     * @description Gets the Configuration for the Discord Webhook.
+     */
+    public static SoulConfiguration discordWebhookConfiguration() {
+      return discordWebhookConfiguration;
     }
   }
 

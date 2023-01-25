@@ -7,6 +7,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.logging.Logger;
+
 /**
  * @author Elia
  * @version 1.0
@@ -16,22 +18,44 @@ import org.jetbrains.annotations.NotNull;
  */
 public class CustomMessages extends MessageBuilder {
 
-  public CustomMessages(){
-
-  }
-
   private final MiniMessage miniMessage = SoulMain.getMiniMessage();
+  private final Logger logger = Bukkit.getLogger();
+  private final CustomPrefix prefix = new CustomPrefix();
 
   /**
    * @author Elia
    * @version 1.0
    * @since 1.0
-   * @description This Methode set a prefix for this Plugin
-   * @return string
+   * @description This Methode send an information in the console.
+   * @param message Requires the log message.
    */
-  public String prefix(){
-    String string = "<dark_gray>[</dark_gray><dark_purple>Soul-BossFight</dark_purple><dark_gray>]</dark_gray> ";
-    return string;
+  @Override
+  public void infoLog(String message) {
+    this.logger.info(prefix.consolePrefix() + message);
+  }
+
+  /**
+   * @author Elia
+   * @version 1.0
+   * @since 1.0
+   * @description This Methode send a warning in the console.
+   * @param message Requires the log message.
+   */
+  @Override
+  public void warningLog(String message) {
+    this.logger.warning(prefix.warningPrefix() + message);
+  }
+
+  /**
+   * @author Elia
+   * @version 1.0
+   * @since 1.0
+   * @description This Methode send an error in the console.
+   * @param message Requires the log message.
+   */
+  @Override
+  public void errorLog(String message) {
+    this.logger.severe(prefix.errorPrefix() + message);
   }
 
   /**
@@ -43,7 +67,7 @@ public class CustomMessages extends MessageBuilder {
    */
   @Override
   public void broadcastWithPrefix(String message) {
-    Bukkit.broadcast(this.miniMessage.deserialize(this.prefix() + message));
+    Bukkit.broadcast(this.miniMessage.deserialize(prefix.prefix() + message));
   }
 
   /**
@@ -56,7 +80,7 @@ public class CustomMessages extends MessageBuilder {
    */
   @Override
   public void messageWithPrefix(@NotNull Player player, String message) {
-    player.sendMessage(this.miniMessage.deserialize(this.prefix() + message));
+    player.sendMessage(this.miniMessage.deserialize(prefix.prefix() + message));
   }
 
 }
