@@ -30,7 +30,7 @@ public class Start {
     CustomMessages message = new CustomMessages();
     try {
       message.log(Level.INFO, "load Connection to DiscordWebhook!");
-      URL url = new URL("https://discord.com/api/webhooks/1056506764578803773/gl7agAw_pQohdqn-VYgUoq-WVkHtG0JuHh-BRiME97dBaX3E_aXwK9Zqtno0l5Q--Q9B");
+      URL url = new URL("");//TODO: CREATE CONFIGURATION FOR WEBHOOK URL
       message.log(Level.INFO, "Send Message to Discord");
       new Discord(url).message("In 1  1/2 Minuten wird ein Custom Mob gespawnt! @everyone");
     }catch (MalformedURLException exception){exception.printStackTrace();}
