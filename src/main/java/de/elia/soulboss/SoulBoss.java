@@ -1,6 +1,6 @@
 package de.elia.soulboss;
 
-import de.elia.soulboss.functions.Function;
+import de.elia.soulboss.functions.Load;
 import de.elia.soulboss.functions.register.Register;
 import de.elia.soulmain.SoulMain;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -33,7 +33,7 @@ public class SoulBoss extends JavaPlugin {
   public void onEnable(){
     if (soulMain == null)return;
     soulBoss = this;
-    new Function().loadFunctions(this, Bukkit.getPluginManager());
+    new Load().loadPlugin(this, Bukkit.getPluginManager());
   }
 
   /**
@@ -44,7 +44,7 @@ public class SoulBoss extends JavaPlugin {
    */
   public void onReload(){
     if (soulMain == null)return;
-    new Function().loadFunctions(this, Bukkit.getPluginManager());
+    new Load().loadPlugin(this, Bukkit.getPluginManager());
   }
 
   /**
@@ -56,7 +56,7 @@ public class SoulBoss extends JavaPlugin {
   @Override
   public void onDisable(){
     if (soulMain == null)return;
-    Register.Disable.disable();
+    new Register.Disable().disable(this);
   }
 
   /**
@@ -94,4 +94,5 @@ public class SoulBoss extends JavaPlugin {
   public MiniMessage miniMessage() {
     return miniMessage;
   }
+
 }
