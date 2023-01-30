@@ -1,7 +1,6 @@
 package de.elia.soulboss.fight;
 
 import de.elia.soulboss.SoulBoss;
-import de.elia.soulboss.entity.spawn.Spawn;
 import de.elia.soulboss.messages.messages.CustomMessages;
 import de.elia.soulboss.utils.timers.StartTasks;
 import de.elia.soulboss.utils.timers.TimerUtils;
@@ -59,7 +58,7 @@ public class Utils extends StartTasks {
               message.infoLog("Countdown finished!");
               player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1F, 1F);
               message.infoLog("Spawn the Boss...");
-              new Spawn().spawn(player);
+                new BossFight(player, player.getLocation());
               message.infoLog("Boss spawned!");
               message.infoLog("BossFight loaded! Good Luck with the new Mob! :)");
             }
