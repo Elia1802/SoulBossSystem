@@ -29,7 +29,7 @@ public class BossFightAchievements {
    * @description Asks if the player the has a specific achievement
    * @param player Requires a Player
    * @param achievementStorage Requires a Achievement
-   * @return Register.Configuration.getConfiguration().get(player.getUniqueId() + ".Achievements." + achievementStorage.dataID()) != null;
+   * @return new Register.Configuration.getConfiguration().get(player.getUniqueId() + ".Achievements." + achievementStorage.dataID()) != null;
    */
   public boolean hasAchievement(@NotNull Player player, @NotNull BossFightAchievementStorage achievementStorage) {
     return new Register.Configuration().achievementConfiguration().get(player.getUniqueId() + ".Achievements." + achievementStorage.dataID()) != null;
