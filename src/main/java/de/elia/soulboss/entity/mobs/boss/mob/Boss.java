@@ -43,31 +43,20 @@ public class Boss extends Zombie {
     super(EntityType.ZOMBIE, ((CraftWorld)location.getWorld()).getHandle());
     CustomMessages message = new CustomMessages();
     boss = this;
-    message.infoLog("Set NameSpacedKey");
     this.getBukkitEntity().getPersistentDataContainer().set(new NamespacedKey(SoulBoss.soulBoss(), "680035753"), PersistentDataType.BYTE, (byte) 1);
-    message.infoLog("Set Health");
     this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(2000);
     this.setHealth(2000);
-    message.infoLog("Set Baby false");
     this.setBaby(false);
-    message.infoLog("Set location");
     this.setPos(location.getX(), location.getY(), location.getZ());
-    message.infoLog("Set Custom Name \"Boss\" ");
     this.setCustomName(Component.literal("Boss"));
-    message.infoLog("Set can break doors true");
     this.setCanBreakDoors(true);
-    message.infoLog("Set Aggressive true");
     this.setAggressive(true);
-    message.infoLog("Set Armors");
+    this.randomTool(this);
     new Helmet().helmet(this);
     new Chestplate().chestplate(this);
     new Leggins().leggins(this);
     new Boots().boots(this);
-    message.infoLog("Set Tools");
-    this.randomTool(this);
-    message.infoLog("Add the Boss to fresh Entitys");
     ((CraftWorld)location.getWorld()).getHandle().addFreshEntity(this);
-    message.infoLog("Create BossBar");
   }
 
   /**
