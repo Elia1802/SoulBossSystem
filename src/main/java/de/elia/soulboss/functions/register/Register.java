@@ -2,8 +2,9 @@ package de.elia.soulboss.functions.register;
 
 import de.elia.soulboss.SoulBoss;
 import de.elia.soulboss.block.BreakBlock;
+import de.elia.soulboss.fight.BossFightManager;
+import de.elia.soulboss.messages.messages.CustomMessages;
 import de.elia.soulboss.spawn.SpawnEgg;
-import de.elia.soulmain.allplugins.messages.builder.MessageBuilder;
 import de.elia.soulmain.thisplugin.configuration.SoulConfiguration;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
@@ -36,7 +37,7 @@ public class Register {
      * @param command Requires the command name
      * @param commandClass Requires the Command class
      */
-    public static void load(@NotNull String command, @NotNull CommandExecutor commandClass) {
+    public void load(@NotNull String command, @NotNull CommandExecutor commandClass) {
       Bukkit.getPluginCommand(command).setExecutor(commandClass);
     }
   }
@@ -57,7 +58,7 @@ public class Register {
      * @param listener Requires the Command class
      * @param plugin Requires the Instance of the Main class
      */
-    public static void load(@NotNull PluginManager manager, Listener listener, Plugin plugin){
+    public void load(@NotNull PluginManager manager, Listener listener, Plugin plugin){
       manager.registerEvents(listener, plugin);
     }
   }
@@ -70,7 +71,7 @@ public class Register {
    */
   public static class Utils {
 
-    private static final MessageBuilder log = new MessageBuilder(); //Gets the Message class of SoulMain
+    private final CustomMessages log = new CustomMessages(); //Gets the Message class of SoulMain
 
     /**
      * @author Elia
@@ -78,7 +79,7 @@ public class Register {
      * @since 1.0
      * @description Register the Utils and other things
      */
-    public static void load(Plugin plugin){
+    public void load(Plugin plugin){
       {
         String key = "680035753";
         log.infoLog("load BreakTask with the NamespacedKey: " + key + "...");
@@ -96,7 +97,8 @@ public class Register {
    */
   public static class Disable {
 
-    private static final MessageBuilder log = new MessageBuilder(); //Gets the Message class of SoulMain
+    private final CustomMessages log = new CustomMessages(); //Gets the Message class of SoulMain
+    private final BossFightManager bossFightManager = new BossFightManager();
 
     /**
      * @author Elia
@@ -104,11 +106,28 @@ public class Register {
      * @since 1.0
      * @description Disable and save all thinks
      */
-    public static void disable(){
+    public void disable(Plugin plugin){
       log.infoLog("Stop SoulBoss...");
         log.infoLog("Save all Configurations...");
-          Register.Configuration.save();
+          new Configuration().save();
         log.infoLog("Configuration saved");
+        log.infoLog("Remove Bosses...");
+          Bukkit.getServer().getWorld("world").getEntities().forEach((entity) ->{
+            if (entity.getPersistentDataContainer().has(new NamespacedKey(plugin, "680035753"))) {
+              entity.remove();
+            }
+          });
+          Bukkit.getServer().getWorld("world_nether").getEntities().forEach((entity) ->{
+            if (entity.getPersistentDataContainer().has(new NamespacedKey(plugin, "680035753"))) {
+              entity.remove();
+            }
+          });
+          Bukkit.getServer().getWorld("world_the_end").getEntities().forEach((entity) ->{
+            if (entity.getPersistentDataContainer().has(new NamespacedKey(plugin, "680035753"))) {
+              entity.remove();
+            }
+          });
+        log.infoLog("Bosses removed!");
       log.infoLog("SoulBoss stopped!");
     }
   }
@@ -117,24 +136,29 @@ public class Register {
    * @author Elia
    * @version 1.0
    * @since 1.0
-   * @description This is the Configuration Class to save thinks in a file.
+   * @description This is the Configuration Class to save things in a file.
    */
   public static class Configuration {
-    private static final SoulConfiguration achievementConfiguration = new SoulConfiguration(SoulBoss.soulBoss(), "achievement/" , "BossAchievement.yml");
-    private static final SoulConfiguration discordWebhookConfiguration = new SoulConfiguration(SoulBoss.soulBoss(), "discord/", "WebhookURL.yml");
-
+    private final SoulConfiguration achievementConfiguration = new SoulConfiguration(SoulBoss.soulBoss(), "boss/achievement/" , "BossAchievement.yml");
+    private final SoulConfiguration discordWebhookConfiguration = new SoulConfiguration(SoulBoss.soulBoss(), "plugin/discord/", "WebhookURL.yml");
+    private final SoulConfiguration playerRegisterConfiguration = new SoulConfiguration(SoulBoss.soulBoss(), "boss/register/", "PlayerRegister.yml");
+    private final SoulConfiguration spawnBlockLocationConfiguration =  new SoulConfiguration(SoulBoss.soulBoss(), "boss/spawn/", "SpawnBlock.yml");
     /**
      * @author Elia
      * @version 1.0
      * @since 1.0
      * @description Load all Configuration files
      */
-    public static void load(){
+    public void load(){
       achievementConfiguration.copyDefaults(true);
       achievementConfiguration.save();
       discordWebhookConfiguration.copyDefaults(true);
       discordWebhookConfiguration.addDefault("WebhookURL" , "https://discord.com/api/webhooks/YOUR_WEBHOOK");
       discordWebhookConfiguration.save();
+      playerRegisterConfiguration.copyDefaults(true);
+      playerRegisterConfiguration.save();
+      spawnBlockLocationConfiguration.copyDefaults(true);
+      spawnBlockLocationConfiguration.save();
     }
 
     /**
@@ -143,9 +167,12 @@ public class Register {
      * @since 1.0
      * @description Save all Configuration files
      */
-    public static void save(){
+    public void save(){
       achievementConfiguration.save();
       discordWebhookConfiguration.save();
+      playerRegisterConfiguration.clear();
+      playerRegisterConfiguration.save();
+      spawnBlockLocationConfiguration.save();
     }
 
     /**
@@ -155,7 +182,7 @@ public class Register {
      * @description Gets the Configuration for the achievements
      */
     @NotNull
-    public static SoulConfiguration achievementConfiguration() {
+    public SoulConfiguration achievementConfiguration() {
       return achievementConfiguration;
     }
 
@@ -165,8 +192,30 @@ public class Register {
      * @since 1.0
      * @description Gets the Configuration for the Discord Webhook.
      */
-    public static SoulConfiguration discordWebhookConfiguration() {
+    @NotNull
+    public SoulConfiguration discordWebhookConfiguration() {
       return discordWebhookConfiguration;
+    }
+
+    /**
+     * @author Elia
+     * @version 1.0
+     * @since 1.0
+     * @description Gets the Configuration for the Spawn Block.
+     */
+    @NotNull
+    public SoulConfiguration spawnBlockLocationConfiguration() {
+      return spawnBlockLocationConfiguration;
+    }
+
+    /**
+     * @author Elia
+     * @version 1.0
+     * @since 1.0
+     * @description Gets the Configuration for the Player Register for BossFights.
+     */
+    public SoulConfiguration playerRegisterConfiguration() {
+      return playerRegisterConfiguration;
     }
   }
 
@@ -183,8 +232,25 @@ public class Register {
      * @since 1.0
      * @description This is the load methode to load all Recipes.
      */
-    public static void load(Plugin plugin){
-      new SpawnEgg(plugin).registerEggRecipe();
+    public void load(Plugin plugin){
+      this.registerEggRecipe(plugin);
     }
+
+    /**
+     * @author Elia
+     * @version 1.0
+     * @since 1.0
+     * @description This Methode register the EggRecipe
+     */
+    public void registerEggRecipe(Plugin plugin){
+      SpawnEgg spawnEgg = new SpawnEgg(plugin);
+      try {
+        spawnEgg.eggRecipe();
+        plugin.getServer().addRecipe(spawnEgg.bossSpawnEggRecipe());
+      }catch (Exception exception) {
+        exception.printStackTrace();
+      }
+    }
+
   }
 }
