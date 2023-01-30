@@ -49,8 +49,7 @@ public class SpawnMobCommand implements CommandExecutor, TabCompleter {
             message.messageWithPrefix(player, message.red("Du hast ein BossFight aktuell am laufen!"));
           }
         }else if (args[0].equalsIgnoreCase("stop")) {
-          if (bossFight == null)return false;
-          if (bossFightManager.playerHasStart(player)){bossFight.stopFight(true);}else message.messageWithPrefix(player, message.red("Du hast zur zeit keinen BossFight am laufen!"));
+          if (bossFightManager.playerHasStart(player)){BossFight.bossFight.stopFight(true);}else message.messageWithPrefix(player, message.red("Du hast zur zeit keinen BossFight am laufen!"));
         }
       }
     }
