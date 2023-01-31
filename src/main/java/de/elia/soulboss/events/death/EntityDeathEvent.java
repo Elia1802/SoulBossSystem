@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 
 /**
- * @author Elia
+ * @author Zopnote, Elia
  * @version 1.0
  * @since 1.0
  * @implements {@link Listener}
