@@ -3,7 +3,7 @@ package de.elia.soulboss.utils.timers;
 import org.bukkit.entity.Player;
 
 /**
- * @author Elia
+ * @author D1p4k, Elia
  * @version 1.0
  * @since 1.0
  * @description This is the Start Class for start all thinks if the runnable finished.

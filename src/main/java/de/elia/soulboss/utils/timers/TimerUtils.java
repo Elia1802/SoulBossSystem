@@ -4,7 +4,7 @@ import de.elia.soulboss.SoulBoss;
 import org.bukkit.scheduler.BukkitRunnable;
 
 /**
- * @author Elia
+ * @author D1p4k, Elia
  * @version 1.0
  * @since 1.0
  * @description This is the Timer class of the Plugin SoulBoss.
@@ -63,7 +63,7 @@ public class TimerUtils {
   }
 
   /**
-   * @author Elia
+   * @author D1p4k, Elia
    * @version 1.0
    * @since 1.0
    * @description This is the TimerRunnable interface of the Plugin SoulBoss.
