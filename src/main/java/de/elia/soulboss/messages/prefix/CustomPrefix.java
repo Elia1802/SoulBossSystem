@@ -1,4 +1,4 @@
-package de.elia.soulboss.messages.messages;
+package de.elia.soulboss.messages.prefix;
 
 import de.elia.soulmain.SoulMain;
 import de.elia.soulmain.allplugins.messages.prefix.PrefixClass;

@@ -1,5 +1,6 @@
-package de.elia.soulboss.messages.messages;
+package de.elia.soulboss.messages.message;
 
+import de.elia.soulboss.messages.prefix.CustomPrefix;
 import de.elia.soulmain.SoulMain;
 import de.elia.soulmain.allplugins.messages.builder.MessageBuilder;
 import net.kyori.adventure.text.minimessage.MiniMessage;
