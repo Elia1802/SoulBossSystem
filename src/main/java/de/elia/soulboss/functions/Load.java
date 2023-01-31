@@ -14,7 +14,7 @@ import de.elia.soulboss.events.connections.DisconnectEvent;
 import de.elia.soulboss.events.death.EntityDeathEvent;
 import de.elia.soulboss.events.spawn.ZombieSpawnEvent;
 import de.elia.soulboss.functions.register.Register;
-import de.elia.soulboss.messages.messages.CustomMessages;
+import de.elia.soulboss.messages.message.CustomMessages;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 

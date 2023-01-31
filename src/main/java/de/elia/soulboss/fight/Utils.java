@@ -1,7 +1,7 @@
 package de.elia.soulboss.fight;
 
 import de.elia.soulboss.SoulBoss;
-import de.elia.soulboss.messages.messages.CustomMessages;
+import de.elia.soulboss.messages.message.CustomMessages;
 import de.elia.soulboss.utils.timers.StartTasks;
 import de.elia.soulboss.utils.timers.TimerUtils;
 import org.bukkit.Sound;

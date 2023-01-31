@@ -2,7 +2,7 @@ package de.elia.soulboss.commands.mob;
 
 import de.elia.soulboss.fight.BossFight;
 import de.elia.soulboss.fight.BossFightManager;
-import de.elia.soulboss.messages.messages.CustomMessages;
+import de.elia.soulboss.messages.message.CustomMessages;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

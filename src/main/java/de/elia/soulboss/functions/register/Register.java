@@ -3,7 +3,7 @@ package de.elia.soulboss.functions.register;
 import de.elia.soulboss.SoulBoss;
 import de.elia.soulboss.block.BreakBlock;
 import de.elia.soulboss.fight.BossFightManager;
-import de.elia.soulboss.messages.messages.CustomMessages;
+import de.elia.soulboss.messages.message.CustomMessages;
 import de.elia.soulboss.spawn.SpawnEgg;
 import de.elia.soulmain.thisplugin.configuration.SoulConfiguration;
 import org.bukkit.Bukkit;

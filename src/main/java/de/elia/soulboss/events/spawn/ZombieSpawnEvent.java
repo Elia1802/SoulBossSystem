@@ -2,7 +2,7 @@ package de.elia.soulboss.events.spawn;
 
 import de.elia.soulboss.SoulBoss;
 import de.elia.soulboss.fight.BossFight;
-import de.elia.soulboss.messages.messages.CustomMessages;
+import de.elia.soulboss.messages.message.CustomMessages;
 import de.elia.soulboss.spawn.SpawnEgg;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;

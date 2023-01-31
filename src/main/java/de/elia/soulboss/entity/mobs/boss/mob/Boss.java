@@ -7,7 +7,7 @@ import de.elia.soulboss.entity.equipment.armors.helmet.Helmet;
 import de.elia.soulboss.entity.equipment.armors.leggins.Leggins;
 import de.elia.soulboss.entity.equipment.tools.axe.Axe;
 import de.elia.soulboss.entity.equipment.tools.sword.Sword;
-import de.elia.soulboss.messages.messages.CustomMessages;
+import de.elia.soulboss.messages.message.CustomMessages;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attributes;
