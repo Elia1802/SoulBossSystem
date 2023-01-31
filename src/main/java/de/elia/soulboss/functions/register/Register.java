@@ -142,7 +142,6 @@ public class Register {
     private final SoulConfiguration achievementConfiguration = new SoulConfiguration(SoulBoss.soulBoss(), "boss/achievement/" , "BossAchievement.yml");
     private final SoulConfiguration discordWebhookConfiguration = new SoulConfiguration(SoulBoss.soulBoss(), "plugin/discord/", "WebhookURL.yml");
     private final SoulConfiguration playerRegisterConfiguration = new SoulConfiguration(SoulBoss.soulBoss(), "boss/register/", "PlayerRegister.yml");
-    private final SoulConfiguration spawnBlockLocationConfiguration =  new SoulConfiguration(SoulBoss.soulBoss(), "boss/spawn/", "SpawnBlock.yml");
     /**
      * @author Elia
      * @version 1.0
@@ -157,8 +156,6 @@ public class Register {
       discordWebhookConfiguration.save();
       playerRegisterConfiguration.copyDefaults(true);
       playerRegisterConfiguration.save();
-      spawnBlockLocationConfiguration.copyDefaults(true);
-      spawnBlockLocationConfiguration.save();
     }
 
     /**
@@ -172,7 +169,6 @@ public class Register {
       discordWebhookConfiguration.save();
       playerRegisterConfiguration.clear();
       playerRegisterConfiguration.save();
-      spawnBlockLocationConfiguration.save();
     }
 
     /**
@@ -195,17 +191,6 @@ public class Register {
     @NotNull
     public SoulConfiguration discordWebhookConfiguration() {
       return discordWebhookConfiguration;
-    }
-
-    /**
-     * @author Elia
-     * @version 1.0
-     * @since 1.0
-     * @description Gets the Configuration for the Spawn Block.
-     */
-    @NotNull
-    public SoulConfiguration spawnBlockLocationConfiguration() {
-      return spawnBlockLocationConfiguration;
     }
 
     /**
