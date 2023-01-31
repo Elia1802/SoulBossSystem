@@ -11,6 +11,7 @@ import de.elia.soulboss.events.attacks.fire.AttackFireEvent;
 import de.elia.soulboss.events.attacks.strikelightning.AttackStrikeLightningEvent;
 import de.elia.soulboss.events.attacks.teleport.AttackTeleportEvent;
 import de.elia.soulboss.events.connections.DisconnectEvent;
+import de.elia.soulboss.events.death.EntityDeathEvent;
 import de.elia.soulboss.events.spawn.ZombieSpawnEvent;
 import de.elia.soulboss.functions.register.Register;
 import de.elia.soulboss.messages.messages.CustomMessages;
@@ -57,6 +58,7 @@ public class Load {
         event.load(pluginManager, new AttackStrikeLightningEvent(), plugin);
         event.load(pluginManager, new AttackTeleportEvent(), plugin);
         event.load(pluginManager, new DisconnectEvent(), plugin);
+        event.load(pluginManager, new EntityDeathEvent(), plugin);
         event.load(pluginManager, new ZombieSpawnEvent(), plugin);
       log.infoLog("Events loaded!");
       log.infoLog("Load Configurations...");
