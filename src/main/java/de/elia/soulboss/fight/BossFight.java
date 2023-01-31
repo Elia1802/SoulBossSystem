@@ -2,14 +2,14 @@ package de.elia.soulboss.fight;
 
 import de.elia.soulboss.entity.mobs.boss.mob.Boss;
 import de.elia.soulboss.functions.register.Register;
-import de.elia.soulboss.messages.messages.CustomMessages;
+import de.elia.soulboss.messages.message.CustomMessages;
 import net.minecraft.world.entity.Entity;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * @author Elia
+ * @author D1p4k, Elia
  * @version 1.0
  * @since 1.0
  * @description This is BossFight class.
