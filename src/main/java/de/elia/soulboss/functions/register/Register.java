@@ -140,7 +140,6 @@ public class Register {
    */
   public static class Configuration {
     private final SoulConfiguration achievementConfiguration = new SoulConfiguration(SoulBoss.soulBoss(), "boss/achievement/" , "BossAchievement.yml");
-    private final SoulConfiguration discordWebhookConfiguration = new SoulConfiguration(SoulBoss.soulBoss(), "plugin/discord/", "WebhookURL.yml");
     private final SoulConfiguration playerRegisterConfiguration = new SoulConfiguration(SoulBoss.soulBoss(), "boss/register/", "PlayerRegister.yml");
     /**
      * @author Elia
@@ -151,9 +150,6 @@ public class Register {
     public void load(){
       achievementConfiguration.copyDefaults(true);
       achievementConfiguration.save();
-      discordWebhookConfiguration.copyDefaults(true);
-      discordWebhookConfiguration.addDefault("WebhookURL" , "https://discord.com/api/webhooks/YOUR_WEBHOOK");
-      discordWebhookConfiguration.save();
       playerRegisterConfiguration.copyDefaults(true);
       playerRegisterConfiguration.save();
     }
@@ -166,7 +162,6 @@ public class Register {
      */
     public void save(){
       achievementConfiguration.save();
-      discordWebhookConfiguration.save();
       playerRegisterConfiguration.clear();
       playerRegisterConfiguration.save();
     }
@@ -180,17 +175,6 @@ public class Register {
     @NotNull
     public SoulConfiguration achievementConfiguration() {
       return achievementConfiguration;
-    }
-
-    /**
-     * @author Elia
-     * @version 1.0
-     * @since 1.0
-     * @description Gets the Configuration for the Discord Webhook.
-     */
-    @NotNull
-    public SoulConfiguration discordWebhookConfiguration() {
-      return discordWebhookConfiguration;
     }
 
     /**
