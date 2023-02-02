@@ -28,9 +28,9 @@ import java.util.Random;
  * @extends {@link Zombie}
  * @description This class create the Boss.
  */
-public class Boss extends Zombie {
+public class ZombieBoss extends Zombie {
 
-  private static Boss boss;
+  private static ZombieBoss boss;
 
   /**
    * @author Elia
@@ -39,16 +39,16 @@ public class Boss extends Zombie {
    * @description This Methode create and spawn the Boss on a specify location.
    * @param location Requires the Location
    */
-  public Boss(@NotNull Location location) {
+  public ZombieBoss(@NotNull Location location) {
     super(EntityType.ZOMBIE, ((CraftWorld)location.getWorld()).getHandle());
     CustomMessages message = new CustomMessages();
     boss = this;
     this.getBukkitEntity().getPersistentDataContainer().set(new NamespacedKey(SoulBoss.soulBoss(), "680035753"), PersistentDataType.BYTE, (byte) 1);
-    this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(2000);
-    this.setHealth(2000);
+    this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(500);
+    this.setHealth(500);
     this.setBaby(false);
-    this.setPos(location.getX(), location.getY(), location.getZ());
-    this.setCustomName(Component.literal("Boss"));
+    this.setPos(location.getX()+5, location.getY()+5, location.getZ()+5);
+    this.setCustomName(Component.literal("ZombieBoss"));
     this.setCanBreakDoors(true);
     this.setAggressive(true);
     this.randomTool(this);
@@ -78,7 +78,7 @@ public class Boss extends Zombie {
    * @description Gets all Methodes of this and the Zombie class.
    */
   @NotNull
-  public static Boss boss() {
+  public static ZombieBoss boss() {
     return boss;
   }
 
