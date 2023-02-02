@@ -1,6 +1,6 @@
 package de.elia.soulboss.fight;
 
-import de.elia.soulboss.entity.mobs.boss.mob.Boss;
+import de.elia.soulboss.entity.mobs.boss.mob.ZombieBoss;
 import de.elia.soulboss.functions.register.Register;
 import de.elia.soulboss.messages.message.CustomMessages;
 import net.minecraft.world.entity.Entity;
@@ -19,7 +19,7 @@ public class BossFight {
   private final Location location;
   private final Player player;
   private final String key;
-  private Boss boss;
+  private ZombieBoss boss;
   private final BossFightManager bossFightManager = new BossFightManager();
   private final Register.Configuration configuration = new Register.Configuration();
   private final CustomMessages message = new CustomMessages();
@@ -72,7 +72,7 @@ public class BossFight {
    */
   public void startFight(){
     if (player == null)return;
-    boss = new Boss(location);
+    boss = new ZombieBoss(location);
     bossFightManager.setPlayerStart(player, true);
   }
 
@@ -120,7 +120,7 @@ public class BossFight {
    * @description This is methode gets the boss.
    */
   @NotNull
-  public Boss boss() {
+  public ZombieBoss boss() {
     return boss;
   }
 

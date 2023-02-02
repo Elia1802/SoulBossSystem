@@ -29,8 +29,7 @@ public class Sword {
     diamondMeta.addEnchant(Enchantment.DAMAGE_ALL, 5, true);
     diamondMeta.setUnbreakable(true);
     diamond.setItemMeta(diamondMeta);
-
-    ItemStack netherite = new ItemStack(Material.DIAMOND_SWORD);
+    ItemStack netherite = new ItemStack(Material.NETHERITE_SWORD);
     ItemMeta netheriteMeta = netherite.getItemMeta();
     netheriteMeta.addEnchant(Enchantment.FIRE_ASPECT, 5, true);
     netheriteMeta.addEnchant(Enchantment.DAMAGE_ALL, 5, true);

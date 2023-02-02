@@ -28,8 +28,7 @@ public class Axe {
     diamondMeta.addEnchant(Enchantment.DAMAGE_ALL, 5, true);
     diamondMeta.setUnbreakable(true);
     diamond.setItemMeta(diamondMeta);
-
-    ItemStack netherite = new ItemStack(Material.DIAMOND_AXE);
+    ItemStack netherite = new ItemStack(Material.NETHERITE_AXE);
     ItemMeta netheriteMeta = netherite.getItemMeta();
     netheriteMeta.addEnchant(Enchantment.DAMAGE_ALL, 5, true);
     netheriteMeta.setUnbreakable(true);

@@ -1,5 +1,6 @@
 package de.elia.soulboss.functions;
 
+import de.elia.soulboss.commands.help.HelpCommand;
 import de.elia.soulboss.commands.idea.IdeaCommand;
 import de.elia.soulboss.commands.items.ItemGiveCommand;
 import de.elia.soulboss.commands.mob.SpawnMobCommand;
@@ -43,10 +44,9 @@ public class Load {
     Register.Recipes recipes = new Register.Recipes();
     log.infoLog("Load SoulBoss...");
       log.infoLog("Load Commands...");
+        command.load("bosshelp", new HelpCommand());
         command.load("mobidea", new IdeaCommand());
         command.load("bossgive", new ItemGiveCommand());
-        command.load("bossfight", new SpawnMobCommand());
-        command.load("soulboss", new PluginCommand());
         command.load("bossfight", new SpawnMobCommand());
         command.load("soulboss", new PluginCommand());
       log.infoLog("Commands loaded!");

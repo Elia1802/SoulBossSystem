@@ -31,8 +31,7 @@ public class Boots {
     diamondMeta.addEnchant(Enchantment.THORNS, 5, true);
     diamondMeta.setUnbreakable(true);
     diamond.setItemMeta(diamondMeta);
-
-    ItemStack netherite = new ItemStack(Material.DIAMOND_BOOTS);
+    ItemStack netherite = new ItemStack(Material.NETHERITE_BOOTS);
     ItemMeta netheriteMeta = netherite.getItemMeta();
     netheriteMeta.addEnchant(Enchantment.PROTECTION_FIRE, 5, true);
     netheriteMeta.addEnchant(Enchantment.FROST_WALKER, 5, true);

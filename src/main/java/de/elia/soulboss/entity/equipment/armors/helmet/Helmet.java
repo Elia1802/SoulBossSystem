@@ -30,8 +30,7 @@ public class Helmet {
     diamondMeta.addEnchant(Enchantment.THORNS, 5, true);
     diamondMeta.setUnbreakable(true);
     diamond.setItemMeta(diamondMeta);
-
-    ItemStack netherite = new ItemStack(Material.DIAMOND_HELMET);
+    ItemStack netherite = new ItemStack(Material.NETHERITE_HELMET);
     ItemMeta netheriteMeta = netherite.getItemMeta();
     netheriteMeta.addEnchant(Enchantment.PROTECTION_FIRE, 5, true);
     netheriteMeta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 5, true);
