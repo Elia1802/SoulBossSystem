@@ -1,11 +1,11 @@
 package de.elia.soulboss.commands.idea;
 
-import de.elia.soulboss.SoulBoss;
-import de.elia.soulboss.plugin.ThisPlugin;
-import de.elia.soulmain.allplugins.messages.builder.MessageBuilder;
+import de.elia.soulboss.functions.register.Register;
+import de.elia.soulboss.messages.message.CustomMessages;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -30,7 +30,20 @@ public class IdeaCommand implements CommandExecutor {
    */
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-    new MessageBuilder().message(sender, "If you have an idea send it to me on Discord. My Discord is:" + new ThisPlugin().contact());
+    CustomMessages message = new CustomMessages();
+    Register.Configuration configuration = new Register.Configuration();
+    if (sender instanceof Player player) {
+      if (args.length > 1) {
+        StringBuilder idea = new StringBuilder();
+        for (int i = 0; i < args.length; i++) {
+          idea.append(args[i]).append(" ");
+        }
+        String string = idea.toString();
+        configuration.ideasConfiguration().set(player.getName(), string);
+        message.messageWithPrefix(player, message.gold("Du hast die Idee erfolgreich abgesendet!"));
+        message.messageWithPrefix(player, message.red("Deine Idee: " + string));
+      }
+    }
     return true;
   }
 }
