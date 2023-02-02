@@ -59,6 +59,9 @@ public class HelpCommand implements CommandExecutor, TabCompleter {
   @Override
   @Nullable
   public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
-    return Arrays.asList("bosses", "commands", "items", "recipes");
+    if (args.length == 1) {
+      return Arrays.asList("bosses", "commands", "items", "recipes");
+     }else return null;
+    //return Arrays.asList("bosses", "commands", "items", "recipes");
   }
 }
