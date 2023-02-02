@@ -62,6 +62,5 @@ public class HelpCommand implements CommandExecutor, TabCompleter {
     if (args.length == 1) {
       return Arrays.asList("bosses", "commands", "items", "recipes");
      }else return null;
-    //return Arrays.asList("bosses", "commands", "items", "recipes");
   }
 }
