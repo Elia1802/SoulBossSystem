@@ -37,7 +37,7 @@ public class AchievementBossFightZombieEvent implements Listener {
     if (entity instanceof Zombie) {
       if (entity.getPersistentDataContainer().has(new NamespacedKey(SoulBoss.soulBoss(), "680035753"))) {
         Location location = entity.getLocation();
-        Collection<Player> nearbyPlayers = location.getNearbyPlayers(40);
+        Collection<Player> nearbyPlayers = location.getNearbyPlayers(100);
         for (Player player : nearbyPlayers) {
           new BossFightAchievements(SoulBoss.soulBoss()).giveAchievement(player, BossFightAchievementStorage.BOSSFIGHT_ZOMBIE);
         }
