@@ -140,6 +140,7 @@ public class Register {
    */
   public static class Configuration {
     private final SoulConfiguration achievementConfiguration = new SoulConfiguration(SoulBoss.soulBoss(), "boss/achievement/" , "BossAchievement.yml");
+    private final SoulConfiguration ideasConfiguration = new SoulConfiguration(SoulBoss.soulBoss(), "plugin/idea/", "Ideas.yml");
     private final SoulConfiguration playerRegisterConfiguration = new SoulConfiguration(SoulBoss.soulBoss(), "boss/register/", "PlayerRegister.yml");
     /**
      * @author Elia
@@ -150,6 +151,8 @@ public class Register {
     public void load(){
       achievementConfiguration.copyDefaults(true);
       achievementConfiguration.save();
+      ideasConfiguration.copyDefaults(true);
+      ideasConfiguration.save();
       playerRegisterConfiguration.copyDefaults(true);
       playerRegisterConfiguration.save();
     }
@@ -162,6 +165,7 @@ public class Register {
      */
     public void save(){
       achievementConfiguration.save();
+      ideasConfiguration.save();
       playerRegisterConfiguration.clear();
       playerRegisterConfiguration.save();
     }
@@ -181,8 +185,20 @@ public class Register {
      * @author Elia
      * @version 1.0
      * @since 1.0
+     * @description Gets the Configuration for ideas
+     */
+    @NotNull
+    public SoulConfiguration ideasConfiguration() {
+      return ideasConfiguration;
+    }
+
+    /**
+     * @author Elia
+     * @version 1.0
+     * @since 1.0
      * @description Gets the Configuration for the Player Register for BossFights.
      */
+    @NotNull
     public SoulConfiguration playerRegisterConfiguration() {
       return playerRegisterConfiguration;
     }
