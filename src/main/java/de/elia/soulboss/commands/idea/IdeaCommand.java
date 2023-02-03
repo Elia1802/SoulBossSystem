@@ -34,15 +34,24 @@ public class IdeaCommand implements CommandExecutor {
     Register.Configuration configuration = new Register.Configuration();
     if (sender instanceof Player player) {
       if (args.length > 1) {
+        int i;
         StringBuilder idea = new StringBuilder();
-        for (int i = 0; i < args.length; i++) {
+        for (i = 0; i < args.length; i++) {
           idea.append(args[i]).append(" ");
         }
-        String string = idea.toString();
-        configuration.ideasConfiguration().set(player.getName(), string);
-        message.messageWithPrefix(player, message.gold("Du hast die Idee erfolgreich abgesendet!"));
-        message.messageWithPrefix(player, message.red("Deine Idee: " + string));
+        if (configuration.ideasConfiguration().get(player.getName()) == null) {
+          String string = idea.toString();
+          configuration.ideasConfiguration().set(player.getName(), string);
+          message.messageWithPrefix(player, message.gold("Du hast die Idee erfolgreich abgesendet!"));
+          message.messageWithPrefix(player, message.red("Deine Idee: " + string));
+        }else {
+          message.messageWithPrefix(player, message.red("Du hast eine Idee schon abgegeben!"));
+          message.messageWithPrefix(player, message.gold("Eine neue Idee kannst du erst eingeben, wenn ein Teammitglied dein Antrag aus der Configuration ausgelesen hat!"));
+        }
       }
+    }else {
+      message.errorLog("You have to be a Player!");
+      return false;
     }
     return true;
   }
