@@ -38,10 +38,10 @@ public class ZombieSpawnEvent implements Listener {
     if (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) {
       if (player.getInventory().getItemInMainHand().getItemMeta() == null)return;
       if (player.getInventory().getItemInMainHand().getItemMeta().hasItemFlag(ItemFlag.HIDE_ENCHANTS)) {
-        BossFight.loadBossFight(11*20, player);
         player.getInventory().getItemInMainHand().removeItemFlags(ItemFlag.HIDE_ENCHANTS);
         Component component = miniMessage.deserialize("<click:run_command:/bossfight stop><green>Drücke hier</green></click> <gold>um den Bossfight vor dem Tod des Bosses zu beenden!</gold>");
         message.messageWithPrefix(player, component);
+        BossFight.loadBossFight(11*20, player);
       }
     }
   }
