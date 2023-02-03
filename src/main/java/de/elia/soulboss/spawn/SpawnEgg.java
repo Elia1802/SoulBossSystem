@@ -23,7 +23,6 @@ import java.util.ArrayList;
 public class SpawnEgg {
   private final Plugin plugin;
   private ShapedRecipe bossSpawnEggRecipe;
-  private ItemStack bossSpawnEgg;
   public static Component lore = SoulBoss.soulBoss().miniMessage().deserialize("<dark_gray>With this egg you can spawn the SoulBoss</dark_gray>");
 
   /**
@@ -37,13 +36,18 @@ public class SpawnEgg {
     this.plugin = plugin;
   }
 
+  public SpawnEgg(){
+    this(SoulBoss.soulBoss());
+  }
+
   /**
    * @author Elia
    * @version 1.0
    * @since 1.0
-   * @description This Methode create the eggRecipe
+   * @description This is the methode for the spawnegg of the Zombie
+   * @return itemStack
    */
-  public void eggRecipe(){
+  public ItemStack spawnEgg(){
     Material material = Material.ZOMBIE_HEAD;
     ItemStack itemStack = new ItemStack(material);
     ItemMeta itemMeta = itemStack.getItemMeta();
@@ -56,26 +60,24 @@ public class SpawnEgg {
     itemMeta.setUnbreakable(true);
     itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
     itemStack.setItemMeta(itemMeta);
-    NamespacedKey uuid = new NamespacedKey(plugin, "v4j23hdu-df4e-36ta-r4sf-2n0c3n8cky9x");
-    ShapedRecipe recipe = new ShapedRecipe(uuid, itemStack);
-    recipe.shape("ZZZ", "WSW", "CSC");
-    recipe.setIngredient('Z', Material.ZOMBIE_HEAD);
-    recipe.setIngredient('W', Material.GREEN_WOOL);
-    recipe.setIngredient('S', Material.SOUL_SAND);
-    recipe.setIngredient('C', Material.CYAN_CONCRETE);
-    bossSpawnEggRecipe = recipe;
-    bossSpawnEgg = itemStack;
+    return itemStack;
   }
 
   /**
    * @author Elia
    * @version 1.0
    * @since 1.0
-   * @description This Methode gets the Egg
+   * @description This Methode create the eggRecipe
    */
-  @NotNull
-  public ItemStack bossSpawnEgg() {
-    return bossSpawnEgg;
+  public void eggRecipe(){
+    NamespacedKey uuid = new NamespacedKey(plugin, "v4j23hdu-df4e-36ta-r4sf-2n0c3n8cky9x");
+    ShapedRecipe recipe = new ShapedRecipe(uuid, this.spawnEgg());
+    recipe.shape("ZZZ", "WSW", "CSC");
+    recipe.setIngredient('Z', Material.ZOMBIE_HEAD);
+    recipe.setIngredient('W', Material.GREEN_WOOL);
+    recipe.setIngredient('S', Material.SOUL_SAND);
+    recipe.setIngredient('C', Material.CYAN_CONCRETE);
+    bossSpawnEggRecipe = recipe;
   }
 
   /**
