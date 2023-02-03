@@ -1,9 +1,12 @@
 package de.elia.soulboss.commands.items;
 
+import de.elia.soulboss.messages.message.CustomMessages;
+import de.elia.soulboss.spawn.SpawnEgg;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -30,7 +33,29 @@ public class ItemGiveCommand implements CommandExecutor, TabCompleter {
    */
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-    return false;
+    CustomMessages message = new CustomMessages();
+    SpawnEgg spawnEgg = new SpawnEgg();
+    if (sender instanceof Player player) {
+      if (player.hasPermission("soulboss.give")) {
+        if (args.length == 2) {
+          if (args[0].equalsIgnoreCase(player.getName())) {
+            if (args[1].equalsIgnoreCase("soulboss_zombie")) {
+              player.getInventory().setItemInMainHand(spawnEgg.spawnEgg());
+              message.messageWithPrefix(player, message.green("Du hast das Spawn Ei von dem Zombie Boss geholt!"));
+            }
+          }
+        }else {
+          message.messageWithPrefix(player, message.red("/bossgive [player] [Item]"));
+          return false;
+        }
+      }else {
+        message.messageWithPrefix(player, message.red("Du hast keine Rechte für diesen Command!"));
+      }
+    }else {
+      message.errorLog("You have to be a Player!");
+      return false;
+    }
+    return true;
   }
 
   /**
@@ -48,7 +73,11 @@ public class ItemGiveCommand implements CommandExecutor, TabCompleter {
    * @return null
    */
   @Override
-  public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+  public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
+    Player player = (Player) sender;
+    if (args.length == 2) {
+      return List.of("soulboss_zombie");
+    }
     return null;
   }
 }
