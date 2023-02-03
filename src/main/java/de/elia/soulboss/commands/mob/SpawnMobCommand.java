@@ -38,20 +38,26 @@ public class SpawnMobCommand implements CommandExecutor, TabCompleter {
    */
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+    CustomMessages message = new CustomMessages();
     if (sender instanceof Player player) {
       BossFightManager bossFightManager = new BossFightManager();
-      CustomMessages message = new CustomMessages();
-      if (args.length == 1){
-        if (args[0].equalsIgnoreCase("start")) {
-          if (!bossFightManager.playerHasStart(player)) {
-            bossFight = new BossFight(player, player.getLocation());
-          }else {
-            message.messageWithPrefix(player, message.red("Du hast ein BossFight aktuell am laufen!"));
+      if (player.hasPermission("")) {
+        if (args.length == 1){
+          if (args[0].equalsIgnoreCase("start")) {
+            if (!bossFightManager.playerHasStart(player)) {
+              bossFight = new BossFight(player, player.getLocation());
+            }else {
+              message.messageWithPrefix(player, message.red("Du hast ein BossFight aktuell am laufen!"));
+            }
+          }else if (args[0].equalsIgnoreCase("stop")) {
+            if (bossFightManager.playerHasStart(player)){BossFight.bossFight.stopFight(true);}else message.messageWithPrefix(player, message.red("Du hast zur zeit keinen BossFight am laufen!"));
           }
-        }else if (args[0].equalsIgnoreCase("stop")) {
-          if (bossFightManager.playerHasStart(player)){BossFight.bossFight.stopFight(true);}else message.messageWithPrefix(player, message.red("Du hast zur zeit keinen BossFight am laufen!"));
         }
+      }else {
+        message.messageWithPrefix(player, message.red("Du hast keine Rechte für diesen Command!"));
       }
+    }else {
+      message.messageWithPrefix(sender, message.red("You have to be a Player!"));
     }
     return false;
   }
