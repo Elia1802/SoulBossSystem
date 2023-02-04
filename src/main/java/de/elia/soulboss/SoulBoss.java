@@ -44,7 +44,21 @@ public class SoulBoss extends JavaPlugin {
    */
   public void onReload(){
     if (soulMain == null)return;
-    new Load().loadPlugin(this, Bukkit.getPluginManager());
+    new Load().reload(this, Bukkit.getPluginManager());
+  }
+
+  /**
+   * @author Elia
+   * @version 1.0
+   * @since 1.0
+   * @description Reload all Configurations in this Plugin.
+   */
+  public void onConfigurationReload(){
+    if (soulMain == null)return;
+    Register.Configuration configuration = new Register.Configuration();
+    configuration.ideasConfiguration().reload();
+    configuration.playerRegisterConfiguration().reload();
+    configuration.achievementConfiguration().reload();
   }
 
   /**
@@ -93,6 +107,16 @@ public class SoulBoss extends JavaPlugin {
   @NotNull
   public MiniMessage miniMessage() {
     return miniMessage;
+  }
+
+  /**
+   * @author Elia
+   * @version 1.0
+   * @since 1.0
+   * @description Disable this Plugin
+   */
+  public void disable(){
+    Bukkit.getPluginManager().disablePlugin(this);
   }
 
 }
