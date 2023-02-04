@@ -3,7 +3,10 @@ author: Elia, D1p4k, Zopnote
 main: de.elia.soulboss.SoulBoss
 version: 1.0
 api-version: 1.19
-description: The Boss Fight Plugin für Soul
+description: This plugin was written for SoulSMP. I put a lot of effort into it and I hope you really like it.
+             I know this plugin changes the entire server, but sometimes a change is important. This plugin 
+             ensures that you can earn your own bossfight. But since I still need a lot of ideas, feel free 
+             to write an idea with the command /mobidea an idea.
 permissions:
   soulboss.give:
     description: If the player has this permission, he can execute the bossgive command.
