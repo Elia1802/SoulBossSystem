@@ -128,6 +128,9 @@ public class Register {
             }
           });
         log.infoLog("Bosses removed!");
+        log.infoLog("Remove Recipes...");
+          Bukkit.removeRecipe(new NamespacedKey(plugin, "v4j23hdu-df4e-36ta-r4sf-2n0c3n8cky9x"));
+        log.infoLog("Recipes Removed!");
       log.infoLog("SoulBoss stopped!");
     }
   }
@@ -154,6 +157,7 @@ public class Register {
       ideasConfiguration.copyDefaults(true);
       ideasConfiguration.save();
       playerRegisterConfiguration.copyDefaults(true);
+      playerRegisterConfiguration.clear();
       playerRegisterConfiguration.save();
     }
 
