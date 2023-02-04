@@ -3,8 +3,10 @@ package de.elia.soulboss.messages.message;
 import de.elia.soulboss.messages.prefix.CustomPrefix;
 import de.elia.soulmain.SoulMain;
 import de.elia.soulmain.allplugins.messages.builder.MessageBuilder;
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -82,6 +84,32 @@ public class CustomMessages extends MessageBuilder {
   @Override
   public void messageWithPrefix(@NotNull Player player, String message) {
     player.sendMessage(this.miniMessage.deserialize(prefix.prefix() + message));
+  }
+
+  /**
+   * @author Elia
+   * @version 1.0
+   * @since 1.0
+   * @description This Methode send a message to a player.
+   * @param player Requires a Player.
+   * @param message Requires the message.
+   */
+  @Override
+  public void messageWithPrefix(@NotNull Player player, Component message) {
+    player.sendMessage(this.prefix.prefix().append(message));
+  }
+
+  /**
+   * @author Elia
+   * @version 1.0
+   * @since 1.0
+   * @description This Methode send a message to a CommmandSender.
+   * @param sender Requires a CommandSender.
+   * @param message Requires the message.
+   */
+  @Override
+  public void messageWithPrefix(@NotNull CommandSender sender, String message) {
+    sender.sendMessage(this.miniMessage.deserialize(prefix.prefix() + message));
   }
 
 }
