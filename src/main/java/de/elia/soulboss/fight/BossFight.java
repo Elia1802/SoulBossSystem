@@ -6,7 +6,6 @@ import de.elia.soulboss.messages.message.CustomMessages;
 import net.minecraft.world.entity.Entity;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * @author D1p4k, Elia
@@ -100,72 +99,5 @@ public class BossFight {
     CustomMessages message = new CustomMessages();
     message.messageWithPrefix(player, message.green("Der Boss Kampf wird in kürze beginnen"));
     new Utils().start(ticks, player);
-  }
-
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
-   * @description This is methode gets the key.
-   */
-  @NotNull
-  public String key(){
-    return key;
-  }
-
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
-   * @description This is methode gets the boss.
-   */
-  @NotNull
-  public ZombieBoss boss() {
-    return boss;
-  }
-
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
-   * @description This is methode gets the BossFightManager.
-   */
-  @NotNull
-  public BossFightManager bossFightManager() {
-    return bossFightManager;
-  }
-
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
-   * @description This is methode gets the configuration.
-   */
-  @NotNull
-  @Deprecated //Use the Register.Configuration Class to get the configuration.
-  public Register.Configuration configuration() {
-    return configuration;
-  }
-
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
-   * @description This is methode gets the player.
-   */
-  @NotNull
-  public Player player() {
-    return player;
-  }
-
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
-   * @description This is methode gets the location.
-   */
-  @NotNull
-  public Location location() {
-    return location;
   }
 }
