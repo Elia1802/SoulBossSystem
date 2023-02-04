@@ -54,7 +54,7 @@ public class BreakBlock {
    * @version 1.0
    * @since 1.0
    * @description Queries if the block is in a secure region.
-   * @param location Gets t
+   * @param location Requires the Location
    * @return
    */
   public boolean inRegion(@NotNull Location location){
