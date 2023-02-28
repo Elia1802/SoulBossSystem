@@ -1,6 +1,9 @@
 name: SoulBoss
 author: Elia, D1p4k, Zopnote
 main: de.elia.soulboss.SoulBoss
+depend:
+  - WorldGuard
+  - SoulMain
 version: 1.0
 api-version: 1.19
 description: This plugin was written for SoulSMP. I put a lot of effort into it and I hope you really like it.
@@ -14,6 +17,8 @@ permissions:
     description: With this permission, players can query all important information from this plugin.
   soulboss.fight:
     description: With this permission, players can spawn the boss.
+  soulboss.world:
+    description: With this permission you can teleport in the bossfight world.
 commands:
   bosshelp:
     description: Here every player can get all the information from the recipes, commands and the bosses.
@@ -25,3 +30,5 @@ commands:
     description: Players can use it to start the bossfight (or use the spawn egg method).
   soulboss:
     description: Players can use it to read information about the plugin.
+  tpworld:
+    description: Teleport the player in a other world.
