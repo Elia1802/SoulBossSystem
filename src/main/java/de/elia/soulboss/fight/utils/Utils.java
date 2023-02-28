@@ -1,6 +1,7 @@
-package de.elia.soulboss.fight;
+package de.elia.soulboss.fight.utils;
 
 import de.elia.soulboss.SoulBoss;
+import de.elia.soulboss.fight.BossFight;
 import de.elia.soulboss.messages.message.CustomMessages;
 import de.elia.soulboss.utils.timers.StartTasks;
 import de.elia.soulboss.utils.timers.TimerUtils;
@@ -41,10 +42,10 @@ public class Utils extends StartTasks {
             //run countdown
             String string = String.valueOf(seconds);
             if (seconds == 10)message.infoLog("Start Countdown with 10 seconds!");
-            if (seconds == 10)message.broadcastWithPrefix(message.red("In").append(message.darkPurple(string).append(message.red("Sekunden wird ein Boss spawnen!"))));
-            if (seconds == 3)message.broadcastWithPrefix(message.red("In").append(message.darkPurple(string).append(message.red("Sekunden wird ein Boss spawnen!"))));
-            if (seconds == 2)message.broadcastWithPrefix(message.red("In").append(message.darkPurple(string).append(message.red("Sekunden wird ein Boss spawnen!"))));
-            if (seconds == 1)message.broadcastWithPrefix(message.red("In").append(message.darkPurple(string).append(message.red("Sekunde wird ein Boss spawnen!"))));
+            if (seconds == 10)message.messageWithPrefix(player, message.red("In").append(message.darkPurple(string).append(message.red("Sekunden wird ein Boss spawnen!"))));
+            if (seconds == 3)message.messageWithPrefix(player, message.red("In").append(message.darkPurple(string).append(message.red("Sekunden wird ein Boss spawnen!"))));
+            if (seconds == 2)message.messageWithPrefix(player, message.red("In").append(message.darkPurple(string).append(message.red("Sekunden wird ein Boss spawnen!"))));
+            if (seconds == 1)message.messageWithPrefix(player, message.red("In").append(message.darkPurple(string).append(message.red("Sekunde wird ein Boss spawnen!"))));
           }
         }
       },
