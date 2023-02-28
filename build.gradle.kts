@@ -23,7 +23,7 @@ repositories {
 
 dependencies {
   paperDevBundle("1.19.3-R0.1-SNAPSHOT")
-  compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.7")
+  compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.8-SNAPSHOT")
   compileOnly("de.elia.soulmain:SoulMain:1.1")
   // paperweightDevBundle("com.example.paperfork", "1.19.3-R0.1-SNAPSHOT")
 
