@@ -1,12 +1,14 @@
 package de.elia.soulboss.commands.idea;
 
-import de.elia.soulboss.functions.register.Register;
 import de.elia.soulboss.messages.message.CustomMessages;
+import de.elia.soulboss.plugin.load.start.register.configuation.ConfigurationLoader;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.logging.Level;
 
 /**
  * @author Elia
@@ -15,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
  * @implements {@link CommandExecutor}
  * @description This is the Command for ideas of other Players for new Mobs and other thinks for this Plugin
  */
-public class IdeaCommand implements CommandExecutor {
+public class IdeaCommand extends ConfigurationLoader implements CommandExecutor {
 
   /**
    * @author Elia
@@ -31,7 +33,6 @@ public class IdeaCommand implements CommandExecutor {
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
     CustomMessages message = new CustomMessages();
-    Register.Configuration configuration = new Register.Configuration();
     if (sender instanceof Player player) {
       if (args.length > 1) {
         int i;
@@ -39,9 +40,9 @@ public class IdeaCommand implements CommandExecutor {
         for (i = 0; i < args.length; i++) {
           idea.append(args[i]).append(" ");
         }
-        if (configuration.ideasConfiguration().get(player.getName()) == null) {
+        if (this.ideasStorage().get(player.getName()) == null) {
           String string = idea.toString();
-          configuration.ideasConfiguration().set(player.getName(), string);
+          this.ideasStorage().set(player.getName(), string);
           message.messageWithPrefix(player, message.gold("Du hast die Idee erfolgreich abgesendet!"));
           message.messageWithPrefix(player, message.red("Deine Idee: " + string));
         }else {
@@ -50,7 +51,7 @@ public class IdeaCommand implements CommandExecutor {
         }
       }
     }else {
-      message.errorLog("You have to be a Player!");
+      message.log(Level.WARNING, "You have to be a Player!");
       return false;
     }
     return true;

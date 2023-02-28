@@ -1,9 +1,9 @@
 package de.elia.soulboss.commands.plugin;
 
 import de.elia.soulboss.SoulBoss;
-import de.elia.soulboss.functions.register.Register;
 import de.elia.soulboss.messages.message.CustomMessages;
 import de.elia.soulboss.plugin.ThisPlugin;
+import de.elia.soulboss.plugin.load.start.register.configuation.ConfigurationLoader;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
@@ -18,6 +18,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * @author Elia
@@ -26,7 +27,7 @@ import java.util.List;
  * @implements {@link CommandExecutor}, {@link TabCompleter}
  * @description This is the Command to reload the Plugin and other thinks
  */
-public class PluginCommand implements CommandExecutor, TabCompleter {
+public class PluginCommand extends ConfigurationLoader implements CommandExecutor, TabCompleter {
   /**
    * @author Elia
    * @version 1.0
@@ -40,7 +41,6 @@ public class PluginCommand implements CommandExecutor, TabCompleter {
    */
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-    Register.Configuration configuration = new Register.Configuration();
     MiniMessage miniMessage = SoulBoss.soulBoss().miniMessage();
     CustomMessages message = new CustomMessages();
     ThisPlugin thisPlugin = new ThisPlugin();
@@ -126,7 +126,7 @@ public class PluginCommand implements CommandExecutor, TabCompleter {
                   entity.remove();
                 }
               });
-              configuration.playerRegisterConfiguration().clear();
+              //this.playerRegisterStorage().clear();
               message.messageWithPrefix(player, message.green("Alle BossFights wurden beendet!"));
               message.broadcastWithPrefix(message.gold("!ACHTUNG! Alle Bossfights wurden von einem Teammitglied beendet!"));
             } else if (args[1].equalsIgnoreCase("plugin")) {
@@ -140,7 +140,7 @@ public class PluginCommand implements CommandExecutor, TabCompleter {
         }
       }
     }else {
-      message.errorLog("You have to be a Player!");
+      message.log(Level.WARNING, "You have to be a Player!");
       return false;
     }
     return true;
