@@ -1,8 +1,8 @@
 package de.elia.soulboss.achievement.process;
 
 import de.elia.soulboss.achievement.storage.BossFightAchievementStorage;
-import de.elia.soulboss.functions.register.Register;
 import de.elia.soulboss.messages.message.CustomMessages;
+import de.elia.soulboss.plugin.load.start.register.configuation.ConfigurationLoader;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
  * @since 1.0
  * @description This is the class to set or remove the achievements
  */
-public class BossFightAchievements {
+public class BossFightAchievements extends ConfigurationLoader {
 
   private final Plugin plugin;
 
@@ -32,7 +32,7 @@ public class BossFightAchievements {
    * @return new Register.Configuration.getConfiguration().get(player.getUniqueId() + ".Achievements." + achievementStorage.dataID()) != null;
    */
   public boolean hasAchievement(@NotNull Player player, @NotNull BossFightAchievementStorage achievementStorage) {
-    return new Register.Configuration().achievementConfiguration().get(player.getUniqueId() + ".Achievements." + achievementStorage.dataID()) != null;
+    return this.achievementStorage().get(player.getUniqueId() + ".Achievements." + achievementStorage.dataID()) != null;
   }
 
   /**
@@ -45,7 +45,7 @@ public class BossFightAchievements {
    */
   public void giveAchievement(@NotNull Player player, @NotNull BossFightAchievementStorage achievementStorage) {
     if (!this.hasAchievement(player, achievementStorage)) {
-      new Register.Configuration().achievementConfiguration().set(player.getUniqueId() + ".Achievements." + achievementStorage.dataID(), true);
+      this.achievementStorage().set(player.getUniqueId() + ".Achievements." + achievementStorage.dataID(), true);
       CustomMessages messageBuilder = new CustomMessages();
       messageBuilder.broadcast(messageBuilder.gradient("aqua", "purple", player.getName() + " hat den BossFight Erfolg " + achievementStorage.getName() + "erreicht"));
       player.giveExp(achievementStorage.xp());
@@ -65,7 +65,7 @@ public class BossFightAchievements {
   public void removeAchievement(@NotNull Player player, @NotNull BossFightAchievementStorage achievementStorage) {
     CustomMessages messageBuilder = new CustomMessages();
     if (this.hasAchievement(player, achievementStorage)) {
-      new Register.Configuration().achievementConfiguration().set(player.getUniqueId() + ".Achievements." + achievementStorage.dataID(), null);
+      this.achievementStorage().set(player.getUniqueId() + ".Achievements." + achievementStorage.dataID(), null);
       messageBuilder.message(player, messageBuilder.green("Du hast dem Spieler den BossFight Erfolg " + achievementStorage.getName() + "(" + achievementStorage.dataID() + ")" + "abgenommen!"));
     } else {
       messageBuilder.message(player, messageBuilder.red("Dieser Spieler hat diesen BossFight Erfolg nicht!"));
