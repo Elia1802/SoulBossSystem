@@ -1,7 +1,6 @@
 package de.elia.soulboss.events.death;
 
 import de.elia.soulboss.SoulBoss;
-import de.elia.soulboss.fight.BossFight;
 import de.elia.soulboss.items.DropUtils;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
@@ -34,6 +33,7 @@ public class EntityDeathEvent implements Listener {
   public void onBossDeath(org.bukkit.event.entity.@NotNull EntityDeathEvent event){
     if (event.getEntity().getPersistentDataContainer().has(new NamespacedKey(SoulBoss.soulBoss(), "680035753"))) {
       if (event.getEntityType() == EntityType.ZOMBIE) {
+        event.getEntity().remove();
         Collection<ItemStack> itemStacks = event.getDrops();
         event.getDrops().removeAll(itemStacks);
         //Zopnote ends!
@@ -47,9 +47,6 @@ public class EntityDeathEvent implements Listener {
       }//If that doesn't work:
       event.setCancelled(true);
       //Zopnote ends!
-      //Elia starts...
-      BossFight.bossFight.stopFight(true);
-      //Elia ends!
     }
   }
 
