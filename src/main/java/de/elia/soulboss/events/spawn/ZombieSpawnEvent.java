@@ -1,6 +1,8 @@
 package de.elia.soulboss.events.spawn;
 
 import de.elia.soulboss.SoulBoss;
+import de.elia.soulboss.achievement.process.BossFightAchievements;
+import de.elia.soulboss.achievement.storage.BossFightAchievementStorage;
 import de.elia.soulboss.fight.BossFight;
 import de.elia.soulboss.messages.message.CustomMessages;
 import de.elia.soulboss.spawn.SpawnEgg;
@@ -39,6 +41,7 @@ public class ZombieSpawnEvent implements Listener {
       if (player.getInventory().getItemInMainHand().getItemMeta() == null)return;
       if (player.getInventory().getItemInMainHand().getItemMeta().hasItemFlag(ItemFlag.HIDE_ENCHANTS)) {
         player.getInventory().getItemInMainHand().removeItemFlags(ItemFlag.HIDE_ENCHANTS);
+        new BossFightAchievements(SoulBoss.soulBoss()).giveAchievement(player, BossFightAchievementStorage.BOSSFIGHT_ZOMBIE);
         Component component = miniMessage.deserialize("<click:run_command:/bossfight stop><green>Drücke hier</green></click> <gold>um den Bossfight vor dem Tod des Bosses zu beenden!</gold>");
         message.messageWithPrefix(player, component);
         BossFight.loadBossFight(11*20, player);
