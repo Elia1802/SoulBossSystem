@@ -1,11 +1,14 @@
 package de.elia.soulboss.fight;
 
+import de.elia.soulboss.SoulBoss;
 import de.elia.soulboss.entity.mobs.boss.mob.ZombieBoss;
-import de.elia.soulboss.functions.register.Register;
+import de.elia.soulboss.fight.utils.Utils;
 import de.elia.soulboss.messages.message.CustomMessages;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.monster.Zombie;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author D1p4k, Elia
@@ -19,8 +22,6 @@ public class BossFight {
   private final Player player;
   private final String key;
   private ZombieBoss boss;
-  private final BossFightManager bossFightManager = new BossFightManager();
-  private final Register.Configuration configuration = new Register.Configuration();
   private final CustomMessages message = new CustomMessages();
   public static BossFight bossFight;
 
@@ -59,8 +60,8 @@ public class BossFight {
    * @since 1.0
    * @description This is methode removed the boss with a specify reaseon.
    */
-  public void despawnBoss(Entity.RemovalReason reason){
-    this.boss.remove(reason);
+  public void despawnBoss(@NotNull Zombie zombie, Entity.RemovalReason reason){
+    zombie.remove(reason);
   }
 
   /**
@@ -71,8 +72,9 @@ public class BossFight {
    */
   public void startFight(){
     if (player == null)return;
+    SoulBoss.playerZombieMap().put(player, boss);
     boss = new ZombieBoss(location);
-    bossFightManager.setPlayerStart(player, true);
+    //bossFightManager.setPlayerStart(player, true);
   }
 
   /**
@@ -82,10 +84,8 @@ public class BossFight {
    * @description This is methode stopped the Bossfight
    */
   public void stopFight(boolean removeFromList){
-    this.despawnBoss(Entity.RemovalReason.KILLED);
-    if (removeFromList) {
-      bossFightManager.removePlayerStart(player);
-    }
+    this.despawnBoss(boss, Entity.RemovalReason.KILLED);
+    SoulBoss.playerZombieMap().remove(player);
     message.messageWithPrefix(player, message.gold("Der BossFight wurde beendet!"));
   }
 
