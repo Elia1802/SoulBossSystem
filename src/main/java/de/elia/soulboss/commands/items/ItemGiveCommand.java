@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * @author Elia
@@ -52,7 +53,7 @@ public class ItemGiveCommand implements CommandExecutor, TabCompleter {
         message.messageWithPrefix(player, message.red("Du hast keine Rechte für diesen Command!"));
       }
     }else {
-      message.errorLog("You have to be a Player!");
+      message.log(Level.WARNING, "You have to be a Player!");
       return false;
     }
     return true;
