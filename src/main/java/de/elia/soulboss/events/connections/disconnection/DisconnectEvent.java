@@ -1,7 +1,8 @@
-package de.elia.soulboss.events.connections;
+package de.elia.soulboss.events.connections.disconnection;
 
+import de.elia.soulboss.SoulBoss;
 import de.elia.soulboss.commands.mob.SpawnMobCommand;
-import de.elia.soulboss.fight.BossFightManager;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -24,11 +25,13 @@ public class DisconnectEvent implements Listener {
    * @param event Requires the {@link PlayerQuitEvent}
    */
   @EventHandler
-  public void onPlayerDisconnect(@NotNull PlayerQuitEvent event){
-    BossFightManager bossFightManager = new BossFightManager();
-    if (bossFightManager.playerHasStart(event.getPlayer())) {
+  public void onDisconnection(@NotNull PlayerQuitEvent event){
+    Player player = event.getPlayer();
+    var status = SoulBoss.playerStatusMap();
+    if (status.get(player) == 1) {
       if (SpawnMobCommand.getBossFight() == null)return;
       SpawnMobCommand.getBossFight().stopFight(true);
+      status.remove(player);
     }
   }
 
