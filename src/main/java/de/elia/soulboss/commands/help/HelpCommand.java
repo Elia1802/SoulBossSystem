@@ -14,8 +14,28 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
 
+/**
+ * @author Elia
+ * @version 1.0
+ * @since 1.0
+ * @implements {@link CommandExecutor}, {@link TabCompleter}
+ * @description This is the Command for the help
+ */
 public class HelpCommand implements CommandExecutor, TabCompleter {
+
+  /**
+   * @author Elia
+   * @version 1.0
+   * @since 1.0
+   * @description This is the Command for the help
+   * @param sender Source of the command
+   * @param command Command which was executed
+   * @param label Alias of the command which was used
+   * @param args Passed command arguments
+   * @return true
+   */
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
     CustomMessages message = new CustomMessages();
@@ -50,12 +70,26 @@ public class HelpCommand implements CommandExecutor, TabCompleter {
         return false;
       }
     }else {
-      message.errorLog("You have to be a Player!");
+      message.log(Level.WARNING, "You have to be a Player!");
       return false;
     }
     return true;
   }
 
+  /**
+   * @author Elia
+   * @version 1.0
+   * @since 1.0
+   * @description This is the Tabcompleter for this command.
+   * @param sender Source of the command.  For players tab-completing a
+   *     command inside of a command block, this will be the player, not
+   *     the command block.
+   * @param command Command which was executed
+   * @param label Alias of the command which was used
+   * @param args The arguments passed to the command, including final
+   *     partial argument to be completed
+   * @return
+   */
   @Override
   @Nullable
   public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {

@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 public class StartTasks {
 
   /**
-   * @author Elia
+   * @author D1p4k, Elia
    * @version 1.0
    * @since 1.0
    * @description Start a Countdown

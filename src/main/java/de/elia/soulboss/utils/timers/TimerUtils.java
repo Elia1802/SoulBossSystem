@@ -12,7 +12,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class TimerUtils {
 
   /**
-   * @author Elia
+   * @author D1p4k, Elia
    * @version 1.0
    * @since 1.0
    * @description Run a timer.
@@ -37,7 +37,7 @@ public class TimerUtils {
   }
 
   /**
-   * @author Elia
+   * @author D1p4k, Elia
    * @version 1.0
    * @since 1.0
    * @description Run a timer.
@@ -70,7 +70,7 @@ public class TimerUtils {
    */
   public interface TimeRunnable {
     /**
-     * @author Elia
+     * @author D1p4k, Elia
      * @version 1.0
      * @since 1.0
      * @description Just lets a countdown count down without what happens after
