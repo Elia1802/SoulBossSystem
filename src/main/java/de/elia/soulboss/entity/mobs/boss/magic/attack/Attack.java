@@ -42,7 +42,7 @@ public class Attack {
       player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_AMBIENT, 0.7F, 0.3F);
     }
     LivingEntity boss = (LivingEntity) entity;
-    boss.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 5*20, 255, false, false));
+    boss.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 2*20, 255, false, false));
     counter = 0;
     new BukkitRunnable() {
       public void run(){
@@ -75,7 +75,7 @@ public class Attack {
       player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_AMBIENT, 0.7F, 0.3F);
     }
     LivingEntity boss = (LivingEntity) entity;
-    boss.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 5*20, 255, false, false));
+    boss.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 2*20, 255, false, false));
     counter = 0;
     new BukkitRunnable() {
       public void run(){
@@ -108,7 +108,7 @@ public class Attack {
       player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_AMBIENT, 0.7F, 0.3F);
     }
     LivingEntity boss = (LivingEntity) entity;
-    boss.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 5*20, 255, false, false));
+    boss.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 2*20, 255, false, false));
     counter = 0;
     new BukkitRunnable() {
       public void run(){
