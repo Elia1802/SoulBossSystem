@@ -1,7 +1,7 @@
 package de.elia.soulboss.plugin.load.start.register.utils;
 
 import de.elia.soulboss.block.BreakBlock;
-import de.elia.soulboss.messages.message.CustomMessages;
+import de.elia.CustomMessages;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.Plugin;
 

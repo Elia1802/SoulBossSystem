@@ -1,7 +1,7 @@
 package de.elia.soulboss.commands.plugin;
 
 import de.elia.soulboss.SoulBoss;
-import de.elia.soulboss.messages.message.CustomMessages;
+import de.elia.CustomMessages;
 import de.elia.soulboss.plugin.ThisPlugin;
 import de.elia.soulboss.plugin.load.start.register.configuation.ConfigurationLoader;
 import net.kyori.adventure.text.Component;
@@ -37,7 +37,7 @@ public class PluginCommand extends ConfigurationLoader implements CommandExecuto
    * @param command Command which was executed
    * @param label Alias of the command which was used
    * @param args Passed command arguments
-   * @return false
+   * @return boolean
    */
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -96,11 +96,11 @@ public class PluginCommand extends ConfigurationLoader implements CommandExecuto
             message.messageWithPrefix(player, message.red("/soulboss reload plugin"));
             if (args[1].equalsIgnoreCase("configuration")) {
               message.messageWithPrefix(player, message.gold("Alle Configurations werden neu geladen!"));
-              SoulBoss.soulBoss().onConfigurationReload();
+              SoulBoss.soulBoss().reloadConfiguration(SoulBoss.main());
               message.messageWithPrefix(player, message.green("Alle Configurations wurden neu geladen!"));
             } else if (args[1].equalsIgnoreCase("plugin")) {
               message.messageWithPrefix(player, message.gold("Das Plugin wird neu geladen!"));
-              SoulBoss.soulBoss().onReload();
+              SoulBoss.soulBoss().reload(SoulBoss.main());
               message.messageWithPrefix(player, message.green("Das Plugin wurde neu geladen!"));
             }
           }else {
@@ -112,17 +112,17 @@ public class PluginCommand extends ConfigurationLoader implements CommandExecuto
             if (args[1].equalsIgnoreCase("fights")) {
               message.messageWithPrefix(player, message.gold("Alle BossFights werden beendet!"));
               Bukkit.getServer().getWorld("world").getEntities().forEach((entity) -> {
-                if (entity.getPersistentDataContainer().has(new NamespacedKey(SoulBoss.soulBoss(), "680035753"))) {
+                if (entity.getPersistentDataContainer().has(new NamespacedKey(SoulBoss.main(), "680035753"))) {
                   entity.remove();
                 }
               });
               Bukkit.getServer().getWorld("world_nether").getEntities().forEach((entity) -> {
-                if (entity.getPersistentDataContainer().has(new NamespacedKey(SoulBoss.soulBoss(), "680035753"))) {
+                if (entity.getPersistentDataContainer().has(new NamespacedKey(SoulBoss.main(), "680035753"))) {
                   entity.remove();
                 }
               });
               Bukkit.getServer().getWorld("world_the_end").getEntities().forEach((entity) -> {
-                if (entity.getPersistentDataContainer().has(new NamespacedKey(SoulBoss.soulBoss(), "680035753"))) {
+                if (entity.getPersistentDataContainer().has(new NamespacedKey(SoulBoss.main(), "680035753"))) {
                   entity.remove();
                 }
               });
@@ -131,7 +131,7 @@ public class PluginCommand extends ConfigurationLoader implements CommandExecuto
               message.broadcastWithPrefix(message.gold("!ACHTUNG! Alle Bossfights wurden von einem Teammitglied beendet!"));
             } else if (args[1].equalsIgnoreCase("plugin")) {
               message.messageWithPrefix(player, message.gold("Das Plugin wird beendet!"));
-              SoulBoss.soulBoss().disable();
+              SoulBoss.main().disable();
             }
           }else {
             message.messageWithPrefix(player, message.red("Du hast keine Berechtigung für diesen Command!"));

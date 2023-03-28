@@ -1,6 +1,6 @@
 package de.elia.soulboss.commands.idea;
 
-import de.elia.soulboss.messages.message.CustomMessages;
+import de.elia.CustomMessages;
 import de.elia.soulboss.plugin.load.start.register.configuation.ConfigurationLoader;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

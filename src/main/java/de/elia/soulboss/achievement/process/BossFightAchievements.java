@@ -1,7 +1,7 @@
 package de.elia.soulboss.achievement.process;
 
 import de.elia.soulboss.achievement.storage.BossFightAchievementStorage;
-import de.elia.soulboss.messages.message.CustomMessages;
+import de.elia.CustomMessages;
 import de.elia.soulboss.plugin.load.start.register.configuation.ConfigurationLoader;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;

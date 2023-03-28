@@ -1,6 +1,6 @@
 package de.elia.soulboss.plugin.load.stop.disable;
 
-import de.elia.soulboss.messages.message.CustomMessages;
+import de.elia.CustomMessages;
 import de.elia.soulboss.plugin.load.start.register.configuation.ConfigurationLoader;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;

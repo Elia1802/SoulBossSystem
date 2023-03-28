@@ -1,7 +1,7 @@
 package de.elia.soulboss.commands.world;
 
+import de.elia.CustomMessages;
 import de.elia.soulboss.SoulBoss;
-import de.elia.soulboss.messages.message.CustomMessages;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -34,7 +34,7 @@ public class WorldCommand implements CommandExecutor, TabCompleter {
    * @param command Command which was executed
    * @param label Alias of the command which was used
    * @param args Passed command arguments
-   * @return
+   * @return boolean
    */
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -43,11 +43,11 @@ public class WorldCommand implements CommandExecutor, TabCompleter {
       if (player.hasPermission("soulboss.world")) {
         if (args.length == 1) {
           if (args[0].equalsIgnoreCase("world_bossfight")) {
-            player.teleport(SoulBoss.soulBoss().world().getSpawnLocation());
+            player.teleport(SoulBoss.main().world().getSpawnLocation());
             messages.messageWithPrefix(player, messages.aqua("Du wurdest in die Welt world_bossfight teleportiert!"));
           }else if (args[0].equalsIgnoreCase("world")) {
             player.teleport(Bukkit.getWorld("world").getSpawnLocation());
-            messages.messageWithPrefix(player, messages.aqua("Du wurdest in die Welt world_ teleportiert!"));
+            messages.messageWithPrefix(player, messages.aqua("Du wurdest in die Welt world teleportiert!"));
           }else {
             messages.messageWithPrefix(player, messages.red("Dieser Command existiert nicht!"));
           }
