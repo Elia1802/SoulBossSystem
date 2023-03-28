@@ -1,8 +1,8 @@
 package de.elia;
 
 import de.elia.bossfightcreator.BossFightCreator;
-import de.elia.bossfightcreator.Constants.Files;
-import de.elia.bossfightcreator.Constants.Plugin;
+import de.elia.bossfightcreator.Instances.Files;
+import de.elia.bossfightcreator.Instances.Plugin;
 import de.elia.bossfightcreator.world.WorldMain;
 import de.elia.bossfightcreator.world.creator.CustomChunkGenerator;
 import de.elia.soulboss.SoulBoss;
