@@ -1,5 +1,6 @@
 package de.elia.soulboss.utils.timers;
 
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 /**
@@ -16,8 +17,10 @@ public class StartTasks {
    * @since 1.0
    * @description Start a Countdown
    * @param time Requires the seconds
+   * @param player Requires a {@link Player}
+   * @param location Requires a {@link Location}
    */
-  public void start(int time, Player player){
+  public void start(int time, Player player, Location location){
     TimerUtils.countdownAndRun(time,
       new Runnable() {
         @Override
