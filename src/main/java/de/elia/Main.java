@@ -27,10 +27,10 @@ import java.lang.String;
  */
 public class Main extends JavaPlugin {
 
-  private static Main main;//Instance of this Plugin
+  public static Main main;//Instance of this Plugin
   private final SoulMain soulMain = (SoulMain) Bukkit.getPluginManager().getPlugin("SoulMain");//Gets the Soul API of Elia
-  private static final BossFightCreator BOSS_FIGHT_CREATOR = BossFightCreator.bossFightCreator();
-  private static final SoulBoss SOUL_BOSS = SoulBoss.soulBoss();//Gets the Main class of the bossfightcreator Plugin
+  private static final BossFightCreator BOSS_FIGHT_CREATOR = new BossFightCreator();
+  private static final SoulBoss SOUL_BOSS = new SoulBoss();//Gets the Main class of the bossfightcreator Plugin
   private World world;
 
   /**
@@ -41,17 +41,15 @@ public class Main extends JavaPlugin {
    */
   @Override
   public void onEnable(){
-    if (soulMain == null)return;
     main = this;
+    if (soulMain == null)return;
     try {
       BOSS_FIGHT_CREATOR.enable(this);
-    }catch (Exception exception) {
-      exception.printStackTrace();
-    }
-    try {
       SOUL_BOSS.enable(this);
+      System.out.println(main = this);
     }catch (Exception exception) {
       exception.printStackTrace();
+      this.disable();
     }
   }
 
@@ -66,10 +64,6 @@ public class Main extends JavaPlugin {
     if (soulMain == null)return;
     try {
       BOSS_FIGHT_CREATOR.disable();
-    }catch (Exception exception) {
-      exception.printStackTrace();
-    }
-    try {
       SOUL_BOSS.disable(this);
     }catch (Exception exception) {
       exception.printStackTrace();
@@ -93,7 +87,6 @@ public class Main extends JavaPlugin {
     var log = WorldMain.LOGGER;  //The logger for the status (Example: )
     var world_status = Files.WORLD_STATUS;
     if (world_status.get("status") == null|| world_status.get("status", false)) {
-      log_progress.logInfo("0%");
       log.logInfo("Create a new World... (" + worldName + ":" + id + ")");
       log.logInfo("Load org.bukkit.WorldGenerator...");
       WorldCreator creator = new WorldCreator(id);

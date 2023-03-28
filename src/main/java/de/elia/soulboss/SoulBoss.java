@@ -19,7 +19,10 @@ public class SoulBoss {
   private final Load loader = new Load();//the loader of this Plugin
   private final MiniMessage miniMessage = MiniMessage.miniMessage();//Gets the MiniMessage API.
   private static SoulBoss soulboss;
-  private static Main main = Main.main();
+
+  public SoulBoss(){
+    //...
+  }
 
   /**
    * @author Elia
@@ -98,7 +101,8 @@ public class SoulBoss {
    * @description A instance of the main Main class of this Plugin
    * @return {@link Main}
    */
-  public static Main main() {
-    return main;
+  @NotNull
+  public static Main main(){
+    return Main.main();
   }
 }

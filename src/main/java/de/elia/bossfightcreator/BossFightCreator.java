@@ -23,7 +23,10 @@ public class BossFightCreator {
   private static BossFightCreator bossFightCreator;
   private final MiniMessage miniMessage = MiniMessage.miniMessage();//Gets the MiniMessage API.
   private static final Map<Player, Integer> playerStatusMap = new HashMap<>();//Save the status of the player for the bossfight.
-  private static Main main = Main.main();
+
+  public BossFightCreator(){
+    //...
+  }
 
   /**
    * @author Elia
@@ -90,7 +93,8 @@ public class BossFightCreator {
    * @description A instance of the main Main class
    * @return {@link Main}
    */
-  public static Main main() {
-    return main;
+  @NotNull
+   public static Main main(){
+    return Main.main();
   }
 }
