@@ -21,11 +21,7 @@ import java.util.ArrayList;
  * @description This is the SpawnEgg class for the Boss
  */
 public class SpawnEgg {
-
-
-  //TODO: ÄNDERE WAS PASSIERT WENN DER BOSSFIGHT STARTET
-
-
+  
   private final Plugin plugin;
   private ShapedRecipe bossSpawnEggRecipe;
   public static Component lore = SoulBoss.soulBoss().miniMessage().deserialize("<dark_gray>With this egg you can spawn the SoulBoss</dark_gray>");
@@ -39,10 +35,6 @@ public class SpawnEgg {
    */
   public SpawnEgg(Plugin plugin){
     this.plugin = plugin;
-  }
-
-  public SpawnEgg(){
-    this(SoulBoss.soulBoss());
   }
 
   /**
