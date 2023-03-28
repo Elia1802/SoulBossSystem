@@ -1,40 +1,38 @@
-package de.elia.soulboss.world.settings;
+package de.elia.bossfightcreator.world.settings;
 
-import de.elia.soulboss.world.Settings;
-import de.elia.soulboss.world.generator.WorldGenerator;
 import org.bukkit.block.Biome;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.Boolean;
+import java.lang.Deprecated;
 
 /**
  * @author Elia
  * @version 1.0
  * @since 1.0
- * @description Set the world settings for the {@link WorldGenerator}
- * @impements {@link Settings}
+ * @description Set all Settings for the World
  */
-public class WorldSettings implements Settings {
+public class WorldSettings {
+
+  private final Biome biome = null;
+  private final Boolean bedrock = false;
+  private final Boolean caves = false;
+  private final Boolean decorations = false;
+  private final Boolean mobs = false;
+  private final Boolean noise = false;
+  private final Boolean structures = false;
+  private final Boolean surface = false;
 
   public WorldSettings(){
     //...
   }
 
-  private Biome biome = null;
-  private boolean bedrock = false;
-  private boolean caves = false;
-  private boolean decoration = false;
-  private boolean mobs = false;
-  private boolean noise = false;
-  private boolean structures = false;
-  private boolean surface = false;
-
   /**
    * @author Elia
    * @version 1.0
    * @since 1.0
-   * @description Set if generate biomes in the world.
-   * @return null
+   * @description Gets the Biom
+   * @return {@link Biome}
    */
   @NotNull
   public Biome biome(){
@@ -45,10 +43,12 @@ public class WorldSettings implements Settings {
    * @author Elia
    * @version 1.0
    * @since 1.0
-   * @description Set if generate bedrock in the world.
+   * @deprecated has no Effect! Is a part of {@link WorldSettings#surface()}
+   * @description Gets the bedrock
    * @return {@link Boolean}
    */
   @NotNull
+  @Deprecated //has no Effect! Is a part of surface()
   public Boolean bedrock(){
     return this.bedrock;
   }
@@ -57,7 +57,7 @@ public class WorldSettings implements Settings {
    * @author Elia
    * @version 1.0
    * @since 1.0
-   * @description Set if generate caves in the world.
+   * @description Gets the caves
    * @return {@link Boolean}
    */
   @NotNull
@@ -69,19 +69,19 @@ public class WorldSettings implements Settings {
    * @author Elia
    * @version 1.0
    * @since 1.0
-   * @description Set if generate decoration in the world.
+   * @description Gets the decorations
    * @return {@link Boolean}
    */
   @NotNull
-  public Boolean decoration(){
-    return this.decoration;
+  public Boolean decorations(){
+    return this.decorations;
   }
 
   /**
    * @author Elia
    * @version 1.0
    * @since 1.0
-   * @description Set if spawn mobs in the world.
+   * @description Gets the mobs
    * @return {@link Boolean}
    */
   @NotNull
@@ -93,7 +93,7 @@ public class WorldSettings implements Settings {
    * @author Elia
    * @version 1.0
    * @since 1.0
-   * @description Set if generate noises in the world.
+   * @description Gets the noise
    * @return {@link Boolean}
    */
   @NotNull
@@ -105,7 +105,7 @@ public class WorldSettings implements Settings {
    * @author Elia
    * @version 1.0
    * @since 1.0
-   * @description Set if generate structures in the world.
+   * @description Gets the structures
    * @return {@link Boolean}
    */
   @NotNull
@@ -117,12 +117,11 @@ public class WorldSettings implements Settings {
    * @author Elia
    * @version 1.0
    * @since 1.0
-   * @description Set if generate surfaces in the world.
+   * @description Gets the surface
    * @return {@link Boolean}
    */
   @NotNull
   public Boolean surface(){
     return this.surface;
   }
-
 }
