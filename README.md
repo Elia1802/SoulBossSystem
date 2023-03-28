@@ -21,7 +21,7 @@ Am besten macht ihr das an den unten stehenden Discord.
 
     soulmain-1.2.jar
 
-    worldguard-bukkit-7.2.13.jar
+    worldguard-bukkit-7.0.8-SNAPSHOT-dist.jar
 
   Zudem benötigt ihr für Worldguard das Plugin Worldedit.
 
