@@ -1,6 +1,6 @@
 package de.elia.soulboss.utils.timers;
 
-import de.elia.soulboss.SoulBoss;
+import de.elia.Main;
 import org.bukkit.scheduler.BukkitRunnable;
 
 /**
@@ -33,7 +33,7 @@ public class TimerUtils {
 
         internalTicks--;
       }
-    }.runTaskTimerAsynchronously(SoulBoss.soulBoss(), 1, 1);
+    }.runTaskTimerAsynchronously(Main.main(), 1, 1);
   }
 
   /**
@@ -59,7 +59,7 @@ public class TimerUtils {
         intervalRunnable.run(internalTicks);
         internalTicks--;
       }
-    }.runTaskTimerAsynchronously(SoulBoss.soulBoss(), 1, 1);
+    }.runTaskTimerAsynchronously(Main.main(), 1, 1);
   }
 
   /**

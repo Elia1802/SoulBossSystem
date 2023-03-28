@@ -34,8 +34,8 @@ public class AchievementBossFightEvent implements Listener {
     Entity damagerEntity = event.getEntity();
     if (damagerEntity instanceof Player player) {
       if (damagedEntity instanceof Zombie) {
-        if (damagedEntity.getPersistentDataContainer().has(new NamespacedKey(SoulBoss.soulBoss(), "680035753"))) {
-          new BossFightAchievements(SoulBoss.soulBoss()).giveAchievement(player, BossFightAchievementStorage.BOSSFIGHT);
+        if (damagedEntity.getPersistentDataContainer().has(new NamespacedKey(SoulBoss.main(), "680035753"))) {
+          new BossFightAchievements(SoulBoss.main()).giveAchievement(player, BossFightAchievementStorage.BOSSFIGHT);
         }
       }
     }

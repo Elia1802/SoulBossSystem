@@ -32,7 +32,7 @@ public class AttackStrikeLightningEvent implements Listener {
     if (event.isCancelled())return;
     event.setCancelled(true);
     if (event.getEntity().getType() == EntityType.ZOMBIE) {
-      if (event.getEntity().getPersistentDataContainer().has(new NamespacedKey(SoulBoss.soulBoss(), "680035753"))) {
+      if (event.getEntity().getPersistentDataContainer().has(new NamespacedKey(SoulBoss.main(), "680035753"))) {
         Random random = new Random();
         int chance = random.nextInt(200);
         if (chance == 1) {

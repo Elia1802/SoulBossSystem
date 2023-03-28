@@ -58,7 +58,7 @@ public class Attack {
           }
         }else cancel();
       }
-    }.runTaskTimer(SoulBoss.soulBoss(), 0L, 10L);
+    }.runTaskTimer(SoulBoss.main(), 0L, 10L);
   }
 
   /**
@@ -91,7 +91,7 @@ public class Attack {
           }
         }else cancel();
       }
-    }.runTaskTimer(SoulBoss.soulBoss(), 0L, 10L);
+    }.runTaskTimer(SoulBoss.main(), 0L, 10L);
   }
 
   /**
@@ -124,7 +124,7 @@ public class Attack {
           }
         }else cancel();
       }
-    }.runTaskTimer(SoulBoss.soulBoss(), 0L, 10L);
+    }.runTaskTimer(SoulBoss.main(), 0L, 10L);
   }
 
 }

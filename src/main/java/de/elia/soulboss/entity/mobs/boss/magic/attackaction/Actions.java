@@ -44,7 +44,7 @@ public class Actions {
         player.teleport(randomLocation);
         player.playSound(playerLocation, Sound.ENTITY_ENDERMAN_TELEPORT, 0.5F, 1.0F);
       }
-    }.runTaskLater(SoulBoss.soulBoss(), 10);
+    }.runTaskLater(SoulBoss.main(), 10);
   }
 
   /**
