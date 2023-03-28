@@ -11,15 +11,15 @@ Am besten macht ihr das an den unten stehenden Discord.
 
 **Informationen über dieses Plugins:**
 
-  Version: 1.0
+  Version: 1.0.0
 
-  Server Version: 1.19.3
+  Server Version: 1.19.4
 
   API Version Paper: 1.19
 
   Benötigte Plugins:
 
-    soulmain-1.0.jar
+    soulmain-1.2.jar
 
     worldguard-bukkit-7.2.13.jar
 
@@ -76,17 +76,17 @@ or improvements. The best way to do this is on the Discord below.
 
 **Information about this Plugin**
 
-  Version: 1.0
+  Version: 1.0.0
   
-  Server Version: 1.19.3
+  Server Version: 1.19.4
   
   API Version Paper: 1.19
 
   Required plugins:
   
-      soulmain-1.0.jar
+      soulmain-1.2.jar
   
-      worldguard-bukkit-7.2.13.jar
+      worldguard-bukkit-7.0.8-SNAPSHOT-dist.jar
 
   In addition, you need the plugin Worldedit for Worldguard.
 
