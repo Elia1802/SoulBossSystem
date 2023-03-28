@@ -3,9 +3,9 @@ package de.elia.soulboss.plugin.load;
 import de.elia.soulboss.commands.help.HelpCommand;
 import de.elia.soulboss.commands.idea.IdeaCommand;
 import de.elia.soulboss.commands.items.ItemGiveCommand;
-import de.elia.soulboss.commands.mob.SpawnMobCommand;
 import de.elia.soulboss.commands.plugin.PluginCommand;
 import de.elia.soulboss.commands.world.WorldCommand;
+import de.elia.soulboss.entity.mobs.boss.mob.BossDeathEvent;
 import de.elia.soulboss.events.achievements.bossfight.AchievementBossFightEvent;
 import de.elia.soulboss.events.achievements.bossfightzombieend.AchievementBossFightZombieEndEvent;
 import de.elia.soulboss.events.attacks.fire.AttackFireEvent;
@@ -13,16 +13,13 @@ import de.elia.soulboss.events.attacks.strikelightning.AttackStrikeLightningEven
 import de.elia.soulboss.events.attacks.teleport.AttackTeleportEvent;
 import de.elia.soulboss.events.connections.connection.ConnectionEvent;
 import de.elia.soulboss.events.connections.disconnection.DisconnectEvent;
-import de.elia.soulboss.events.death.EntityDeathEvent;
 import de.elia.soulboss.events.spawn.ZombieSpawnEvent;
-import de.elia.soulboss.messages.message.CustomMessages;
+import de.elia.CustomMessages;
 import de.elia.soulboss.plugin.load.start.register.commands.CommandLoader;
 import de.elia.soulboss.plugin.load.start.register.configuation.ConfigurationLoader;
 import de.elia.soulboss.plugin.load.start.register.events.EventLoader;
 import de.elia.soulboss.plugin.load.start.register.recipes.RecipeLoader;
 import de.elia.soulboss.plugin.load.start.register.utils.UtilsLoader;
-import de.elia.soulboss.plugin.load.start.register.world.WorldLoader;
-import de.elia.soulboss.world.worldedit.BossArena;
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.Plugin;
@@ -42,7 +39,6 @@ public class Load {
   private final EventLoader event = new EventLoader();
   private final RecipeLoader.SpawnEggLoader recipeSpawnEgg = new RecipeLoader.SpawnEggLoader();
   private final UtilsLoader utils = new UtilsLoader();
-  private final WorldLoader loader = new WorldLoader();
 
   /**
    * @author Elia
@@ -58,7 +54,7 @@ public class Load {
         command.loadCommand("bosshelp", new HelpCommand());
         command.loadCommand("mobidea", new IdeaCommand());
         command.loadCommand("bossgive", new ItemGiveCommand());
-        command.loadCommand("bossfight", new SpawnMobCommand());
+        //command.loadCommand("bossfight", new SpawnMobCommand());
         command.loadCommand("soulboss", new PluginCommand());
         command.loadCommand("tpworld", new WorldCommand());
       log.infoLog("Commands loaded!");
@@ -70,9 +66,8 @@ public class Load {
         event.loadEvents(pluginManager, new AttackTeleportEvent(), plugin);
         event.loadEvents(pluginManager, new ConnectionEvent(), plugin);
         event.loadEvents(pluginManager, new DisconnectEvent(), plugin);
-        event.loadEvents(pluginManager, new EntityDeathEvent(), plugin);
+        event.loadEvents(pluginManager, new BossDeathEvent(), plugin);
         event.loadEvents(pluginManager, new ZombieSpawnEvent(), plugin);
-        event.loadEvents(pluginManager, new BossArena(), plugin);
       log.infoLog("Events loaded!");
       log.infoLog("Load Configurations...");
         configuration.loadFiles(plugin);
@@ -83,9 +78,6 @@ public class Load {
       log.infoLog("load Recipes...");
         recipeSpawnEgg.loadRecipe(plugin);
       log.infoLog("Recipes loaded");
-      log.infoLog("Load World...");
-        loader.loadWorld("Bossfight-World", "world_bossfight");
-      log.infoLog("World loaded!");
     log.infoLog("All things loaded! Good Luck with this Plugin!");
     log.infoLog("SoulBoss loaded!");
   }
@@ -128,7 +120,7 @@ public class Load {
         command.loadCommand("bosshelp", new HelpCommand());
         command.loadCommand("mobidea", new IdeaCommand());
         command.loadCommand("bossgive", new ItemGiveCommand());
-        command.loadCommand("bossfight", new SpawnMobCommand());
+        //command.loadCommand("bossfight", new SpawnMobCommand());
         command.loadCommand("soulboss", new PluginCommand());
         command.loadCommand("tpworld", new WorldCommand());
       log.infoLog("Commands loaded!");
@@ -140,9 +132,8 @@ public class Load {
         event.loadEvents(pluginManager, new AttackTeleportEvent(), plugin);
         event.loadEvents(pluginManager, new ConnectionEvent(), plugin);
         event.loadEvents(pluginManager, new DisconnectEvent(), plugin);
-        event.loadEvents(pluginManager, new EntityDeathEvent(), plugin);
+        event.loadEvents(pluginManager, new BossDeathEvent(), plugin);
         event.loadEvents(pluginManager, new ZombieSpawnEvent(), plugin);
-        event.loadEvents(pluginManager, new BossArena(), plugin);
       log.infoLog("Events loaded!");
       log.infoLog("Load Configurations...");
         configuration.loadFiles(plugin);
@@ -153,9 +144,6 @@ public class Load {
       log.infoLog("load Recipes...");
         recipeSpawnEgg.loadRecipe(plugin);
       log.infoLog("Recipes loaded");
-      log.infoLog("Load World...");
-        loader.loadWorld("Bossfight-World", "world_bossfight");
-      log.infoLog("World loaded!");
     log.infoLog("All things loaded! Good Luck with this Plugin!");
     log.infoLog("SoulBoss reloaded!");
   }
