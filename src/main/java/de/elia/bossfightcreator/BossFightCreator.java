@@ -1,8 +1,8 @@
 package de.elia.bossfightcreator;
 
 import de.elia.Main;
-import de.elia.bossfightcreator.server.start.StartPlugin;
-import de.elia.bossfightcreator.server.stop.StopPlugin;
+import de.elia.bossfightcreator.load.start.StartPlugin;
+import de.elia.bossfightcreator.load.stop.StopPlugin;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
