@@ -5,4 +5,4 @@ pluginManagement {
   }
 }
 
-rootProject.name = "SoulBoss"
+rootProject.name = "SoulBossSystem"
