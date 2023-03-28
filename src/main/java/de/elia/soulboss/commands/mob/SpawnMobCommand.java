@@ -1,9 +1,7 @@
 package de.elia.soulboss.commands.mob;
 
-import de.elia.soulboss.SoulBoss;
-import de.elia.soulboss.fight.BossFight;
-import de.elia.soulboss.fight.remove.RemoveNearBosses;
-import de.elia.soulboss.messages.message.CustomMessages;
+import de.elia.CustomMessages;
+import de.elia.bossfightcreator.BossFightCreator;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,7 +10,8 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 
 /**
@@ -20,11 +19,13 @@ import java.util.logging.Level;
  * @version 1.0
  * @implements {@link CommandExecutor}, {@link TabCompleter}
  * @description This is the Command for to spawn the mob.
+ * @deprecated No function
  * @since 1.0
  */
+@Deprecated //No function but function comming soon
 public class SpawnMobCommand implements CommandExecutor, TabCompleter {
 
-  private static BossFight bossFight;
+  //private static BossFight bossFight;
 
   /**
    * @param sender  Source of the command
@@ -40,19 +41,19 @@ public class SpawnMobCommand implements CommandExecutor, TabCompleter {
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
     CustomMessages message = new CustomMessages();
-    var status = SoulBoss.playerStatusMap();
+    var status = BossFightCreator.playerStatusMap();
     if (sender instanceof Player player) {
       if (player.hasPermission("soulboss.fight")) {
         if (args.length == 1) {
           if (args[0].equalsIgnoreCase("start")) {
             if (status.get(player) == 0) {
               status.replace(player, 1);
-              bossFight = new BossFight(player, player.getLocation());
+              //bossFight = new BossFight(player, player.getLocation());
             } else {
               message.messageWithPrefix(player, message.red("Du hast ein BossFight aktuell am laufen!"));
             }
           } else if (args[0].equalsIgnoreCase("stop")) {
-            new RemoveNearBosses(player);
+            //new RemoveNearBosses(player);
           }
         }
       } else {
@@ -62,10 +63,6 @@ public class SpawnMobCommand implements CommandExecutor, TabCompleter {
       message.log(Level.WARNING, "You have to be a Player!");
     }
     return true;
-  }
-
-  public static BossFight getBossFight() {
-    return bossFight;
   }
 
   /**
