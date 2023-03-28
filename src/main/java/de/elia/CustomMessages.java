@@ -1,6 +1,5 @@
-package de.elia.soulboss.messages.message;
+package de.elia;
 
-import de.elia.soulboss.messages.prefix.CustomPrefix;
 import de.elia.soulmain.SoulMain;
 import de.elia.soulmain.allplugins.messages.builder.MessageBuilder;
 import net.kyori.adventure.text.Component;
@@ -34,7 +33,7 @@ public class CustomMessages extends MessageBuilder {
    */
   @Override
   public void infoLog(String message) {
-    this.logger.info(prefix.consolePrefix() + message);
+    this.logger.info(prefix.infoPrefix() + message);
   }
 
   /**

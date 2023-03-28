@@ -1,4 +1,4 @@
-package de.elia.soulboss.messages.prefix;
+package de.elia;
 
 import de.elia.soulmain.SoulMain;
 import de.elia.soulmain.allplugins.messages.prefix.PrefixClass;
@@ -22,7 +22,7 @@ public class CustomPrefix extends PrefixClass {
   private final MiniMessage miniMessage = SoulMain.getMiniMessage();
 
   /**
-   * @return component
+   * @return {@link Component}
    * @author Elia
    * @version 1.0
    * @description This Methode set a prefix for this Plugin
@@ -36,7 +36,7 @@ public class CustomPrefix extends PrefixClass {
   }
 
   /**
-   * @return "[SoulBoss ERROR] "
+   * @return {@link String}
    * @author Elia
    * @version 1.0
    * @description This Methode set a console error prefix for this Plugin
@@ -49,7 +49,7 @@ public class CustomPrefix extends PrefixClass {
   }
 
   /**
-   * @return "[SoulBoss WARNING] "
+   * @return {@link String}
    * @author Elia
    * @version 1.0
    * @description This Methode set a console warning prefix for this Plugin
@@ -62,7 +62,7 @@ public class CustomPrefix extends PrefixClass {
   }
 
   /**
-   * @return "[SoulBoss INFO] "
+   * @return {@link String}
    * @author Elia
    * @version 1.0
    * @description This Methode set a console info prefix for this Plugin
@@ -70,7 +70,7 @@ public class CustomPrefix extends PrefixClass {
    */
   @NotNull
   @Override
-  public String consolePrefix() {
+  public String infoPrefix() {
     return "[SoulBoss INFO] ";
   }
 }
