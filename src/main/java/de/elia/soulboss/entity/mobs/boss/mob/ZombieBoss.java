@@ -7,7 +7,7 @@ import de.elia.soulboss.entity.equipment.armors.helmet.Helmet;
 import de.elia.soulboss.entity.equipment.armors.leggins.Leggins;
 import de.elia.soulboss.entity.equipment.tools.axe.Axe;
 import de.elia.soulboss.entity.equipment.tools.sword.Sword;
-import de.elia.soulboss.messages.message.CustomMessages;
+import de.elia.CustomMessages;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -15,7 +15,7 @@ import net.minecraft.world.entity.ai.goal.ZombieAttackGoal;
 import net.minecraft.world.entity.monster.Zombie;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
-import org.bukkit.craftbukkit.v1_19_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_19_R3.CraftWorld;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 
@@ -30,7 +30,8 @@ import java.util.Random;
  */
 public class ZombieBoss extends Zombie {
 
-  private static ZombieBoss boss;
+  private ZombieBoss boss;
+  public static final String KEY = "isZombieBoss";
 
   /**
    * @author Elia
@@ -43,11 +44,11 @@ public class ZombieBoss extends Zombie {
     super(EntityType.ZOMBIE, ((CraftWorld)location.getWorld()).getHandle());
     CustomMessages message = new CustomMessages();
     boss = this;
-    this.getBukkitEntity().getPersistentDataContainer().set(new NamespacedKey(SoulBoss.soulBoss(), "680035753"), PersistentDataType.BYTE, (byte) 1);
+    this.getBukkitEntity().getPersistentDataContainer().set(new NamespacedKey(SoulBoss.main(), KEY), PersistentDataType.BYTE, (byte) 1);
     this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(500);
     this.setHealth(500);
     this.setBaby(false);
-    this.setPos(location.getX()+5, location.getY()+5, location.getZ()+5);
+    this.setPos(location.getX(), location.getY(), location.getZ());
     this.setCustomName(Component.literal("ZombieBoss"));
     this.setCanBreakDoors(true);
     this.setAggressive(true);
@@ -78,7 +79,7 @@ public class ZombieBoss extends Zombie {
    * @description Gets all Methodes of this and the Zombie class.
    */
   @NotNull
-  public static ZombieBoss boss() {
+  public ZombieBoss boss() {
     return boss;
   }
 
