@@ -3,7 +3,6 @@ package de.elia;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.String;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -33,23 +32,11 @@ public class PluginLogger {
    * @author Elia
    * @version 1.0
    * @since 1.0
-   * @description log a message
-   * @param level Requires the log {@link Level} to log the messsage
-   * @param message Requires the Message
-   */
-  public void log(@NotNull Level level, @NotNull String message){
-    logger.log(level, message);
-  }
-
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
    * @description log a info message
    * @param message Requires the Message
    */
   public void logInfo(@NotNull String message){
-    logger.info(message);
+    logger.info("[INFO]" + message);
   }
 
   /**
@@ -60,7 +47,7 @@ public class PluginLogger {
    * @param message Requires the Message
    */
   public void logWarning(@NotNull String message){
-    logger.warning(message);
+    logger.warning("[WARNING]" + message);
   }
 
   /**
@@ -71,7 +58,17 @@ public class PluginLogger {
    * @param message Requires the Message
    */
   public void logError(@NotNull String message){
-    logger.severe(message);
+    logger.severe("[ERROR]" + message);
   }
 
+  /**
+   * @author Elia
+   * @version 1.0
+   * @since 1.0
+   * @description Gets the Logger
+   */
+  @NotNull
+  public Logger logger() {
+    return logger;
+  }
 }
