@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
  * @since 1.0
  * @description If the {@link Player} leave the Server end all exist {@link Game}s of this {@link Player}
  */
-public class LeaveEvent implements Listener {
+public class DisconnectEvent implements Listener {
 
   /**
    * @author Elia
@@ -23,11 +23,12 @@ public class LeaveEvent implements Listener {
    * @param event Requires the {@link PlayerQuitEvent}
    */
   @EventHandler
-  public void onDisconnect(PlayerQuitEvent event){
+  public void onPlayerQuitServer(PlayerQuitEvent event){
     GameMaps.GAMES.forEach(game -> {
       if (game.player == event.getPlayer()) {
-        game.removeGame();
+        game.killGame();
       }
     });
   }
+
 }
