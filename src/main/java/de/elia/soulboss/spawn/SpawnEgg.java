@@ -1,5 +1,8 @@
 package de.elia.soulboss.spawn;
 
+import de.elia.Keys;
+import de.elia.api.Complex;
+import de.elia.items.Item;
 import de.elia.soulboss.SoulBoss;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -44,6 +47,7 @@ public class SpawnEgg {
    * @description This is the methode for the spawnegg of the Zombie
    * @return itemStack
    */
+  @Deprecated //A new methode to create items
   public ItemStack spawnEgg(){
     Material material = Material.ZOMBIE_HEAD;
     ItemStack itemStack = new ItemStack(material);
@@ -67,8 +71,8 @@ public class SpawnEgg {
    * @description This Methode create the eggRecipe
    */
   public void eggRecipe(){
-    NamespacedKey uuid = new NamespacedKey(plugin, "v4j23hdu-df4e-36ta-r4sf-2n0c3n8cky9x");
-    ShapedRecipe recipe = new ShapedRecipe(uuid, this.spawnEgg());
+    NamespacedKey uuid = Keys.RECIPE_KEY.key();
+    ShapedRecipe recipe = new ShapedRecipe(uuid, Item.get(Complex.ZOMBIE_SPAWN_EGG).getItem());
     recipe.shape("ZZZ", "WSW", "CSC");
     recipe.setIngredient('Z', Material.ZOMBIE_HEAD);
     recipe.setIngredient('W', Material.GREEN_WOOL);
