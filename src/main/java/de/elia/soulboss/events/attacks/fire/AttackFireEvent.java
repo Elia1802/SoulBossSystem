@@ -1,9 +1,8 @@
 package de.elia.soulboss.events.attacks.fire;
 
-import de.elia.soulboss.SoulBoss;
+import de.elia.Keys;
 import de.elia.soulboss.entity.mobs.boss.magic.attack.Attack;
 import io.papermc.paper.event.entity.EntityMoveEvent;
-import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -32,7 +31,7 @@ public class AttackFireEvent implements Listener {
     if (event.isCancelled())return;
     event.setCancelled(true);
     if (event.getEntity().getType() == EntityType.ZOMBIE) {
-      if (event.getEntity().getPersistentDataContainer().has(new NamespacedKey(SoulBoss.main(), "680035753"))) {
+      if (event.getEntity().getPersistentDataContainer().has(Keys.ZOMBIE_KEY.key())) {
         Random random = new Random();
         int chance = random.nextInt(200);
         if (chance == 1) {

@@ -1,6 +1,6 @@
 package de.elia.soulboss.entity.mobs.boss.mob;
 
-import de.elia.soulboss.SoulBoss;
+import de.elia.Keys;
 import de.elia.soulboss.entity.equipment.armors.boots.Boots;
 import de.elia.soulboss.entity.equipment.armors.chestplate.Chestplate;
 import de.elia.soulboss.entity.equipment.armors.helmet.Helmet;
@@ -14,7 +14,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.ZombieAttackGoal;
 import net.minecraft.world.entity.monster.Zombie;
 import org.bukkit.Location;
-import org.bukkit.NamespacedKey;
 import org.bukkit.craftbukkit.v1_19_R3.CraftWorld;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
@@ -31,7 +30,6 @@ import java.util.Random;
 public class ZombieBoss extends Zombie {
 
   private ZombieBoss boss;
-  public static final String KEY = "isZombieBoss";
 
   /**
    * @author Elia
@@ -44,7 +42,7 @@ public class ZombieBoss extends Zombie {
     super(EntityType.ZOMBIE, ((CraftWorld)location.getWorld()).getHandle());
     CustomMessages message = new CustomMessages();
     boss = this;
-    this.getBukkitEntity().getPersistentDataContainer().set(new NamespacedKey(SoulBoss.main(), KEY), PersistentDataType.BYTE, (byte) 1);
+    this.getBukkitEntity().getPersistentDataContainer().set(Keys.ZOMBIE_KEY.key(), PersistentDataType.BYTE, (byte) 1);
     this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(500);
     this.setHealth(500);
     this.setBaby(false);

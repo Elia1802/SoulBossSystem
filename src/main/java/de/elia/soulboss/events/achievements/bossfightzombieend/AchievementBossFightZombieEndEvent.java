@@ -1,10 +1,10 @@
 package de.elia.soulboss.events.achievements.bossfightzombieend;
 
+import de.elia.Keys;
 import de.elia.soulboss.SoulBoss;
 import de.elia.soulboss.achievement.process.BossFightAchievements;
 import de.elia.soulboss.achievement.storage.BossFightAchievementStorage;
 import net.minecraft.world.entity.monster.Zombie;
-import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -38,7 +38,7 @@ public class AchievementBossFightZombieEndEvent implements Listener {
       Entity damager = ((EntityDamageByEntityEvent)damageEvent).getDamager();
       if (damager instanceof Player player) {
         if (entity instanceof Zombie) {
-          if (entity.getPersistentDataContainer().has(new NamespacedKey(SoulBoss.main(), "680035753"))) {
+          if (entity.getPersistentDataContainer().has(Keys.ZOMBIE_KEY.key())) {
             new BossFightAchievements(SoulBoss.main()).giveAchievement(player, BossFightAchievementStorage.BOSSFIGHT_ZOMBIE_END);
           }
         }

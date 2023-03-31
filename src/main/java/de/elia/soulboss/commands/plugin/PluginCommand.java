@@ -1,5 +1,6 @@
 package de.elia.soulboss.commands.plugin;
 
+import de.elia.Keys;
 import de.elia.soulboss.SoulBoss;
 import de.elia.CustomMessages;
 import de.elia.soulboss.plugin.ThisPlugin;
@@ -7,7 +8,6 @@ import de.elia.soulboss.plugin.load.start.register.configuation.ConfigurationLoa
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
-import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -112,17 +112,17 @@ public class PluginCommand extends ConfigurationLoader implements CommandExecuto
             if (args[1].equalsIgnoreCase("fights")) {
               message.messageWithPrefix(player, message.gold("Alle BossFights werden beendet!"));
               Bukkit.getServer().getWorld("world").getEntities().forEach((entity) -> {
-                if (entity.getPersistentDataContainer().has(new NamespacedKey(SoulBoss.main(), "680035753"))) {
+                if (entity.getPersistentDataContainer().has(Keys.ZOMBIE_KEY.key())) {
                   entity.remove();
                 }
               });
               Bukkit.getServer().getWorld("world_nether").getEntities().forEach((entity) -> {
-                if (entity.getPersistentDataContainer().has(new NamespacedKey(SoulBoss.main(), "680035753"))) {
+                if (entity.getPersistentDataContainer().has(Keys.ZOMBIE_KEY.key())) {
                   entity.remove();
                 }
               });
               Bukkit.getServer().getWorld("world_the_end").getEntities().forEach((entity) -> {
-                if (entity.getPersistentDataContainer().has(new NamespacedKey(SoulBoss.main(), "680035753"))) {
+                if (entity.getPersistentDataContainer().has(Keys.ZOMBIE_KEY.key())) {
                   entity.remove();
                 }
               });
