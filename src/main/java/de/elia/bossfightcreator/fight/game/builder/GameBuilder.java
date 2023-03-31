@@ -40,6 +40,7 @@ public class GameBuilder {
   private final Location arenaLocation; //the game location of the game arena
   private final org.bukkit.plugin.Plugin plugin;
   private PermissionAttachment trustGamePermission;
+  private Game game;
 
   /**
    * @author Elia
@@ -240,7 +241,7 @@ public class GameBuilder {
           @Override
           public void run() {
             //if countdown 0 run this
-            new Game(location, player, gameName);
+            game = new Game(location, player, gameName);
           }
         }
       );
@@ -287,8 +288,9 @@ public class GameBuilder {
      * @description send the creation start messages
      */
     public void startMessage(){
+      var log = BossFightCreator.bossFightCreator().bossFightCreatorLogger();
       message.message(gameOwner, message.aqua("Lade dein Bossfight... ").append(message.gray("(Dauer: 1min)")));
-      message.infoLog("Lade ein neuen Bossfight (" + gameName + ") von " + gameOwner.getName() + "...");
+      log.logInfo("Lade ein neuen Bossfight (" + gameName + ") von " + gameOwner.getName() + "...");
     }
 
     /**
@@ -306,5 +308,11 @@ public class GameBuilder {
         }
       }
     }
+  }
+
+  @NotNull
+  public Game game() {
+    if (game == null) return null;
+    return game;
   }
 }
