@@ -32,4 +32,6 @@ commands:
     description: Players can use it to read information about the plugin.
   tpworld:
     description: Teleport the player in a other world.
+  trustplayer:
+    description: Trusted a player for a bossfight!
   dev_command_bossfight_creator:
