@@ -3,6 +3,7 @@ package de.elia.bossfightcreator.world.creator;
 import de.elia.PluginLogger;
 import de.elia.bossfightcreator.world.WorldMain;
 import de.elia.bossfightcreator.world.settings.WorldSettings;
+import de.elia.soulboss.SoulBoss;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.generator.ChunkGenerator;
@@ -22,7 +23,6 @@ import java.util.Random;
  */
 public class CustomChunkGenerator extends ChunkGenerator {
 
-  private final PluginLogger logger = WorldMain.LOGGER;
   private final WorldSettings settings = new WorldSettings();
 
   public CustomChunkGenerator(){
@@ -42,6 +42,7 @@ public class CustomChunkGenerator extends ChunkGenerator {
   @Override
   @Nullable
   public Location getFixedSpawnLocation(@NotNull World world, @NotNull Random random){
+    WorldMain logger = new WorldMain(SoulBoss.main());
     logger.logInfo("Set Spawnlocation...");
     Location location = new Location(world, 7D, 68D, -16D);
     logger.logInfo("Spawnlocation sets!");

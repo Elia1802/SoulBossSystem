@@ -2,6 +2,7 @@ package de.elia.bossfightcreator.world;
 
 import de.elia.PluginLogger;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 
@@ -11,11 +12,8 @@ import java.io.File;
  * @since 1.0
  * @description All thinks for the world generation
  */
-public class WorldMain {
+public class WorldMain extends PluginLogger {
 
-
-  public static final PluginLogger LOGGER = new PluginLogger("SoulSMP-WorldGenerator");
-  public static final PluginLogger LOGGER_PROGRESS = new PluginLogger("SoulSMP-World-creation-progress");
   private final Plugin plugin;
 
   /**
@@ -25,9 +23,15 @@ public class WorldMain {
    * @description Create a WorldMain
    * @param plugin
    */
-  public WorldMain(Plugin plugin) {
+  public WorldMain(Plugin plugin){
+    super("SoulBossSystem -> BossFightCreator -> World");
     this.plugin = plugin;
     this.arenaFolder();
+  }
+
+  @Override
+  public void logInfo(@NotNull String message){
+    this.logger().info(message);
   }
 
   /**
