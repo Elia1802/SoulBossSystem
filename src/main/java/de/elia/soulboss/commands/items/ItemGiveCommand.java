@@ -1,8 +1,14 @@
 package de.elia.soulboss.commands.items;
 
 import de.elia.CustomMessages;
+import de.elia.Main;
+import de.elia.api.Complex;
+import de.elia.api.TheZepserAPI;
+import de.elia.api.components.ComplexItem;
+import de.elia.items.Item;
 import de.elia.soulboss.SoulBoss;
 import de.elia.soulboss.spawn.SpawnEgg;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -11,6 +17,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -37,24 +44,27 @@ public class ItemGiveCommand implements CommandExecutor, TabCompleter {
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
     CustomMessages message = new CustomMessages();
     SpawnEgg spawnEgg = new SpawnEgg(SoulBoss.main());
-    if (sender instanceof Player player) {
-      if (player.hasPermission("soulboss.give")) {
-        if (args.length == 2) {
-          if (args[0].equalsIgnoreCase(player.getName())) {
-            if (args[1].equalsIgnoreCase("soulboss_zombie")) {
-              player.getInventory().setItemInMainHand(spawnEgg.spawnEgg());
-              message.messageWithPrefix(player, message.green("Du hast das Spawn Ei von dem Zombie Boss geholt!"));
+    var miniMessage = SoulBoss.soulBoss().miniMessage();
+    if (sender instanceof Player commandSender) {
+      if (commandSender.hasPermission("soulboss.give")) {
+        //cmd [item] [amount] [target(player)]
+        if (args.length == 3) {
+          Complex complex = Complex.valueOf(args[0]);
+          if (ComplexItem.SAVED.containsKey(complex)) {
+            Player player = Bukkit.getPlayer(args[2]);
+            if (player != null) {
+              Item.give(player, Complex.valueOf(args[0]), Integer.parseInt(args[1]));
+              commandSender.sendMessage(TheZepserAPI.Prefix.append(miniMessage.deserialize("<gray>Du hast dem Spieler</gray> <aqua>")).append(miniMessage.deserialize(player.getName())).append(miniMessage.deserialize("</aqua> <gray>das Item</gray> <aqua>")).append(miniMessage.deserialize(args[0])).append(miniMessage.deserialize("</aqua> <gray>gegeben!</gray>")));
+              return true;
             }
           }
-        }else {
-          message.messageWithPrefix(player, message.red("/bossgive [player] [Item]"));
-          return false;
         }
       }else {
-        message.messageWithPrefix(player, message.red("Du hast keine Rechte für diesen Command!"));
+        message.messageWithPrefix(commandSender, message.red("Du hast keine Rechte für diesen Command!"));
+        return false;
       }
     }else {
-      message.log(Level.WARNING, "You have to be a Player!");
+      Main.SOUL_BOSS_LOGGER.logWarning("You have to be a Player!");
       return false;
     }
     return true;
@@ -76,10 +86,12 @@ public class ItemGiveCommand implements CommandExecutor, TabCompleter {
    */
   @Override
   public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
-    Player player = (Player) sender;
-    if (args.length == 2) {
-      return List.of("soulboss_zombie");
+    List<String> list = new ArrayList<>();
+    if (args.length == 1) {
+      for (Complex complex : ComplexItem.SAVED.keySet()) {
+        list.add(complex.toString());
+      }
     }
-    return null;
+    return list;
   }
 }
