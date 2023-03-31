@@ -1,6 +1,7 @@
 package de.elia.bossfightcreator;
 
 import de.elia.Main;
+import de.elia.PluginLogger;
 import de.elia.bossfightcreator.load.start.StartPlugin;
 import de.elia.bossfightcreator.load.stop.StopPlugin;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -94,7 +95,13 @@ public class BossFightCreator {
    * @return {@link Main}
    */
   @NotNull
-   public static Main main(){
+  public static Main main(){
     return Main.main();
   }
+
+  @NotNull
+  public PluginLogger bossFightCreatorLogger(){
+    return Main.BOSS_FIGHT_CREATOR_LOGGER;
+  }
+
 }

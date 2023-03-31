@@ -1,6 +1,7 @@
 package de.elia.soulboss;
 
 import de.elia.Main;
+import de.elia.PluginLogger;
 import de.elia.soulboss.plugin.load.Load;
 import de.elia.soulboss.plugin.load.stop.disable.Disable;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -104,5 +105,10 @@ public class SoulBoss {
   @NotNull
   public static Main main(){
     return Main.main();
+  }
+
+  @NotNull
+  public PluginLogger soulBossLogger(){
+    return Main.SOUL_BOSS_LOGGER;
   }
 }
