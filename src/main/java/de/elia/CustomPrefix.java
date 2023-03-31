@@ -39,11 +39,13 @@ public class CustomPrefix extends PrefixClass {
    * @return {@link String}
    * @author Elia
    * @version 1.0
+   * @deprecated the {@link  PluginLogger} create the prefix itself
    * @description This Methode set a console error prefix for this Plugin
    * @since 1.0
    */
   @NotNull
   @Override
+  @Deprecated //the PluginLogger create the prefix itself
   public String errorPrefix() {
     return "[SoulBoss ERROR] ";
   }
@@ -52,11 +54,13 @@ public class CustomPrefix extends PrefixClass {
    * @return {@link String}
    * @author Elia
    * @version 1.0
+   * @deprecated the {@link  PluginLogger} create the prefix itself
    * @description This Methode set a console warning prefix for this Plugin
    * @since 1.0
    */
   @NotNull
   @Override
+  @Deprecated //the PluginLogger create the prefix itself
   public String warningPrefix() {
     return "[SoulBoss WARNING] ";
   }
@@ -65,11 +69,13 @@ public class CustomPrefix extends PrefixClass {
    * @return {@link String}
    * @author Elia
    * @version 1.0
+   * @deprecated the {@link  PluginLogger} create the prefix itself
    * @description This Methode set a console info prefix for this Plugin
    * @since 1.0
    */
   @NotNull
   @Override
+  @Deprecated //the PluginLogger create the prefix itself
   public String infoPrefix() {
     return "[SoulBoss INFO] ";
   }
