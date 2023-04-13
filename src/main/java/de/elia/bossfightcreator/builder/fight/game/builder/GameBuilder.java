@@ -1,10 +1,10 @@
-package de.elia.bossfightcreator.fight.game.builder;
+package de.elia.bossfightcreator.builder.fight.game.builder;
 
 import de.elia.bossfightcreator.BossFightCreator;
 import de.elia.bossfightcreator.Instances.Files.CreateBossfightFile;
 import de.elia.bossfightcreator.Instances.Plugin;
-import de.elia.bossfightcreator.fight.arena.Arenas;
-import de.elia.bossfightcreator.fight.game.Game;
+import de.elia.bossfightcreator.arena.Arenas;
+import de.elia.bossfightcreator.builder.fight.game.Game;
 import de.elia.CustomMessages;
 import de.elia.soulboss.entity.mobs.boss.mob.ZombieBoss;
 import de.elia.soulboss.utils.timers.StartTasks;
@@ -37,7 +37,7 @@ public class GameBuilder {
   private final Player gameOwner; //the game creator
   private final String gameName; //the Name is for the permission and the gameFile
   private final Integer gameID; // the generated id
-  private final Location arenaLocation; //the game location of the game arena
+  private final Arenas arena; //the game location of the game arena
   private final org.bukkit.plugin.Plugin plugin;
   private PermissionAttachment trustGamePermission;
   private Game game;
@@ -57,7 +57,7 @@ public class GameBuilder {
     this.gameName = "bossfight" + this.gameID + arena.getName() + gameOwner.getName();
     this.gameFile = new CreateBossfightFile(this.gameName).getFile();
     this.plugin = plugin;
-    this.arenaLocation = arena.location();
+    this.arena = arena;
     this.createFight();
   }
 
@@ -114,8 +114,8 @@ public class GameBuilder {
         new BukkitRunnable() {
           @Override
           public void run() {
-            gamePlayer.teleport(arenaLocation);
-            new SpawnZombieTimer().start(16*20, gamePlayer, arenaLocation);
+            gamePlayer.teleport(arena.location());
+            new SpawnZombieTimer().start(16*20, gamePlayer, arena.location());
           }
         }.runTask(plugin);
       }
@@ -241,7 +241,7 @@ public class GameBuilder {
           @Override
           public void run() {
             //if countdown 0 run this
-            game = new Game(location, player, gameName);
+            game = new Game(arena, player, gameName);
           }
         }
       );
@@ -310,9 +310,15 @@ public class GameBuilder {
     }
   }
 
+  /**
+   * @author Elia
+   * @version 1.0
+   * @since 1.0
+   * @description Gets the game
+   * @return {@link Game}
+   */
   @NotNull
   public Game game() {
-    if (game == null) return null;
     return game;
   }
 }

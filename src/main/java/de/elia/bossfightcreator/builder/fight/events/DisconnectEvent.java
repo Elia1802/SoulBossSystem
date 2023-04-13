@@ -1,7 +1,7 @@
-package de.elia.bossfightcreator.fight.events;
+package de.elia.bossfightcreator.builder.fight.events;
 
-import de.elia.bossfightcreator.fight.game.Game;
-import de.elia.bossfightcreator.fight.game.maps.GameMaps;
+import de.elia.bossfightcreator.builder.fight.game.Game;
+import de.elia.bossfightcreator.builder.fight.game.maps.GameList;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,7 +24,7 @@ public class DisconnectEvent implements Listener {
    */
   @EventHandler
   public void onPlayerQuitServer(PlayerQuitEvent event){
-    GameMaps.GAMES.forEach(game -> {
+    GameList.GAMES.forEach(game -> {
       if (game.player == event.getPlayer()) {
         game.killGame();
       }

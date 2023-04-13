@@ -1,12 +1,12 @@
-package de.elia.bossfightcreator.fight.executer;
+package de.elia.bossfightcreator.builder.fight.executer;
 
 import de.elia.CustomMessages;
 import de.elia.Keys;
 import de.elia.api.Complex;
 import de.elia.api.TheZepserAPI;
 import de.elia.bossfightcreator.BossFightCreator;
-import de.elia.bossfightcreator.fight.arena.sender.ArenaSender;
-import de.elia.bossfightcreator.fight.game.builder.GameBuilder;
+import de.elia.bossfightcreator.arena.sender.ArenaSender;
+import de.elia.bossfightcreator.builder.fight.game.builder.GameBuilder;
 import de.elia.soulboss.SoulBoss;
 import de.elia.soulboss.achievement.process.BossFightAchievements;
 import de.elia.soulboss.achievement.storage.BossFightAchievementStorage;
@@ -36,6 +36,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * @author Elia
+ * @version 1.0
+ * @since 1.0
+ * @implements {@link Listener}, {@link CommandExecutor} and {@link TabCompleter}
+ * @description This class is for the commands end events while the game.
+ */
 public class GameExecuter implements Listener, CommandExecutor, TabCompleter {
 
   private final Plugin plugin;
@@ -50,6 +57,12 @@ public class GameExecuter implements Listener, CommandExecutor, TabCompleter {
     this(BossFightCreator.main());
   }
 
+  /**
+   * @author Elia
+   * @version 1.0
+   * @since 1.0
+   * @description This event checks if the player click the spawnegg and if this true load this a new game with the {@link GameBuilder}
+   */
   @EventHandler
   public void onLoad(@NotNull PlayerInteractEvent event){
     ArenaSender sender = new ArenaSender();
@@ -59,12 +72,20 @@ public class GameExecuter implements Listener, CommandExecutor, TabCompleter {
     SpawnEgg spawnEgg = new SpawnEgg(this.plugin);
     if (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) {
       if (TheZepserAPI.item.hasKey(event.getItem(), TheZepserAPI.item.createKey(Complex.ZOMBIE_SPAWN_EGG))) {
+        event.setCancelled(true);
         new BossFightAchievements(this.plugin).giveAchievement(player, BossFightAchievementStorage.BOSSFIGHT_ZOMBIE);
         builder = new GameBuilder(player, sender.arena());
+        player.getInventory().remove(event.getItem());
       }
     }
   }
 
+  /**
+   * @author Elia
+   * @version 1.0
+   * @since 1.0
+   * @description This event checks if the boss die and unload the game
+   */
   @EventHandler
   public void onEnd(@NotNull EntityDeathEvent event){
     if (event.getEntityType() == EntityType.ZOMBIE) {
@@ -78,12 +99,23 @@ public class GameExecuter implements Listener, CommandExecutor, TabCompleter {
         Location location = event.getEntity().getLocation();
         location.getWorld().strikeLightningEffect(location);
         new DropUtils().drop(location);
-        builder.game().removeGame();
+        builder.game().end();
         //Elia ends!
       }
     }
   }
 
+  /**
+   * @author Elia
+   * @version 1.0
+   * @since 1.0
+   * @description The command to trust other players
+   * @param sender Source of the command
+   * @param command Command which was executed
+   * @param label Alias of the command which was used
+   * @param args Passed command arguments
+   * @return {@link Boolean}
+   */
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
     if (builder == null)return false;
@@ -98,6 +130,20 @@ public class GameExecuter implements Listener, CommandExecutor, TabCompleter {
     return true;
   }
 
+  /**
+   * @author Elia
+   * @version 1.0
+   * @since 1.0
+   * @description The tab complete for the trust command
+   * @param sender Source of the command.  For players tab-completing a
+   *     command inside of a command block, this will be the player, not
+   *     the command block.
+   * @param command Command which was executed
+   * @param label Alias of the command which was used
+   * @param args The arguments passed to the command, including final
+   *     partial argument to be completed
+   * @return {@link List<String>}
+   */
   @Override
   @Nullable
   public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String @NotNull [] args) {
