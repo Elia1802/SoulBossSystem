@@ -2,8 +2,10 @@ package de.elia.bossfightcreator;
 
 import de.elia.Main;
 import de.elia.PluginLogger;
+import de.elia.bossfightcreator.builder.save.SaveGame;
 import de.elia.bossfightcreator.load.start.StartPlugin;
 import de.elia.bossfightcreator.load.stop.StopPlugin;
+import de.elia.bossfightcreator.world.WorldMain;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -22,6 +24,7 @@ import java.util.Map;
 public class BossFightCreator {
 
   private static BossFightCreator bossFightCreator;
+  private static WorldMain worldMain;
   private final MiniMessage miniMessage = MiniMessage.miniMessage();//Gets the MiniMessage API.
   private static final Map<Player, Integer> playerStatusMap = new HashMap<>();//Save the status of the player for the bossfight.
 
@@ -38,8 +41,9 @@ public class BossFightCreator {
    */
   public void enable(JavaPlugin plugin){
     bossFightCreator = this;
+    worldMain = new WorldMain(plugin);
     StartPlugin.start(plugin);
-    Bukkit.getPluginCommand("dev_command_bossfight_creator").setExecutor(new DevCommand());
+    SaveGame.loadMap();
   }
 
   /**
@@ -104,4 +108,14 @@ public class BossFightCreator {
     return Main.BOSS_FIGHT_CREATOR_LOGGER;
   }
 
+  /**
+   * @author Elia
+   * @version 1.0
+   * @since 1.0
+   * @description Gets the {@link WorldMain}
+   * @return {@link WorldMain}
+   */
+  public static WorldMain worldMain() {
+    return worldMain;
+  }
 }
