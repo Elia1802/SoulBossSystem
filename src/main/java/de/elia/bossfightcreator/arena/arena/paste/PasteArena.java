@@ -1,4 +1,4 @@
-package de.elia.bossfightcreator.world.arena.paste;
+package de.elia.bossfightcreator.arena.arena.paste;
 
 import com.sk89q.worldedit.EditSession;
 import com.sk89q.worldedit.WorldEdit;
