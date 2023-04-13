@@ -15,6 +15,7 @@ import java.io.File;
 public class WorldMain extends PluginLogger {
 
   private final Plugin plugin;
+  private File file;
 
   /**
    * @author Elia
@@ -26,12 +27,19 @@ public class WorldMain extends PluginLogger {
   public WorldMain(Plugin plugin){
     super("SoulBossSystem -> BossFightCreator -> World");
     this.plugin = plugin;
-    this.arenaFolder();
+    this.loadFolder();
   }
 
   @Override
   public void logInfo(@NotNull String message){
     this.logger().info(message);
+  }
+
+  private void loadFolder(){
+    file = new File(plugin.getDataFolder() + "/arenas/");
+    if (!file.exists()) {
+      file.mkdir();
+    }
   }
 
   /**
@@ -42,6 +50,6 @@ public class WorldMain extends PluginLogger {
    * @return {@link File}
    */
   public File arenaFolder(){
-    return new File(plugin.getDataFolder(), "arenas/");
+    return file;
   }
 }

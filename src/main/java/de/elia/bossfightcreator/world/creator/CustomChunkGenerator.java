@@ -1,6 +1,7 @@
 package de.elia.bossfightcreator.world.creator;
 
 import de.elia.PluginLogger;
+import de.elia.bossfightcreator.BossFightCreator;
 import de.elia.bossfightcreator.world.WorldMain;
 import de.elia.bossfightcreator.world.settings.WorldSettings;
 import de.elia.soulboss.SoulBoss;
@@ -42,10 +43,10 @@ public class CustomChunkGenerator extends ChunkGenerator {
   @Override
   @Nullable
   public Location getFixedSpawnLocation(@NotNull World world, @NotNull Random random){
-    WorldMain logger = new WorldMain(SoulBoss.main());
-    logger.logInfo("Set Spawnlocation...");
+    var worldMain = BossFightCreator.worldMain();
+    worldMain.logInfo("Set Spawnlocation...");
     Location location = new Location(world, 7D, 68D, -16D);
-    logger.logInfo("Spawnlocation sets!");
+    worldMain.logInfo("Spawnlocation sets!");
     return location;
   }
 
