@@ -34,4 +34,3 @@ commands:
     description: Teleport the player in a other world.
   trustplayer:
     description: Trusted a player for a bossfight!
-  dev_command_bossfight_creator:
