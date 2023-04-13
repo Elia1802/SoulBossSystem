@@ -1,0 +1,9 @@
+{
+	"parent": "item/handheld",
+	"textures": {
+		"layer0": "item/gunpowder"
+	},
+	"overrides": [
+		{ "predicate": { "custom_model_data": 1}, "model": "item/gunpowder/1" }
+	]
+}

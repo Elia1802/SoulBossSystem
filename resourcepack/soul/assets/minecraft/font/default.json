@@ -1,0 +1,176 @@
+{"providers":[
+	{
+		"type": "bitmap",
+		"file": "minecraft:juako/admin_scoreboard.png",
+		"height": 9,
+		"ascent": 9,
+		"chars": [
+			"Ĕ"
+		]
+	},
+	{
+		"type": "bitmap",
+		"file": "minecraft:juako/question_mark.png",
+		"height": 11,
+		"ascent": 9,
+		"chars": [
+			"Ď"
+		]
+	},
+	{
+		"type": "bitmap",
+		"file": "minecraft:juako/vipplus.png",
+		"height": 9,
+		"ascent": 9,
+		"chars": [
+			"ē"
+		]
+	},
+	{
+		"type": "bitmap",
+		"file": "minecraft:juako/spieler.png",
+		"height": 9,
+		"ascent": 9,
+		"chars": [
+			"ā"
+		]
+	},
+	{
+		"type": "bitmap",
+		"file": "minecraft:juako/vip.png",
+		"height": 9,
+		"ascent": 9,
+		"chars": [
+			"ù"
+		]
+	},
+	{
+		"type": "bitmap",
+		"file": "minecraft:juako/dev.png",
+		"height": 9,
+		"ascent": 9,
+		"chars": [
+			"í"
+		]
+	},
+	{
+		"type": "bitmap",
+		"file": "minecraft:juako/azubi-dev.png",
+		"height": 9,
+		"ascent": 9,
+		"chars": [
+			"ó"
+		]
+	},
+	{
+		"type": "bitmap",
+		"file": "minecraft:juako/builder.png",
+		"height": 9,
+		"ascent": 9,
+		"chars": [
+			"ú"
+		]
+	},
+	{
+		"type": "bitmap",
+		"file": "minecraft:juako/sup.png",
+		"height": 9,
+		"ascent": 9,
+		"chars": [
+			"à"
+		]
+	},
+	{
+		"type": "bitmap",
+		"file": "minecraft:juako/mod.png",
+		"height": 9,
+		"ascent": 9,
+		"chars": [
+			"è"
+		]
+	},
+	{
+		"type": "bitmap",
+		"file": "minecraft:juako/admin.png",
+		"height": 9,
+		"ascent": 9,
+		"chars": [
+			"ì"
+		]
+	},
+	{
+		"type": "bitmap",
+		"file": "minecraft:juako/owner.png",
+		"height": 9,
+		"ascent": 9,
+		"chars": [
+			"ò"
+		]
+	},
+	{
+		"type": "bitmap",
+		"file": "minecraft:juako/azubi.png",
+		"height": 9,
+		"ascent": 9,
+		"chars": [
+			"ǔ"
+		]
+	},	
+	{
+		"type": "bitmap",
+		"file": "minecraft:juako/youtube.png",
+		"height": 9,
+		"ascent": 9,
+		"chars": [
+			"ǎ"
+		]
+	},
+	{
+		"type": "bitmap",
+		"file": "minecraft:juako/co-owner.png",
+		"height": 9,
+		"ascent": 9,
+		"chars": [
+			"â"
+		]
+	},
+	{
+		"type": "bitmap",
+		"file": "minecraft:juako/media.png",
+		"height": 9,
+		"ascent": 9,
+		"chars": [
+			"ċ"
+		]
+	},
+	{
+		"type": "bitmap",
+		"file": "minecraft:juako/soul.png",
+		"height": 9,
+		"ascent": 9,
+		"chars": [
+			"ė"
+		]
+	},
+	{
+		"type": "bitmap",
+		"file": "minecraft:juako/head-media.png",
+		"height": 9,
+		"ascent": 9,
+		"chars": [
+			"ř"
+		]
+	},
+	{
+		"type": "bitmap",
+		"file": "minecraft:juako/baumeister.png",
+		"height": 9,
+		"ascent": 9,
+		"chars": [
+			"ĥ"
+		]
+	}
+	
+
+]
+}

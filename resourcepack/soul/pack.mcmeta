@@ -1,6 +1,6 @@
 {
-    "pack": {
-        "description": "§8(§5SoulBossSystem§8) §7The Resourcepack for the custom items!",
-        "pack_format": 13
-    }
+  "pack": {
+    "pack_format": 13,
+    "description": "SoulSMP Pack"
+  }
 }
