@@ -1,9 +1,10 @@
-package de.elia.bossfightcreator.fight.arena;
+package de.elia.bossfightcreator.arena;
 
-import de.elia.bossfightcreator.fight.arena.map.ArenaMaps;
+import de.elia.bossfightcreator.arena.map.ArenaMaps;
 import org.bukkit.Location;
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.Deprecated;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Arrays;
@@ -20,16 +21,16 @@ import static de.elia.bossfightcreator.Instances.Plugin.world_bossfight;
  */
 public enum Arenas {
 
-  ARENA_1("arena_1", 1386403, new Location(world_bossfight, -84D, 74D, 216D), ArenaMaps.ARENA_1_STATUS_MAP),
-  ARENA_2("arena_2", 9650569, new Location(world_bossfight, 4D, 74D, 181D), ArenaMaps.ARENA_2_STATUS_MAP),
-  ARENA_3("arena_3", 1620334, new Location(world_bossfight, 88D, 74D, 133), ArenaMaps.ARENA_3_STATUS_MAP),
-  ARENA_4("arena_4", 4440724, new Location(world_bossfight, 150D, 74D, 4D), ArenaMaps.ARENA_4_STATUS_MAP),
-  ARENA_5("arena_5", 2820715, new Location(world_bossfight, 79D, 67D, -117D), ArenaMaps.ARENA_5_STATUS_MAP),
-  ARENA_6("arena_6", 3193567, new Location(world_bossfight, 12D, 67D, -143D), ArenaMaps.ARENA_6_STATUS_MAP),
-  ARENA_7("arena_7", 5567116, new Location(world_bossfight, -59D, 67D, 83D), ArenaMaps.ARENA_7_STATUS_MAP),
-  ARENA_8("arena_8", 2326107, new Location(world_bossfight, -150D, 67D, 26D), ArenaMaps.ARENA_8_STATUS_MAP),
-  ARENA_9("arena_9", 9378406, new Location(world_bossfight, -70D, 67D, -58D), ArenaMaps.ARENA_9_STATUS_MAP),
-  ARENA_10("arena_10", 9613245, new Location(world_bossfight, 7D, 68D, -16D), ArenaMaps.ARENA_10_STATUS_MAP);
+  ARENA_1("arena_1", 1386403, new Location(world_bossfight, 11D, 67D, -16D), ArenaMaps.ARENA_1_STATUS_MAP),//WARNING!!! TEST CORDINATION!!! NOT RELEASE CORDINATIONS!!!
+  ARENA_2("arena_2", 9650569, new Location(world_bossfight, 41D, 72D, 45D), ArenaMaps.ARENA_2_STATUS_MAP),//WARNING!!! TEST CORDINATION!!! NOT RELEASE CORDINATIONS!!!
+  ARENA_3("arena_3", 1620334, new Location(world_bossfight, 98D, 72D, -10), ArenaMaps.ARENA_3_STATUS_MAP),//WARNING!!! TEST CORDINATION!!! NOT RELEASE CORDINATIONS!!!
+  ARENA_4("arena_4", 4440724, new Location(world_bossfight, 99D, 72D, 42D), ArenaMaps.ARENA_4_STATUS_MAP),//WARNING!!! TEST CORDINATION!!! NOT RELEASE CORDINATIONS!!!
+  @Deprecated ARENA_5("arena_5", 2820715, new Location(world_bossfight, 79D, 67D, -117D), ArenaMaps.ARENA_5_STATUS_MAP),//Deprecated because wrong cordinates (fix to release)
+  @Deprecated ARENA_6("arena_6", 3193567, new Location(world_bossfight, 12D, 67D, -143D), ArenaMaps.ARENA_6_STATUS_MAP),//Deprecated because wrong cordinates (fix to release)
+  @Deprecated ARENA_7("arena_7", 5567116, new Location(world_bossfight, -59D, 67D, 83D), ArenaMaps.ARENA_7_STATUS_MAP),//Deprecated because wrong cordinates (fix to release)
+  @Deprecated ARENA_8("arena_8", 2326107, new Location(world_bossfight, -150D, 67D, 26D), ArenaMaps.ARENA_8_STATUS_MAP),//Deprecated because wrong cordinates (fix to release)
+  @Deprecated ARENA_9("arena_9", 9378406, new Location(world_bossfight, -70D, 67D, -58D), ArenaMaps.ARENA_9_STATUS_MAP),//Deprecated because wrong cordinates (fix to release)
+  @Deprecated ARENA_10("arena_10", 9613245, new Location(world_bossfight, 7D, 68D, -16D), ArenaMaps.ARENA_10_STATUS_MAP);//Deprecated because wrong cordinates (fix to release)
 
   private final @NotNull String name;//A name of the Arena
   private final Integer id;//A id of the Arena
@@ -99,6 +100,22 @@ public enum Arenas {
   @NotNull
   public Map<Arenas, Integer> arenaStatusMap(){
     return this.arenaStatusMap;
+  }
+
+  /**
+   * @author Elia
+   * @version 1.0
+   * @since 1.0
+   * @description Set a new status in the map
+   * @param arena Requires a arena
+   * @param status Requires the status
+   */
+  public void setStatus(Arenas arena, boolean status){
+    if (status == true) { //if status true = arena ready
+      arenaStatusMap.replace(arena, 0);
+    }else if (status == false) { //if status false = arena not ready
+      arenaStatusMap.replace(arena, 1);
+    }
   }
 
   /**
