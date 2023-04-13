@@ -43,7 +43,7 @@ public class WorldCommand implements CommandExecutor, TabCompleter {
       if (player.hasPermission("soulboss.world")) {
         if (args.length == 1) {
           if (args[0].equalsIgnoreCase("world_bossfight")) {
-            player.teleport(SoulBoss.main().world().getSpawnLocation());
+            player.teleport(Bukkit.getWorld("world_bossfight").getSpawnLocation());
             messages.messageWithPrefix(player, messages.aqua("Du wurdest in die Welt world_bossfight teleportiert!"));
           }else if (args[0].equalsIgnoreCase("world")) {
             player.teleport(Bukkit.getWorld("world").getSpawnLocation());
