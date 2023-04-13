@@ -4,7 +4,7 @@ import de.elia.api.TheZepserAPIMain;
 import de.elia.bossfightcreator.BossFightCreator;
 import de.elia.bossfightcreator.Instances.Files;
 import de.elia.bossfightcreator.Instances.Plugin;
-import de.elia.bossfightcreator.world.WorldMain;
+import de.elia.bossfightcreator.load.start.StartPlugin;
 import de.elia.bossfightcreator.world.creator.CustomChunkGenerator;
 import de.elia.items.ItemMain;
 import de.elia.soulboss.SoulBoss;
@@ -83,6 +83,11 @@ public class Main extends JavaPlugin {
     }
     MAIN_LOGGER.logInfo("TheZepserAPI, Item, BossFightCreator and SoulBoss loaded!");
     MAIN_LOGGER.logInfo("Loaded de.elia.Main");
+    try {
+      StartPlugin.loadArenas();
+    }catch (Exception exception) {
+      exception.printStackTrace();
+    }
   }
 
   /**
@@ -136,34 +141,34 @@ public class Main extends JavaPlugin {
    */
   @Override
   public @Nullable ChunkGenerator getDefaultWorldGenerator(@NotNull String worldName, String id){
-    WorldMain log = new WorldMain(this);
-    log.logInfo("0%");
+    var worldMain = BossFightCreator.worldMain();
+    worldMain.logInfo("0%");
     var world_status = Files.WORLD_STATUS;
     if (world_status.get("status") == null|| world_status.get("status", false)) {
-      log.logInfo("Create a new World... (" + worldName + ":" + id + ")");
-      log.logInfo("Load org.bukkit.WorldGenerator...");
+      worldMain.logInfo("Create a new World... (" + worldName + ":" + id + ")");
+      worldMain.logInfo("Load org.bukkit.WorldGenerator...");
       WorldCreator creator = new WorldCreator(id);
-      log.logInfo("org.bukkit.WorldGenerator loaded!");
-      log.logInfo("25%");
-      log.logInfo("Load de.elia.bossfightcreator.world.creator.CustomChunkGenerator...");
+      worldMain.logInfo("org.bukkit.WorldGenerator loaded!");
+      worldMain.logInfo("25%");
+      worldMain.logInfo("Load de.elia.bossfightcreator.world.creator.CustomChunkGenerator...");
       CustomChunkGenerator generator = new CustomChunkGenerator();
-      log.logInfo("de.elia.bossfightcreator.world.creator.CustomChunkGenerator loaded!");
-      log.logInfo("50%");
-      log.logInfo("Set the custom generator to the WorldGenerator...");
+      worldMain.logInfo("de.elia.bossfightcreator.world.creator.CustomChunkGenerator loaded!");
+      worldMain.logInfo("50%");
+      worldMain.logInfo("Set the custom generator to the WorldGenerator...");
       creator.generator(generator);
-      log.logInfo("The custom generator to the WorldGenerator sets!");
-      log.logInfo("75%");
-      log.logInfo("Create a new org.bukkit.World...");
+      worldMain.logInfo("The custom generator to the WorldGenerator sets!");
+      worldMain.logInfo("75%");
+      worldMain.logInfo("Create a new org.bukkit.World...");
       Plugin.world_bossfight = Bukkit.createWorld(creator);
-      log.logInfo("A new org.bukkit.World is created!");
-      log.logInfo("Ending world creation progress...");
+      worldMain.logInfo("A new org.bukkit.World is created!");
+      worldMain.logInfo("Ending world creation progress...");
       world_status.set("status", true);
       world_status.save();
-      log.logInfo("world creation progress ended!");
-      log.logInfo("100%");
+      worldMain.logInfo("world creation progress ended!");
+      worldMain.logInfo("100%");
     }else {
-      log.logInfo("World " + worldName + ":" + id + " exist!");
-      log.logInfo("100%");
+      worldMain.logInfo("World " + worldName + ":" + id + " exist!");
+      worldMain.logInfo("100%");
     }
     return null;
   }
