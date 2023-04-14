@@ -1,6 +1,6 @@
 package de.elia.api.components;
 
-import de.elia.Main;
+import de.elia.PluginMain;
 import de.elia.api.Complex;
 import de.elia.api.TheZepserAPI;
 import de.elia.api.enums.Level;
@@ -163,7 +163,7 @@ public class ComplexItem implements Cloneable {
   public ComplexItem setKey(Complex key) {
     ItemMeta meta = this.ITEM.getItemMeta();
     this.COMPLEX = key;
-    meta.getPersistentDataContainer().set(new NamespacedKey(Main.main(), TheZepserAPI.item.createKey(key)), PersistentDataType.DOUBLE, Math.PI);
+    meta.getPersistentDataContainer().set(new NamespacedKey(PluginMain.main(), TheZepserAPI.item.createKey(key)), PersistentDataType.DOUBLE, Math.PI);
     this.ITEM.setItemMeta(meta);
     return this;
   }

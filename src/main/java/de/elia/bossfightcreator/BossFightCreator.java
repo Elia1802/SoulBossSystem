@@ -1,13 +1,12 @@
 package de.elia.bossfightcreator;
 
-import de.elia.Main;
+import de.elia.PluginMain;
 import de.elia.PluginLogger;
 import de.elia.bossfightcreator.builder.save.SaveGame;
 import de.elia.bossfightcreator.load.start.StartPlugin;
 import de.elia.bossfightcreator.load.stop.StopPlugin;
 import de.elia.bossfightcreator.world.WorldMain;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
@@ -96,16 +95,16 @@ public class BossFightCreator {
    * @version 1.0
    * @since 1.0
    * @description A instance of the main Main class
-   * @return {@link Main}
+   * @return {@link PluginMain}
    */
   @NotNull
-  public static Main main(){
-    return Main.main();
+  public static PluginMain main(){
+    return PluginMain.main();
   }
 
   @NotNull
   public PluginLogger bossFightCreatorLogger(){
-    return Main.BOSS_FIGHT_CREATOR_LOGGER;
+    return PluginMain.BOSS_FIGHT_CREATOR_LOGGER;
   }
 
   /**

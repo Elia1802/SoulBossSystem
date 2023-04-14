@@ -1,6 +1,6 @@
 package de.elia.soulboss;
 
-import de.elia.Main;
+import de.elia.PluginMain;
 import de.elia.PluginLogger;
 import de.elia.soulboss.plugin.load.Load;
 import de.elia.soulboss.plugin.load.stop.disable.Disable;
@@ -100,15 +100,15 @@ public class SoulBoss {
    * @version 1.0
    * @since 1.0
    * @description A instance of the main Main class of this Plugin
-   * @return {@link Main}
+   * @return {@link PluginMain}
    */
   @NotNull
-  public static Main main(){
-    return Main.main();
+  public static PluginMain main(){
+    return PluginMain.main();
   }
 
   @NotNull
   public PluginLogger soulBossLogger(){
-    return Main.SOUL_BOSS_LOGGER;
+    return PluginMain.SOUL_BOSS_LOGGER;
   }
 }

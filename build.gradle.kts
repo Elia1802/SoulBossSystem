@@ -17,19 +17,19 @@ repositories {
   mavenCentral()
   maven { setUrl("https://maven.enginehub.org/repo/")}
   flatDir {
-    dirs ("libs")
+    dirs("library")
   }
 }
 
 dependencies {
   paperDevBundle("1.19.4-R0.1-SNAPSHOT")
   compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.8-SNAPSHOT")
-  compileOnly("de.elia.soulmain:soulmain:1.2-shaded")
+  compileOnly("de.elia.api:SoullLibrary:1.0.1")
+  paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.19.4-R0.1-SNAPSHOT")
   // paperweightDevBundle("com.example.paperfork", "1.19.4-R0.1-SNAPSHOT")
 
   // You will need to manually specify the full dependency if using the groovy gradle dsl
   // (paperDevBundle and paperweightDevBundle functions do not work in groovy)
-  paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.19.4-R0.1-SNAPSHOT")
 }
 
 tasks {

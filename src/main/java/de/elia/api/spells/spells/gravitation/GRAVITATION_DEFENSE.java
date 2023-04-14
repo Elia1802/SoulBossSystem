@@ -1,6 +1,6 @@
 package de.elia.api.spells.spells.gravitation;
 
-import de.elia.Main;
+import de.elia.PluginMain;
 import de.elia.api.TheZepserAPI;
 import de.elia.api.datatypes.Region;
 import de.elia.api.enums.RegionType;
@@ -35,7 +35,7 @@ public class GRAVITATION_DEFENSE {
               public void run() {
                 entity.damage(6);
               }
-            }.runTaskLater(Main.main(), 80);
+            }.runTaskLater(PluginMain.main(), 80);
           }
           else {
             player1.playSound(entity.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_HIT, 0.7f, 0.2f);
@@ -52,7 +52,7 @@ public class GRAVITATION_DEFENSE {
           public void run() {
             entity.damage(6);
           }
-        }.runTaskLater(Main.main(), 80);
+        }.runTaskLater(PluginMain.main(), 80);
       }
 
     }

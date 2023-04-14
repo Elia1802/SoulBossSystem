@@ -1,6 +1,6 @@
 package de.elia.api.spells.spells.fire;
 
-import de.elia.Main;
+import de.elia.PluginMain;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -84,8 +84,8 @@ public class FIRE_ATTACK {
           }
 
 
-        }.runTaskTimer(Main.main(), 0L, 0L);
+        }.runTaskTimer(PluginMain.main(), 0L, 0L);
       }
-    }.runTaskLater(Main.main(), 4L);
+    }.runTaskLater(PluginMain.main(), 4L);
   }
 }

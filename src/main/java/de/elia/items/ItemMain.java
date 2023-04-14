@@ -1,6 +1,6 @@
 package de.elia.items;
 
-import de.elia.Main;
+import de.elia.PluginMain;
 import de.elia.PluginLogger;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -31,13 +31,13 @@ public class ItemMain {
   }
 
   @NotNull
-  public Main main(){
-    return Main.main();
+  public PluginMain main(){
+    return PluginMain.main();
   }
 
   @NotNull
   public PluginLogger itemLogger(){
-    return Main.ITEM_LOGGER;
+    return PluginMain.ITEM_LOGGER;
   }
 
 }

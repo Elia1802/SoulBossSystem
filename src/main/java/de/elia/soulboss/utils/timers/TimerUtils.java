@@ -1,6 +1,5 @@
 package de.elia.soulboss.utils.timers;
 
-import de.elia.Main;
 import de.elia.soulboss.SoulBoss;
 import org.bukkit.scheduler.BukkitRunnable;
 

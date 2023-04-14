@@ -1,6 +1,6 @@
 package de.elia.api.spells.spells.weather;
 
-import de.elia.Main;
+import de.elia.PluginMain;
 import de.elia.api.TheZepserAPI;
 import de.elia.api.datatypes.Region;
 import de.elia.api.enums.RegionType;
@@ -49,7 +49,7 @@ public class WEATHER_DEFENSE implements Listener {
           cancel();
         }
       }
-    }.runTaskTimer(Main.main(), 5, 20);
+    }.runTaskTimer(PluginMain.main(), 5, 20);
   }
   @EventHandler
   public void onEvent(EntityDamageEvent event) {

@@ -1,6 +1,6 @@
 package de.elia.items.magic;
 
-import de.elia.Main;
+import de.elia.PluginMain;
 import de.elia.api.Complex;
 import de.elia.api.TheZepserAPI;
 import de.elia.api.components.ComplexItem;
@@ -97,7 +97,7 @@ public class Magic_Book extends Item implements Listener {
               cancel();
             }
           }
-        }.runTaskTimer(Main.main(), 0, 5);
+        }.runTaskTimer(PluginMain.main(), 0, 5);
       }
     }else if (event.getAction().isLeftClick()) {
       if (TheZepserAPI.item.hasKey(event.getItem(), TheZepserAPI.item.createKey(Complex.MAGIC_BOOK))){

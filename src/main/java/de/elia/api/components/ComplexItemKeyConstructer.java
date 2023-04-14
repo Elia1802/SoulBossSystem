@@ -1,6 +1,6 @@
 package de.elia.api.components;
 
-import de.elia.Main;
+import de.elia.PluginMain;
 import de.elia.api.Complex;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -14,7 +14,7 @@ public class ComplexItemKeyConstructer {
   public boolean hasKey(ItemStack itemStack, String key) {
     ItemMeta meta = itemStack.getItemMeta();
     if (meta != null) {
-      if (meta.getPersistentDataContainer().has(new NamespacedKey(Main.main(), key))) {
+      if (meta.getPersistentDataContainer().has(new NamespacedKey(PluginMain.main(), key))) {
         return true;
       }
       else {

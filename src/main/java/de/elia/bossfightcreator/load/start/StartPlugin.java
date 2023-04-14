@@ -1,7 +1,7 @@
 package de.elia.bossfightcreator.load.start;
 
 import com.sk89q.worldedit.bukkit.BukkitWorld;
-import de.elia.Main;
+import de.elia.PluginMain;
 import de.elia.bossfightcreator.Instances;
 import de.elia.bossfightcreator.arena.Arenas;
 import de.elia.bossfightcreator.arena.arena.load.LoadArena;
@@ -30,7 +30,7 @@ public class StartPlugin {
    */
   public static void start(@NotNull Plugin plugin){
     Instances.Plugin.instance = plugin;
-    Main main = (Main) Instances.Plugin.instance;
+    PluginMain main = (PluginMain) Instances.Plugin.instance;
     var world_status = Instances.Files.WORLD_STATUS;
     world_status.copyDefaults(true);
     world_status.save();

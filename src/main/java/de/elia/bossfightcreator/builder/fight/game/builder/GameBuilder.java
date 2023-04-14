@@ -1,5 +1,6 @@
 package de.elia.bossfightcreator.builder.fight.game.builder;
 
+import de.elia.api.configuration.SoulConfiguration;
 import de.elia.bossfightcreator.BossFightCreator;
 import de.elia.bossfightcreator.Instances.Files.CreateBossfightFile;
 import de.elia.bossfightcreator.Instances.Plugin;
@@ -9,7 +10,6 @@ import de.elia.CustomMessages;
 import de.elia.soulboss.entity.mobs.boss.mob.ZombieBoss;
 import de.elia.soulboss.utils.timers.StartTasks;
 import de.elia.soulboss.utils.timers.TimerUtils;
-import de.elia.soulmain.thisplugin.configuration.SoulConfiguration;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;

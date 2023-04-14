@@ -1,6 +1,6 @@
 package de.elia.items;
 
-import de.elia.Main;
+import de.elia.PluginMain;
 import de.elia.api.Complex;
 import de.elia.api.components.ComplexItem;
 import de.elia.items.magic.Magic_Book;
@@ -22,7 +22,7 @@ public class Item {
         return (ComplexItem) ComplexItem.SAVED.get(item).clone();
       }
       catch (CloneNotSupportedException exception) {
-        Main.THE_ZEPSER_API_LOGGER.logError("An error occurred when getting an item!");
+        PluginMain.THE_ZEPSER_API_LOGGER.logError("An error occurred when getting an item!");
         exception.printStackTrace();
         return null;
       }

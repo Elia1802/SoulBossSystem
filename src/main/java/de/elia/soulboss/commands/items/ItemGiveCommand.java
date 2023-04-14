@@ -1,7 +1,7 @@
 package de.elia.soulboss.commands.items;
 
 import de.elia.CustomMessages;
-import de.elia.Main;
+import de.elia.PluginMain;
 import de.elia.api.Complex;
 import de.elia.api.TheZepserAPI;
 import de.elia.api.components.ComplexItem;
@@ -19,7 +19,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 /**
  * @author Elia
@@ -64,7 +63,7 @@ public class ItemGiveCommand implements CommandExecutor, TabCompleter {
         return false;
       }
     }else {
-      Main.SOUL_BOSS_LOGGER.logWarning("You have to be a Player!");
+      PluginMain.SOUL_BOSS_LOGGER.logWarning("You have to be a Player!");
       return false;
     }
     return true;

@@ -1,5 +1,6 @@
 package de.elia;
 
+import de.elia.api.Main;
 import de.elia.api.TheZepserAPIMain;
 import de.elia.bossfightcreator.BossFightCreator;
 import de.elia.bossfightcreator.Instances.Files;
@@ -8,7 +9,6 @@ import de.elia.bossfightcreator.load.start.StartPlugin;
 import de.elia.bossfightcreator.world.creator.CustomChunkGenerator;
 import de.elia.items.ItemMain;
 import de.elia.soulboss.SoulBoss;
-import de.elia.soulmain.SoulMain;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
@@ -27,10 +27,10 @@ import java.lang.String;
  * @extends {@link JavaPlugin}
  * @description This is the Main Class of the Plugin SoulBoss and BossFightCreator.
  */
-public class Main extends JavaPlugin {
+public class PluginMain extends JavaPlugin {
 
-  public static Main main;//Instance of this Plugin
-  private final SoulMain soulMain = (SoulMain) Bukkit.getPluginManager().getPlugin("SoulMain");//Gets the Soul API of Elia
+  public static PluginMain main;//Instance of this Plugin
+  private final Main library = (Main) Bukkit.getPluginManager().getPlugin("SoulLibrary");//Gets the Soul API of Elia
   private static final TheZepserAPIMain THE_ZEPSER_API_MAIN = new TheZepserAPIMain();//Gets the Main class of the TheZepserAPI
   private static final ItemMain ITEM_MAIN = new ItemMain();//Gets the the Main class of Item
   private static final BossFightCreator BOSS_FIGHT_CREATOR = new BossFightCreator();//Gets the Main class of the bossfightcreator Plugin
@@ -52,14 +52,14 @@ public class Main extends JavaPlugin {
   public void onEnable(){
     MAIN_LOGGER.logInfo("load de.elia.Main");
     main = this;
-    MAIN_LOGGER.logInfo("Checks if " + soulMain.getName() + "loaded...");
-    if (soulMain == null){
-      MAIN_LOGGER.logError(soulMain.getName() + "is not loaded!");
+    MAIN_LOGGER.logInfo("Checks if " + library.getName() + "loaded...");
+    if (library == null){
+      MAIN_LOGGER.logError(library.getName() + "is not loaded!");
       MAIN_LOGGER.logWarning("Disable this Plugin");
       this.disable();
       return;
     }
-    MAIN_LOGGER.logInfo(soulMain.getName() + "is loaded!");
+    MAIN_LOGGER.logInfo(library.getName() + "is loaded!");
     MAIN_LOGGER.logInfo("Try to load TheZepserAPI, Item, BossFightCreator and SoulBoss...");
     try {
       MAIN_LOGGER.logInfo("Load TheZepserAPI...");
@@ -99,9 +99,9 @@ public class Main extends JavaPlugin {
   @Override
   public void onDisable(){
     MAIN_LOGGER.logInfo("Stop de.elia.Main");
-    MAIN_LOGGER.logInfo("Checks if " + soulMain.getName() + "loaded...");
-    if (!(soulMain == null)) {
-      MAIN_LOGGER.logInfo(soulMain.getName() + "is loaded!");
+    MAIN_LOGGER.logInfo("Checks if " + library.getName() + "loaded...");
+    if (!(library == null)) {
+      MAIN_LOGGER.logInfo(library.getName() + "is loaded!");
       MAIN_LOGGER.logInfo("Try to unload TheZepserAPI, Item, BossFightCreator and SoulBoss...");
       try {
         MAIN_LOGGER.logInfo("Unload TheZepserAPI...");
@@ -125,7 +125,7 @@ public class Main extends JavaPlugin {
         return;
       }
     }
-    MAIN_LOGGER.logError(soulMain.getName() + "is not loaded!");
+    MAIN_LOGGER.logError(library.getName() + "is not loaded!");
     MAIN_LOGGER.logWarning("de.elia.Main stopped!");
   }
 
@@ -194,10 +194,10 @@ public class Main extends JavaPlugin {
    * @version 1.0
    * @since 1.0
    * @description Is the Instance of this Plugin.
-   * @return {@link Main}
+   * @return {@link PluginMain}
    */
   @NotNull
-  public static Main main() {
+  public static PluginMain main() {
     return main;
   }
 
@@ -206,11 +206,11 @@ public class Main extends JavaPlugin {
    * @version 1.0
    * @since 1.0
    * @description Gets the SoulMain Plugin.
-   * @return {@link SoulMain}
+   * @return {@link Main}
    */
   @NotNull
-  public SoulMain soulMain() {
-    return soulMain;
+  public Main soulMain() {
+    return library;
   }
 
   /**

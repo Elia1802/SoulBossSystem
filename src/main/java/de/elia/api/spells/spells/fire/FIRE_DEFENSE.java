@@ -1,6 +1,6 @@
 package de.elia.api.spells.spells.fire;
 
-import de.elia.Main;
+import de.elia.PluginMain;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -53,6 +53,6 @@ public class FIRE_DEFENSE {
           cancel();
         }
       }
-    }.runTaskTimer(Main.main(), 5, 30);
+    }.runTaskTimer(PluginMain.main(), 5, 30);
   }
 }

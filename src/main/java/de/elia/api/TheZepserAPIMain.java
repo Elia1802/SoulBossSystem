@@ -1,6 +1,6 @@
 package de.elia.api;
 
-import de.elia.Main;
+import de.elia.PluginMain;
 import de.elia.PluginLogger;
 import de.elia.api.spells.spells.gravitation.GRAVITATION_SUPER;
 import de.elia.api.spells.spells.weather.WEATHER_DEFENSE;
@@ -49,13 +49,13 @@ public class TheZepserAPIMain {
   }
 
   @NotNull
-  public Main main(){
-    return Main.main();
+  public PluginMain main(){
+    return PluginMain.main();
   }
 
   @NotNull
   public PluginLogger theZepserAPILogger(){
-    return Main.THE_ZEPSER_API_LOGGER;
+    return PluginMain.THE_ZEPSER_API_LOGGER;
   }
 
 }

@@ -1,7 +1,6 @@
 package de.elia;
 
-import de.elia.soulmain.SoulMain;
-import de.elia.soulmain.allplugins.messages.builder.MessageBuilder;
+import de.elia.api.messages.builder.MessageBuilder;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
@@ -21,7 +20,7 @@ import java.util.logging.Logger;
  */
 public class CustomMessages extends MessageBuilder {
 
-  private final MiniMessage miniMessage = SoulMain.getMiniMessage();
+  private final MiniMessage miniMessage = MiniMessage.miniMessage();
   @Deprecated private final Logger logger = Bukkit.getLogger();
   private final CustomPrefix prefix = new CustomPrefix();
 

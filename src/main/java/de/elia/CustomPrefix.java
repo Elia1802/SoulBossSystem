@@ -1,7 +1,6 @@
 package de.elia;
 
-import de.elia.soulmain.SoulMain;
-import de.elia.soulmain.allplugins.messages.prefix.PrefixClass;
+import de.elia.api.messages.prefix.PrefixClass;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.jetbrains.annotations.NotNull;
@@ -19,7 +18,7 @@ public class CustomPrefix extends PrefixClass {
 
   }
 
-  private final MiniMessage miniMessage = SoulMain.getMiniMessage();
+  private final MiniMessage miniMessage = MiniMessage.miniMessage();
 
   /**
    * @return {@link Component}

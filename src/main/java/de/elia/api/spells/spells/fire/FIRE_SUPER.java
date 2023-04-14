@@ -1,6 +1,6 @@
 package de.elia.api.spells.spells.fire;
 
-import de.elia.Main;
+import de.elia.PluginMain;
 import de.elia.api.TheZepserAPI;
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -105,14 +105,14 @@ public class FIRE_SUPER {
                     TheZepserAPI.utilities.setFlightBlocked(player, false);
                     player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_FALLING, 20 * 5, 1, false, false, false));
                   }
-                }.runTaskLater(Main.main(), 20);
+                }.runTaskLater(PluginMain.main(), 20);
                 cancel();
               }
             }
-          }.runTaskTimer(Main.main(), 40, 5);
+          }.runTaskTimer(PluginMain.main(), 40, 5);
           cancel();
         }
       }
-    }.runTaskTimer(Main.main(), 0, 5);
+    }.runTaskTimer(PluginMain.main(), 0, 5);
   }
 }

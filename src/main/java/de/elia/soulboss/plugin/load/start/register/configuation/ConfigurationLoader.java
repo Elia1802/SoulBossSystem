@@ -1,6 +1,6 @@
 package de.elia.soulboss.plugin.load.start.register.configuation;
 
-import de.elia.soulmain.thisplugin.configuration.SoulConfiguration;
+import de.elia.api.configuration.SoulConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 

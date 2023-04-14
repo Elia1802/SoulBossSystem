@@ -1,6 +1,6 @@
 package de.elia.api.spells.spells.weather;
 
-import de.elia.Main;
+import de.elia.PluginMain;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -46,7 +46,7 @@ public class WEATHER_SUPER implements Listener {
           cancel();
         }
       }
-    }.runTaskTimer(Main.main(), 5, 1);
+    }.runTaskTimer(PluginMain.main(), 5, 1);
     MORE_POWER.put(player, 1f);
     for (Player player1 : location.getNearbyPlayers(20)) {
       player1.setPlayerWeather(WeatherType.DOWNFALL);
@@ -54,13 +54,13 @@ public class WEATHER_SUPER implements Listener {
         public void run() {
           player1.resetPlayerWeather();
         }
-      }.runTaskLater(Main.main(), 20 * 15);
+      }.runTaskLater(PluginMain.main(), 20 * 15);
     }
     new BukkitRunnable() {
       public void run() {
         MORE_POWER.remove(player);
       }
-    }.runTaskLater(Main.main(), 20 * 15);
+    }.runTaskLater(PluginMain.main(), 20 * 15);
   }
   @EventHandler
   public void onEvent(EntityDamageByEntityEvent event) {

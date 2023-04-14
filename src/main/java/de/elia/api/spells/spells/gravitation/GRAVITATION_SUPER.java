@@ -1,7 +1,7 @@
 package de.elia.api.spells.spells.gravitation;
 
 import com.destroystokyo.paper.event.player.PlayerJumpEvent;
-import de.elia.Main;
+import de.elia.PluginMain;
 import de.elia.api.TheZepserAPI;
 import de.elia.api.datatypes.Region;
 import de.elia.api.enums.RegionType;
@@ -46,7 +46,7 @@ public class GRAVITATION_SUPER implements Listener {
           TheZepserAPI.region.spawnCircle(REGION, Particle.DRIPPING_OBSIDIAN_TEAR);
         }
       }
-    }.runTaskTimer(Main.main(), 20*5, 20*5);
+    }.runTaskTimer(PluginMain.main(), 20*5, 20*5);
     REGIONS.add(REGION);
   }
 
@@ -93,7 +93,7 @@ public class GRAVITATION_SUPER implements Listener {
             public void run() {
               MOVE_STOP.remove(player);
             }
-          }.runTaskLater(Main.main(), 45);
+          }.runTaskLater(PluginMain.main(), 45);
           if (region.getPvP()) {
             if (player == region.getOwner()) {
               if (!player.isOnGround()) {
@@ -146,7 +146,7 @@ public class GRAVITATION_SUPER implements Listener {
               public void run() {
                 SOUND_STOP.remove(player);
               }
-            }.runTaskLater(Main.main(), 60);
+            }.runTaskLater(PluginMain.main(), 60);
           }
           if (region.getPvP()) {
             if (player == region.getOwner()) {
