@@ -1,6 +1,6 @@
 package de.elia.api.spells.spells.gravitation;
 
-import de.elia.PluginMain;
+import de.elia.api.TheZepserAPIMain;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -69,8 +69,8 @@ public class GRAVITATION_ATTACK {
           }
 
 
-        }.runTaskTimer(PluginMain.main(), 0L, 0L);
+        }.runTaskTimer(TheZepserAPIMain.thZepserAPIMain().main(), 0L, 0L);
       }
-    }.runTaskLater(PluginMain.main(), 4L);
+    }.runTaskLater(TheZepserAPIMain.thZepserAPIMain().main(), 4L);
   }
 }

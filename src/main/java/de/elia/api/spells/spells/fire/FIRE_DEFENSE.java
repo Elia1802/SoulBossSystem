@@ -1,6 +1,7 @@
 package de.elia.api.spells.spells.fire;
 
 import de.elia.PluginMain;
+import de.elia.api.TheZepserAPIMain;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -53,6 +54,6 @@ public class FIRE_DEFENSE {
           cancel();
         }
       }
-    }.runTaskTimer(PluginMain.main(), 5, 30);
+    }.runTaskTimer(TheZepserAPIMain.thZepserAPIMain().main(), 5, 30);
   }
 }

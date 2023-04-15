@@ -1,5 +1,6 @@
 package de.elia.api;
 
+import de.elia.PluginInstances;
 import de.elia.PluginMain;
 import de.elia.PluginLogger;
 import de.elia.api.spells.spells.gravitation.GRAVITATION_SUPER;
@@ -55,7 +56,7 @@ public class TheZepserAPIMain {
 
   @NotNull
   public PluginLogger theZepserAPILogger(){
-    return PluginMain.THE_ZEPSER_API_LOGGER;
+    return PluginInstances.THE_ZEPSER_API_LOGGER;
   }
 
 }

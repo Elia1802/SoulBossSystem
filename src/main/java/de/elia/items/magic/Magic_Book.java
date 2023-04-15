@@ -1,6 +1,5 @@
 package de.elia.items.magic;
 
-import de.elia.PluginMain;
 import de.elia.api.Complex;
 import de.elia.api.TheZepserAPI;
 import de.elia.api.components.ComplexItem;
@@ -8,6 +7,7 @@ import de.elia.api.datatypes.Region;
 import de.elia.api.enums.RegionType;
 import de.elia.items.Item;
 import de.elia.api.spells.Spells;
+import de.elia.items.ItemMain;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -97,7 +97,7 @@ public class Magic_Book extends Item implements Listener {
               cancel();
             }
           }
-        }.runTaskTimer(PluginMain.main(), 0, 5);
+        }.runTaskTimer(ItemMain.itemMain().main(), 0, 5);
       }
     }else if (event.getAction().isLeftClick()) {
       if (TheZepserAPI.item.hasKey(event.getItem(), TheZepserAPI.item.createKey(Complex.MAGIC_BOOK))){
