@@ -101,7 +101,7 @@ or improvements. The best way to do this is on the Discord below.
     /soulboss
       description: Admins can use it to read information about the plugin.
 
-  **Rechte**:
+  **Permissions**:
 
     soulboss.admin
       description: If the player has this permission, he can do anything.
@@ -113,7 +113,7 @@ or improvements. The best way to do this is on the Discord below.
     soulboss.spawn
       description: With this permission, players can spawn the boss.
 
-  **Erfolge**:
+  **Achievements**:
 
     Bossfight:
       Target: Beat a boss for the first time!
