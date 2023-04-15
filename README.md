@@ -19,7 +19,9 @@ Am besten macht ihr das an den unten stehenden Discord.
 
   Benötigte Plugins:
 
-    soulmain-1.2.jar
+    SoullLibrary-1.0.1.jar
+    
+    worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar
 
     worldguard-bukkit-7.0.8-SNAPSHOT-dist.jar
 
@@ -84,7 +86,9 @@ or improvements. The best way to do this is on the Discord below.
 
   Required plugins:
   
-      soulmain-1.2.jar
+      SoullLibrary-1.0.1.jar
+      
+      worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar
   
       worldguard-bukkit-7.0.8-SNAPSHOT-dist.jar
 
