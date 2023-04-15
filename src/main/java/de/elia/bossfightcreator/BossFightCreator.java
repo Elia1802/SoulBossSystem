@@ -1,8 +1,9 @@
 package de.elia.bossfightcreator;
 
+import de.elia.PluginInstances;
 import de.elia.PluginMain;
 import de.elia.PluginLogger;
-import de.elia.bossfightcreator.builder.save.SaveGame;
+import de.elia.bossfightcreator.builder.save.Saver;
 import de.elia.bossfightcreator.load.start.StartPlugin;
 import de.elia.bossfightcreator.load.stop.StopPlugin;
 import de.elia.bossfightcreator.world.WorldMain;
@@ -42,7 +43,8 @@ public class BossFightCreator {
     bossFightCreator = this;
     worldMain = new WorldMain(plugin);
     StartPlugin.start(plugin);
-    SaveGame.loadMap();
+    Saver.SaveGame.loadMap();
+    Saver.SaveGameBuilder.loadMap();
   }
 
   /**
@@ -104,7 +106,7 @@ public class BossFightCreator {
 
   @NotNull
   public PluginLogger bossFightCreatorLogger(){
-    return PluginMain.BOSS_FIGHT_CREATOR_LOGGER;
+    return PluginInstances.BOSS_FIGHT_CREATOR_LOGGER;
   }
 
   /**

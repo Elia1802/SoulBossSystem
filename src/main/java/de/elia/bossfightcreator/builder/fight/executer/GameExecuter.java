@@ -1,7 +1,7 @@
 package de.elia.bossfightcreator.builder.fight.executer;
 
-import de.elia.CustomMessages;
-import de.elia.Keys;
+import de.elia.PluginMessages;
+import de.elia.PluginKeys;
 import de.elia.api.Complex;
 import de.elia.api.TheZepserAPI;
 import de.elia.bossfightcreator.BossFightCreator;
@@ -68,7 +68,7 @@ public class GameExecuter implements Listener, CommandExecutor, TabCompleter {
     ArenaSender sender = new ArenaSender();
     Player player = event.getPlayer();
     MiniMessage miniMessage = SoulBoss.soulBoss().miniMessage();
-    CustomMessages message = new CustomMessages();
+    PluginMessages message = new PluginMessages();
     SpawnEgg spawnEgg = new SpawnEgg(this.plugin);
     if (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) {
       if (TheZepserAPI.item.hasKey(event.getItem(), TheZepserAPI.item.createKey(Complex.ZOMBIE_SPAWN_EGG))) {
@@ -89,7 +89,7 @@ public class GameExecuter implements Listener, CommandExecutor, TabCompleter {
   @EventHandler
   public void onEnd(@NotNull EntityDeathEvent event){
     if (event.getEntityType() == EntityType.ZOMBIE) {
-      if (event.getEntity().getPersistentDataContainer().has(Keys.ZOMBIE_KEY.key())) {
+      if (event.getEntity().getPersistentDataContainer().has(PluginKeys.ZOMBIE_KEY.key())) {
         event.getEntity().remove();
         Collection<ItemStack> itemStacks = event.getDrops();
         event.getDrops().removeAll(itemStacks);

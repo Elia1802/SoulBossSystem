@@ -1,13 +1,14 @@
 package de.elia.bossfightcreator.builder.fight.game;
 
-import de.elia.CustomMessages;
-import de.elia.Keys;
+import de.elia.PluginMessages;
+import de.elia.PluginKeys;
 import de.elia.bossfightcreator.BossFightCreator;
 import de.elia.bossfightcreator.Instances.Plugin;
 import de.elia.bossfightcreator.arena.Arenas;
 import de.elia.bossfightcreator.arena.sender.ArenaSender;
+import de.elia.bossfightcreator.builder.fight.game.builder.GameBuilder;
 import de.elia.bossfightcreator.builder.fight.game.maps.GameList;
-import de.elia.bossfightcreator.builder.save.SaveGame;
+import de.elia.bossfightcreator.builder.save.Saver;
 import de.elia.soulboss.entity.mobs.boss.mob.ZombieBoss;
 import de.elia.soulboss.utils.timers.StartTasks;
 import de.elia.soulboss.utils.timers.TimerUtils;
@@ -31,10 +32,11 @@ import java.util.Collection;
 public class Game {
 
   private final ArenaSender sender = new ArenaSender();
-  private final SaveGame saveGame;
+  private final Saver.SaveGame saveGame;
   private final Arenas arena;
   public final Player player;
   private final String gameKey;
+  private final GameBuilder gameBuilder;
   private Zombie boss;
 
   /**
@@ -46,11 +48,12 @@ public class Game {
    * @param player Requires the {@link Player}
    * @param gameKey Requires a key
    */
-  public Game(@NotNull Arenas arena, @NotNull Player player, String gameKey){
+  public Game(@NotNull Arenas arena, @NotNull Player player, String gameKey, GameBuilder gameBuilder){
     this.arena = arena;
     this.player = player;
     this.gameKey = gameKey;
-    this.saveGame = new SaveGame(player.getUniqueId(), this);
+    this.gameBuilder = gameBuilder;
+    this.saveGame = new Saver.SaveGame(player.getUniqueId(), this);
     if (player == null)return;
     new BukkitRunnable() {
       @Override
@@ -58,7 +61,7 @@ public class Game {
         boss = new ZombieBoss(arena.location());
       }
     }.runTask(Plugin.instance);
-    GameList.GAMES.add(this);
+    GameList.GAMES.add(this);//Error java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 0
   }
 
   /**
@@ -71,7 +74,7 @@ public class Game {
   public void killThis(@NotNull Player player){
     Collection<LivingEntity> entities = player.getLocation().getNearbyLivingEntities(5);
     for (Entity entity : entities){
-      if (entity.getPersistentDataContainer().has(Keys.ZOMBIE_KEY.key())) {
+      if (entity.getPersistentDataContainer().has(PluginKeys.ZOMBIE_KEY.key())) {
         entity.remove();
       }
     }
@@ -116,6 +119,7 @@ public class Game {
     if (saveGame.containsGame(this)) {
       sender.resetArena(arena);
       saveGame.removeGame(player.getUniqueId());
+      Saver.saveGameBuilder.remove(player.getUniqueId());
       GameList.GAMES.remove(this);
     }
   }
@@ -199,12 +203,8 @@ public class Game {
    * @param seconds Requires the secounds
    */
   private void timeMessage(String seconds){
-    CustomMessages message = new CustomMessages();
+    PluginMessages message = new PluginMessages();
     String permission = gameKey;
-    for (Player targets : Bukkit.getOnlinePlayers()) {
-      if (targets.hasPermission(permission)) {
-        message.messageWithPrefix(targets, message.gray("Du wirst in ").append(message.aqua(seconds).append(message.gray(" Sekunden zurück teleportiert!"))));
-      }
-    }
+    gameBuilder.saveGameBuilder.gamePlayers.forEach(player -> message.messageWithPrefix(player, message.gray("Du wirst in ").append(message.aqua(seconds).append(message.gray(" Sekunden zurück teleportiert!")))));
   }
 }

@@ -6,11 +6,11 @@ import de.elia.bossfightcreator.Instances.Files.CreateBossfightFile;
 import de.elia.bossfightcreator.Instances.Plugin;
 import de.elia.bossfightcreator.arena.Arenas;
 import de.elia.bossfightcreator.builder.fight.game.Game;
-import de.elia.CustomMessages;
+import de.elia.PluginMessages;
+import de.elia.bossfightcreator.builder.save.Saver;
 import de.elia.soulboss.entity.mobs.boss.mob.ZombieBoss;
 import de.elia.soulboss.utils.timers.StartTasks;
 import de.elia.soulboss.utils.timers.TimerUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachment;
@@ -30,7 +30,8 @@ import java.util.Random;
  */
 public class GameBuilder {
 
-  private final CustomMessages message = Plugin.MESSAGES;
+  public final Saver.SaveGameBuilder saveGameBuilder;
+  private final PluginMessages message = Plugin.MESSAGES;
   private final GameMessages gameMessage = new GameMessages();
   private final Random random = new Random(); //to generate a ID
   private final SoulConfiguration gameFile; //to save game information
@@ -56,6 +57,8 @@ public class GameBuilder {
     this.gameID = this.random.nextInt(1, 999999999);
     this.gameName = "bossfight" + this.gameID + arena.getName() + gameOwner.getName();
     this.gameFile = new CreateBossfightFile(this.gameName).getFile();
+    this.saveGameBuilder = new Saver.SaveGameBuilder(gameOwner.getUniqueId(), this);
+    this.saveGameBuilder.addPlayer(gameOwner);
     this.plugin = plugin;
     this.arena = arena;
     this.createFight();
@@ -100,6 +103,7 @@ public class GameBuilder {
     this.trustGamePermission = target.addAttachment(this.plugin);
     this.trustGamePermission.setPermission(this.gameName, true);
     this.gameFile.addDefault("players", target.getName());
+    this.saveGameBuilder.addPlayer(target);
   }
 
   /**
@@ -109,17 +113,13 @@ public class GameBuilder {
    * @description Teleport the Game{@link Player}s to the Arena
    */
   public void teleportToGame(){
-    for (Player gamePlayer : Bukkit.getOnlinePlayers()) {
-      if (gamePlayer.hasPermission(this.gameName)) {
-        new BukkitRunnable() {
-          @Override
-          public void run() {
-            gamePlayer.teleport(arena.location());
-            new SpawnZombieTimer().start(16*20, gamePlayer, arena.location());
-          }
-        }.runTask(plugin);
+    saveGameBuilder.gamePlayers.forEach(player -> new BukkitRunnable() {
+      @Override
+      public void run() {
+        player.teleport(arena.location());
+        new SpawnZombieTimer().start(16*20, player, arena.location());
       }
-    }
+    }.runTask(plugin));
   }
 
   /**
@@ -241,7 +241,7 @@ public class GameBuilder {
           @Override
           public void run() {
             //if countdown 0 run this
-            game = new Game(arena, player, gameName);
+            game = new Game(arena, player, gameName, gameBuilder());
           }
         }
       );
@@ -302,11 +302,7 @@ public class GameBuilder {
      */
     public void bossSpawnMessage(int time){
       String timeMessage = time + "sec";
-      for (Player gamePlayer : Bukkit.getOnlinePlayers()) {
-        if (gamePlayer.hasPermission(gameName)) {
-          message.messageWithPrefix(gamePlayer, message.gray("Der Boss Spawnt in ").append(message.green(timeMessage)));
-        }
-      }
+      saveGameBuilder.gamePlayers.forEach(player -> message.messageWithPrefix(player, message.gray("Der Boss Spawnt in ").append(message.green(timeMessage))));
     }
   }
 
@@ -320,5 +316,9 @@ public class GameBuilder {
   @NotNull
   public Game game() {
     return game;
+  }
+
+  private GameBuilder gameBuilder(){
+    return this;
   }
 }
