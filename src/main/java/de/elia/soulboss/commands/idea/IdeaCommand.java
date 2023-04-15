@@ -1,6 +1,6 @@
 package de.elia.soulboss.commands.idea;
 
-import de.elia.CustomMessages;
+import de.elia.PluginMessages;
 import de.elia.soulboss.plugin.load.start.register.configuation.ConfigurationLoader;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -32,7 +32,7 @@ public class IdeaCommand extends ConfigurationLoader implements CommandExecutor 
    */
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-    CustomMessages message = new CustomMessages();
+    PluginMessages message = new PluginMessages();
     if (sender instanceof Player player) {
       if (args.length > 1) {
         int i;

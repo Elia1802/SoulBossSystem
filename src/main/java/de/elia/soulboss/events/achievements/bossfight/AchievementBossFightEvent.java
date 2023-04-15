@@ -1,6 +1,6 @@
 package de.elia.soulboss.events.achievements.bossfight;
 
-import de.elia.Keys;
+import de.elia.PluginKeys;
 import de.elia.soulboss.SoulBoss;
 import de.elia.soulboss.achievement.process.BossFightAchievements;
 import de.elia.soulboss.achievement.storage.BossFightAchievementStorage;
@@ -34,7 +34,7 @@ public class AchievementBossFightEvent implements Listener {
     Entity damagerEntity = event.getEntity();
     if (damagerEntity instanceof Player player) {
       if (damagedEntity instanceof Zombie) {
-        if (damagedEntity.getPersistentDataContainer().has(Keys.ZOMBIE_KEY.key())) {
+        if (damagedEntity.getPersistentDataContainer().has(PluginKeys.ZOMBIE_KEY.key())) {
           new BossFightAchievements(SoulBoss.main()).giveAchievement(player, BossFightAchievementStorage.BOSSFIGHT);
         }
       }

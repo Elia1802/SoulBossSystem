@@ -1,6 +1,7 @@
 package de.elia.soulboss.commands.items;
 
-import de.elia.CustomMessages;
+import de.elia.PluginInstances;
+import de.elia.PluginMessages;
 import de.elia.PluginMain;
 import de.elia.api.Complex;
 import de.elia.api.TheZepserAPI;
@@ -41,7 +42,7 @@ public class ItemGiveCommand implements CommandExecutor, TabCompleter {
    */
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-    CustomMessages message = new CustomMessages();
+    PluginMessages message = new PluginMessages();
     SpawnEgg spawnEgg = new SpawnEgg(SoulBoss.main());
     var miniMessage = SoulBoss.soulBoss().miniMessage();
     if (sender instanceof Player commandSender) {
@@ -63,7 +64,7 @@ public class ItemGiveCommand implements CommandExecutor, TabCompleter {
         return false;
       }
     }else {
-      PluginMain.SOUL_BOSS_LOGGER.logWarning("You have to be a Player!");
+      PluginInstances.SOUL_BOSS_LOGGER.logWarning("You have to be a Player!");
       return false;
     }
     return true;

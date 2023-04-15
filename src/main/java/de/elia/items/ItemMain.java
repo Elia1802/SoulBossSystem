@@ -1,5 +1,6 @@
 package de.elia.items;
 
+import de.elia.PluginInstances;
 import de.elia.PluginMain;
 import de.elia.PluginLogger;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -37,7 +38,7 @@ public class ItemMain {
 
   @NotNull
   public PluginLogger itemLogger(){
-    return PluginMain.ITEM_LOGGER;
+    return PluginInstances.ITEM_LOGGER;
   }
 
 }

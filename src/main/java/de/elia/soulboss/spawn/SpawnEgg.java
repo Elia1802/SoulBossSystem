@@ -1,6 +1,6 @@
 package de.elia.soulboss.spawn;
 
-import de.elia.Keys;
+import de.elia.PluginKeys;
 import de.elia.api.Complex;
 import de.elia.items.Item;
 import de.elia.soulboss.SoulBoss;
@@ -71,7 +71,7 @@ public class SpawnEgg {
    * @description This Methode create the eggRecipe
    */
   public void eggRecipe(){
-    NamespacedKey uuid = Keys.RECIPE_KEY.key();
+    NamespacedKey uuid = PluginKeys.RECIPE_KEY.key();
     ShapedRecipe recipe = new ShapedRecipe(uuid, Item.get(Complex.ZOMBIE_SPAWN_EGG).getItem());
     recipe.shape("ZZZ", "WSW", "CSC");
     recipe.setIngredient('Z', Material.ZOMBIE_HEAD);

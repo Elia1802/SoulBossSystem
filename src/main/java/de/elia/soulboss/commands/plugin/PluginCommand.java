@@ -1,8 +1,8 @@
 package de.elia.soulboss.commands.plugin;
 
-import de.elia.Keys;
+import de.elia.PluginKeys;
 import de.elia.soulboss.SoulBoss;
-import de.elia.CustomMessages;
+import de.elia.PluginMessages;
 import de.elia.soulboss.plugin.ThisPlugin;
 import de.elia.soulboss.plugin.load.start.register.configuation.ConfigurationLoader;
 import net.kyori.adventure.text.Component;
@@ -42,7 +42,7 @@ public class PluginCommand extends ConfigurationLoader implements CommandExecuto
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
     MiniMessage miniMessage = SoulBoss.soulBoss().miniMessage();
-    CustomMessages message = new CustomMessages();
+    PluginMessages message = new PluginMessages();
     ThisPlugin thisPlugin = new ThisPlugin();
     if (sender instanceof Player player) {
       if (args.length == 1) {
@@ -112,17 +112,17 @@ public class PluginCommand extends ConfigurationLoader implements CommandExecuto
             if (args[1].equalsIgnoreCase("fights")) {
               message.messageWithPrefix(player, message.gold("Alle BossFights werden beendet!"));
               Bukkit.getServer().getWorld("world").getEntities().forEach((entity) -> {
-                if (entity.getPersistentDataContainer().has(Keys.ZOMBIE_KEY.key())) {
+                if (entity.getPersistentDataContainer().has(PluginKeys.ZOMBIE_KEY.key())) {
                   entity.remove();
                 }
               });
               Bukkit.getServer().getWorld("world_nether").getEntities().forEach((entity) -> {
-                if (entity.getPersistentDataContainer().has(Keys.ZOMBIE_KEY.key())) {
+                if (entity.getPersistentDataContainer().has(PluginKeys.ZOMBIE_KEY.key())) {
                   entity.remove();
                 }
               });
               Bukkit.getServer().getWorld("world_the_end").getEntities().forEach((entity) -> {
-                if (entity.getPersistentDataContainer().has(Keys.ZOMBIE_KEY.key())) {
+                if (entity.getPersistentDataContainer().has(PluginKeys.ZOMBIE_KEY.key())) {
                   entity.remove();
                 }
               });

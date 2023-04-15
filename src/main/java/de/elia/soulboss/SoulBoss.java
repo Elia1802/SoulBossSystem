@@ -1,5 +1,6 @@
 package de.elia.soulboss;
 
+import de.elia.PluginInstances;
 import de.elia.PluginMain;
 import de.elia.PluginLogger;
 import de.elia.soulboss.plugin.load.Load;
@@ -109,6 +110,6 @@ public class SoulBoss {
 
   @NotNull
   public PluginLogger soulBossLogger(){
-    return PluginMain.SOUL_BOSS_LOGGER;
+    return PluginInstances.SOUL_BOSS_LOGGER;
   }
 }

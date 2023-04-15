@@ -12,9 +12,9 @@ import org.jetbrains.annotations.NotNull;
  * @extends {@link PrefixClass}
  * @description This is the PrefixClass for this Plugin.
  */
-public class CustomPrefix extends PrefixClass {
+public class PluginPrefix extends PrefixClass {
 
-  public CustomPrefix() {
+  public PluginPrefix() {
 
   }
 

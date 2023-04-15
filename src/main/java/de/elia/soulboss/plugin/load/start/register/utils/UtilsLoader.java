@@ -1,9 +1,9 @@
 package de.elia.soulboss.plugin.load.start.register.utils;
 
-import de.elia.Keys;
+import de.elia.PluginKeys;
 import de.elia.soulboss.SoulBoss;
 import de.elia.soulboss.block.BreakBlock;
-import de.elia.CustomMessages;
+import de.elia.PluginMessages;
 import org.bukkit.plugin.Plugin;
 
 /**
@@ -14,7 +14,7 @@ import org.bukkit.plugin.Plugin;
  */
 public class UtilsLoader {
 
-  private final CustomMessages message = new CustomMessages();
+  private final PluginMessages message = new PluginMessages();
 
   /**
    * @author Elia
@@ -25,8 +25,8 @@ public class UtilsLoader {
   public void loadUtils(Plugin plugin){
     var log = SoulBoss.soulBoss().soulBossLogger();
     String key = "680035753";
-    log.logInfo("load BreakTask with the NamespacedKey: " + Keys.ZOMBIE_KEY.key());
-    new BreakBlock(plugin).breakTask(Keys.ZOMBIE_KEY.key());
+    log.logInfo("load BreakTask with the NamespacedKey: " + PluginKeys.ZOMBIE_KEY.key());
+    new BreakBlock(plugin).breakTask(PluginKeys.ZOMBIE_KEY.key());
     log.logInfo("BreakTasks loaded!");
   }
 

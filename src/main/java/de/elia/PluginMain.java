@@ -1,14 +1,10 @@
 package de.elia;
 
 import de.elia.api.Main;
-import de.elia.api.TheZepserAPIMain;
 import de.elia.bossfightcreator.BossFightCreator;
 import de.elia.bossfightcreator.Instances.Files;
-import de.elia.bossfightcreator.Instances.Plugin;
 import de.elia.bossfightcreator.load.start.StartPlugin;
 import de.elia.bossfightcreator.world.creator.CustomChunkGenerator;
-import de.elia.items.ItemMain;
-import de.elia.soulboss.SoulBoss;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
@@ -19,6 +15,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.lang.Exception;
 import java.lang.String;
+
+import static de.elia.PluginInstances.*;
 
 /**
  * @author Elia
@@ -31,16 +29,8 @@ public class PluginMain extends JavaPlugin {
 
   public static PluginMain main;//Instance of this Plugin
   private final Main library = (Main) Bukkit.getPluginManager().getPlugin("SoulLibrary");//Gets the Soul API of Elia
-  private static final TheZepserAPIMain THE_ZEPSER_API_MAIN = new TheZepserAPIMain();//Gets the Main class of the TheZepserAPI
-  private static final ItemMain ITEM_MAIN = new ItemMain();//Gets the the Main class of Item
-  private static final BossFightCreator BOSS_FIGHT_CREATOR = new BossFightCreator();//Gets the Main class of the bossfightcreator Plugin
-  private static final SoulBoss SOUL_BOSS = new SoulBoss();//Gets the Main class of the SoulBoss Plugin
-  private static final PluginLogger MAIN_LOGGER = new PluginLogger("SoulBossSystem -> SoulBossSystem");//A logger for the  SoulBossPlugin
-  public static final PluginLogger BOSS_FIGHT_CREATOR_LOGGER = new PluginLogger("SoulBossSystem -> BossFightCreator");//A logger for the  BossFightCreator
-  public static final PluginLogger SOUL_BOSS_LOGGER = new PluginLogger("SoulBossSystem -> SoulBoss");//A logger for the Plugin
-  public static final PluginLogger THE_ZEPSER_API_LOGGER = new PluginLogger("SoulBossSystem -> TheZepserAPI");//A logger for the TheZepserAPI
-  public static final PluginLogger ITEM_LOGGER = new PluginLogger("SoulBossSystem -> Item");
-  private World world;
+  private static WorldCreator worldCreator;
+  public static final World WORLD = Bukkit.createWorld(worldCreator);
 
   /**
    * @author Elia
@@ -159,7 +149,7 @@ public class PluginMain extends JavaPlugin {
       worldMain.logInfo("The custom generator to the WorldGenerator sets!");
       worldMain.logInfo("75%");
       worldMain.logInfo("Create a new org.bukkit.World...");
-      Plugin.world_bossfight = Bukkit.createWorld(creator);
+      worldCreator = creator;
       worldMain.logInfo("A new org.bukkit.World is created!");
       worldMain.logInfo("Ending world creation progress...");
       world_status.set("status", true);
@@ -171,22 +161,6 @@ public class PluginMain extends JavaPlugin {
       worldMain.logInfo("100%");
     }
     return null;
-  }
-
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
-   * @description Gets the bossfight world.
-   * @return the world of this plugin
-   */
-  @NotNull
-  public World world() {
-    if (world == null) {
-      this.getDefaultWorldGenerator("Bossfight-World", "world_bossfight");
-      return world;
-    }
-    return world;
   }
 
   /**

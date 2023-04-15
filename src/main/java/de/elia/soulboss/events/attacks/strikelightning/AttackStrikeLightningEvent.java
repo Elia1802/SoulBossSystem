@@ -1,6 +1,6 @@
 package de.elia.soulboss.events.attacks.strikelightning;
 
-import de.elia.Keys;
+import de.elia.PluginKeys;
 import de.elia.soulboss.entity.mobs.boss.magic.attack.Attack;
 import io.papermc.paper.event.entity.EntityMoveEvent;
 import org.bukkit.entity.EntityType;
@@ -31,7 +31,7 @@ public class AttackStrikeLightningEvent implements Listener {
     if (event.isCancelled())return;
     event.setCancelled(true);
     if (event.getEntity().getType() == EntityType.ZOMBIE) {
-      if (event.getEntity().getPersistentDataContainer().has(Keys.ZOMBIE_KEY.key())) {
+      if (event.getEntity().getPersistentDataContainer().has(PluginKeys.ZOMBIE_KEY.key())) {
         Random random = new Random();
         int chance = random.nextInt(200);
         if (chance == 1) {

@@ -18,11 +18,11 @@ import java.util.logging.Logger;
  * @extends {@link MessageBuilder}
  * @description This is the MessageClass for this Plugin.
  */
-public class CustomMessages extends MessageBuilder {
+public class PluginMessages extends MessageBuilder {
 
   private final MiniMessage miniMessage = MiniMessage.miniMessage();
   @Deprecated private final Logger logger = Bukkit.getLogger();
-  private final CustomPrefix prefix = new CustomPrefix();
+  private final PluginPrefix prefix = new PluginPrefix();
 
   /**
    * @author Elia

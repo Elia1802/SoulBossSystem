@@ -1,6 +1,7 @@
 package de.elia.bossfightcreator;
 
-import de.elia.CustomMessages;
+import de.elia.PluginMain;
+import de.elia.PluginMessages;
 import de.elia.api.configuration.SoulConfiguration;
 import org.bukkit.World;
 import org.jetbrains.annotations.NotNull;
@@ -21,8 +22,8 @@ public class Instances {
    */
   public static class Plugin {
     public static org.bukkit.plugin.Plugin instance; //the instance of this Plugin
-    public static World world_bossfight; //the bossfight world
-    public static final CustomMessages MESSAGES = new CustomMessages(); //the message builder of this Plugin (overrides in the plugin SoulBoss)
+    public static World world_bossfight = PluginMain.WORLD; //the bossfight world
+    public static final PluginMessages MESSAGES = new PluginMessages(); //the message builder of this Plugin (overrides in the plugin SoulBoss)
   }
 
   /**

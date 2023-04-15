@@ -1,13 +1,13 @@
 package de.elia.soulboss.entity.mobs.boss.mob;
 
-import de.elia.Keys;
+import de.elia.PluginKeys;
 import de.elia.soulboss.entity.equipment.armors.boots.Boots;
 import de.elia.soulboss.entity.equipment.armors.chestplate.Chestplate;
 import de.elia.soulboss.entity.equipment.armors.helmet.Helmet;
 import de.elia.soulboss.entity.equipment.armors.leggins.Leggins;
 import de.elia.soulboss.entity.equipment.tools.axe.Axe;
 import de.elia.soulboss.entity.equipment.tools.sword.Sword;
-import de.elia.CustomMessages;
+import de.elia.PluginMessages;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -40,9 +40,9 @@ public class ZombieBoss extends Zombie {
    */
   public ZombieBoss(@NotNull Location location) {
     super(EntityType.ZOMBIE, ((CraftWorld)location.getWorld()).getHandle());
-    CustomMessages message = new CustomMessages();
+    PluginMessages message = new PluginMessages();
     boss = this;
-    this.getBukkitEntity().getPersistentDataContainer().set(Keys.ZOMBIE_KEY.key(), PersistentDataType.BYTE, (byte) 1);
+    this.getBukkitEntity().getPersistentDataContainer().set(PluginKeys.ZOMBIE_KEY.key(), PersistentDataType.BYTE, (byte) 1);
     this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(500);
     this.setHealth(500);
     this.setBaby(false);

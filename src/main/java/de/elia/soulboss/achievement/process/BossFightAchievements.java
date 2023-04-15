@@ -1,7 +1,7 @@
 package de.elia.soulboss.achievement.process;
 
 import de.elia.soulboss.achievement.storage.BossFightAchievementStorage;
-import de.elia.CustomMessages;
+import de.elia.PluginMessages;
 import de.elia.soulboss.plugin.load.start.register.configuation.ConfigurationLoader;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -46,7 +46,7 @@ public class BossFightAchievements extends ConfigurationLoader {
   public void giveAchievement(@NotNull Player player, @NotNull BossFightAchievementStorage achievementStorage) {
     if (!this.hasAchievement(player, achievementStorage)) {
       this.achievementStorage().set(player.getUniqueId() + ".Achievements." + achievementStorage.dataID(), true);
-      CustomMessages messageBuilder = new CustomMessages();
+      PluginMessages messageBuilder = new PluginMessages();
       messageBuilder.broadcast(messageBuilder.gradient("aqua", "purple", player.getName() + " hat den BossFight Erfolg " + achievementStorage.getName() + "erreicht"));
       player.giveExp(achievementStorage.xp());
       player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
@@ -63,7 +63,7 @@ public class BossFightAchievements extends ConfigurationLoader {
    * @param achievementStorage Requires a Achievement
    */
   public void removeAchievement(@NotNull Player player, @NotNull BossFightAchievementStorage achievementStorage) {
-    CustomMessages messageBuilder = new CustomMessages();
+    PluginMessages messageBuilder = new PluginMessages();
     if (this.hasAchievement(player, achievementStorage)) {
       this.achievementStorage().set(player.getUniqueId() + ".Achievements." + achievementStorage.dataID(), null);
       messageBuilder.message(player, messageBuilder.green("Du hast dem Spieler den BossFight Erfolg " + achievementStorage.getName() + "(" + achievementStorage.dataID() + ")" + "abgenommen!"));

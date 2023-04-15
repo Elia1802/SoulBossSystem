@@ -8,14 +8,14 @@ import org.bukkit.NamespacedKey;
  * @since 1.0
  * @description Save all keys for the bosses and recipes
  */
-public enum Keys {
+public enum PluginKeys {
 
   ZOMBIE_KEY(new NamespacedKey(PluginMain.main(), "680035753")),
   RECIPE_KEY(new NamespacedKey(PluginMain.main(), "v4j23hdu-df4e-36ta-r4sf-2n0c3n8cky9x"));
 
   private final NamespacedKey key;
 
-  Keys(NamespacedKey key){
+  PluginKeys(NamespacedKey key){
     this.key = key;
   }
 

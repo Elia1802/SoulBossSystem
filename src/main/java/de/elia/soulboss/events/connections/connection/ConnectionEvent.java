@@ -1,6 +1,6 @@
 package de.elia.soulboss.events.connections.connection;
 
-import de.elia.CustomMessages;
+import de.elia.PluginMessages;
 import de.elia.bossfightcreator.BossFightCreator;
 import de.elia.soulboss.SoulBoss;
 import org.bukkit.entity.Player;
@@ -27,7 +27,7 @@ public class ConnectionEvent implements Listener {
    */
   @EventHandler
   public void onConnection(@NotNull PlayerJoinEvent event){
-    CustomMessages message = new CustomMessages();
+    PluginMessages message = new PluginMessages();
     var log = SoulBoss.soulBoss().soulBossLogger();
     Player player = event.getPlayer();
     var status = BossFightCreator.playerStatusMap();

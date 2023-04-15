@@ -1,5 +1,6 @@
 package de.elia.items;
 
+import de.elia.PluginInstances;
 import de.elia.PluginMain;
 import de.elia.api.Complex;
 import de.elia.api.components.ComplexItem;
@@ -22,7 +23,7 @@ public class Item {
         return (ComplexItem) ComplexItem.SAVED.get(item).clone();
       }
       catch (CloneNotSupportedException exception) {
-        PluginMain.THE_ZEPSER_API_LOGGER.logError("An error occurred when getting an item!");
+        PluginInstances.THE_ZEPSER_API_LOGGER.logError("An error occurred when getting an item!");
         exception.printStackTrace();
         return null;
       }

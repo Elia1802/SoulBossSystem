@@ -1,7 +1,7 @@
 package de.elia.soulboss.commands.help;
 
 import de.elia.soulboss.SoulBoss;
-import de.elia.CustomMessages;
+import de.elia.PluginMessages;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.command.Command;
@@ -38,7 +38,7 @@ public class HelpCommand implements CommandExecutor, TabCompleter {
    */
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-    CustomMessages message = new CustomMessages();
+    PluginMessages message = new PluginMessages();
     MiniMessage miniMessage = SoulBoss.soulBoss().miniMessage();
     if (sender instanceof Player player) {
       if (args.length == 1) {

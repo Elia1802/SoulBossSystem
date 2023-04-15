@@ -1,6 +1,6 @@
 package de.elia.soulboss.commands.mob;
 
-import de.elia.CustomMessages;
+import de.elia.PluginMessages;
 import de.elia.bossfightcreator.BossFightCreator;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -40,7 +40,7 @@ public class SpawnMobCommand implements CommandExecutor, TabCompleter {
    */
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-    CustomMessages message = new CustomMessages();
+    PluginMessages message = new PluginMessages();
     var status = BossFightCreator.playerStatusMap();
     if (sender instanceof Player player) {
       if (player.hasPermission("soulboss.fight")) {
