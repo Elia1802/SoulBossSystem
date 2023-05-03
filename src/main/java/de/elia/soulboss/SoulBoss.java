@@ -2,9 +2,10 @@ package de.elia.soulboss;
 
 import de.elia.PluginInstances;
 import de.elia.PluginMain;
-import de.elia.PluginLogger;
+import de.elia.systemclasses.logging.PluginLogger;
 import de.elia.soulboss.plugin.load.Load;
 import de.elia.soulboss.plugin.load.stop.disable.Disable;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -33,7 +34,7 @@ public class SoulBoss {
    * @description Load the Plugin SoulBoss
    * @param plugin Requires the main Main class of this Plugin
    */
-  public void enable(@NotNull JavaPlugin plugin){
+  public void enable(@NotNull JavaPlugin plugin) throws SoulBossSystemNullException {
     soulboss = this;
     loader.loadPlugin(plugin, Bukkit.getPluginManager());
   }
@@ -45,7 +46,7 @@ public class SoulBoss {
    * @description Reloaded this Plugin
    * @param plugin Requires the main Main class of this Plugin
    */
-  public void reload(@NotNull JavaPlugin plugin) {
+  public void reload(@NotNull JavaPlugin plugin) throws SoulBossSystemNullException {
     soulboss = this;
     loader.reloadPlugin(plugin, Bukkit.getPluginManager());
   }
@@ -57,7 +58,7 @@ public class SoulBoss {
    * @description Reloaded the Configurations of this Plugin
    * @param plugin Requires the main Main class of this Plugin
    */
-  public void reloadConfiguration(@NotNull JavaPlugin plugin) {
+  public void reloadConfiguration(@NotNull JavaPlugin plugin) throws SoulBossSystemNullException {
     soulboss = this;
     loader.reloadConfiguration(plugin);
   }
@@ -69,7 +70,7 @@ public class SoulBoss {
    * @description Disabled this Plugin
    * @param plugin Requires the main Main class of this Plugin
    */
-  public void disable(@NotNull JavaPlugin plugin){
+  public void disable(@NotNull JavaPlugin plugin) throws SoulBossSystemNullException {
     new Disable().disable(plugin);
   }
 

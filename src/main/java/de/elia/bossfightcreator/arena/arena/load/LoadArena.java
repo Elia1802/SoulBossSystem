@@ -6,6 +6,7 @@ import com.sk89q.worldedit.extent.clipboard.io.ClipboardFormats;
 import com.sk89q.worldedit.extent.clipboard.io.ClipboardReader;
 import de.elia.bossfightcreator.BossFightCreator;
 
+import java.io.FileNotFoundException;
 import java.lang.String;
 import java.io.File;
 import java.io.FileInputStream;
@@ -32,15 +33,11 @@ public class LoadArena {
    * @description
    * @return Load a Arena of a Schematic
    */
-  public Clipboard loadArena(){
+  public Clipboard loadArena() throws IOException, FileNotFoundException {
     var worldMain = BossFightCreator.worldMain();
     File arenaFile = new File(worldMain.arenaFolder(), arenaName + ".schem");
     ClipboardFormat format = ClipboardFormats.findByFile(arenaFile);
-    try (ClipboardReader reader = format.getReader(new FileInputStream(arenaFile))) {
-      return reader.read();
-    }catch (IOException exception) {
-      exception.printStackTrace();
-    }
-    return null;
+    ClipboardReader reader = format.getReader(new FileInputStream(arenaFile));
+    return reader.read();
   }
 }

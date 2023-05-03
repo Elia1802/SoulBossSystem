@@ -1,6 +1,6 @@
 package de.elia.soulboss.plugin.load;
 
-import de.elia.PluginKeys;
+import de.elia.systemclasses.keys.PluginKeys;
 import de.elia.soulboss.SoulBoss;
 import de.elia.soulboss.commands.help.HelpCommand;
 import de.elia.soulboss.commands.idea.IdeaCommand;
@@ -18,6 +18,7 @@ import de.elia.soulboss.plugin.load.start.register.configuation.ConfigurationLoa
 import de.elia.soulboss.plugin.load.start.register.events.EventLoader;
 import de.elia.soulboss.plugin.load.start.register.recipes.RecipeLoader;
 import de.elia.soulboss.plugin.load.start.register.utils.UtilsLoader;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -44,7 +45,7 @@ public class Load {
    * @param plugin Requires the Main class
    * @param pluginManager Requires a {@link PluginManager}
    */
-  public void loadPlugin(Plugin plugin, PluginManager pluginManager){
+  public void loadPlugin(Plugin plugin, PluginManager pluginManager) throws SoulBossSystemNullException {
     var log = SoulBoss.soulBoss().soulBossLogger();
     log.logInfo("Load SoulBoss...");
       log.logInfo("Load Commands...");
@@ -87,7 +88,7 @@ public class Load {
    * @param plugin Requires the Main class
    * @param pluginManager Requires a {@link PluginManager}
    */
-  public void reloadPlugin(Plugin plugin, PluginManager pluginManager){
+  public void reloadPlugin(Plugin plugin, PluginManager pluginManager) throws SoulBossSystemNullException {
     var log = SoulBoss.soulBoss().soulBossLogger();
     log.logInfo("Reload SoulBoss...");
     log.logInfo("Remove Recipes...");
@@ -153,7 +154,7 @@ public class Load {
    * @description Reloaded all config files in this plugin
    * @param plugin Requires the Main class
    */
-  public void reloadConfiguration(Plugin plugin){
+  public void reloadConfiguration(Plugin plugin) throws SoulBossSystemNullException {
     var log = SoulBoss.soulBoss().soulBossLogger();
     log.logInfo("Load Configurations...");
     configuration.loadFiles(plugin);

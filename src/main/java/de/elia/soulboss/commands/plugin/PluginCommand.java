@@ -1,8 +1,10 @@
 package de.elia.soulboss.commands.plugin;
 
-import de.elia.PluginKeys;
+import de.elia.systemclasses.keys.PluginKeys;
 import de.elia.soulboss.SoulBoss;
-import de.elia.PluginMessages;
+import de.elia.systemclasses.logging.PluginLogger.SaveError;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
+import de.elia.systemclasses.messages.PluginMessages;
 import de.elia.soulboss.plugin.ThisPlugin;
 import de.elia.soulboss.plugin.load.start.register.configuation.ConfigurationLoader;
 import net.kyori.adventure.text.Component;
@@ -27,7 +29,7 @@ import java.util.logging.Level;
  * @implements {@link CommandExecutor}, {@link TabCompleter}
  * @description This is the Command to reload the Plugin and other thinks
  */
-public class PluginCommand extends ConfigurationLoader implements CommandExecutor, TabCompleter {
+public class PluginCommand implements CommandExecutor, TabCompleter {
   /**
    * @author Elia
    * @version 1.0
@@ -96,11 +98,21 @@ public class PluginCommand extends ConfigurationLoader implements CommandExecuto
             message.messageWithPrefix(player, message.red("/soulboss reload plugin"));
             if (args[1].equalsIgnoreCase("configuration")) {
               message.messageWithPrefix(player, message.gold("Alle Configurations werden neu geladen!"));
-              SoulBoss.soulBoss().reloadConfiguration(SoulBoss.main());
+              try {
+                SoulBoss.soulBoss().reloadConfiguration(SoulBoss.main());
+              } catch (SoulBossSystemNullException exception) {
+                new SaveError().saveError(exception, "PluginCommand-onCommand-line_102=null");
+                exception.stacktrace();
+              }
               message.messageWithPrefix(player, message.green("Alle Configurations wurden neu geladen!"));
             } else if (args[1].equalsIgnoreCase("plugin")) {
               message.messageWithPrefix(player, message.gold("Das Plugin wird neu geladen!"));
-              SoulBoss.soulBoss().reload(SoulBoss.main());
+              try {
+                SoulBoss.soulBoss().reload(SoulBoss.main());
+              } catch (SoulBossSystemNullException exception) {
+                new SaveError().saveError(exception, "PluginCommand-onCommand-line_111=null");
+                exception.stacktrace();
+              }
               message.messageWithPrefix(player, message.green("Das Plugin wurde neu geladen!"));
             }
           }else {

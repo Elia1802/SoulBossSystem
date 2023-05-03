@@ -1,7 +1,10 @@
 package de.elia.bossfightcreator.builder.fight.executer;
 
-import de.elia.PluginMessages;
-import de.elia.PluginKeys;
+import de.elia.systemclasses.logging.PluginLogger.SaveError;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemLoadException;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
+import de.elia.systemclasses.messages.PluginMessages;
+import de.elia.systemclasses.keys.PluginKeys;
 import de.elia.api.Complex;
 import de.elia.api.TheZepserAPI;
 import de.elia.bossfightcreator.BossFightCreator;
@@ -64,7 +67,7 @@ public class GameExecuter implements Listener, CommandExecutor, TabCompleter {
    * @description This event checks if the player click the spawnegg and if this true load this a new game with the {@link GameBuilder}
    */
   @EventHandler
-  public void onLoad(@NotNull PlayerInteractEvent event){
+  public void onLoad(@NotNull PlayerInteractEvent event) throws SoulBossSystemNullException, SoulBossSystemLoadException {
     ArenaSender sender = new ArenaSender();
     Player player = event.getPlayer();
     MiniMessage miniMessage = SoulBoss.soulBoss().miniMessage();
@@ -87,7 +90,7 @@ public class GameExecuter implements Listener, CommandExecutor, TabCompleter {
    * @description This event checks if the boss die and unload the game
    */
   @EventHandler
-  public void onEnd(@NotNull EntityDeathEvent event){
+  public void onEnd(@NotNull EntityDeathEvent event) throws SoulBossSystemNullException {
     if (event.getEntityType() == EntityType.ZOMBIE) {
       if (event.getEntity().getPersistentDataContainer().has(PluginKeys.ZOMBIE_KEY.key())) {
         event.getEntity().remove();
@@ -123,7 +126,12 @@ public class GameExecuter implements Listener, CommandExecutor, TabCompleter {
       if (args.length == 1){
         Player target = Bukkit.getPlayer(args[0]);
         if (target != null) {
-          builder.trustPlayer(target);
+          try {
+            builder.trustPlayer(target);
+          } catch (SoulBossSystemNullException exception) {
+            new SaveError().saveError(exception, "GameExecuter-onCommand-line_129=null");
+            exception.stacktrace();
+          }
         }
       }
     }

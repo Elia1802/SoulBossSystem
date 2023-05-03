@@ -1,5 +1,7 @@
 package de.elia.soulboss.items;
 
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException.CheckVariable;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -24,7 +26,7 @@ public class DropUtils {
    * @description This set the drop if the boss die.
    * @param location Requires the Location of the Boss.
    */
-  public void drop(@NotNull Location location){
+  public void drop(@NotNull Location location) throws SoulBossSystemNullException {
     ItemStack itemStack;
     Random random = new Random();
     float x = random.nextFloat();
@@ -54,7 +56,8 @@ public class DropUtils {
    * @return itemStack
    */
   @NotNull
-  private ItemStack randomAmount(Material material, int bound){
+  private ItemStack randomAmount(Material material, int bound) throws SoulBossSystemNullException {
+    if (!new CheckVariable().check(material, "DropUtils#randomAmount(Material, int)") == true)return null;
     ItemStack itemStack = new ItemStack(material);
     Random random = new Random();
     int x = random.nextInt(bound);

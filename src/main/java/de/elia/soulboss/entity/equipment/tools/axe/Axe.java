@@ -1,6 +1,8 @@
 package de.elia.soulboss.entity.equipment.tools.axe;
 
 import de.elia.soulboss.utils.random.RandomUtils;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException.CheckVariable;
 import net.minecraft.world.entity.monster.Zombie;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -22,7 +24,8 @@ public class Axe {
    * @description Give the {@link Zombie} a diamond or netherite axe.
    * @param zombie Requires the Zombie
    */
-  public void axe(Zombie zombie){
+  public void axe(Zombie zombie) throws SoulBossSystemNullException {
+    if (!new CheckVariable().check(zombie, "Axe#axe(Zombie)"))return;
     ItemStack diamond = new ItemStack(Material.DIAMOND_AXE);
     ItemMeta diamondMeta = diamond.getItemMeta();
     diamondMeta.addEnchant(Enchantment.DAMAGE_ALL, 5, true);

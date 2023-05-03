@@ -2,9 +2,15 @@ package de.elia.bossfightcreator.builder.save;
 
 import de.elia.bossfightcreator.builder.fight.game.Game;
 import de.elia.bossfightcreator.builder.fight.game.builder.GameBuilder;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException.CheckVariable;
 import org.bukkit.entity.Player;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 import static de.elia.bossfightcreator.BossFightCreator.bossFightCreator;
 
@@ -42,13 +48,12 @@ public class Saver {
      * @param player Requires the {@link Player#getUniqueId()}
      * @param game Requires the {@link Game}
      */
-    public SaveGame(UUID player, Game game){
+    public SaveGame(UUID player, Game game) throws SoulBossSystemNullException {
       this.player = player;
       this.game = game;
-      if (saveGame == null) {
-        bossFightCreator().bossFightCreatorLogger().logError("LOAD THE MAP WITH de.elia.bossfightcreator.builder.save.SaveGame#loadMap()");
-        return;
-      }
+      if (!new CheckVariable().check(saveGame, "Saver.SaveGame(UUID, Game)") == true)return;
+      if (!new CheckVariable().check(player, "Saver.SaveGame(UUID, Game)") == true)return;
+      if (!new CheckVariable().check(game, "Saver.SaveGame(UUID, Game)") == true)return;
       saveGame.put(player, game);
       bossFightCreator().bossFightCreatorLogger().logInfo("A new game is saved!");
     }
@@ -71,11 +76,10 @@ public class Saver {
      * @description Removed the game of the player
      * @param player Requires the {@link Player#getUniqueId()}
      */
-    public void removeGame(UUID player){
-      if (saveGame == null) {
-        bossFightCreator().bossFightCreatorLogger().logError("LOAD THE MAP WITH de.elia.bossfightcreator.builder.save.SaveGame#loadMap()");
-        return;
-      }
+    public void removeGame(UUID player) throws SoulBossSystemNullException {
+      if (!new CheckVariable().check(saveGame, "Saver.SaveGame#removeGame(UUID)") == true)return;
+      if (!new CheckVariable().check(player, "Saver.SaveGame#removeGame(UUID)") == true)return;
+      if (!new CheckVariable().check(game, "Saver.SaveGame#removeGame(UUID)") == true)return;
       saveGame.remove(player);
       bossFightCreator().bossFightCreatorLogger().logInfo("the game" + game + "is removed!");
     }
@@ -127,7 +131,7 @@ public class Saver {
     }
 
     /**
-     * @param player      Requires the {@link Player#getUniqueId()}
+     * @param player Requires the {@link Player#getUniqueId()}
      * @param gameBuilder Requires the {@link GameBuilder}
      *
      * @author Elia
@@ -135,13 +139,12 @@ public class Saver {
      * @description Save a new {@link GameBuilder} to a player uniqueID ({@link UUID})
      * @since 1.0
      */
-    public SaveGameBuilder(UUID player, GameBuilder gameBuilder) {
+    public SaveGameBuilder(UUID player, GameBuilder gameBuilder) throws SoulBossSystemNullException {
       this.player = player;
       this.gameBuilder = gameBuilder;
-      if (saveGameBuilder == null) {
-        bossFightCreator().bossFightCreatorLogger().logError("LOAD THE MAP WITH de.elia.bossfightcreator.builder.save.SaveGameBuilder#loadMap()");
-        return;
-      }
+      if (!new CheckVariable().check(saveGameBuilder, "Saver.SaveGameBuilder(UUID, GameBuilder)") == true)return;
+      if (!new CheckVariable().check(player, "Saver#removeGame(UUID)") == true)return;
+      if (!new CheckVariable().check(gameBuilder, "Saver#removeGame(UUID)") == true)return;
       saveGameBuilder.put(player, gameBuilder);
       bossFightCreator().bossFightCreatorLogger().logInfo("A new gameBuilder builder is saved!");
     }
@@ -166,17 +169,16 @@ public class Saver {
      * @description Removed the game of the player
      * @since 1.0
      */
-    public void removeGame(UUID player) {
-      if (saveGameBuilder == null) {
-        bossFightCreator().bossFightCreatorLogger().logError("LOAD THE MAP WITH de.elia.bossfightcreator.builder.save.SaveGameBuilder#loadMap()");
-        return;
-      }
+    public void removeGame(UUID player) throws SoulBossSystemNullException {
+      if (!new CheckVariable().check(saveGameBuilder, "Saver.SaveGame#removeGame(UUID)") == true)return;
+      if (!new CheckVariable().check(player, "Saver.SaveGame#removeGame(UUID)") == true)return;
+      if (!new CheckVariable().check(gameBuilder, "Saver.SaveGame#removeGame(UUID)") == true)return;
       saveGameBuilder.remove(player);
       bossFightCreator().bossFightCreatorLogger().logInfo("the game" + gameBuilder + "is removed!");
     }
 
     /**
-     * @param game Requires a{@link GameBuilder}
+     * @param game Requires a {@link GameBuilder}
      *
      * @return {@link Boolean}
      *

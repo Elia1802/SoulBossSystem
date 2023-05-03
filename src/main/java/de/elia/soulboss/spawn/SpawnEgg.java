@@ -1,9 +1,10 @@
 package de.elia.soulboss.spawn;
 
-import de.elia.PluginKeys;
+import de.elia.systemclasses.keys.PluginKeys;
 import de.elia.api.Complex;
 import de.elia.items.Item;
 import de.elia.soulboss.SoulBoss;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Material;
@@ -44,6 +45,7 @@ public class SpawnEgg {
    * @author Elia
    * @version 1.0
    * @since 1.0
+   * @deprecated use Zopnotes API
    * @description This is the methode for the spawnegg of the Zombie
    * @return itemStack
    */
@@ -70,7 +72,7 @@ public class SpawnEgg {
    * @since 1.0
    * @description This Methode create the eggRecipe
    */
-  public void eggRecipe(){
+  public void eggRecipe() throws SoulBossSystemNullException, CloneNotSupportedException {
     NamespacedKey uuid = PluginKeys.RECIPE_KEY.key();
     ShapedRecipe recipe = new ShapedRecipe(uuid, Item.get(Complex.ZOMBIE_SPAWN_EGG).getItem());
     recipe.shape("ZZZ", "WSW", "CSC");

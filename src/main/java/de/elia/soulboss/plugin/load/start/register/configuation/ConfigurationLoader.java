@@ -1,6 +1,8 @@
 package de.elia.soulboss.plugin.load.start.register.configuation;
 
 import de.elia.api.configuration.SoulConfiguration;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException.CheckVariable;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
@@ -23,7 +25,8 @@ public class ConfigurationLoader {
    * @since 1.0
    * @description Set all Configuration files
    */
-  private static void setConfiguration(Plugin plugin){
+  private static void setConfiguration(Plugin plugin) throws SoulBossSystemNullException {
+    if (!new CheckVariable().check(plugin, "ConfigurationLoader#setConfiguration(Plugin)"))return;
     achievementStorage = new SoulConfiguration(plugin, "achievements/", "Achievements.yml");
     ideasStorage = new SoulConfiguration(plugin, "ideas/", "Ideas.yml");
     //playerRegisterStorage = new SoulConfiguration(plugin, "register/", "PlayerRegisterFight.yml");
@@ -35,7 +38,8 @@ public class ConfigurationLoader {
    * @since 1.0
    * @description Load all Configuration files
    */
-  public void loadFiles(Plugin plugin){
+  public void loadFiles(Plugin plugin) throws SoulBossSystemNullException {
+    if (!new CheckVariable().check(plugin, "ConfigurationLoader#loadFiles(Plugin)"))return;
     setConfiguration(plugin);
     if (achievementStorage == null) setConfiguration(plugin);
     achievementStorage.copyDefaults(true);
@@ -56,8 +60,8 @@ public class ConfigurationLoader {
    * @since 1.0
    * @description Save all Configuration files
    */
-  public void save(Plugin plugin){
-    if (achievementStorage == null) setConfiguration(plugin);
+  public void save(Plugin plugin) throws SoulBossSystemNullException {
+    if (!new CheckVariable().check(plugin, "ConfigurationLoader#save(Plugin)"))return;
     achievementStorage.save();
     if (ideasStorage == null) setConfiguration(plugin);
     ideasStorage.save();

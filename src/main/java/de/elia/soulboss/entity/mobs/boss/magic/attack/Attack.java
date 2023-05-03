@@ -2,6 +2,7 @@ package de.elia.soulboss.entity.mobs.boss.magic.attack;
 
 import de.elia.soulboss.SoulBoss;
 import de.elia.soulboss.entity.mobs.boss.magic.attackaction.Actions;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -54,7 +55,11 @@ public class Attack {
           position.getWorld().spawnParticle(Particle.PORTAL, position, 300);
           Collection<Player> damagedPlayer = position.getNearbyPlayers(0.5D);
           for (Player player : damagedPlayer) {
-            new Actions().actionTeleport(direction, player);
+            try {
+              new Actions().actionTeleport(direction, player);
+            } catch (SoulBossSystemNullException exception) {
+              exception.stacktrace();
+            }
           }
         }else cancel();
       }

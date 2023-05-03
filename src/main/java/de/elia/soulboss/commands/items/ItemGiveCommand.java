@@ -1,8 +1,10 @@
 package de.elia.soulboss.commands.items;
 
 import de.elia.PluginInstances;
-import de.elia.PluginMessages;
-import de.elia.PluginMain;
+import de.elia.systemclasses.logging.PluginLogger.SaveError;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemIntOutOfRangeException;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
+import de.elia.systemclasses.messages.PluginMessages;
 import de.elia.api.Complex;
 import de.elia.api.TheZepserAPI;
 import de.elia.api.components.ComplexItem;
@@ -53,7 +55,15 @@ public class ItemGiveCommand implements CommandExecutor, TabCompleter {
           if (ComplexItem.SAVED.containsKey(complex)) {
             Player player = Bukkit.getPlayer(args[2]);
             if (player != null) {
-              Item.give(player, Complex.valueOf(args[0]), Integer.parseInt(args[1]));
+              try {
+                Item.give(player, Complex.valueOf(args[0]), Integer.parseInt(args[1]));
+              } catch (SoulBossSystemNullException exception) {
+                new SaveError().saveError(exception, "ItemGiveCommand-onCommand-line_59=null");
+                exception.stacktrace();
+              } catch (SoulBossSystemIntOutOfRangeException exception) {
+                new SaveError().saveError(exception, "ItemGiveCommand-onCommand-line_59=intOutOfRange");
+                exception.stacktrace();
+              }
               commandSender.sendMessage(TheZepserAPI.Prefix.append(miniMessage.deserialize("<gray>Du hast dem Spieler</gray> <aqua>")).append(miniMessage.deserialize(player.getName())).append(miniMessage.deserialize("</aqua> <gray>das Item</gray> <aqua>")).append(miniMessage.deserialize(args[0])).append(miniMessage.deserialize("</aqua> <gray>gegeben!</gray>")));
               return true;
             }

@@ -1,6 +1,8 @@
 package de.elia.soulboss.entity.equipment.armors.leggins;
 
 import de.elia.soulboss.utils.random.RandomUtils;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException.CheckVariable;
 import net.minecraft.world.entity.monster.Zombie;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -22,7 +24,8 @@ public class Leggins {
    * @description Give the {@link Zombie} a diamond or netherite leggins.
    * @param zombie Requires the Zombie
    */
-  public void leggins(Zombie zombie){
+  public void leggins(Zombie zombie) throws SoulBossSystemNullException {
+    if (!new CheckVariable().check(zombie, "Leggings#leggings(Zombie)"))return;
     ItemStack diamond = new ItemStack(Material.DIAMOND_LEGGINGS);
     ItemMeta diamondMeta = diamond.getItemMeta();
     diamondMeta.addEnchant(Enchantment.PROTECTION_FIRE, 5, true);

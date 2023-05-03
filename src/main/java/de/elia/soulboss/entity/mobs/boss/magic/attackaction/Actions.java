@@ -1,6 +1,8 @@
 package de.elia.soulboss.entity.mobs.boss.magic.attackaction;
 
 import de.elia.soulboss.SoulBoss;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException.CheckVariable;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -26,7 +28,9 @@ public class Actions {
    * @since 1.0
    * @description This random teleport the Player.
    */
-  public void actionTeleport(Vector vector, Player player){
+  public void actionTeleport(Vector vector, Player player) throws SoulBossSystemNullException {
+    if (!new CheckVariable().check(vector, "Actions#actionTeleport(Vector, Player)"))return;
+    if (!new CheckVariable().check(player, "Actions#actionTeleport(Vector, Player)"))return;
     new BukkitRunnable(){
       public void run(){
         Location playerLocation = player.getLocation();

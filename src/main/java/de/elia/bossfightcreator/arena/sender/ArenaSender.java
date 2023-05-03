@@ -1,11 +1,17 @@
 package de.elia.bossfightcreator.arena.sender;
 
+import com.sk89q.worldedit.WorldEditException;
 import com.sk89q.worldedit.bukkit.BukkitWorld;
 import de.elia.bossfightcreator.arena.Arenas;
 import de.elia.bossfightcreator.arena.arena.load.LoadArena;
 import de.elia.bossfightcreator.arena.arena.paste.PasteArena;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemLoadException;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
 import org.bukkit.Bukkit;
 import org.jetbrains.annotations.NotNull;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * @author Elia
@@ -26,7 +32,7 @@ public class ArenaSender {
    * @description Checks if a Arena ready
    * @return {@link Arenas}
    */
-  public Arenas arena(){
+  public Arenas arena() throws SoulBossSystemLoadException, SoulBossSystemNullException {
     if (Arenas.ARENA_1.arenaStatusMap().get(Arenas.ARENA_1) == 0) {
       Arenas.ARENA_1.setStatus(Arenas.ARENA_1, false);
       return Arenas.ARENA_1;
@@ -58,7 +64,7 @@ public class ArenaSender {
       Arenas.ARENA_10.setStatus(Arenas.ARENA_10, false);
       return Arenas.ARENA_10;
     }else {
-      return null;
+      throw new SoulBossSystemLoadException("No arena found!");
     }
   }
 
@@ -69,7 +75,7 @@ public class ArenaSender {
    * @description Reset the arena
    * @param arena Requires a {@link Arenas}
    */
-  public void resetArena(@NotNull Arenas arena){
+  public void resetArena(@NotNull Arenas arena) throws SoulBossSystemNullException, IOException, WorldEditException, FileNotFoundException {
     PasteArena  arenaLoader = new PasteArena();
     arenaLoader.pasteArena(new BukkitWorld(Bukkit.getWorld("world_bossfight")), new LoadArena(arena.getName()).loadArena());
     arena.setStatus(arena, true);

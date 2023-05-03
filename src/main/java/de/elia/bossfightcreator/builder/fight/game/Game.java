@@ -1,7 +1,12 @@
 package de.elia.bossfightcreator.builder.fight.game;
 
-import de.elia.PluginMessages;
-import de.elia.PluginKeys;
+import com.sk89q.worldedit.WorldEditException;
+import de.elia.systemclasses.logging.PluginLogger.SaveError;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException.CheckVariable;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemSpawnException;
+import de.elia.systemclasses.messages.PluginMessages;
+import de.elia.systemclasses.keys.PluginKeys;
 import de.elia.bossfightcreator.BossFightCreator;
 import de.elia.bossfightcreator.Instances.Plugin;
 import de.elia.bossfightcreator.arena.Arenas;
@@ -12,7 +17,6 @@ import de.elia.bossfightcreator.builder.save.Saver;
 import de.elia.soulboss.entity.mobs.boss.mob.ZombieBoss;
 import de.elia.soulboss.utils.timers.StartTasks;
 import de.elia.soulboss.utils.timers.TimerUtils;
-import net.minecraft.world.entity.monster.Zombie;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -21,6 +25,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
 import java.util.Collection;
 
 /**
@@ -32,12 +37,11 @@ import java.util.Collection;
 public class Game {
 
   private final ArenaSender sender = new ArenaSender();
-  private final Saver.SaveGame saveGame;
   private final Arenas arena;
   public final Player player;
   private final String gameKey;
   private final GameBuilder gameBuilder;
-  private Zombie boss;
+  private Saver.SaveGame saveGame;
 
   /**
    * @author Elia
@@ -48,20 +52,28 @@ public class Game {
    * @param player Requires the {@link Player}
    * @param gameKey Requires a key
    */
-  public Game(@NotNull Arenas arena, @NotNull Player player, String gameKey, GameBuilder gameBuilder){
+  public Game(@NotNull Arenas arena, @NotNull Player player, String gameKey, GameBuilder gameBuilder) throws SoulBossSystemNullException {
     this.arena = arena;
     this.player = player;
     this.gameKey = gameKey;
     this.gameBuilder = gameBuilder;
-    this.saveGame = new Saver.SaveGame(player.getUniqueId(), this);
     if (player == null)return;
+    this.saveGame = new Saver.SaveGame(player.getUniqueId(), this);
     new BukkitRunnable() {
       @Override
       public void run() {
-        boss = new ZombieBoss(arena.location());
+        try {
+          new ZombieBoss(arena.location());
+        } catch (SoulBossSystemSpawnException exception) {
+          new SaveError().saveError(exception, "Game-Game-line_66=spawn");
+          exception.stacktrace();
+        }catch (SoulBossSystemNullException exception) {
+          new SaveError().saveError(exception, "Game-Game-line_66=null");
+          exception.stacktrace();
+        }
       }
     }.runTask(Plugin.instance);
-    GameList.GAMES.add(this);//Error java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 0
+    GameList.GAMES.add(this);
   }
 
   /**
@@ -71,7 +83,7 @@ public class Game {
    * @description Kill a Boss in the near of the player of 5 Blocks
    * @param player Requires the {@link Player}
    */
-  public void killThis(@NotNull Player player){
+  public void killThis(@NotNull Player player) {
     Collection<LivingEntity> entities = player.getLocation().getNearbyLivingEntities(5);
     for (Entity entity : entities){
       if (entity.getPersistentDataContainer().has(PluginKeys.ZOMBIE_KEY.key())) {
@@ -86,13 +98,15 @@ public class Game {
    * @since 1.0
    * @description killed this Game
    */
-  public void killGame(){
+  public void killGame() throws SoulBossSystemNullException, IOException, WorldEditException {
+    if (!new CheckVariable().check(saveGame, "Game#killGame()") == true)return;
+    if (!new CheckVariable().check(player, "Game#killGame()") == true)return;
+    if (!new CheckVariable().check(gameBuilder, "Game#killGame()") == true)return;
+    if (!new CheckVariable().check(sender, "Game#killGame()") == true)return;
+    if (!new CheckVariable().check(arena, "Game#killGame()") == true)return;
     if (saveGame.containsGame(this)) {
       this.killThis(player);
-      String permission = gameKey;
-      for (Player targets : Bukkit.getOnlinePlayers()) {
-        if (targets.hasPermission(permission))targets.teleport(Bukkit.getWorld("world").getSpawnLocation());
-      }
+      gameBuilder.saveGameBuilder.gamePlayers.forEach(player -> player.teleport(Bukkit.getWorld("world").getSpawnLocation()));
       saveGame.removeGame(player.getUniqueId());
       GameList.GAMES.remove(this);
       sender.resetArena(arena);
@@ -105,8 +119,10 @@ public class Game {
    * @since 1.0
    * @description start the end timer
    */
-  public void end(){
-    new GameEndTimer().start(60*20, player, Bukkit.getWorld("world").getSpawnLocation());
+  public void end() throws SoulBossSystemNullException {
+    if (!new CheckVariable().check(gameBuilder, "Game#end()") == true)return;
+    gameBuilder.saveGameBuilder.gamePlayers.forEach(player -> new GameEndTimer()
+      .start(60*20, player, Bukkit.getWorld("world").getSpawnLocation()));
   }
 
   /**
@@ -115,8 +131,14 @@ public class Game {
    * @since 1.0
    * @description Removed this game of all Lists maps and other thinks and reset the arena
    */
-  public void removeGame(){
+  public void removeGame(Location location) throws SoulBossSystemNullException, IOException, WorldEditException {
+    if (!new CheckVariable().check(saveGame, "Game#removeGame(Location)") == true)return;
+    if (!new CheckVariable().check(player, "Game#removeGame(Location)") == true)return;
+    if (!new CheckVariable().check(gameBuilder, "Game#removeGame(Location)") == true)return;
+    if (!new CheckVariable().check(sender, "Game#removeGame(Location)") == true)return;
+    if (!new CheckVariable().check(arena, "Game#removeGame(Location)") == true)return;
     if (saveGame.containsGame(this)) {
+      gameBuilder.saveGameBuilder.gamePlayers.forEach(player -> player.teleport(location));
       sender.resetArena(arena);
       saveGame.removeGame(player.getUniqueId());
       Saver.saveGameBuilder.remove(player.getUniqueId());
@@ -180,13 +202,15 @@ public class Game {
             new BukkitRunnable() {
               @Override
               public void run() {
-                String permission = gameKey;
-                for (Player targets : Bukkit.getOnlinePlayers()) {
-                  if (targets.hasPermission(permission)) {
-                    player.teleport(location);
-                  }
+                try {
+                  removeGame(location);
+                } catch (SoulBossSystemNullException exception) {
+                  new SaveError().saveError(exception, "Game-GameEndTimer-line_206=null");
+                  exception.stacktrace();
+                } catch (IOException | WorldEditException exception) {
+                  new SaveError().saveError(exception, "Game-GameEndTimer-line_206=worldedit_or_io");
+                  exception.printStackTrace();
                 }
-                removeGame();
               }
             }.runTask(BossFightCreator.main());
           }

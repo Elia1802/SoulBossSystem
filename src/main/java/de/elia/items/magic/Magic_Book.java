@@ -5,9 +5,10 @@ import de.elia.api.TheZepserAPI;
 import de.elia.api.components.ComplexItem;
 import de.elia.api.datatypes.Region;
 import de.elia.api.enums.RegionType;
-import de.elia.items.Item;
 import de.elia.api.spells.Spells;
 import de.elia.items.ItemMain;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException.CheckVariable;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -34,14 +35,15 @@ import java.util.List;
 
 import static de.elia.items.ItemMain.MINI_MESSAGE;
 
-public class Magic_Book extends Item implements Listener {
+public class Magic_Book implements Listener {
 
   private static ComplexItem MB;
   private static final Collection<Region> REGIONS = new ArrayList<>();
   private int count;
 
-  public Magic_Book(Plugin plugin){
+  public Magic_Book(Plugin plugin) throws SoulBossSystemNullException {
     if (MB == null) {
+      if (!new CheckVariable().check(plugin, "Magic_Book(Plugin)"))return;
       Bukkit.getPluginManager().registerEvents(this, plugin);
       List<Component> list = new ArrayList<>();
       list.add(MINI_MESSAGE.deserialize("<gray>You can used this book</gray>"));

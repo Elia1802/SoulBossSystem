@@ -5,6 +5,8 @@ import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import de.elia.api.itembuilder.ItemBuilder;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
+import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException.CheckVariable;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -31,7 +33,7 @@ public class BreakBlock {
 
   private final Plugin plugin;
 
-  public BreakBlock(Plugin plugin) {
+  public BreakBlock(@NotNull Plugin plugin) {
     this.plugin = plugin;
   }
 
@@ -105,7 +107,8 @@ public class BreakBlock {
    * @description Gives the {@link Entity} that has the {@link NamespacedKey} the ability to mine a {@link Block}.
    * @param namespacedKey Requires the {@link NamespacedKey} of the {@link Entity}
    */
-  public void breakTask(NamespacedKey namespacedKey){
+  public void breakTask(NamespacedKey namespacedKey) throws SoulBossSystemNullException {
+    if (!new CheckVariable().check(namespacedKey, "BreakBlock#give(NamespacedKey)"))return;
     new BukkitRunnable() {
       @Override
       public void run() {

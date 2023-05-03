@@ -1,9 +1,9 @@
 package de.elia.bossfightcreator;
 
+import com.sk89q.worldedit.WorldEditException;
 import de.elia.PluginInstances;
 import de.elia.PluginMain;
-import de.elia.PluginLogger;
-import de.elia.bossfightcreator.builder.save.Saver;
+import de.elia.systemclasses.logging.PluginLogger;
 import de.elia.bossfightcreator.load.start.StartPlugin;
 import de.elia.bossfightcreator.load.stop.StopPlugin;
 import de.elia.bossfightcreator.world.WorldMain;
@@ -12,6 +12,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,12 +41,10 @@ public class BossFightCreator {
    * @description Load the Plugin
    * @param plugin Requires the main Main class
    */
-  public void enable(JavaPlugin plugin){
+  public void enable(JavaPlugin plugin) throws IOException, WorldEditException, FileNotFoundException {
     bossFightCreator = this;
     worldMain = new WorldMain(plugin);
     StartPlugin.start(plugin);
-    Saver.SaveGame.loadMap();
-    Saver.SaveGameBuilder.loadMap();
   }
 
   /**

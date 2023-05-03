@@ -26,20 +26,17 @@ public class PasteArena {
    * @param world Requires a {@link BukkitWorld}
    * @param clipboard Requires a {@link Clipboard}
    */
-  public void pasteArena(BukkitWorld world, Clipboard clipboard){
-    try (EditSession session = WorldEdit.getInstance().newEditSession(world)) {
-      Operation operation = new ClipboardHolder(clipboard)
-        .createPaste(session)
-        .to(BlockVector3.at(
-          clipboard.getOrigin().getX(),
-          clipboard.getOrigin().getY(),
-          clipboard.getOrigin().getZ()
-        ))
-        .ignoreAirBlocks(false)
-        .build();
-      Operations.complete(operation);
-    }catch (WorldEditException exception) {
-      exception.printStackTrace();
-    }
+  public void pasteArena(BukkitWorld world, Clipboard clipboard) throws WorldEditException {
+    EditSession session = WorldEdit.getInstance().newEditSession(world);
+    Operation operation = new ClipboardHolder(clipboard)
+      .createPaste(session)
+      .to(BlockVector3.at(
+        clipboard.getOrigin().getX(),
+        clipboard.getOrigin().getY(),
+        clipboard.getOrigin().getZ()
+      ))
+      .ignoreAirBlocks(false)
+      .build();
+    Operations.complete(operation);
   }
 }
