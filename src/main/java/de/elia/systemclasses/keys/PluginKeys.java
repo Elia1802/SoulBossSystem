@@ -1,5 +1,6 @@
-package de.elia;
+package de.elia.systemclasses.keys;
 
+import de.elia.PluginMain;
 import org.bukkit.NamespacedKey;
 
 /**

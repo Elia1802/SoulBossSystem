@@ -1,6 +1,8 @@
-package de.elia;
+package de.elia.systemclasses.messages;
 
+import de.elia.systemclasses.messages.prefix.PluginPrefix;
 import de.elia.api.messages.builder.MessageBuilder;
+import de.elia.systemclasses.logging.PluginLogger;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;

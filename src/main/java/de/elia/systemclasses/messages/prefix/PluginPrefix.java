@@ -1,6 +1,7 @@
-package de.elia;
+package de.elia.systemclasses.messages.prefix;
 
 import de.elia.api.messages.prefix.PrefixClass;
+import de.elia.systemclasses.logging.PluginLogger;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.jetbrains.annotations.NotNull;

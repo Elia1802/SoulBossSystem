@@ -1,4 +1,4 @@
-package de.elia;
+package de.elia.systemclasses.logging.debug;
 
 /**
  * @author Elia
