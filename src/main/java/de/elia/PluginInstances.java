@@ -4,6 +4,7 @@ import de.elia.api.TheZepserAPIMain;
 import de.elia.bossfightcreator.BossFightCreator;
 import de.elia.items.ItemMain;
 import de.elia.soulboss.SoulBoss;
+import de.elia.systemclasses.logging.PluginLogger;
 
 public class PluginInstances {
 
