@@ -1,9 +1,8 @@
-package de.elia.items.other;
+package de.elia.items.zombiespawnegg;
 
 import de.elia.api.Complex;
 import de.elia.api.TheZepserAPI;
 import de.elia.api.components.ComplexItem;
-import de.elia.items.Item;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 
@@ -12,10 +11,22 @@ import java.util.List;
 
 import static de.elia.items.ItemMain.MINI_MESSAGE;
 
-public class Zombie_Spawn_Egg extends Item {
+/**
+ * @author Elia
+ * @version 1.0
+ * @since 1.0
+ * @description Create the zombie spawnegg
+ */
+public class Zombie_Spawn_Egg {
 
   private static ComplexItem ZSE;
 
+  /**
+   * @author Elia
+   * @version 1.0
+   * @since 1.0
+   * @description The zombie spawnegg builder
+   */
   public Zombie_Spawn_Egg(){
     if (ZSE == null) {
       List<Component> list = new ArrayList<>();

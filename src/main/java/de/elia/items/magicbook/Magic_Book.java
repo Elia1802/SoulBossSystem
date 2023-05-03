@@ -1,4 +1,4 @@
-package de.elia.items.magic;
+package de.elia.items.magicbook;
 
 import de.elia.api.Complex;
 import de.elia.api.TheZepserAPI;
@@ -35,12 +35,27 @@ import java.util.List;
 
 import static de.elia.items.ItemMain.MINI_MESSAGE;
 
+/**
+ * @author Elia
+ * @version 1.0
+ * @since 1.0
+ * @implements {@link Listener}
+ * @description Create the Magic book
+ */
 public class Magic_Book implements Listener {
 
   private static ComplexItem MB;
   private static final Collection<Region> REGIONS = new ArrayList<>();
   private int count;
 
+  /**
+   * @author Elia
+   * @version 1.0
+   * @since 1.0
+   * @throws SoulBossSystemNullException
+   * @description The Magic book builder
+   * @param plugin Requires a instance of the Plugin (is Plugin null generate exception)
+   */
   public Magic_Book(Plugin plugin) throws SoulBossSystemNullException {
     if (MB == null) {
       if (!new CheckVariable().check(plugin, "Magic_Book(Plugin)"))return;
@@ -48,7 +63,7 @@ public class Magic_Book implements Listener {
       List<Component> list = new ArrayList<>();
       list.add(MINI_MESSAGE.deserialize("<gray>You can used this book</gray>"));
       list.add(MINI_MESSAGE.deserialize("<gray>to cast spells.</gray>"));
-      Component name = MINI_MESSAGE.deserialize("<obfuscated>#</obfuscated> <dark_purple>Magic Book<dark_purple> <obfuscated>#</obfuscated>");
+      Component name = MINI_MESSAGE.deserialize("<obfuscated>#</obfuscated> <dark_purple>Magic Book</dark_purple> <obfuscated>#</obfuscated>");
       MB = TheZepserAPI.item.create(Material.BOOK, name, list)
         .setCustomModelData(1)
         .setKey(Complex.MAGIC_BOOK)
@@ -61,6 +76,13 @@ public class Magic_Book implements Listener {
     }
   }
 
+  /**
+   * @author Elia
+   * @version 1.0
+   * @since 1.0
+   * @implements {@link Listener}
+   * @description The function of the li
+   */
   @EventHandler
   public void onRightClick(@NotNull PlayerInteractEvent event){
     if (event.getAction().isRightClick()) {
@@ -89,7 +111,7 @@ public class Magic_Book implements Listener {
               for (LivingEntity entity : livingEntities) {
                 if (entity instanceof Player player) {
                   double currentHealth = player.getHealth();
-                  double newHealth = currentHealth + 0.5;
+                  double newHealth = currentHealth + 1;
                   player.setHealth(Math.min(newHealth, player.getHealthScale()));
                   player.playSound(player.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_HIT, 0.7f, 0.2f);
                 }
