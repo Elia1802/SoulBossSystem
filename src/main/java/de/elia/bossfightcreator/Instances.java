@@ -1,7 +1,7 @@
 package de.elia.bossfightcreator;
 
 import de.elia.PluginMain;
-import de.elia.PluginMessages;
+import de.elia.systemclasses.messages.PluginMessages;
 import de.elia.api.configuration.SoulConfiguration;
 import org.bukkit.World;
 import org.jetbrains.annotations.NotNull;

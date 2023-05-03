@@ -2,7 +2,7 @@ package de.elia.api;
 
 import de.elia.PluginInstances;
 import de.elia.PluginMain;
-import de.elia.PluginLogger;
+import de.elia.systemclasses.logging.PluginLogger;
 import de.elia.api.spells.spells.gravitation.GRAVITATION_SUPER;
 import de.elia.api.spells.spells.weather.WEATHER_DEFENSE;
 import de.elia.api.spells.spells.weather.WEATHER_SUPER;

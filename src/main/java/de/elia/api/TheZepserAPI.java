@@ -1,9 +1,8 @@
 package de.elia.api;
 
 import de.elia.PluginInstances;
-import de.elia.PluginPrefix;
-import de.elia.PluginMain;
-import de.elia.PluginLogger;
+import de.elia.systemclasses.messages.prefix.PluginPrefix;
+import de.elia.systemclasses.logging.PluginLogger;
 import de.elia.api.components.ComplexItem;
 import de.elia.api.components.ComplexItemKeyConstructer;
 import de.elia.api.components.DamageBlocked;

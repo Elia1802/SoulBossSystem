@@ -1,6 +1,6 @@
 package de.elia.soulboss.commands.mob;
 
-import de.elia.PluginMessages;
+import de.elia.systemclasses.messages.PluginMessages;
 import de.elia.bossfightcreator.BossFightCreator;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

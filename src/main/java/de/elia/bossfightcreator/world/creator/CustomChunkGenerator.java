@@ -1,10 +1,7 @@
 package de.elia.bossfightcreator.world.creator;
 
-import de.elia.PluginLogger;
 import de.elia.bossfightcreator.BossFightCreator;
-import de.elia.bossfightcreator.world.WorldMain;
 import de.elia.bossfightcreator.world.settings.WorldSettings;
-import de.elia.soulboss.SoulBoss;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.generator.ChunkGenerator;

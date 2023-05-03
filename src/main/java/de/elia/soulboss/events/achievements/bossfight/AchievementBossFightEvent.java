@@ -1,6 +1,6 @@
 package de.elia.soulboss.events.achievements.bossfight;
 
-import de.elia.PluginKeys;
+import de.elia.systemclasses.keys.PluginKeys;
 import de.elia.soulboss.SoulBoss;
 import de.elia.soulboss.achievement.process.BossFightAchievements;
 import de.elia.soulboss.achievement.storage.BossFightAchievementStorage;

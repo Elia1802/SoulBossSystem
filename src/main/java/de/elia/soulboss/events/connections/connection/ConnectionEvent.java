@@ -1,6 +1,6 @@
 package de.elia.soulboss.events.connections.connection;
 
-import de.elia.PluginMessages;
+import de.elia.systemclasses.messages.PluginMessages;
 import de.elia.bossfightcreator.BossFightCreator;
 import de.elia.soulboss.SoulBoss;
 import org.bukkit.entity.Player;

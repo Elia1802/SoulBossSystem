@@ -1,7 +1,7 @@
 package de.elia.soulboss.commands.help;
 
 import de.elia.soulboss.SoulBoss;
-import de.elia.PluginMessages;
+import de.elia.systemclasses.messages.PluginMessages;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.command.Command;

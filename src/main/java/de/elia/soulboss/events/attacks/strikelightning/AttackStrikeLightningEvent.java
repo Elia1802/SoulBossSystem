@@ -1,6 +1,6 @@
 package de.elia.soulboss.events.attacks.strikelightning;
 
-import de.elia.PluginKeys;
+import de.elia.systemclasses.keys.PluginKeys;
 import de.elia.soulboss.entity.mobs.boss.magic.attack.Attack;
 import io.papermc.paper.event.entity.EntityMoveEvent;
 import org.bukkit.entity.EntityType;

@@ -1,6 +1,6 @@
 package de.elia.soulboss.commands.world;
 
-import de.elia.PluginMessages;
+import de.elia.systemclasses.messages.PluginMessages;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
