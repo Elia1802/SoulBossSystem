@@ -25,6 +25,8 @@ dependencies {
   paperDevBundle("1.19.4-R0.1-SNAPSHOT")
   compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.8-SNAPSHOT")
   compileOnly("de.elia.api:SoullLibrary:1.0.1")
+  implementation("org.apache.logging.log4j:log4j-api:2.20.0")
+  implementation("org.apache.logging.log4j:log4j-core:2.20.0")
   paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.19.4-R0.1-SNAPSHOT")
   // paperweightDevBundle("com.example.paperfork", "1.19.4-R0.1-SNAPSHOT")
 
