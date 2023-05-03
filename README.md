@@ -11,7 +11,7 @@ Am besten macht ihr das an den unten stehenden Discord.
 
 **Informationen über dieses Plugins:**
 
-  Version: 1.0.0
+  Version: 1.0.0.pre1
 
   Server Version: 1.19.4
 
@@ -19,7 +19,9 @@ Am besten macht ihr das an den unten stehenden Discord.
 
   Benötigte Plugins:
 
-    soulmain-1.2.jar
+    SoullLibrary-1.0.1.jar
+    
+    worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar
 
     worldguard-bukkit-7.0.8-SNAPSHOT-dist.jar
 
@@ -76,7 +78,7 @@ or improvements. The best way to do this is on the Discord below.
 
 **Information about this Plugin**
 
-  Version: 1.0.0
+  Version: 1.0.0.pre1
   
   Server Version: 1.19.4
   
@@ -84,7 +86,9 @@ or improvements. The best way to do this is on the Discord below.
 
   Required plugins:
   
-      soulmain-1.2.jar
+      SoullLibrary-1.0.1.jar
+      
+      worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar
   
       worldguard-bukkit-7.0.8-SNAPSHOT-dist.jar
 
@@ -101,7 +105,7 @@ or improvements. The best way to do this is on the Discord below.
     /soulboss
       description: Admins can use it to read information about the plugin.
 
-  **Rechte**:
+  **Permissions**:
 
     soulboss.admin
       description: If the player has this permission, he can do anything.
@@ -113,7 +117,7 @@ or improvements. The best way to do this is on the Discord below.
     soulboss.spawn
       description: With this permission, players can spawn the boss.
 
-  **Erfolge**:
+  **Achievements**:
 
     Bossfight:
       Target: Beat a boss for the first time!
