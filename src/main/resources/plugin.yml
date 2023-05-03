@@ -1,7 +1,7 @@
 name: SoulBossSystem
 author: Elia, D1p4k, Zopnote
 main: de.elia.PluginMain
-depend:
+softdepend:
   - WorldGuard
   - SoulLibrary
 version: 1.0.0.pre.1
