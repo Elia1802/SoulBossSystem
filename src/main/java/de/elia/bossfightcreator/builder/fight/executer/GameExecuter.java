@@ -3,7 +3,6 @@ package de.elia.bossfightcreator.builder.fight.executer;
 import de.elia.systemclasses.logging.PluginLogger.SaveError;
 import de.elia.systemclasses.logging.exceptions.SoulBossSystemLoadException;
 import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
-import de.elia.systemclasses.messages.PluginMessages;
 import de.elia.systemclasses.keys.PluginKeys;
 import de.elia.api.Complex;
 import de.elia.api.TheZepserAPI;
@@ -71,7 +70,6 @@ public class GameExecuter implements Listener, CommandExecutor, TabCompleter {
     ArenaSender sender = new ArenaSender();
     Player player = event.getPlayer();
     MiniMessage miniMessage = SoulBoss.soulBoss().miniMessage();
-    PluginMessages message = new PluginMessages();
     SpawnEgg spawnEgg = new SpawnEgg(this.plugin);
     if (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) {
       if (TheZepserAPI.item.hasKey(event.getItem(), TheZepserAPI.item.createKey(Complex.ZOMBIE_SPAWN_EGG))) {

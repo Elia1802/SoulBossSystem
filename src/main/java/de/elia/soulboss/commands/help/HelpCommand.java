@@ -43,20 +43,20 @@ public class HelpCommand implements CommandExecutor, TabCompleter {
     if (sender instanceof Player player) {
       if (args.length == 1) {
         if (args[0].equalsIgnoreCase("bosses")) {
-          Component component1 = miniMessage.deserialize("<click:open_url:https://github.com/Elia1802/Bossfight-Information/blob/main/Erkl%C3%A4rungen/Bosse/Zombie.txt><green>Öffne</green></click>");
-          Component component2 = miniMessage.deserialize("<aqua> um die Informationen der Bosse zu bekommen.</aqua>");
+          Component component1 = miniMessage.deserialize("<click:open_url:https://github.com/Elia1802/Bossfight-Information/blob/main/Erkl%C3%A4rungen/Bosse/Zombie.txt><aqua>Öffne</aqua></click>");
+          Component component2 = miniMessage.deserialize("<gray> um die Informationen der Bosse zu bekommen.</gray>");
           message.messageWithPrefix(player, component1.append(component2));
         }else if (args[0].equalsIgnoreCase("commands")) {
-          Component component1 = miniMessage.deserialize("<click:open_url:https://github.com/Elia1802/Bossfight-Information/blob/main/Erkl%C3%A4rungen/Commands/Commands.txt><green>Öffne</green></click>");
-          Component component2 = miniMessage.deserialize("<aqua> um die Informationen über die Commands zu bekommen.</aqua>");
+          Component component1 = miniMessage.deserialize("<click:open_url:https://github.com/Elia1802/Bossfight-Information/blob/main/Erkl%C3%A4rungen/Commands/Commands.txt><aqua>Öffne</aqua></click>");
+          Component component2 = miniMessage.deserialize("<gray> um die Informationen über die Commands zu bekommen.</gray>");
           message.messageWithPrefix(player, component1.append(component2));
         }else if (args[0].equalsIgnoreCase("items")) {
-          Component component1 = miniMessage.deserialize("<click:open_url:https://github.com/Elia1802/Bossfight-Information/blob/main/Erkl%C3%A4rungen/Items/Items.txt><green>Öffne</green></click>");
-          Component component2 = miniMessage.deserialize("<aqua> um die Informationen über die Items zu bekommen.</aqua>");
+          Component component1 = miniMessage.deserialize("<click:open_url:https://github.com/Elia1802/Bossfight-Information/blob/main/Erkl%C3%A4rungen/Items/Items.txt><aqua>Öffne</aqua></click>");
+          Component component2 = miniMessage.deserialize("<gray> um die Informationen über die Items zu bekommen.</gray>");
           message.messageWithPrefix(player, component1.append(component2));
         }else if (args[0].equalsIgnoreCase("recipes")) {
-          Component component1 = miniMessage.deserialize("<click:open_url:https://github.com/Elia1802/Bossfight-Information/blob/main/Erkl%C3%A4rungen/Rezept/Zombie%20SpawnEgg%20Rezept.png><green>Öffne</green></click>");
-          Component component2 = miniMessage.deserialize("<aqua> um die Rezepte für die Items zu bekommen.</aqua>");
+          Component component1 = miniMessage.deserialize("<click:open_url:https://github.com/Elia1802/Bossfight-Information/blob/main/Erkl%C3%A4rungen/Rezept/Zombie%20SpawnEgg%20Rezept.png><aqua>Öffne</aqua></click>");
+          Component component2 = miniMessage.deserialize("<gray> um die Rezepte für die Items zu bekommen.</gray>");
           message.messageWithPrefix(player, component1.append(component2));
         }else {
           message.messageWithPrefix(player, message.red("Dieser Command existiert nicht!"));
@@ -70,7 +70,7 @@ public class HelpCommand implements CommandExecutor, TabCompleter {
         return false;
       }
     }else {
-      message.log(Level.WARNING, "You have to be a Player!");
+      SoulBoss.soulBoss().soulBossLogger().logWarning("You have to be a Player!");
       return false;
     }
     return true;

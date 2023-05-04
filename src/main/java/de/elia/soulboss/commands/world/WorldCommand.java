@@ -1,5 +1,6 @@
 package de.elia.soulboss.commands.world;
 
+import de.elia.soulboss.SoulBoss;
 import de.elia.systemclasses.messages.PluginMessages;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -12,7 +13,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
 
 /**
  /**
@@ -43,10 +43,14 @@ public class WorldCommand implements CommandExecutor, TabCompleter {
         if (args.length == 1) {
           if (args[0].equalsIgnoreCase("world_bossfight")) {
             player.teleport(Bukkit.getWorld("world_bossfight").getSpawnLocation());
-            messages.messageWithPrefix(player, messages.aqua("Du wurdest in die Welt world_bossfight teleportiert!"));
+            messages.messageWithPrefix(player, messages.gray("Du wurdest in die Welt ")
+              .append(messages.aqua("world_bossfight"))
+              .append(messages.gray(" teleportiert!")));
           }else if (args[0].equalsIgnoreCase("world")) {
             player.teleport(Bukkit.getWorld("world").getSpawnLocation());
-            messages.messageWithPrefix(player, messages.aqua("Du wurdest in die Welt world teleportiert!"));
+            messages.messageWithPrefix(player, messages.gray("Du wurdest in die Welt ")
+              .append(messages.aqua("world"))
+              .append(messages.gray(" teleportiert!")));
           }else {
             messages.messageWithPrefix(player, messages.red("Dieser Command existiert nicht!"));
           }
@@ -58,7 +62,7 @@ public class WorldCommand implements CommandExecutor, TabCompleter {
         messages.messageWithPrefix(player, messages.red("Du hast keine Rechte für diesen Command!"));
       }
     }else {
-      messages.log(Level.WARNING, "You have to be a Player!");
+      SoulBoss.soulBoss().soulBossLogger().logWarning("You have to be a Player!");
     }
     return true;
   }

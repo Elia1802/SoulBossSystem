@@ -49,17 +49,17 @@ public class PluginCommand implements CommandExecutor, TabCompleter {
     if (sender instanceof Player player) {
       if (args.length == 1) {
         if (args[0].equalsIgnoreCase("author")) {
-          message.messageWithPrefix(player, message.aqua("Die Authoren dieses Plugins sind ").append(message.green(thisPlugin.author())));
+          message.messageWithPrefix(player, message.gray("Die Authoren dieses Plugins sind ").append(message.aqua(thisPlugin.author())));
         }else if (args[0].equalsIgnoreCase("description")) {
-          message.messageWithPrefix(player, message.aqua(thisPlugin.description()));
+          message.messageWithPrefix(player, message.gray(thisPlugin.description()));
         }else if (args[0].equalsIgnoreCase("github")) {
           message.messageWithPrefix(player, message.red("/soulboss github code"));
           message.messageWithPrefix(player, message.red("/soulboss github help"));
         }else if (args[0].equalsIgnoreCase("permissions")) {
           if (player.hasPermission("soulboss.plugin")) {
-            message.messageWithPrefix(player, message.green("soulboss.plugin").append(message.gray(" = ")).append(message.aqua("Gibt alle Berechtigungen um das Plugin zu steuern.")));
-            message.messageWithPrefix(player, message.green("soulboss.give").append(message.gray(" = ")).append(message.aqua("Gibt die Berechtigung den /bossgive Command zu benutzen.")));
-            message.messageWithPrefix(player, message.green("soulboss.fight").append(message.gray(" = ")).append(message.aqua("Gibt die Berechtigung den /bossfight Command zu benutzen.")));
+            message.messageWithPrefix(player, message.aqua("soulboss.plugin").append(message.gray(" = ")).append(message.aqua("Gibt alle Berechtigungen um das Plugin zu steuern.")));
+            message.messageWithPrefix(player, message.aqua("soulboss.give").append(message.gray(" = ")).append(message.aqua("Gibt die Berechtigung den /bossgive Command zu benutzen.")));
+            message.messageWithPrefix(player, message.aqua("soulboss.fight").append(message.gray(" = ")).append(message.aqua("Gibt die Berechtigung den /bossfight Command zu benutzen.")));
           }else {
             message.messageWithPrefix(player, message.red("Du hast keine Berechtigung für diesen Command!"));
             return false;
@@ -84,12 +84,12 @@ public class PluginCommand implements CommandExecutor, TabCompleter {
       }else if (args.length == 2) {
         if (args[0].equalsIgnoreCase("github")) {
           if (args[1].equalsIgnoreCase("code")) {
-            Component component1 = miniMessage.deserialize("<click:open_url:https://github.com/Elia1802/BossFight><green>Clicke hier</green></click>");
-            Component component2 = miniMessage.deserialize("<aqua> den Open-Source-Code von Soulboss zu sehen!</aqua>");
+            Component component1 = miniMessage.deserialize("<click:open_url:https://github.com/Elia1802/BossFight><aqua>Clicke hier</aqua></click>");
+            Component component2 = miniMessage.deserialize("<gray> den Open-Source-Code von Soulboss zu sehen!</gray>");
             message.messageWithPrefix(player, component1.append(component2));
           } else if (args[1].equalsIgnoreCase("help")) {
-            Component component1 = miniMessage.deserialize("<click:open_url:https://github.com/Elia1802/Bossfight-Help><green>Clicke hier</green></click>");
-            Component component2 = miniMessage.deserialize("<aqua> die Hilfs-Reposity von Soulboss zu sehen!</aqua>");
+            Component component1 = miniMessage.deserialize("<click:open_url:https://github.com/Elia1802/Bossfight-Help><aqua>Clicke hier</aqua></click>");
+            Component component2 = miniMessage.deserialize("<gray> die Hilfs-Reposity von Soulboss zu sehen!</gray>");
             message.messageWithPrefix(player, component1.append(component2));
           }
         }else if (args[0].equalsIgnoreCase("reload")) {
@@ -97,23 +97,23 @@ public class PluginCommand implements CommandExecutor, TabCompleter {
             message.messageWithPrefix(player, message.red("/soulboss reload configuration"));
             message.messageWithPrefix(player, message.red("/soulboss reload plugin"));
             if (args[1].equalsIgnoreCase("configuration")) {
-              message.messageWithPrefix(player, message.gold("Alle Configurations werden neu geladen!"));
+              message.messageWithPrefix(player, message.gray("Alle Configurations werden neu geladen!"));
               try {
                 SoulBoss.soulBoss().reloadConfiguration(SoulBoss.main());
               } catch (SoulBossSystemNullException exception) {
                 new SaveError().saveError(exception, "PluginCommand-onCommand-line_102=null");
                 exception.stacktrace();
               }
-              message.messageWithPrefix(player, message.green("Alle Configurations wurden neu geladen!"));
+              message.messageWithPrefix(player, message.gray("Alle Configurations wurden neu geladen!"));
             } else if (args[1].equalsIgnoreCase("plugin")) {
-              message.messageWithPrefix(player, message.gold("Das Plugin wird neu geladen!"));
+              message.messageWithPrefix(player, message.gray("Das Plugin wird neu geladen!"));
               try {
                 SoulBoss.soulBoss().reload(SoulBoss.main());
               } catch (SoulBossSystemNullException exception) {
                 new SaveError().saveError(exception, "PluginCommand-onCommand-line_111=null");
                 exception.stacktrace();
               }
-              message.messageWithPrefix(player, message.green("Das Plugin wurde neu geladen!"));
+              message.messageWithPrefix(player, message.gray("Das Plugin wurde neu geladen!"));
             }
           }else {
             message.messageWithPrefix(player, message.red("Du hast keine Berechtigung für diesen Command!"));
@@ -122,7 +122,7 @@ public class PluginCommand implements CommandExecutor, TabCompleter {
         }else if (args[0].equalsIgnoreCase("stop")) {
           if (player.hasPermission("soulboss.plugin")) {
             if (args[1].equalsIgnoreCase("fights")) {
-              message.messageWithPrefix(player, message.gold("Alle BossFights werden beendet!"));
+              message.messageWithPrefix(player, message.gray("Alle BossFights werden beendet!"));
               Bukkit.getServer().getWorld("world").getEntities().forEach((entity) -> {
                 if (entity.getPersistentDataContainer().has(PluginKeys.ZOMBIE_KEY.key())) {
                   entity.remove();
@@ -139,10 +139,10 @@ public class PluginCommand implements CommandExecutor, TabCompleter {
                 }
               });
               //this.playerRegisterStorage().clear();
-              message.messageWithPrefix(player, message.green("Alle BossFights wurden beendet!"));
-              message.broadcastWithPrefix(message.gold("!ACHTUNG! Alle Bossfights wurden von einem Teammitglied beendet!"));
+              message.messageWithPrefix(player, message.gray("Alle BossFights wurden beendet!"));
+              message.broadcastWithPrefix(message.gray("!ACHTUNG! Alle Bossfights wurden von einem Teammitglied beendet!"));
             } else if (args[1].equalsIgnoreCase("plugin")) {
-              message.messageWithPrefix(player, message.gold("Das Plugin wird beendet!"));
+              message.messageWithPrefix(player, message.gray("Das Plugin wird beendet!"));
               SoulBoss.main().disable();
             }
           }else {
@@ -152,7 +152,7 @@ public class PluginCommand implements CommandExecutor, TabCompleter {
         }
       }
     }else {
-      message.log(Level.WARNING, "You have to be a Player!");
+      SoulBoss.soulBoss().soulBossLogger().logWarning("You have to be a Player!");
       return false;
     }
     return true;

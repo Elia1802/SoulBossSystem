@@ -1,5 +1,6 @@
 package de.elia.soulboss.commands.idea;
 
+import de.elia.soulboss.SoulBoss;
 import de.elia.systemclasses.messages.PluginMessages;
 import de.elia.soulboss.plugin.load.start.register.configuation.ConfigurationLoader;
 import org.bukkit.command.Command;
@@ -44,15 +45,16 @@ public class IdeaCommand implements CommandExecutor {
         if (configurationLoader.ideasStorage().get(player.getName()) == null) {
           String string = idea.toString();
           configurationLoader.ideasStorage().set(player.getName(), string);
-          message.messageWithPrefix(player, message.gold("Du hast die Idee erfolgreich abgesendet!"));
-          message.messageWithPrefix(player, message.red("Deine Idee: " + string));
+          message.messageWithPrefix(player, message.gray("Du hast die Idee erfolgreich abgesendet!"));
+          message.messageWithPrefix(player, message.gray("Deine Idee: "));
+          message.messageWithPrefix(player, message.aqua(string));
         }else {
           message.messageWithPrefix(player, message.red("Du hast eine Idee schon abgegeben!"));
           message.messageWithPrefix(player, message.gold("Eine neue Idee kannst du erst eingeben, wenn ein Teammitglied dein Antrag aus der Configuration ausgelesen hat!"));
         }
       }
     }else {
-      message.log(Level.WARNING, "You have to be a Player!");
+      SoulBoss.soulBoss().soulBossLogger().logWarning("You have to be a Player!");
       return false;
     }
     return true;

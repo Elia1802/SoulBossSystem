@@ -127,7 +127,6 @@ public class GameBuilder {
     saveGameBuilder.gamePlayers.forEach(player -> new BukkitRunnable() {
       @Override
       public void run() {
-        PluginDebbuger.debug(arena.location().getWorld());
         player.teleport(arena.location());
         new SpawnZombieTimer().start(16*20, player, arena.location());
       }
@@ -309,7 +308,7 @@ public class GameBuilder {
     public void sendFinishMessage() throws SoulBossSystemNullException {
       if (!new CheckVariable().check(gameOwner, "GameBuilder#sendFinishMessage()") == true)return;
       message.messageWithPrefix(gameOwner, message.aqua("Bossfight fertig geladen!"));
-      message.messageWithPrefix(gameOwner, message.aqua("Zeit bis zum spawnen: 20sec"));
+      message.messageWithPrefix(gameOwner, message.gray("Zeit bis zum spawnen: ").append(message.aqua("20 Sekunden")));
     }
 
     /**
@@ -320,8 +319,8 @@ public class GameBuilder {
      */
     public void sendTrustConfirmation() throws SoulBossSystemNullException {
       if (!new CheckVariable().check(gameOwner, "GameBuilder#sendTrustConfirmation()") == true)return;
-      message.messageWithPrefix(gameOwner, message.aqua("Gib").append(message.green(" /trustfight [PLAYER_NAME] ")).append(message.aqua("ein um ein Spieler zu trusten fuer den Fight.")));
-      message.messageWithPrefix(gameOwner, message.gray("Dauer: 30sec"));
+      message.messageWithPrefix(gameOwner, message.gray("Gib").append(message.aqua(" /trustfight [PLAYER_NAME] ")).append(message.gray("ein um ein Spieler zu trusten fuer den Fight.")));
+      message.messageWithPrefix(gameOwner, message.gray("Dauer: ").append(message.aqua("30 Sekunden")));
     }
 
     /**
@@ -334,7 +333,7 @@ public class GameBuilder {
       if (!new CheckVariable().check(gameOwner, "GameBuilder#startMessage()") == true)return;
       if (!new CheckVariable().check(gameName, "GameBuilder#startMessaget()") == true)return;
       var log = BossFightCreator.bossFightCreator().bossFightCreatorLogger();
-      message.message(gameOwner, message.aqua("Lade dein Bossfight... ").append(message.gray("(Dauer: 1min)")));
+      message.message(gameOwner, message.gray("Lade dein Bossfight... ").append(message.aqua("(Dauer: 1 Minute)")));
       log.logInfo("Lade ein neuen Bossfight (" + gameName + ") von " + gameOwner.getName() + "...");
     }
 
@@ -347,8 +346,8 @@ public class GameBuilder {
      */
     public void bossSpawnMessage(int time) throws SoulBossSystemNullException {
       if (!new CheckVariable().check(saveGameBuilder, "GameBuilder#bossSpawnMessage(int)") == true)return;
-      String timeMessage = time + "sec";
-      saveGameBuilder.gamePlayers.forEach(player -> message.messageWithPrefix(player, message.gray("Der Boss Spawnt in ").append(message.green(timeMessage))));
+      String timeMessage = time + " Sekunden";
+      saveGameBuilder.gamePlayers.forEach(player -> message.messageWithPrefix(player, message.gray("Der Boss Spawnt in ").append(message.aqua(timeMessage))));
     }
   }
 

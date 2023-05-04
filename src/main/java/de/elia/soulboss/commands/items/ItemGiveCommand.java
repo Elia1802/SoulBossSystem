@@ -1,12 +1,10 @@
 package de.elia.soulboss.commands.items;
 
-import de.elia.PluginInstances;
 import de.elia.systemclasses.logging.PluginLogger.SaveError;
 import de.elia.systemclasses.logging.exceptions.SoulBossSystemIntOutOfRangeException;
 import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
 import de.elia.systemclasses.messages.PluginMessages;
 import de.elia.api.Complex;
-import de.elia.api.TheZepserAPI;
 import de.elia.api.components.ComplexItem;
 import de.elia.items.Item;
 import de.elia.soulboss.SoulBoss;
@@ -60,11 +58,18 @@ public class ItemGiveCommand implements CommandExecutor, TabCompleter {
               } catch (SoulBossSystemNullException exception) {
                 new SaveError().saveError(exception, "ItemGiveCommand-onCommand-line_59=null");
                 exception.stacktrace();
+                return false;
               } catch (SoulBossSystemIntOutOfRangeException exception) {
                 new SaveError().saveError(exception, "ItemGiveCommand-onCommand-line_59=intOutOfRange");
                 exception.stacktrace();
+                return false;
               }
-              commandSender.sendMessage(TheZepserAPI.Prefix.append(miniMessage.deserialize("<gray>Du hast dem Spieler</gray> <aqua>")).append(miniMessage.deserialize(player.getName())).append(miniMessage.deserialize("</aqua> <gray>das Item</gray> <aqua>")).append(miniMessage.deserialize(args[0])).append(miniMessage.deserialize("</aqua> <gray>gegeben!</gray>")));
+              message.messageWithPrefix(player,
+                message.gray("Du hast dem Spieler ")
+                  .append(message.aqua(player.getName()))
+                  .append(message.gray(" das item "))
+                  .append(message.aqua(args[0]))
+                  .append(message.gray(" gegeben")));
               return true;
             }
           }
@@ -74,7 +79,7 @@ public class ItemGiveCommand implements CommandExecutor, TabCompleter {
         return false;
       }
     }else {
-      PluginInstances.SOUL_BOSS_LOGGER.logWarning("You have to be a Player!");
+      SoulBoss.soulBoss().soulBossLogger().logWarning("You have to be a Player!");
       return false;
     }
     return true;

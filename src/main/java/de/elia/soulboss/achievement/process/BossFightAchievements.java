@@ -18,6 +18,7 @@ public class BossFightAchievements {
 
   private final Plugin plugin;
   private final ConfigurationLoader configurationLoader = new ConfigurationLoader();
+  private final PluginMessages messageBuilder = new PluginMessages();
 
   public BossFightAchievements(Plugin plugin) {
     this.plugin = plugin;
@@ -47,8 +48,11 @@ public class BossFightAchievements {
   public void giveAchievement(@NotNull Player player, @NotNull BossFightAchievementStorage achievementStorage) {
     if (!this.hasAchievement(player, achievementStorage)) {
       this.configurationLoader.achievementStorage().set(player.getUniqueId() + ".Achievements." + achievementStorage.dataID(), true);
-      PluginMessages messageBuilder = new PluginMessages();
-      messageBuilder.broadcast(messageBuilder.gradient("aqua", "purple", player.getName() + " hat den BossFight Erfolg " + achievementStorage.getName() + "erreicht"));
+      messageBuilder.message(player,
+        messageBuilder.aqua(player.getName())
+          .append(messageBuilder.gray(" hat den BossFight Erfolg ")
+          .append(messageBuilder.aqua(achievementStorage.getName())
+          .append(messageBuilder.gray(" erreicht")))));
       player.giveExp(achievementStorage.xp());
       player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0F, 1.0F);
     }
@@ -64,10 +68,12 @@ public class BossFightAchievements {
    * @param achievementStorage Requires a Achievement
    */
   public void removeAchievement(@NotNull Player player, @NotNull BossFightAchievementStorage achievementStorage) {
-    PluginMessages messageBuilder = new PluginMessages();
     if (this.hasAchievement(player, achievementStorage)) {
       this.configurationLoader.achievementStorage().set(player.getUniqueId() + ".Achievements." + achievementStorage.dataID(), null);
-      messageBuilder.message(player, messageBuilder.green("Du hast dem Spieler den BossFight Erfolg " + achievementStorage.getName() + "(" + achievementStorage.dataID() + ")" + "abgenommen!"));
+      messageBuilder.message(player,
+        messageBuilder.gray("Du hast dem Spieler den BossFight Erfolg ")
+          .append(messageBuilder.aqua(achievementStorage.getName() + " (" + achievementStorage.dataID() + ") ")
+          .append(messageBuilder.gray("abgenommen!"))));
     } else {
       messageBuilder.message(player, messageBuilder.red("Dieser Spieler hat diesen BossFight Erfolg nicht!"));
     }

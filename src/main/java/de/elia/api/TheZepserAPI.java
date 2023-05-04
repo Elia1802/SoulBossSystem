@@ -1,8 +1,6 @@
 package de.elia.api;
 
-import de.elia.PluginInstances;
 import de.elia.systemclasses.messages.prefix.PluginPrefix;
-import de.elia.systemclasses.logging.PluginLogger;
 import de.elia.api.components.ComplexItem;
 import de.elia.api.components.ComplexItemKeyConstructer;
 import de.elia.api.components.DamageBlocked;
@@ -36,13 +34,12 @@ import java.util.UUID;
 public interface TheZepserAPI {
 
   Component Prefix= new PluginPrefix().prefix();
-  PluginLogger logger = PluginInstances.THE_ZEPSER_API_LOGGER;
   static void registerAPIEvents() {
     Bukkit.getPluginManager().registerEvents(new FlightBlocked(), TheZepserAPIMain.thZepserAPIMain().main());
     Bukkit.getPluginManager().registerEvents(new DamageBlocked(), TheZepserAPIMain.thZepserAPIMain().main());
   }
   static void indicator(int number) {
-    Bukkit.getServer().getLogger().info("Indicator: "+number);
+    TheZepserAPIMain.thZepserAPIMain().theZepserAPILogger().logInfo("Indicator: "+number);
   }
 
   class region {
