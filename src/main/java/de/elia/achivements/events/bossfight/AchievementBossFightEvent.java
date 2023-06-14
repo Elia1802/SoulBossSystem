@@ -1,15 +1,18 @@
-package de.elia.soulboss.events.achievements.bossfight;
+package de.elia.achivements.events.bossfight;
 
+import de.elia.achivements.AchievementMain;
 import de.elia.systemclasses.keys.PluginKeys;
-import de.elia.soulboss.SoulBoss;
-import de.elia.soulboss.achievement.process.BossFightAchievements;
-import de.elia.soulboss.achievement.storage.BossFightAchievementStorage;
+import de.elia.achivements.achievement.process.AchievementClass;
+import de.elia.achivements.achievement.storage.Achievements;
+
 import net.minecraft.world.entity.monster.Zombie;
+
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -21,21 +24,14 @@ import org.jetbrains.annotations.NotNull;
  */
 public class AchievementBossFightEvent implements Listener {
 
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
-   * @description This is the Event for the Achievement BOSSFIGHT.
-   * @param event Requires the {@link EntityDamageByEntityEvent}
-   */
   @EventHandler
-  public void onBossFight(@NotNull EntityDamageByEntityEvent event){
+  public void onBossDamaged(@NotNull EntityDamageByEntityEvent event){
     Entity damagedEntity = event.getDamager();
     Entity damagerEntity = event.getEntity();
     if (damagerEntity instanceof Player player) {
       if (damagedEntity instanceof Zombie) {
         if (damagedEntity.getPersistentDataContainer().has(PluginKeys.ZOMBIE_KEY.key())) {
-          new BossFightAchievements(SoulBoss.main()).giveAchievement(player, BossFightAchievementStorage.BOSSFIGHT);
+          new AchievementClass(AchievementMain.achievementMain().main()).giveAchievement(player, Achievements.BOSSFIGHT);
         }
       }
     }
