@@ -1,36 +1,42 @@
 name: SoulBossSystem
-author: Elia, D1p4k, Zopnote
 main: de.elia.PluginMain
-softdepend:
+depend:
   - WorldGuard
   - SoulLibrary
-version: 1.0.0.pre.1
 api-version: 1.19
+version: 1.0.0.pre.1
+author: Elia, D1p4k, Zopnote, Sinan
 description: This plugin was written for SoulSMP. I put a lot of effort into it and I hope you really like it.
              I know this plugin changes the entire server, but sometimes a change is important. This plugin 
              ensures that you can earn your own bossfight. But since I still need a lot of ideas, feel free 
              to write an idea with the command /mobidea an idea.
 permissions:
-  soulboss.give:
-    description: If the player has this permission, he can execute the bossgive command.
-  soulboss.plugin:
-    description: With this permission, players can query all important information from this plugin.
-  soulboss.fight:
-    description: With this permission, players can spawn the boss.
-  soulboss.world:
-    description: With this permission you can teleport in the bossfight world.
+  soulbosssystem:
+    achievement:
+      give:
+    bossfightgenerator:
+      tpworld:
+    items:
+      give:
+    plugin:
 commands:
-  bosshelp:
-    description: Here every player can get all the information from the recipes, commands and the bosses.
-  mobidea:
-    description: The player can submit ideas for improvements or extensions of this plugin.
-  bossgive:
-    description: Gives the player the items he selects.
-  bossfight:
-    description: Players can use it to start the bossfight (or use the spawn egg method).
-  soulboss:
-    description: Players can use it to read information about the plugin.
-  tpworld:
-    description: Teleport the player in a other world.
-  trustplayer:
-    description: Trusted a player for a bossfight!
+  achievementgive:
+    description: The achievementgive command give the player a specify achievement
+  achievementhelp:
+    description: The achievementhelp command send the player a help about the achievement plugin in this plugin
+  bossfightcreatorhelp:
+    description: The bossfightcreatorhelp command send the player a help about the bossfightcreator plugin in this Plugin
+  bossfightcreatorworld:
+    description: The bossfightcreatorworld teleported a specify player in the worlds of this plugin and back to the normal world
+  bossfightcreatoraddplayer:
+    description: A command to add another player to your game
+  itemhelp:
+    description: The itemhelp command send the player a help about the item plugin in this plugin
+  itemgive:
+    description: The itemgive command give the player a specify item
+  soulbosssystemhelp:
+    description: Send a help about all plugins in this plugin
+  soulbosssystemidea:
+    description: The Player can send a idea for the team.
+  soulbosssystem:
+    description: All information about this Plugin and all functions to reload or restart this plugin
