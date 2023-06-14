@@ -2,13 +2,15 @@ package de.elia.soulboss;
 
 import de.elia.PluginInstances;
 import de.elia.PluginMain;
-import de.elia.systemclasses.logging.PluginLogger;
-import de.elia.soulboss.plugin.load.Load;
-import de.elia.soulboss.plugin.load.stop.disable.Disable;
-import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
+import de.elia.api.logging.PluginLogger;
+import de.elia.soulboss.utils.UtilsLoader;
+import de.elia.systemclasses.keys.PluginKeys;
+
 import net.kyori.adventure.text.minimessage.MiniMessage;
+
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -19,48 +21,23 @@ import org.jetbrains.annotations.NotNull;
  */
 public class SoulBoss {
 
-  private final Load loader = new Load();//the loader of this Plugin
   private final MiniMessage miniMessage = MiniMessage.miniMessage();//Gets the MiniMessage API.
   private static SoulBoss soulboss;
-
-  public SoulBoss(){
-    //...
-  }
 
   /**
    * @author Elia
    * @version 1.0
    * @since 1.0
    * @description Load the Plugin SoulBoss
-   * @param plugin Requires the main Main class of this Plugin
+   * @param main Requires the main Main class of this Plugin
    */
-  public void enable(@NotNull JavaPlugin plugin) throws SoulBossSystemNullException {
+  public void enable(@NotNull JavaPlugin main){
+    this.soulBossLogger().logInfo("Load SoulBoss...");
     soulboss = this;
-    loader.loadPlugin(plugin, Bukkit.getPluginManager());
-  }
-
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
-   * @description Reloaded this Plugin
-   * @param plugin Requires the main Main class of this Plugin
-   */
-  public void reload(@NotNull JavaPlugin plugin) throws SoulBossSystemNullException {
-    soulboss = this;
-    loader.reloadPlugin(plugin, Bukkit.getPluginManager());
-  }
-
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
-   * @description Reloaded the Configurations of this Plugin
-   * @param plugin Requires the main Main class of this Plugin
-   */
-  public void reloadConfiguration(@NotNull JavaPlugin plugin) throws SoulBossSystemNullException {
-    soulboss = this;
-    loader.reloadConfiguration(plugin);
+    this.soulBossLogger().logInfo("Load utils...");
+    UtilsLoader.loadUtils(main);
+    this.soulBossLogger().logInfo("Utils loaded!");
+    this.soulBossLogger().logInfo("SoulBoss loaded!");
   }
 
   /**
@@ -68,10 +45,15 @@ public class SoulBoss {
    * @version 1.0
    * @since 1.0
    * @description Disabled this Plugin
-   * @param plugin Requires the main Main class of this Plugin
+   * @param main Requires the main Main class of this Plugin
    */
-  public void disable(@NotNull JavaPlugin plugin) throws SoulBossSystemNullException {
-    new Disable().disable(plugin);
+  public void disable(@NotNull JavaPlugin main) {
+    Bukkit.getServer().getWorld("world_bossfight").getEntities().forEach((entity) ->{
+      if (entity.getPersistentDataContainer().has(PluginKeys.ZOMBIE_KEY.key())) {
+        entity.remove();
+      }
+    });
+    Bukkit.removeRecipe(PluginKeys.RECIPE_KEY.key());
   }
 
   /**
@@ -93,6 +75,7 @@ public class SoulBoss {
    * @description a Instance of this Class
    * @return {@link SoulBoss}
    */
+  @NotNull
   public static SoulBoss soulBoss() {
     return soulboss;
   }
