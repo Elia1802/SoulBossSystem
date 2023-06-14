@@ -4,9 +4,9 @@ import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.managers.RegionManager;
+
 import de.elia.api.itembuilder.ItemBuilder;
-import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
-import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException.CheckVariable;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -18,6 +18,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -25,8 +26,8 @@ import java.util.List;
 
 /**
  * @author Elia
- * @version 1.0
- * @since 1.0
+ * @version 1.0.0.pre1
+ * @since 1.0.0.pre1
  * @description This is the BreakBlock Class. It allows a specific mob to mine blocks.
  */
 public class BreakBlock {
@@ -39,8 +40,8 @@ public class BreakBlock {
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description Gets all Entitys of the current world
    * @return entityList
    */
@@ -53,8 +54,8 @@ public class BreakBlock {
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description Queries if the block is in a secure region.
    * @param location Requires the Location
    * @return
@@ -69,8 +70,8 @@ public class BreakBlock {
   /**
    * @author D1p4k
    * @modifiedOf Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description Break a block in a specify {@link Location}
    * @param location Requires the Location of the Block
    * @param chance Requires a Chance if break the block
@@ -86,8 +87,8 @@ public class BreakBlock {
   /**
    * @author D1p4k
    * @modifiedOf Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description Break a specify {@link Block}
    * @param block Requires the specify {@link Block}
    * @param chance Requires a Chance if break the block
@@ -102,13 +103,12 @@ public class BreakBlock {
   /**
    * @author D1p4k
    * @modifiedOf Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description Gives the {@link Entity} that has the {@link NamespacedKey} the ability to mine a {@link Block}.
    * @param namespacedKey Requires the {@link NamespacedKey} of the {@link Entity}
    */
-  public void breakTask(NamespacedKey namespacedKey) throws SoulBossSystemNullException {
-    if (!new CheckVariable().check(namespacedKey, "BreakBlock#give(NamespacedKey)"))return;
+  public void breakTask(NamespacedKey namespacedKey){
     new BukkitRunnable() {
       @Override
       public void run() {

@@ -1,53 +1,48 @@
 package de.elia.items;
 
-import de.elia.api.Complex;
-import de.elia.api.components.ComplexItem;
-import de.elia.items.magicbook.Magic_Book;
-import de.elia.items.zombiespawnegg.Zombie_Spawn_Egg;
-import de.elia.systemclasses.logging.exceptions.SoulBossSystemIntOutOfRangeException;
-import de.elia.systemclasses.logging.exceptions.SoulBossSystemIntOutOfRangeException.Check;
-import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
-import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException.CheckVariable;
+import de.elia.api.thezepserapi.Complex;
+import de.elia.api.thezepserapi.components.ComplexItem;
+import de.elia.items.items.magicbook.Magic_Book;
+import de.elia.items.items.zombiespawnegg.Zombie_Spawn_Egg;
+
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
  * @author Elia
- * @version 1.0
- * @since 1.0
+ * @version 1.0.0.pre1
+ * @since 1.0.0.pre1
  * @description This class register all items and has methodes to drop/give/get a item
  */
 public class Item {
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description Register all items
    * @param plugin  Requires a instance of the main class
-   * @throws SoulBossSystemNullException Generate a exception if plugin null of Magic_Book
    */
-  public static void registerAll(@NotNull Plugin plugin) throws SoulBossSystemNullException {
+  public static void registerAll(@NotNull Plugin plugin){
     new Zombie_Spawn_Egg();
     new Magic_Book(plugin);
   }
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description Gets a item
    * @param item
    * @return The item was saved in a {@link ComplexItem#SAVED}
-   * @throws SoulBossSystemNullException Generate a exception if item null
    * @throws CloneNotSupportedException Generate a exception if the object cannot cloned
    */
   @Nullable
-  public static ComplexItem get(Complex item) throws SoulBossSystemNullException, CloneNotSupportedException {
-    if (!new CheckVariable().check(item, "Item#get(Complex)"))return null;
+  public static ComplexItem get(Complex item) throws CloneNotSupportedException {
     if (ComplexItem.SAVED.containsKey(item)) {
       return (ComplexItem) ComplexItem.SAVED.get(item).clone();
     }
@@ -58,39 +53,30 @@ public class Item {
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description give the player a item
    * @param player Requires a {@link Player}
    * @param item Requires a Item {@link Complex}
    * @param amount Requires the amount
-   * @throws SoulBossSystemNullException Generate a exception if player and/or item null
-   * @throws SoulBossSystemIntOutOfRangeException Generate a exception if amount smaller than 0 or bigger than 65
    */
-  public static void give(Player player, Complex item, int amount) throws SoulBossSystemNullException, SoulBossSystemIntOutOfRangeException {
-    if (!new CheckVariable().check(player, "Item#give(Player, Complex, int)"))return;
-    if (!new CheckVariable().check(item, "Item#give(Player, Complex, int)"))return;
-    if (!new Check(0, 65, amount).check() == true)return;
+  public static void give(@NotNull Player player, @NotNull Complex item, int amount){
+    if (amount <= 0)return;
     if (ComplexItem.SAVED.containsKey(item)) {
-      ComplexItem.SAVED.get(item).setAmount(amount).giveItem(player);
+      ComplexItem.SAVED.get(item).setAmount(Math.min(amount, 64)).giveItem(player);
     }
   }
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description drop the item on a specify {@link Location}
    * @param location Requires {@link Location}
    * @param item Requires a Item {@link Complex}
    * @param amount Requires the amount
-   * @throws SoulBossSystemNullException Generate a exception if player and/or item null
-   * @throws SoulBossSystemIntOutOfRangeException Generate a exception if amount smaller than 0 or bigger than 65
    */
-  public static void drop(Location location, Complex item, int amount) throws SoulBossSystemNullException, SoulBossSystemIntOutOfRangeException {
-    if (!new CheckVariable().check(location, "Item#drop(Location, Complex, int)"))return;
-    if (!new CheckVariable().check(item, "Item#drop(Location, Complex, int)"))return;
-    if (!new Check(0, 31, amount).check() == true)return;
+  public static void drop(@NotNull Location location, @NotNull Complex item, int amount){
     if (ComplexItem.SAVED.containsKey(item)) {
       ComplexItem.SAVED.get(item).setAmount(amount).drop(location);
     }

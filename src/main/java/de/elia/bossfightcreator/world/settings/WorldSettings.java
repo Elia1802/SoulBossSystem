@@ -1,6 +1,7 @@
 package de.elia.bossfightcreator.world.settings;
 
 import org.bukkit.block.Biome;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.Boolean;

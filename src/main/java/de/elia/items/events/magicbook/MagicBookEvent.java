@@ -1,88 +1,44 @@
-package de.elia.items.magicbook;
+package de.elia.items.events.magicbook;
 
-import de.elia.api.Complex;
-import de.elia.api.TheZepserAPI;
-import de.elia.api.components.ComplexItem;
-import de.elia.api.datatypes.Region;
-import de.elia.api.enums.RegionType;
-import de.elia.api.spells.Spells;
-import de.elia.items.ItemMain;
-import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
-import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException.CheckVariable;
-import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
+import de.elia.api.thezepserapi.Complex;
+import de.elia.api.thezepserapi.TheZepserAPI;
+import de.elia.api.thezepserapi.datatypes.Region;
+import de.elia.api.thezepserapi.enums.RegionType;
+import de.elia.api.thezepserapi.spells.Spells;
+
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeModifier.Operation;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.EquipmentSlot;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-
-import static de.elia.items.ItemMain.MINI_MESSAGE;
 
 /**
+ /**
  * @author Elia
- * @version 1.0
- * @since 1.0
- * @implements {@link Listener}
- * @description Create the Magic book
+ * @version 1.0.0.pre1
+ * @since 1.0.0.pre1
+ * @description The interact event of the magic book
  */
-public class Magic_Book implements Listener {
+public class MagicBookEvent implements Listener {
 
-  private static ComplexItem MB;
+  private final Plugin plugin;
   private static final Collection<Region> REGIONS = new ArrayList<>();
   private int count;
 
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
-   * @throws SoulBossSystemNullException
-   * @description The Magic book builder
-   * @param plugin Requires a instance of the Plugin (is Plugin null generate exception)
-   */
-  public Magic_Book(Plugin plugin) throws SoulBossSystemNullException {
-    if (MB == null) {
-      if (!new CheckVariable().check(plugin, "Magic_Book(Plugin)"))return;
-      Bukkit.getPluginManager().registerEvents(this, plugin);
-      List<Component> list = new ArrayList<>();
-      list.add(MINI_MESSAGE.deserialize("<gray>You can used this book</gray>"));
-      list.add(MINI_MESSAGE.deserialize("<gray>to cast spells.</gray>"));
-      Component name = MINI_MESSAGE.deserialize("<obfuscated>#</obfuscated> <dark_purple>Magic Book</dark_purple> <obfuscated>#</obfuscated>");
-      MB = TheZepserAPI.item.create(Material.BOOK, name, list)
-        .setCustomModelData(1)
-        .setKey(Complex.MAGIC_BOOK)
-        .setAmount(1)
-        .addAttribute(Attribute.GENERIC_MAX_HEALTH, 20, Operation.ADD_NUMBER, EquipmentSlot.HAND)
-        .addFlag(ItemFlag.HIDE_ATTRIBUTES)
-        .addFlag(ItemFlag.HIDE_ENCHANTS)
-        .addEnchantment(Enchantment.ARROW_FIRE, 1)
-        .save();
-    }
+  public MagicBookEvent(Plugin plugin){
+    this.plugin = plugin;
   }
 
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
-   * @implements {@link Listener}
-   * @description The function of the li
-   */
   @EventHandler
   public void onRightClick(@NotNull PlayerInteractEvent event){
     if (event.getAction().isRightClick()) {
@@ -121,7 +77,7 @@ public class Magic_Book implements Listener {
               cancel();
             }
           }
-        }.runTaskTimer(ItemMain.itemMain().main(), 0, 5);
+        }.runTaskTimer(plugin, 0, 5);
       }
     }else if (event.getAction().isLeftClick()) {
       if (TheZepserAPI.item.hasKey(event.getItem(), TheZepserAPI.item.createKey(Complex.MAGIC_BOOK))){
@@ -129,6 +85,5 @@ public class Magic_Book implements Listener {
       }
     }
   }
-
 
 }

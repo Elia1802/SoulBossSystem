@@ -1,9 +1,11 @@
-package de.elia.items.zombiespawnegg;
+package de.elia.items.items.zombiespawnegg;
 
-import de.elia.api.Complex;
-import de.elia.api.TheZepserAPI;
-import de.elia.api.components.ComplexItem;
+import de.elia.api.thezepserapi.Complex;
+import de.elia.api.thezepserapi.TheZepserAPI;
+import de.elia.api.thezepserapi.components.ComplexItem;
+
 import net.kyori.adventure.text.Component;
+
 import org.bukkit.Material;
 
 import java.util.ArrayList;
@@ -13,8 +15,8 @@ import static de.elia.items.ItemMain.MINI_MESSAGE;
 
 /**
  * @author Elia
- * @version 1.0
- * @since 1.0
+ * @version 1.0.0.pre1
+ * @since 1.0.0.pre1
  * @description Create the zombie spawnegg
  */
 public class Zombie_Spawn_Egg {
@@ -23,8 +25,8 @@ public class Zombie_Spawn_Egg {
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description The zombie spawnegg builder
    */
   public Zombie_Spawn_Egg(){

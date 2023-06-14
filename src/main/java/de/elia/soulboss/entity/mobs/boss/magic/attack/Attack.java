@@ -2,7 +2,7 @@ package de.elia.soulboss.entity.mobs.boss.magic.attack;
 
 import de.elia.soulboss.SoulBoss;
 import de.elia.soulboss.entity.mobs.boss.magic.attackaction.Actions;
-import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
+
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -13,14 +13,15 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 
 /**
  * @author Elia
- * @version 1.0
- * @since 1.0
+ * @version 1.0.0.pre1
+ * @since 1.0.0.pre1
  * @description This an Attacks of the Zombie
  */
 public class Attack {
@@ -31,8 +32,8 @@ public class Attack {
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description This is the attack for random player teleport
    */
   public void attackTeleport(@NotNull Entity entity){
@@ -55,11 +56,7 @@ public class Attack {
           position.getWorld().spawnParticle(Particle.PORTAL, position, 300);
           Collection<Player> damagedPlayer = position.getNearbyPlayers(0.5D);
           for (Player player : damagedPlayer) {
-            try {
-              new Actions().actionTeleport(direction, player);
-            } catch (SoulBossSystemNullException exception) {
-              exception.stacktrace();
-            }
+            new Actions().actionTeleport(direction, player);
           }
         }else cancel();
       }
@@ -68,8 +65,8 @@ public class Attack {
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description This is the attack for fire
    */
   public void attackFire(@NotNull Entity entity){
@@ -101,8 +98,8 @@ public class Attack {
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description This is the attack StrikeLightnings
    */
   public void attackStrikeLightning(@NotNull Entity entity){

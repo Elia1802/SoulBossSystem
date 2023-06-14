@@ -1,11 +1,13 @@
 package de.elia.bossfightcreator.world.creator;
 
-import de.elia.bossfightcreator.BossFightCreator;
+import de.elia.bossfightcreator.BossFightCreatorMain;
 import de.elia.bossfightcreator.world.settings.WorldSettings;
+
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.generator.WorldInfo;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,7 +42,7 @@ public class CustomChunkGenerator extends ChunkGenerator {
   @Override
   @Nullable
   public Location getFixedSpawnLocation(@NotNull World world, @NotNull Random random){
-    var worldMain = BossFightCreator.worldMain();
+    var worldMain = BossFightCreatorMain.worldMain();
     worldMain.logInfo("Set Spawnlocation...");
     Location location = new Location(world, 7D, 68D, -16D);
     worldMain.logInfo("Spawnlocation sets!");

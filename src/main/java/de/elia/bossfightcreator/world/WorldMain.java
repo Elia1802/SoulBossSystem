@@ -1,6 +1,7 @@
 package de.elia.bossfightcreator.world;
 
-import de.elia.systemclasses.logging.PluginLogger;
+import de.elia.api.logging.PluginLogger;
+
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 

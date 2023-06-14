@@ -2,10 +2,13 @@ package de.elia.soulboss.events.attacks.fire;
 
 import de.elia.systemclasses.keys.PluginKeys;
 import de.elia.soulboss.entity.mobs.boss.magic.attack.Attack;
+
 import io.papermc.paper.event.entity.EntityMoveEvent;
+
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
@@ -19,13 +22,6 @@ import java.util.Random;
  */
 public class AttackFireEvent implements Listener {
 
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
-   * @description This is the Event for the Attack Fire.
-   * @param event Requires the {@link EntityMoveEvent}
-   */
   @EventHandler
   public void onFire(@NotNull EntityMoveEvent event){
     if (event.isCancelled())return;

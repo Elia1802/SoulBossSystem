@@ -1,12 +1,13 @@
 package de.elia.systemclasses.keys;
 
 import de.elia.PluginMain;
+
 import org.bukkit.NamespacedKey;
 
 /**
  * @author Elia
- * @version 1.0
- * @since 1.0
+ * @version 1.0.0.pre1
+ * @since 1.0.0.pre1
  * @description Save all keys for the bosses and recipes
  */
 public enum PluginKeys {
@@ -22,8 +23,8 @@ public enum PluginKeys {
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description Gets the Key
    * @return {@link NamespacedKey}
    */
