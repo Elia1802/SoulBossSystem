@@ -1,8 +1,7 @@
 package de.elia.soulboss.entity.mobs.boss.magic.attackaction;
 
 import de.elia.soulboss.SoulBoss;
-import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
-import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException.CheckVariable;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -10,27 +9,26 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
 /**
  * @author Elia
- * @version 1.0
- * @since 1.0
+ * @version 1.0.0.pre1
+ * @since 1.0.0.pre1
  * @description This an Actions for the Attacks
  */
 public class Actions {
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description This random teleport the Player.
    */
-  public void actionTeleport(Vector vector, Player player) throws SoulBossSystemNullException {
-    if (!new CheckVariable().check(vector, "Actions#actionTeleport(Vector, Player)"))return;
-    if (!new CheckVariable().check(player, "Actions#actionTeleport(Vector, Player)"))return;
+  public void actionTeleport(Vector vector, Player player){
     new BukkitRunnable(){
       public void run(){
         Location playerLocation = player.getLocation();
@@ -53,8 +51,8 @@ public class Actions {
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description This set the Player in Fire
    */
   public void actionFire(@NotNull Player player, int ticks){
@@ -63,8 +61,8 @@ public class Actions {
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description This spawn a strike lightning in the Player.
    */
   public void actionStrikeLightning(@NotNull World world, @NotNull Player player){
