@@ -2,17 +2,18 @@ package de.elia.items;
 
 import de.elia.PluginInstances;
 import de.elia.PluginMain;
-import de.elia.systemclasses.logging.PluginLogger;
-import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
+import de.elia.api.logging.PluginLogger;
+
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import org.bukkit.plugin.Plugin;
+
 import org.bukkit.plugin.java.JavaPlugin;
+
 import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Elia
- * @version 1.0
- * @since 1.0
+ * @version 1.0.0.pre1
+ * @since 1.0.0.pre1
  * @description Load the Item plugin
  */
 public class ItemMain {
@@ -22,36 +23,34 @@ public class ItemMain {
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description enable this plugin
-   * @param plugin Requires a Main class
-   * @throws SoulBossSystemNullException Generate a exception if a something null in {@link Item#registerAll(Plugin)}
+   * @param main Requires a Main class
    */
-  public void enable(@NotNull JavaPlugin plugin) throws SoulBossSystemNullException {
-    this.itemLogger().logInfo("Load Item...");
+  public void enable(@NotNull JavaPlugin main){
+    this.itemLogger().logInfo("Load Item Plugin...");
     itemMain = this;
-    this.itemLogger().logInfo("Register Items...");
-    Item.registerAll(plugin);
-    this.itemLogger().logInfo("Items registered!");
-    this.itemLogger().logInfo("Item loaded!");
+    this.itemLogger().logInfo("Load items...");
+    Item.registerAll(main);
+    this.itemLogger().logInfo("Items loaded!");
+    this.itemLogger().logInfo("Item plugin loaded!");
   }
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description Disable this plugin
    */
   public void disable(){
-    this.itemLogger().logInfo("Unnload Item...");
     this.itemLogger().logInfo("Item unloaded!");
   }
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description Gets the main instance of this main
    * @return {@link ItemMain}
    */
@@ -62,8 +61,8 @@ public class ItemMain {
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description Gets the main instance of the {@link PluginMain}
    * @return {@link PluginMain#main()}
    */
@@ -74,8 +73,8 @@ public class ItemMain {
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description Gets the logger for this Plugin
    * @return {@link PluginLogger}
    */
@@ -83,5 +82,4 @@ public class ItemMain {
   public PluginLogger itemLogger(){
     return PluginInstances.ITEM_LOGGER;
   }
-
 }
