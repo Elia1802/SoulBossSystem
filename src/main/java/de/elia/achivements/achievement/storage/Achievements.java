@@ -1,4 +1,4 @@
-package de.elia.soulboss.achievement.storage;
+package de.elia.achivements.achievement.storage;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -6,11 +6,11 @@ import java.lang.String;
 
 /**
  * @author Elia
- * @version 1.0
- * @since 1.0
+ * @version 1.0.0.pre1
+ * @since 1.0.0.pre1
  * @description This is the storage for all boss achievements.
  */
-public enum BossFightAchievementStorage {
+public enum Achievements {
 
   BOSSFIGHT("Bossfight", "904980", "Schlage das erste mal ein Boss!", 20),
   BOSSFIGHT_ZOMBIE("Erstes Zombie?", "443548", "Das erste Zombie als Boss!", 15),
@@ -24,15 +24,15 @@ public enum BossFightAchievementStorage {
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description Set the new Achievement
    * @param name Requires a name
    * @param dataID Requires a dataID
    * @param target Requires a target
    * @param xp Requires a amount of xp points
    */
-  BossFightAchievementStorage(String name, String dataID, String target, int xp){
+  Achievements(String name, String dataID, String target, int xp){
     this.name = name;
     this.dataID = dataID;
     this.target = target;
@@ -41,8 +41,8 @@ public enum BossFightAchievementStorage {
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description Gets the name of the Achievement
    * @return {@link #name}
    */
@@ -53,8 +53,8 @@ public enum BossFightAchievementStorage {
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description Gets the dataID of the Achievement
    * @return {@link #dataID}
    */
@@ -65,8 +65,8 @@ public enum BossFightAchievementStorage {
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description Gets the target of the Achievement
    * @return {@link #target}
    */
@@ -77,8 +77,8 @@ public enum BossFightAchievementStorage {
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description Gets the amount of xp of the Achievement
    * @return {@link #xp}
    */
@@ -88,14 +88,14 @@ public enum BossFightAchievementStorage {
 
   /**
    * @author Elia
-   * @version 1.0
-   * @since 1.0
+   * @version 1.0.0.pre1
+   * @since 1.0.0.pre1
    * @description Gets the name of the Achievement of this Class
    * @param achievement Requires a Achievement
    * @return {@link #name} + {@link #dataID} + {@link #target} + {@link #xp}
    */
   @NotNull
-  public String achievement(BossFightAchievementStorage achievement) {
+  public String achievement(Achievements achievement) {
     return this.name + this.dataID + this.target + this.xp;
   }
 }
