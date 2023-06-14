@@ -1,23 +1,19 @@
-package de.elia.bossfightcreator.builder.fight.events;
+package de.elia.bossfightcreator.events.disconnect;
 
-import com.sk89q.worldedit.WorldEditException;
-import de.elia.bossfightcreator.builder.fight.game.Game;
-import de.elia.bossfightcreator.builder.fight.game.maps.GameList;
-import de.elia.systemclasses.logging.PluginLogger.SaveError;
-import de.elia.systemclasses.logging.exceptions.SoulBossSystemNullException;
+import de.elia.bossfightcreator.game.Game;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import java.io.IOException;
-
 /**
  * @author Elia
  * @version 1.0
  * @since 1.0
- * @description If the {@link Player} leave the Server end all exist {@link Game}s of this {@link Player}
+ * @description If the {@link Player} leave the Server end the excist {@link Game} of this {@link Player}
  */
+@Deprecated
 public class DisconnectEvent implements Listener {
 
   /**
@@ -29,10 +25,11 @@ public class DisconnectEvent implements Listener {
    */
   @EventHandler
   public void onPlayerQuitServer(PlayerQuitEvent event){
-    GameList.GAMES.forEach(game -> {
+    //TODO COMING SOON!!!
+    /**GameList.GAMES.forEach(game -> {
       if (game.player == event.getPlayer()) {
         try {
-          game.killGame();
+          game.removeGame(Bukkit.getWorld("world").getSpawnLocation());
         } catch (SoulBossSystemNullException exception) {
           new SaveError().saveError(exception, "PlayerQuitEvent-onPlayerQuitServer-line_35=null");
           exception.stacktrace();
@@ -41,7 +38,7 @@ public class DisconnectEvent implements Listener {
           exception.printStackTrace();
         }
       }
-    });
+    });**/
   }
 
 }
