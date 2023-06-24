@@ -1,19 +1,17 @@
 package de.elia.soulboss.entity.mobs.boss.mob;
 
-import de.elia.systemclasses.keys.PluginKeys;
 import de.elia.soulboss.entity.equipment.armors.boots.Boots;
 import de.elia.soulboss.entity.equipment.armors.chestplate.Chestplate;
 import de.elia.soulboss.entity.equipment.armors.helmet.Helmet;
 import de.elia.soulboss.entity.equipment.armors.leggins.Leggins;
 import de.elia.soulboss.entity.equipment.tools.axe.Axe;
 import de.elia.soulboss.entity.equipment.tools.sword.Sword;
-
+import de.elia.systemclasses.keys.PluginKeys;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.ZombieAttackGoal;
 import net.minecraft.world.entity.monster.Zombie;
-
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_20_R1.CraftWorld;
 import org.bukkit.persistence.PersistentDataType;
@@ -23,23 +21,13 @@ import java.util.Random;
 import java.util.UUID;
 
 /**
- * @author Elia
- * @version 1.0.0.pre1
- * @since 1.0.0.pre1
+ * @author Elia, D1p4k, Zopnote
+ * @description This is the boss.
  * @extends {@link Zombie}
- * @description This class create the Boss.
  */
 public class ZombieBoss extends Zombie {
 
-
-  /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description This Methode create and spawn the Boss on a specify location.
-   * @param location Requires the Location
-   */
-  public ZombieBoss(@NotNull Location location, String name){
+  public ZombieBoss(@NotNull Location location, String name) {
     super(EntityType.ZOMBIE, ((CraftWorld)location.getWorld()).getHandle());
     this.getBukkitEntity().getPersistentDataContainer().set(PluginKeys.ZOMBIE_KEY.key(), PersistentDataType.BYTE, (byte) 1);
     this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(500);
@@ -57,55 +45,30 @@ public class ZombieBoss extends Zombie {
     ((CraftWorld)location.getWorld()).getHandle().addFreshEntity(this);
   }
 
-  /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Register the Goals of the Zombie
-   */
   @Override
   public void registerGoals(){
     super.registerGoals();
     this.goalSelector.addGoal(2, new ZombieAttackGoal(this, 1.5D, false));//Speed of 1.0D to 1.5D
   }
 
-  /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Gets all Methodes of this and the Zombie class.
-   */
   @NotNull
   public ZombieBoss boss() {
     return this;
   }
 
-  /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Give the Zombie an axe or a sword.
-   */
-  private void randomTool(Zombie zombie){
+  private void randomTool(Zombie zombie) {
     Random random = new Random();
     float x = random.nextFloat();
-    if (x<0.5){
+    if ((double)x < 0.5) {
       new Sword().sword(zombie);
-    }else {
+    } else {
       new Axe().axe(zombie);
     }
   }
 
-  /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Gets the {@link UUID} of the {@link Zombie}
-   * @return the {@link UUID} of the boss; {@link ZombieBoss#uuid}
-   */
   @NotNull
-  public UUID uuid(){
+  public UUID uuid() {
     return this.uuid;
   }
-
 }
+

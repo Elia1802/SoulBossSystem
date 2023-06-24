@@ -2,7 +2,6 @@ package de.elia.soulboss.entity.mobs.boss.magic.attack;
 
 import de.elia.soulboss.SoulBoss;
 import de.elia.soulboss.entity.mobs.boss.magic.attackaction.Actions;
-
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
@@ -13,16 +12,13 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 
 /**
- * @author Elia
- * @version 1.0.0.pre1
- * @since 1.0.0.pre1
- * @description This an Attacks of the Zombie
+ * @author Elia, Zopnote
+ * @description The attacks of the boss
  */
 public class Attack {
 
@@ -31,14 +27,12 @@ public class Attack {
   private int counter;
 
   /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description This is the attack for random player teleport
+   * @description This create the attack teleport.
+   * @param entity Requires the boss.
    */
   public void attackTeleport(@NotNull Entity entity){
     Location location = entity.getLocation();
-    Collection<Player> nearbyPlayers = location.getNearbyPlayers(15D);
+    Collection<Player> nearbyPlayers = location.getNearbyPlayers(20D);
     if (nearbyPlayers == null)return;
     for (Player player : nearbyPlayers) {
       player.playSound(player.getLocation(), Sound.ENTITY_ZOMBIE_AMBIENT, 0.7F, 0.3F);
@@ -60,14 +54,12 @@ public class Attack {
           }
         }else cancel();
       }
-    }.runTaskTimer(SoulBoss.main(), 0L, 10L);
+    }.runTaskTimer(SoulBoss.soulBoss().main(), 0L, 10L);
   }
 
   /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description This is the attack for fire
+   * @description This create the attack fire.
+   * @param entity Requires the boss.
    */
   public void attackFire(@NotNull Entity entity){
     Location location = entity.getLocation();
@@ -93,14 +85,12 @@ public class Attack {
           }
         }else cancel();
       }
-    }.runTaskTimer(SoulBoss.main(), 0L, 10L);
+    }.runTaskTimer(SoulBoss.soulBoss().main(), 0L, 10L);
   }
 
   /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description This is the attack StrikeLightnings
+   * @description This create the attack strike lightning.
+   * @param entity Requires the boss.
    */
   public void attackStrikeLightning(@NotNull Entity entity){
     Location location = entity.getLocation();
@@ -126,7 +116,6 @@ public class Attack {
           }
         }else cancel();
       }
-    }.runTaskTimer(SoulBoss.main(), 0L, 10L);
+    }.runTaskTimer(SoulBoss.soulBoss().main(), 0L, 10L);
   }
-
 }

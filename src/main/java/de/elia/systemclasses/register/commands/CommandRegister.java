@@ -2,7 +2,6 @@ package de.elia.systemclasses.register.commands;
 
 import de.elia.achivements.commands.give.AchievementGiveCommand;
 import de.elia.achivements.commands.help.AchievementHelpCommand;
-import de.elia.bossfightcreator.game.executer.GameExecuter;
 import de.elia.bossfightcreator.commands.help.BossFightCreatorHelpCommand;
 import de.elia.bossfightcreator.commands.world.BossFightCreatorWorldCommand;
 import de.elia.items.commands.help.ItemHelpCommand;
@@ -10,37 +9,37 @@ import de.elia.items.commands.items.ItemGiveCommand;
 import de.elia.soulbosssystem.commands.help.SoulBossSystemHelpCommand;
 import de.elia.soulbosssystem.commands.idea.SoulBossSystemIdeaCommand;
 import de.elia.soulbosssystem.commands.plugin.SoulBossSystemCommand;
-
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.Server;
+import org.bukkit.command.Command;
 
-import org.jetbrains.annotations.NotNull;
-
+import java.util.HashMap;
+import java.util.Map;
 /**
  * @author Elia
- * @version 1.0.0.pre1
- * @since 1.0.0.pre1
- * @description This is the Register class to register all Commands.
+ * @description This class register all commands.
  */
 public class CommandRegister {
+  
+  private static final Map<String, Command> COMMANDS = new HashMap<>();
 
-  /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Register Commands
-   * @param main Requires the main class
-   */
-  public static void registerCommand(@NotNull JavaPlugin main) {
-    Bukkit.getPluginCommand("achievementgive").setExecutor(new AchievementGiveCommand());
-    Bukkit.getPluginCommand("achievementhelp").setExecutor(new AchievementHelpCommand());
-    Bukkit.getPluginCommand("bossfightcreatorhelp").setExecutor(new BossFightCreatorHelpCommand());
-    Bukkit.getPluginCommand("bossfightcreatoraddplayer").setExecutor(new GameExecuter(main));
-    Bukkit.getPluginCommand("bossfightcreatorworld").setExecutor(new BossFightCreatorWorldCommand());
-    Bukkit.getPluginCommand("itemhelp").setExecutor(new ItemHelpCommand());
-    Bukkit.getPluginCommand("itemgive").setExecutor(new ItemGiveCommand());
-    Bukkit.getPluginCommand("soulbosssystemhelp").setExecutor(new SoulBossSystemHelpCommand());
-    Bukkit.getPluginCommand("soulbosssystemidea").setExecutor(new SoulBossSystemIdeaCommand());
-    Bukkit.getPluginCommand("soulbosssystem").setExecutor(new SoulBossSystemCommand());
+  public static void registerCommands(Server server) {
+    COMMANDS.forEach((s, command) -> server.getCommandMap().register(s, "Soulbosssytem", command));
+  }
+
+  static {
+    COMMANDS.put("achievementgive", new AchievementGiveCommand());
+    COMMANDS.put("achievementhelp", new AchievementHelpCommand());
+    COMMANDS.put("bossfightcreatorhelp", new BossFightCreatorHelpCommand());
+    COMMANDS.put("bossfightcreatoworld", new BossFightCreatorWorldCommand());
+    COMMANDS.put("itemhelp", new ItemHelpCommand());
+    COMMANDS.put("itemgive", new ItemGiveCommand());
+    COMMANDS.put("soulbosssystemhelp", new SoulBossSystemHelpCommand());
+    COMMANDS.put("soulbosssystemidea", new SoulBossSystemIdeaCommand());
+    COMMANDS.put("soulbosssystem", new SoulBossSystemCommand());
+  }
+
+  public static void registerCommands() {
+    CommandRegister.registerCommands(Bukkit.getServer());
   }
 }

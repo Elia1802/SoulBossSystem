@@ -1,9 +1,7 @@
 package de.elia.soulboss.entity.equipment.tools.axe;
 
 import de.elia.soulboss.utils.random.RandomUtils;
-
 import net.minecraft.world.entity.monster.Zombie;
-
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -11,20 +9,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 /**
  * @author Elia
- * @version 1.0.0.pre1
- * @since 1.0.0.pre1
- * @description This is the Axe for the Boss
+ * @description  Create the axe for the {@link Zombie}
  */
 public class Axe {
 
-  /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Give the {@link Zombie} a diamond or netherite axe.
-   * @param zombie Requires the Zombie
-   */
-  public void axe(Zombie zombie){
+  public void axe(Zombie zombie) {
     ItemStack diamond = new ItemStack(Material.DIAMOND_AXE);
     ItemMeta diamondMeta = diamond.getItemMeta();
     diamondMeta.addEnchant(Enchantment.DAMAGE_ALL, 5, true);
@@ -35,7 +24,6 @@ public class Axe {
     netheriteMeta.addEnchant(Enchantment.DAMAGE_ALL, 5, true);
     netheriteMeta.setUnbreakable(true);
     netherite.setItemMeta(netheriteMeta);
-    new RandomUtils().randomItem(zombie, 0.5F, diamond, netherite);
+    new RandomUtils().randomItem(zombie, 0.5f, diamond, netherite);
   }
-
 }

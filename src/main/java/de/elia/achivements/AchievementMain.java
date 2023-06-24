@@ -1,79 +1,59 @@
 package de.elia.achivements;
 
-import de.elia.PluginInstances;
 import de.elia.PluginMain;
 import de.elia.api.logging.PluginLogger;
-
-import org.bukkit.plugin.java.JavaPlugin;
-
+import de.elia.systemclasses.PluginInstances;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Elia
- * @version 1.0.0.pre1
- * @since 1.0.0.pre1
- * @description The main class of the achievement class
+ * @description A Main class for the achievement plugin in this system.
  */
 public class AchievementMain {
 
   private static AchievementMain achievementMain;
 
   /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description The load methode to load achievement plugin
-   * @param main Requires the Main class
+   * @description Enable this plugin.
    */
-  public void enable(@NotNull JavaPlugin main){
+  public void enable() {
     this.achievementPluginLogger().logInfo("Load Achievement plugin...");
     achievementMain = this;
     this.achievementPluginLogger().logInfo("Achievement plugin loaded!");
   }
 
   /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description The disable methode to load achievement plugin
+   * @description Disable this plugin.
    */
-  public void disable(){
+  public void disable() {
     this.achievementPluginLogger().logInfo("Achievement disabled!");
   }
 
   /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Gets this main class
+   * @description Gets the instance of this plugin.
    * @return this class
    */
   @NotNull
-  public static AchievementMain achievementMain(){
+  public static AchievementMain achievementMain() {
     return achievementMain;
   }
 
   /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Gets the logger for this plugin
-   * @return a instance of the {@link PluginLogger}
+   * @description  Gets the Logger of for this Plugin.
+   * @return {@link PluginInstances#ACHIEVEMENT_LOGGER}
    */
   @NotNull
-  public PluginLogger achievementPluginLogger(){
+  public PluginLogger achievementPluginLogger() {
     return PluginInstances.ACHIEVEMENT_LOGGER;
   }
 
   /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Gets the main class
-   * @return
+   * @description Gets the instance of the Main class of this system.
+   * @return {@link PluginMain#main()}
    */
   @NotNull
-  public PluginMain main(){
+  public PluginMain main() {
     return PluginMain.main();
   }
 }
+

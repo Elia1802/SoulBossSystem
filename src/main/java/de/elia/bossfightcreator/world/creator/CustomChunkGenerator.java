@@ -1,153 +1,114 @@
 package de.elia.bossfightcreator.world.creator;
 
-import de.elia.bossfightcreator.BossFightCreatorMain;
+import de.elia.PluginMain;
+import de.elia.bossfightcreator.world.WorldMain;
 import de.elia.bossfightcreator.world.settings.WorldSettings;
-
+import java.util.Random;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.generator.WorldInfo;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.lang.Override;
-import java.util.Random;
-
 /**
  * @author Elia
- * @version 1.0
- * @since 1.0
+ * @description This class modfied the ChunkGenerator of the Server.
  * @extends {@link ChunkGenerator}
- * @description Overrides the {@link ChunkGenerator} to generate a void map
  */
 public class CustomChunkGenerator extends ChunkGenerator {
 
   private final WorldSettings settings = new WorldSettings();
 
-  public CustomChunkGenerator(){
-    //...
-  }
-
   /**
-   * @author Paper,Elia
-   * @version 1.0
-   * @since 1.0
-   * @overridesOf {@link ChunkGenerator}
-   * @description Set the spawn location for Players
+   * Gets a fixed spawn location to use for a given world. A null value is returned if a world should not use a fixed spawn point, and will instead attempt to find one randomly.
    * @param world The world to locate a spawn point for
    * @param random Random generator to use in the calculation
-   * @return {@link Location}
+   * @return Location containing a new spawn point, otherwise null
    */
   @Override
   @Nullable
-  public Location getFixedSpawnLocation(@NotNull World world, @NotNull Random random){
-    var worldMain = BossFightCreatorMain.worldMain();
+  public Location getFixedSpawnLocation(@NotNull World world, @NotNull Random random) {
+    WorldMain worldMain = PluginMain.main().worldMain();
     worldMain.logInfo("Set Spawnlocation...");
-    Location location = new Location(world, 7D, 68D, -16D);
+    Location location = new Location(world, 7.0, 68.0, -16.0);
     worldMain.logInfo("Spawnlocation sets!");
     return location;
   }
 
   /**
-   * @author Paper,Elia
-   * @version 1.0
-   * @since 1.0
-   * @overridesOf {@link ChunkGenerator}
-   * @deprecated has no Effect! Is a part of {@link CustomChunkGenerator#shouldGenerateSurface()}
-   * @description Checks if generate Bedrock
-   * @return {@link Boolean}
+   * @description  Gets if the server should generate Vanilla bedrock. The Vanilla bedrock is generated <b>before</b> {@link #generateBedrock(WorldInfo, Random, int, int, ChunkData)} is called.
+   * @return true if the server should generate Vanilla bedrock
+   * @deprecated has no effect, bedrock generation is part of the surface step, see {@link #shouldGenerateSurface()}
    */
   @Override
-  @Deprecated //has no Effect! Is a part of shouldGenerateSurface()
-  public boolean shouldGenerateBedrock(){
+  @Deprecated
+  public boolean shouldGenerateBedrock() {
     return this.settings.bedrock();
   }
 
   /**
-   * @author Paper,Elia
-   * @version 1.0
-   * @since 1.0
-   * @overridesOf {@link ChunkGenerator}
-   * @description Checks if generate caves
-   * @return {@link Boolean}
+   * @description  Gets if the server should generate Vanilla caves. The Vanilla caves are generated <b>before</b> {@link #generateCaves(WorldInfo, Random, int, int, ChunkData)} is called. This is method is not called (and has therefore no effect), if {@link #shouldGenerateCaves(WorldInfo, Random, int, int)} is overridden.
+   * @return true if the server should generate Vanilla caves
    */
   @Override
-  public boolean shouldGenerateCaves(){
+  public boolean shouldGenerateCaves() {
     return this.settings.caves();
   }
 
   /**
-   * @author Paper,Elia
-   * @version 1.0
-   * @since 1.0
-   * @overridesOf {@link ChunkGenerator}
-   * @description Checks if generate decorations
-   * @return {@link Boolean}
+   * @description Gets if the server should generate Vanilla decorations after this ChunkGenerator. The Vanilla decoration are generated <b>before</b> any {@link BlockPopulator} are called. This is method is not called (and has therefore no effect), if {@link #shouldGenerateDecorations(WorldInfo, Random, int, int)} is overridden.
+   * @return true if the server should generate Vanilla decorations
    */
   @Override
-  public boolean shouldGenerateDecorations(){
+  public boolean shouldGenerateDecorations() {
     return this.settings.decorations();
   }
 
   /**
-   * @author Paper,Elia
-   * @version 1.0
-   * @since 1.0
-   * @overridesOf {@link ChunkGenerator}
-   * @description Checks if generate mobs
-   * @return {@link Boolean}
+   * @description Gets if the server should generate Vanilla mobs after this ChunkGenerator. This is method is not called (and has therefore no effect), if {@link #shouldGenerateMobs(WorldInfo, Random, int, int)} is overridden.
+   * @return true if the server should generate Vanilla mobs
    */
   @Override
-  public boolean shouldGenerateMobs(){
+  public boolean shouldGenerateMobs() {
     return this.settings.mobs();
   }
 
   /**
-   * @author Paper,Elia
-   * @version 1.0
-   * @since 1.0
-   * @overridesOf {@link ChunkGenerator}
-   * @description Checks if generate noises
-   * @return {@link Boolean}
+   * @description Gets if the server should generate Vanilla noise. The Vanilla noise is generated <b>before</b> {@link #generateNoise(WorldInfo, Random, int, int, ChunkData)} is called. This is method is not called (and has therefore no effect), if {@link #shouldGenerateNoise(WorldInfo, Random, int, int)} is overridden.
+   * @return true if the server should generate Vanilla noise
    */
   @Override
-  public boolean shouldGenerateNoise(){
+  public boolean shouldGenerateNoise() {
     return this.settings.noise();
   }
 
   /**
-   * @author Paper,Elia
-   * @version 1.0
-   * @since 1.0
-   * @overridesOf {@link ChunkGenerator}
-   * @description Checks if generate structures
-   * @return {@link Boolean}
+   * @description Gets if the server should generate Vanilla structures after thisChunkGenerator. This is method is not called (and has therefore no effect), if {@link #shouldGenerateStructures(WorldInfo, Random, int, int)} is overridden.
+   * @return true if the server should generate Vanilla structures
    */
   @Override
-  public boolean shouldGenerateStructures(){
+  public boolean shouldGenerateStructures() {
     return this.settings.structures();
   }
 
   /**
-   * @author Paper,Elia
-   * @version 1.0
-   * @since 1.0
-   * @overridesOf {@link ChunkGenerator}
-   * @description Checks if generate surfaces
-   * @return {@link Boolean}
+   * @description Gets if the server should generate Vanilla surface. The Vanilla surface is generated <b>before</b> {@link #generateSurface(WorldInfo, Random, int, int, ChunkData)} is called. This is method is not called (and has therefore no effect), if {@link #shouldGenerateSurface(WorldInfo, Random, int, int)} is overridden.
+   * @return true if the server should generate Vanilla surface
    */
   @Override
-  public boolean shouldGenerateSurface(){
+  public boolean shouldGenerateSurface() {
     return this.settings.surface();
   }
 
   /**
-   * @author Paper,Elia
-   * @version 1.0
-   * @since 1.0
-   * @overridesOf {@link ChunkGenerator}
-   * @description Generate the Bedrock of not Vanilla worlds
+   * @description Shapes the Chunk caves for the given coordinates.
+   * @notes
+   * This method should <b>never</b> attempt to get the Chunk at the passed coordinates, as doing so may cause an infinite loop.
+   * This method should <b>never</b> modify the {@link ChunkData} at a later point of time.
+   * The Y-coordinate range should <b>never</b> be hardcoded, to get the Y-coordinate range use the methods {@link ChunkData#getMinHeight()} and {@link ChunkData#getMaxHeight()}.
+   * If {@link #shouldGenerateCaves()} is set to true, the given{@link ChunkData} contains already the Vanilla cave generation.
    * @param worldInfo The world info of the world this chunk will be used for
    * @param random The random generator to use
    * @param chunkX The X-coordinate of the chunk
@@ -155,7 +116,7 @@ public class CustomChunkGenerator extends ChunkGenerator {
    * @param chunkData To modify
    */
   @Override
-  public void generateBedrock(@NotNull WorldInfo worldInfo, @NotNull Random random, int chunkX, int chunkZ, @NotNull ChunkData chunkData){
-    //...
+  public void generateBedrock(@NotNull WorldInfo worldInfo, @NotNull Random random, int chunkX, int chunkZ, @NotNull ChunkGenerator.ChunkData chunkData) {
   }
 }
+

@@ -1,17 +1,11 @@
 package de.elia.bossfightcreator.world.settings;
 
 import org.bukkit.block.Biome;
-
 import org.jetbrains.annotations.NotNull;
-
-import java.lang.Boolean;
-import java.lang.Deprecated;
 
 /**
  * @author Elia
- * @version 1.0
- * @since 1.0
- * @description Set all Settings for the World
+ * @description In this class I set the settings for the world.
  */
 public class WorldSettings {
 
@@ -24,105 +18,45 @@ public class WorldSettings {
   private final Boolean structures = false;
   private final Boolean surface = false;
 
-  public WorldSettings(){
-    //...
-  }
-
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
-   * @description Gets the Biom
-   * @return {@link Biome}
-   */
   @NotNull
-  public Biome biome(){
+  public Biome biome() {
     return this.biome;
   }
 
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
-   * @deprecated has no Effect! Is a part of {@link WorldSettings#surface()}
-   * @description Gets the bedrock
-   * @return {@link Boolean}
-   */
+  @Deprecated
   @NotNull
-  @Deprecated //has no Effect! Is a part of surface()
-  public Boolean bedrock(){
+  public Boolean bedrock() {
     return this.bedrock;
   }
 
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
-   * @description Gets the caves
-   * @return {@link Boolean}
-   */
   @NotNull
-  public Boolean caves(){
+  public Boolean caves() {
     return this.caves;
   }
 
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
-   * @description Gets the decorations
-   * @return {@link Boolean}
-   */
   @NotNull
-  public Boolean decorations(){
+  public Boolean decorations() {
     return this.decorations;
   }
 
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
-   * @description Gets the mobs
-   * @return {@link Boolean}
-   */
   @NotNull
-  public Boolean mobs(){
+  public Boolean mobs() {
     return this.mobs;
   }
 
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
-   * @description Gets the noise
-   * @return {@link Boolean}
-   */
   @NotNull
-  public Boolean noise(){
+  public Boolean noise() {
     return this.noise;
   }
 
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
-   * @description Gets the structures
-   * @return {@link Boolean}
-   */
   @NotNull
-  public Boolean structures(){
+  public Boolean structures() {
     return this.structures;
   }
 
-  /**
-   * @author Elia
-   * @version 1.0
-   * @since 1.0
-   * @description Gets the surface
-   * @return {@link Boolean}
-   */
   @NotNull
-  public Boolean surface(){
+  public Boolean surface() {
     return this.surface;
   }
 }
+

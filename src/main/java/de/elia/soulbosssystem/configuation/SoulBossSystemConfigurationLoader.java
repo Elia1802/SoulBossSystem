@@ -1,97 +1,50 @@
 package de.elia.soulbosssystem.configuation;
 
 import de.elia.api.configuration.SoulConfiguration;
-
 import org.bukkit.plugin.Plugin;
-
 import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Elia
- * @version 1.0.0.pre1
- * @since 1.0.0.pre1
- * @description This is the Configuration Class to save things in a file.
+ * @description This class load all config files.
  */
 public class SoulBossSystemConfigurationLoader {
-
   private static SoulConfiguration achievementStorage;
   private static SoulConfiguration ideasStorage;
 
-  @Deprecated private static SoulConfiguration playerRegisterStorage;
-
-  /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Set all Configuration files
-   */
-  private static void setConfiguration(Plugin plugin){
+  private static void setConfiguration(Plugin plugin) {
     achievementStorage = new SoulConfiguration(plugin, "achievements/", "Achievements.yml");
     ideasStorage = new SoulConfiguration(plugin, "ideas/", "Ideas.yml");
   }
 
-  /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Load all Configuration files
-   */
-  public static void loadFiles(Plugin plugin){
-    setConfiguration(plugin);
+  public static void loadFiles(Plugin plugin) {
+    SoulBossSystemConfigurationLoader.setConfiguration(plugin);
     achievementStorage.copyDefaults(true);
     achievementStorage.save();
     ideasStorage.copyDefaults(true);
     ideasStorage.save();
   }
 
-  /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Save all Configuration files
-   */
-  public static void save(Plugin plugin){
+  public static void save(Plugin plugin) {
     achievementStorage.save();
-    if (ideasStorage == null) setConfiguration(plugin);
+    if (ideasStorage == null) {
+      SoulBossSystemConfigurationLoader.setConfiguration(plugin);
+    }
     ideasStorage.save();
   }
 
-  public void reload(Plugin plugin){
-    save(plugin);
-    loadFiles(plugin);
+  public void reload(Plugin plugin) {
+    SoulBossSystemConfigurationLoader.save(plugin);
+    SoulBossSystemConfigurationLoader.loadFiles(plugin);
   }
 
-  /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Gets the Configuration for the achievements
-   */
   @NotNull
   public SoulConfiguration achievementStorage() {
     return achievementStorage;
   }
 
-  /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Gets the Configuration for ideas
-   */
   @NotNull
   public SoulConfiguration ideasStorage() {
     return ideasStorage;
-  }
-
-  /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Gets the Configuration for the Player Register for BossFights.
-   */
-  @NotNull
-  @Deprecated
-  public SoulConfiguration playerRegisterStorage() {
-    return playerRegisterStorage;
   }
 }

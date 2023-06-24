@@ -1,20 +1,16 @@
 package de.elia.items;
 
-import de.elia.PluginInstances;
 import de.elia.PluginMain;
 import de.elia.api.logging.PluginLogger;
-
+import de.elia.systemclasses.PluginInstances;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-
 import org.bukkit.plugin.java.JavaPlugin;
-
 import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Elia
- * @version 1.0.0.pre1
- * @since 1.0.0.pre1
- * @description Load the Item plugin
+ * @description This is the main class of the plugin item.
+ *
  */
 public class ItemMain {
 
@@ -22,13 +18,10 @@ public class ItemMain {
   private static ItemMain itemMain;
 
   /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description enable this plugin
-   * @param main Requires a Main class
+   * @description This enable this plugin.
+   * @param main Requires the main class of this system.
    */
-  public void enable(@NotNull JavaPlugin main){
+  public void enable(@NotNull JavaPlugin main) {
     this.itemLogger().logInfo("Load Item Plugin...");
     itemMain = this;
     this.itemLogger().logInfo("Load items...");
@@ -38,48 +31,36 @@ public class ItemMain {
   }
 
   /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Disable this plugin
+   * @description Unload this plugin.
    */
-  public void disable(){
+  public void disable() {
     this.itemLogger().logInfo("Item unloaded!");
   }
 
   /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Gets the main instance of this main
-   * @return {@link ItemMain}
+   * @description Gets a instance of this class.
+   * @return this class
    */
   @NotNull
-  public static ItemMain itemMain(){
+  public static ItemMain itemMain() {
     return itemMain;
   }
 
   /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Gets the main instance of the {@link PluginMain}
-   * @return {@link PluginMain#main()}
+   * @description Gets a instance of the main class of this system.
+   * @return the instance of the main class.
    */
   @NotNull
-  public PluginMain main(){
+  public PluginMain main() {
     return PluginMain.main();
   }
 
   /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Gets the logger for this Plugin
-   * @return {@link PluginLogger}
+   * @description Gets the logger for this plugin.
+   * @return the logger for this plugin.
    */
   @NotNull
-  public PluginLogger itemLogger(){
+  public PluginLogger itemLogger() {
     return PluginInstances.ITEM_LOGGER;
   }
 }

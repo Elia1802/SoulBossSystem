@@ -1,14 +1,11 @@
 package de.elia.systemclasses.keys;
 
 import de.elia.PluginMain;
-
 import org.bukkit.NamespacedKey;
 
 /**
  * @author Elia
- * @version 1.0.0.pre1
- * @since 1.0.0.pre1
- * @description Save all keys for the bosses and recipes
+ * @description Here all {@link NamespacedKey}s saved of this plugin.
  */
 public enum PluginKeys {
 
@@ -17,18 +14,11 @@ public enum PluginKeys {
 
   private final NamespacedKey key;
 
-  PluginKeys(NamespacedKey key){
+  PluginKeys(NamespacedKey key) {
     this.key = key;
   }
 
-  /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Gets the Key
-   * @return {@link NamespacedKey}
-   */
-  public NamespacedKey key(){
+  public NamespacedKey key() {
     return this.key;
   }
 

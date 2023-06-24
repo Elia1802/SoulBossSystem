@@ -5,29 +5,24 @@ import de.elia.api.thezepserapi.TheZepserAPI;
 import de.elia.api.thezepserapi.datatypes.Region;
 import de.elia.api.thezepserapi.enums.RegionType;
 import de.elia.api.thezepserapi.spells.Spells;
-
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- /**
- * @author Elia
- * @version 1.0.0.pre1
- * @since 1.0.0.pre1
- * @description The interact event of the magic book
+ * @author Elia, Zopnote
+ * @description This event give the magic book functions.
+ * @implements {@link Listener}
  */
 public class MagicBookEvent implements Listener {
 
@@ -35,55 +30,45 @@ public class MagicBookEvent implements Listener {
   private static final Collection<Region> REGIONS = new ArrayList<>();
   private int count;
 
-  public MagicBookEvent(Plugin plugin){
+  public MagicBookEvent(Plugin plugin) {
     this.plugin = plugin;
   }
 
   @EventHandler
-  public void onRightClick(@NotNull PlayerInteractEvent event){
+  public void onRightClick(@NotNull PlayerInteractEvent event) {
     if (event.getAction().isRightClick()) {
       if (TheZepserAPI.item.hasKey(event.getItem(), TheZepserAPI.item.createKey(Complex.MAGIC_BOOK))) {
-        Collection<LivingEntity> livingEntities = event.getPlayer().getLocation().getNearbyLivingEntities(20);
-        for (LivingEntity entity : livingEntities) {
-          if (entity instanceof Player player) {
-            player.spawnParticle(Particle.ELECTRIC_SPARK, event.getPlayer().getLocation(), 15);
-            player.playSound(player.getLocation(), Sound.ENTITY_EVOKER_PREPARE_SUMMON, 0.7f, 0.8f);
-          }
-        }
-        Region region = TheZepserAPI.region.create(
-          new Location(event.getPlayer().getWorld(), event.getPlayer().getLocation().x(), event.getPlayer().getLocation().y()+5, event.getPlayer().getLocation().z()),
-          6,
-          RegionType.NORMAL,
-          event.getPlayer(),
-          false);
+        final Collection livingEntities = event.getPlayer().getLocation().getNearbyLivingEntities(20.0);
+        livingEntities.forEach(entity -> {
+          if (!(entity instanceof Player player))return;
+          player.spawnParticle(Particle.ELECTRIC_SPARK, event.getPlayer().getLocation(), 15);
+          player.playSound(player.getLocation(), Sound.ENTITY_EVOKER_PREPARE_SUMMON, 0.7f, 0.8f);
+        });
+        final Region region = TheZepserAPI.region.create(new Location(event.getPlayer().getWorld(), event.getPlayer().getLocation().x(), event.getPlayer().getLocation().y() + 5.0, event.getPlayer().getLocation().z()), 6.0, RegionType.NORMAL, event.getPlayer(), false);
         REGIONS.add(region);
-        count = 0;
-        new BukkitRunnable() {
+        this.count = 0;
+        new BukkitRunnable(){
           @Override
           public void run() {
-            if (count < 40) {
-              count++;
+            if (MagicBookEvent.this.count < 40) {
+              ++MagicBookEvent.this.count;
               TheZepserAPI.region.spawnCircle(region, Particle.DRIPPING_OBSIDIAN_TEAR);
-              for (LivingEntity entity : livingEntities) {
-                if (entity instanceof Player player) {
-                  double currentHealth = player.getHealth();
-                  double newHealth = currentHealth + 1;
-                  player.setHealth(Math.min(newHealth, player.getHealthScale()));
-                  player.playSound(player.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_HIT, 0.7f, 0.2f);
-                }
-              }
-            }else {
+              livingEntities.forEach(entity -> {
+                if (!(entity instanceof Player player)) return;
+                double currentHealth = player.getHealth();
+                double newHealth = currentHealth + 1.0;
+                player.setHealth(Math.min(newHealth, player.getHealthScale()));
+                player.playSound(player.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_HIT, 0.7f, 0.2f);
+              });
+            } else {
               REGIONS.remove(region);
-              cancel();
+              this.cancel();
             }
           }
-        }.runTaskTimer(plugin, 0, 5);
+        }.runTaskTimer(this.plugin, 0L, 5L);
       }
-    }else if (event.getAction().isLeftClick()) {
-      if (TheZepserAPI.item.hasKey(event.getItem(), TheZepserAPI.item.createKey(Complex.MAGIC_BOOK))){
-        Spells.GRAVITATION_ATTACK(event.getPlayer(), false);
-      }
+    } else if (event.getAction().isLeftClick() && TheZepserAPI.item.hasKey(event.getItem(), TheZepserAPI.item.createKey(Complex.MAGIC_BOOK))) {
+      Spells.GRAVITATION_ATTACK(event.getPlayer(), false);
     }
   }
-
 }

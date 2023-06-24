@@ -1,85 +1,66 @@
 package de.elia.soulbosssystem;
 
-import de.elia.PluginInstances;
 import de.elia.PluginMain;
 import de.elia.api.logging.PluginLogger;
 import de.elia.soulbosssystem.configuation.SoulBossSystemConfigurationLoader;
-
+import de.elia.systemclasses.PluginInstances;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Elia
- * @version 1.0.0.pre1
- * @since 1.0.0.pre1
- * @description The main for the soulbosssystem plugin
+ * @description This main class is for the plugin soulbosssystem.
  */
 public class SoulBossSystemMain {
 
   private static SoulBossSystemMain soulBossSystemMain;
 
   /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Load the soulbosssystem plugin
+   * @description Load this plugin.
    * @param main Requires the main class
    */
-  public void enable(@NotNull JavaPlugin main){
+  public void enable(@NotNull JavaPlugin main) {
     soulBossSystemMain = this;
     this.soulBossSystemLogger().logInfo("Load SoulBossSystem plugin...");
     this.soulBossSystemLogger().logInfo("Load files...");
-    SoulBossSystemConfigurationLoader.loadFiles(this.main());
+    SoulBossSystemConfigurationLoader.loadFiles(main);
     this.soulBossSystemLogger().logInfo("files loaded!");
     this.soulBossSystemLogger().logInfo("SoulBossSystem plugin loaded!");
-
   }
 
   /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Disable the soulbosssystem plugin
+   * @description Unload this plugin.
    * @param main Requires the main class
    */
-  public void disable(@NotNull JavaPlugin main){
+  public void disable(@NotNull JavaPlugin main) {
     SoulBossSystemConfigurationLoader.save(main);
   }
 
   /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Gets the logger for the soulbosssystem plugin
-   * @return Gets a instance of the {@link PluginLogger}
+   * @description Gets the logger for this plugin.
+   * @return the logger for this plugin
    */
   @NotNull
-  public PluginLogger soulBossSystemLogger(){
+  public PluginLogger soulBossSystemLogger() {
     return PluginInstances.SOUL_BOSS_SYSTEM_LOGGER;
   }
 
   /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Gets this class
+   * @description Gets a instance of this class
    * @return this class
    */
   @NotNull
-  public static SoulBossSystemMain soulBossSystemMain(){
+  public static SoulBossSystemMain soulBossSystemMain() {
     return soulBossSystemMain;
   }
 
   /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Gets a instance of the main class
-   * @return {@link PluginMain#main()}
+   * @description Gets the instance of the main class of this system.
+   * @return the instance of the main class of this system.
    */
   @NotNull
-  public PluginMain main(){
+  public PluginMain main() {
     return PluginMain.main();
   }
 }

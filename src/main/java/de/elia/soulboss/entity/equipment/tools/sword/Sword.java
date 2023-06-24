@@ -1,9 +1,7 @@
 package de.elia.soulboss.entity.equipment.tools.sword;
 
 import de.elia.soulboss.utils.random.RandomUtils;
-
 import net.minecraft.world.entity.monster.Zombie;
-
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -11,20 +9,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 /**
  * @author Elia
- * @version 1.0.0.pre1
- * @since 1.0.0.pre1
- * @description This is the Sword for the Boss
+ * @description Create the sword for the {@link Zombie}
  */
 public class Sword {
 
-  /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Give the {@link Zombie} a diamond or netherite sword.
-   * @param zombie Requires the Zombie
-   */
-  public void sword(Zombie zombie){
+  public void sword(Zombie zombie) {
     ItemStack diamond = new ItemStack(Material.DIAMOND_SWORD);
     ItemMeta diamondMeta = diamond.getItemMeta();
     diamondMeta.addEnchant(Enchantment.FIRE_ASPECT, 5, true);
@@ -37,7 +26,6 @@ public class Sword {
     netheriteMeta.addEnchant(Enchantment.DAMAGE_ALL, 5, true);
     netheriteMeta.setUnbreakable(true);
     netherite.setItemMeta(netheriteMeta);
-    new RandomUtils().randomItem(zombie, 0.5F, diamond, netherite);
+    new RandomUtils().randomItem(zombie, 0.5f, diamond, netherite);
   }
-
 }

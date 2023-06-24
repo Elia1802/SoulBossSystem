@@ -1,9 +1,7 @@
 package de.elia.soulboss.entity.equipment.armors.chestplate;
 
 import de.elia.soulboss.utils.random.RandomUtils;
-
 import net.minecraft.world.entity.monster.Zombie;
-
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -11,20 +9,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 /**
  * @author Elia
- * @version 1.0.0.pre1
- * @since 1.0.0.pre1
- * @description This is the Chestplate for the Boss
+ * @description  Create the chestplate for the {@link Zombie}
  */
 public class Chestplate {
-
-  /**
-   * @author Elia
-   * @version 1.0.0.pre1
-   * @since 1.0.0.pre1
-   * @description Give the {@link Zombie} a diamond or netherite chestplate.
-   * @param zombie Requires the Zombie
-   */
-  public void chestplate(Zombie zombie){
+  
+  public void chestplate(Zombie zombie) {
     ItemStack diamond = new ItemStack(Material.DIAMOND_CHESTPLATE);
     ItemMeta diamondMeta = diamond.getItemMeta();
     diamondMeta.addEnchant(Enchantment.PROTECTION_FIRE, 5, true);
@@ -39,7 +28,6 @@ public class Chestplate {
     netheriteMeta.addEnchant(Enchantment.THORNS, 5, true);
     netheriteMeta.setUnbreakable(true);
     netherite.setItemMeta(netheriteMeta);
-    new RandomUtils().randomItem(zombie, 0.5F, diamond, netherite);
+    new RandomUtils().randomItem(zombie, 0.5f, diamond, netherite);
   }
-
 }

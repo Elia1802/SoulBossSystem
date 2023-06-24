@@ -22,12 +22,12 @@ repositories {
 }
 
 dependencies {
-  paperDevBundle("1.20-R0.1-SNAPSHOT")
-  compileOnly("com.sk89q.worldguard:worldguard-bukkit:7.0.8-SNAPSHOT")
-  compileOnly("de.elia.api:SoullLibrary:2.0.0")
+  paperDevBundle("1.20.1-R0.1-SNAPSHOT")
+  implementation("com.sk89q.worldedit:worldedit-bukkit:7.2.16-SNAPSHOT")
+  implementation("de.elia.api:SoullLibrary:2.0.1")
   implementation("org.apache.logging.log4j:log4j-api:2.20.0")
   implementation("org.apache.logging.log4j:log4j-core:2.20.0")
-  paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.20-R0.1-SNAPSHOT")
+  paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.20.1-R0.1-SNAPSHOT")
   // paperweightDevBundle("com.example.paperfork", "1.19.4-R0.1-SNAPSHOT")
 
   // You will need to manually specify the full dependency if using the groovy gradle dsl
