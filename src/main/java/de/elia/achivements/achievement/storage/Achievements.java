@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Elia
- * @description The Achievements of SoulBossSystem
+ * @description This enum saves all achievements of this Plugin.
  */
 public enum Achievements {
 
@@ -19,11 +19,11 @@ public enum Achievements {
   private final int xp;
 
   /**
-   * @description Save all values of the achievement.
-   * @param name Requires a name for the Achievement.
-   * @param dataID Requires a id for the Achievemet.
-   * @param target Requires a target for the Achievement.
-   * @param xp
+   * @description Create a new Achievement
+   * @param name Requires a name for the achievement.
+   * @param dataID Requires a data id for the achievement.
+   * @param target Requires a target for the achievement.
+   * @param xp Requires a value of xp for the achievement.
    */
   Achievements(String name, String dataID, String target, int xp) {
     this.name = name;
@@ -33,8 +33,8 @@ public enum Achievements {
   }
 
   /**
-   * @description Gets the name of the Achievement
-   * @return the name of the achievement
+   * @description Gets the name of a achievement.
+   * @return Return the name of the achievement.
    */
   @NotNull
   public String getName() {
@@ -42,8 +42,8 @@ public enum Achievements {
   }
 
   /**
-   * @description Gets the name of the Achievement
-   * @return the name of the achievement
+   * @description Gets the data id of a achievement.
+   * @return Return the data id of the achievement.
    */
   @NotNull
   public String dataID() {
@@ -51,8 +51,8 @@ public enum Achievements {
   }
 
   /**
-   * @description Gets the name of the Achievement
-   * @return the name of the achievement
+   * @description Gets the target of a achievement.
+   * @return Return the target of the achievement.
    */
   @NotNull
   public String target() {
@@ -60,11 +60,10 @@ public enum Achievements {
   }
 
   /**
-   * @description Gets the name of the Achievement
-   * @return the name of the achievement
+   * @description Gets the xp of a achievement.
+   * @return Return the xp of the achievement.
    */
   public int xp() {
     return this.xp;
   }
 }
-

@@ -12,7 +12,6 @@ import org.bukkit.inventory.meta.ItemMeta;
  * @description  Create the chestplate for the {@link Zombie}
  */
 public class Chestplate {
-  
   public void chestplate(Zombie zombie) {
     ItemStack diamond = new ItemStack(Material.DIAMOND_CHESTPLATE);
     ItemMeta diamondMeta = diamond.getItemMeta();

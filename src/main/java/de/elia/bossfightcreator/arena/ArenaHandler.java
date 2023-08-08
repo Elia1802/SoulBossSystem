@@ -1,11 +1,13 @@
 package de.elia.bossfightcreator.arena;
 
-import de.elia.PluginMain;
 import de.elia.api.annotation.AnnotationChecker;
 import de.elia.api.annotation.Beta;
+import de.elia.PluginMain;
 import de.elia.systemclasses.PluginInstances;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -16,42 +18,41 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * @author D1p4k and Sinan, modified by Elia
- * @description This class is sorts {@link Arena}s by state and loads all {@link Arena}s.
- * @beta There may still be errors when loading the {@link Arena}s.
+ * @description This class initialized the arenas and gets arenas with specify states.
  */
 @Beta
 public class ArenaHandler {
 
-  public static final File FILE_PATH = new File(PluginMain.main().getDataFolder() + "/arenas/");//The path of the schematic files
-  private static final int AREANS_TO_GENERATE = 10;//The amount of arenas to be loaded by each schematic
-  private static final int ARENAS_DISTANCE = 200;//The Distance to the next Arena on the x achse
-  private static final int ARENAS_Z_DISTANCE = 200;//The Distance to the next Arena on the z achse
+  public static final File FILE_PATH = new File(PluginMain.main().getDataFolder() + "/arenas/");
+  private static final int AREANS_TO_GENERATE = 10;
+  private static final int ARENAS_DISTANCE = 200;
+  private static final int ARENAS_Z_DISTANCE = 200;
   private static boolean isInit = false;
   private static HashMap<String, Set<Arena>> arenas = new HashMap();
   public static int ARENA_OFFSET = 0;
 
   /**
-   * @description Gets all free {@link Arena}s.
-   * @return all arenas with the {@link ArenaState#FREE}
+   * @description Gets all free arenas.
+   * @return Return all free arenas.
    */
   public static Optional<Arena> getFreeArena() {
     return ArenaHandler.getArenaWithType(ArenaState.FREE);
   }
 
   /**
-   * @description Gets all {@link Arena}s (which are not null) with a specify {@link ArenaState}.
-   * @param arenaState Requires a state.
-   * @return all {@link Arena}s with the specify state and which are not null.
+   * @description Get the first {@link Arena} with a specify {@link ArenaState} of a list.
+   * @param arenaState Requires the {@link ArenaState} of the arena
+   * @return The first {@link Arena} with the specify {@link ArenaState}.
    */
+  @NotNull
   public static Optional<Arena> getArenaWithType(@NotNull ArenaState arenaState) {
     return Optional.ofNullable(ArenaHandler.getArenasWithType(arenaState).get(0));
   }
 
   /**
-   * @description Gets all {@link Arena}s with a specify {@link ArenaState}.
-   * @param arenaState Requires a state.
-   * @return all {@link Arena}s with the specify state.
+   * @description Gets all {@link Arena}s with a specify {@link ArenaState} of a list.
+   * @param arenaState Requires the {@link ArenaState} of the arenas
+   * @return Return The {@link Arena}s with the specify {@link ArenaState}.
    */
   @NotNull
   public static ArrayList<Arena> getArenasWithType(@NotNull ArenaState arenaState) {
@@ -61,26 +62,26 @@ public class ArenaHandler {
   }
 
   /**
-   * @description This methode load the file paths and generate the {@link Arena}s.
+   * @description Initialized the arenas by server start.
    */
   public static void init() {
     AnnotationChecker.processAnnotations(ArenaHandler.class);
     if (!FILE_PATH.exists()) {
       FILE_PATH.mkdir();
     }
-    ArenaHandler.generateArenas("arena_1", ARENAS_Z_DISTANCE);
-    ArenaHandler.generateArenas("arena_2", AREANS_TO_GENERATE*2);
+    ArenaHandler.generateArenas("arena_1", 200);
+    ArenaHandler.generateArenas("arena_2", 20);
     isInit = true;
   }
 
   /**
-   * @description Generate the {@link Arena}s.
-   * @param schem Requires the schematic name of the arena.
-   * @param z Gets the z cordinate of the {@link Arena}s.
+   * @description Generate the arenas.
+   * @param schem Requires the schemmatic file name.
+   * @param z Requires the z cordinate.
    */
   public static void generateArenas(String schem, int z) {
     HashSet<Arena> setArena = new HashSet<>();
-    for (int i = 0; i < AREANS_TO_GENERATE; ++i) {
+    for (int i = 0; i < 10; ++i) {
       setArena.add(ArenaHandler.generateArena(schem, z, schem + "." + i));
       PluginInstances.BOSS_FIGHT_CREATOR_LOGGER.logInfo("ARENA ID: " + schem + "." + i);
       ++ARENA_OFFSET;
@@ -90,25 +91,25 @@ public class ArenaHandler {
   }
 
   /**
-   * @description Generate the {@link Arena}.
-   * @param schem Requires the schematic name of the arena.
-   * @param z Gets the z cordinate of the {@link Arena}.
-   * @param arenaID Requires the id of the {@link Arena}.
-   * @return the generated {@link Arena}
+   * @description Generate a {@link Arena}
+   * @param schem Requires the schemmatic file name for the {@link Arena}.
+   * @param z Requires the z cordinate for the {@link Arena}.
+   * @param arenaID Requires the id for the {@link Arena}.
+   * @return
    */
   @NotNull
   private static Arena generateArena(@NotNull String schem, int z, String arenaID) {
-    Arena arena = new Arena(schem, new Location(Bukkit.getWorld("world_bossfight"), ARENAS_DISTANCE * ARENA_OFFSET , 100.0, z), arenaID);
+    Arena arena = new Arena(schem, new Location(Bukkit.getWorld("world_bossfight"), (200 * ARENA_OFFSET), 100.0, z), arenaID);
     return arena;
   }
 
   /**
-   * @author Elia
-   * @description Checks if all {@link Arena}s init.
-   * @return if all {@link Arena}s intit true else false..
+   * @deprecated if the boolean false can the server crash
+   * @description Checks if the arenas initialized.
+   * @return Return true if arenas initialized and if not false.
    */
+  @Deprecated
   public static boolean isInit() {
     return isInit;
   }
 }
-

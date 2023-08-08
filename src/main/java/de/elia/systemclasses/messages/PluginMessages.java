@@ -9,12 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-/**
- * @author Elia
- * @description This class send messages to the player
- * @extends {@link MessageBuilder}
- */
-public class PluginMessages extends MessageBuilder {
+public class PluginMessages
+  extends MessageBuilder {
   private final MiniMessage miniMessage = MiniMessage.miniMessage();
   private final PluginPrefix prefix = new PluginPrefix();
 

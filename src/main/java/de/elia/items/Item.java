@@ -15,13 +15,8 @@ import org.jetbrains.annotations.Nullable;
  */
 public class Item {
 
-  /**
-   * @author Elia
-   * @description register all items.
-   * @param plugin Requires the instance of the main class.
-   */
   public static void registerAll(@NotNull Plugin plugin) {
-    new Zombie_Spawn_Egg();
+    new Zombie_Spawn_Egg(plugin);
     new Magic_Book(plugin);
   }
 
@@ -34,9 +29,10 @@ public class Item {
    */
   @Nullable
   public static ComplexItem get(Complex item) throws CloneNotSupportedException {
-    if (ComplexItem.SAVED.containsKey(item)) {
-      return (ComplexItem)(ComplexItem.SAVED.get((Object)item)).clone();
-    }else return null;
+    if (ComplexItem.SAVED.containsKey((Object)item)) {
+      return (ComplexItem)(ComplexItem.SAVED.get(item)).clone();
+    }
+    return null;
   }
 
   /**
@@ -49,8 +45,9 @@ public class Item {
   public static void give(@NotNull Player player, @NotNull Complex item, int amount) {
     if (amount <= 0) {
       return;
-    }else if (ComplexItem.SAVED.containsKey(item)) {
-      (ComplexItem.SAVED.get(item)).setAmount(Math.min(amount, 64)).giveItem(player);
+    }
+    if (ComplexItem.SAVED.containsKey(item)) {
+      ((ComplexItem)ComplexItem.SAVED.get(item)).setAmount(Math.min(amount, 64)).giveItem(player);
     }
   }
 
@@ -63,7 +60,7 @@ public class Item {
    */
   public static void drop(@NotNull Location location, @NotNull Complex item, int amount) {
     if (ComplexItem.SAVED.containsKey(item)) {
-      (ComplexItem.SAVED.get(item)).setAmount(amount).drop(location);
+      ((ComplexItem)ComplexItem.SAVED.get(item)).setAmount(amount).drop(location);
     }
   }
 }

@@ -7,13 +7,9 @@ import io.papermc.paper.plugin.bootstrap.PluginProviderContext;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
-/**
- * @author Elia
- * @description The bootstrapper for this system
- */
-@Planned(value="See comment in paper.yml")
+@Planned("See comment in paper.yml")
 public class BootsTrapper implements PluginBootstrap {
-  
+
   public void bootstrap(@NotNull BootstrapContext context) {
   }
 

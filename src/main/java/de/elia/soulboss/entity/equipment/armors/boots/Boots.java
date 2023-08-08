@@ -1,7 +1,9 @@
 package de.elia.soulboss.entity.equipment.armors.boots;
 
 import de.elia.soulboss.utils.random.RandomUtils;
+
 import net.minecraft.world.entity.monster.Zombie;
+
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;

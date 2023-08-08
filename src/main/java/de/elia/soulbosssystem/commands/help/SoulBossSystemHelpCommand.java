@@ -7,15 +7,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * @author Elia
- * @description This command send the player a help to all commands about all plugins in this system.
- * @extends {@link Command}
- */
 public class SoulBossSystemHelpCommand extends Command {
 
   public SoulBossSystemHelpCommand() {
@@ -26,6 +22,7 @@ public class SoulBossSystemHelpCommand extends Command {
     super(name, description, usageMessage, aliases);
   }
 
+  @Override
   public boolean execute(@NotNull CommandSender sender, @NotNull String commandLabel, @NotNull String[] args) {
     PluginLogger logger = SoulBossSystemMain.soulBossSystemMain().soulBossSystemLogger();
     PluginMessages message = new PluginMessages();
@@ -62,6 +59,7 @@ public class SoulBossSystemHelpCommand extends Command {
     return false;
   }
 
+  @Override
   @NotNull
   public List<String> tabComplete(@NotNull CommandSender sender, @NotNull String alias, @NotNull String[] args) throws IllegalArgumentException {
     ArrayList<String> tab = new ArrayList<>();

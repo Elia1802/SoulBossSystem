@@ -12,12 +12,15 @@ import com.sk89q.worldedit.function.operation.Operation;
 import com.sk89q.worldedit.function.operation.Operations;
 import com.sk89q.worldedit.math.BlockVector3;
 import com.sk89q.worldedit.session.ClipboardHolder;
-import com.sk89q.worldedit.world.World;
+
 import de.elia.api.annotation.AnnotationChecker;
 import de.elia.api.annotation.Beta;
-import de.elia.api.logging.SaveError;
+import de.elia.api.logging.error.SaveError;
+
 import de.elia.bossfightcreator.BossFightCreatorMain;
+
 import org.bukkit.Location;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -25,25 +28,25 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
- * @author Elia, and Sinan
- * @description This class loaded and paste a Schematic in the world
- * @Beta This class is new and may have Bugs
+ * @author Sinan
+ * @description This class load and paste schematic file of worldedit.
+ * @beta This function can create errors!!!
  */
 @Beta
 public class SchematicBuilder {
 
   /**
-   * @description Load a build of a schematic in the worldedit clipboard
-   * @param path Requries the path of the schematic
-   * @param schematicName Requires the name of the schematic file
-   * @return The {@link Clipboard} of Worldedit with the build (arena)
+   * @author Sinan, Elia
+   * @param path Requires the path of the schematic file.
+   * @param schematicName Requires the schematic name for the file.
+   * @return Return the {@link Clipboard} with the schematic.
    */
   @NotNull
-  public static Clipboard schematic(File path, String schematicName) {
-    Clipboard clipboard;
+  public static Clipboard schematic(@NotNull File path, @NotNull String schematicName) {
     AnnotationChecker.processAnnotations(SchematicBuilder.class);
+    Clipboard clipboard;
     File arenaFile = new File(path, schematicName + ".schem");
-    ClipboardFormat format = ClipboardFormats.findByFile((File)arenaFile);
+    ClipboardFormat format = ClipboardFormats.findByFile(arenaFile);
     try (ClipboardReader reader = format.getReader(new FileInputStream(arenaFile))) {
       return clipboard = reader.read();
     }catch (IOException exception) {
@@ -56,17 +59,16 @@ public class SchematicBuilder {
   }
 
   /**
-   * @description paste a Schematic on a specify {@link Location}
-   * @param location Requires the location where the schematic of the {@link Clipboard} is loaded
-   * @param clipboard Requires a Clipboard with the schematic (For this project you can use {@link SchematicBuilder#schematic(File, String)})
-   * @throws WorldEditException Print a Stacktrace if the Operation can not completed
+   * @description This methode paste a schematic of a {@link Clipboard} on specify {@link Location}.
+   * @param location Requires the {@link Location} to place the Schematic.
+   * @param clipboard Requires the {@link Clipboard} with the schemeatic.
+   * @throws WorldEditException The Operation can create an error.
    */
-  public static void pasteSchematic(@NotNull Location location, Clipboard clipboard) throws WorldEditException {
+  public static void pasteSchematic(@NotNull Location location, @NotNull Clipboard clipboard) throws WorldEditException {
     AnnotationChecker.processAnnotations(SchematicBuilder.class);
-    EditSession session = WorldEdit.getInstance().newEditSession((World)new BukkitWorld(location.getWorld()));
+    EditSession session = WorldEdit.getInstance().newEditSession(new BukkitWorld(location.getWorld()));
     Operation operation = new ClipboardHolder(clipboard).createPaste(session).to(BlockVector3.at(location.x(), location.y(), location.z())).ignoreAirBlocks(false).copyEntities(false).build();
-    Operations.complete((Operation)operation);
+    Operations.complete(operation);
     session.close();
   }
 }
-

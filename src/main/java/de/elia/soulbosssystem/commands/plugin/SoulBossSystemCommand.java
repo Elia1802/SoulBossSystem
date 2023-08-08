@@ -5,25 +5,18 @@ import de.elia.soulbosssystem.SoulBossSystemMain;
 import de.elia.soulbosssystem.configuation.SoulBossSystemConfigurationLoader;
 import de.elia.systemclasses.keys.PluginKeys;
 import de.elia.systemclasses.messages.PluginMessages;
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * @author Elia
- * @description This command is the control command of this system.
- * @extends {@link Command}
- */
 public class SoulBossSystemCommand extends Command {
 
   private int time = 10;
@@ -42,7 +35,9 @@ public class SoulBossSystemCommand extends Command {
     if (sender instanceof Player player) {
       if (player.hasPermission("soulbosssystem.plugin")) {
         if (args.length == 1) {
-          if (!args[0].equalsIgnoreCase("help")) return false;
+          if (!args[0].equalsIgnoreCase("help")) {
+            return false;
+          }
           message.messageWithPrefix(player, message.gray("Mögliche Commands sind: "));
           message.messageWithPrefix(player, message.aqua("/soulbosssystem help"));
           message.messageWithPrefix(player, message.aqua("/soulbosssystem controls stop plugin/fights"));
@@ -53,14 +48,18 @@ public class SoulBossSystemCommand extends Command {
           return true;
         }
         if (args.length == 2) {
-          if (!args[0].equalsIgnoreCase("information")) return false;
+          if (!args[0].equalsIgnoreCase("information")) {
+            return false;
+          }
           if (args[1].equalsIgnoreCase("description")) {
             message.messageWithPrefix(player, message.gray(SoulBossSystemMain.soulBossSystemMain().main().getPluginMeta().getDescription()));
             return true;
           }
-          if (!args[1].equalsIgnoreCase("authors")) return false;
+          if (!args[1].equalsIgnoreCase("authors")) {
+            return false;
+          }
           message.messageWithPrefix(player, message.gray("Die Authoren sind "));
-          SoulBossSystemMain.soulBossSystemMain().main().getPluginMeta().getAuthors().forEach(author -> message.messageWithPrefix(player, message.gray("- ").append(message.aqua((String)author))));
+          SoulBossSystemMain.soulBossSystemMain().main().getPluginMeta().getAuthors().forEach(author -> message.messageWithPrefix(player, message.gray("- ").append(message.aqua(author))));
           return true;
         }
         if (args.length == 3) {
@@ -69,7 +68,7 @@ public class SoulBossSystemCommand extends Command {
               if (args[2].equalsIgnoreCase("fights")) {
                 message.broadcastWithPrefix(message.red("Das Teammitglied ").append(message.aqua(player.getName())).append(message.gray(" löscht alle BossFights!")));
                 new BukkitRunnable(){
-
+                  @Override
                   public void run() {
                     --SoulBossSystemCommand.this.time;
                     if (SoulBossSystemCommand.this.time == 0) {
@@ -114,11 +113,15 @@ public class SoulBossSystemCommand extends Command {
             message.messageWithPrefix(player, message.red("/soulbosssystem controls reload"));
             return false;
           }
-          if (!args[0].equalsIgnoreCase("information") || !args[1].equalsIgnoreCase("version") || !args[2].equalsIgnoreCase("plugin")) return false;
+          if (!(args[0].equalsIgnoreCase("information") && args[1].equalsIgnoreCase("version") && args[2].equalsIgnoreCase("plugin"))) {
+            return false;
+          }
           message.messageWithPrefix(player, message.gray("Die Version ist ").append(message.aqua(SoulBossSystemMain.soulBossSystemMain().main().getPluginMeta().getVersion())));
           return true;
         }
-        if (args.length != 4) return false;
+        if (args.length != 4) {
+          return false;
+        }
         if (args[0].equalsIgnoreCase("information")) {
           if (args[1].equalsIgnoreCase("version")) {
             if (args[2].equalsIgnoreCase("api")) {

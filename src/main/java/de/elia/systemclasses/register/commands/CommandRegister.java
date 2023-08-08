@@ -6,6 +6,7 @@ import de.elia.bossfightcreator.commands.help.BossFightCreatorHelpCommand;
 import de.elia.bossfightcreator.commands.world.BossFightCreatorWorldCommand;
 import de.elia.items.commands.help.ItemHelpCommand;
 import de.elia.items.commands.items.ItemGiveCommand;
+import de.elia.party.commands.PartyCommand;
 import de.elia.soulbosssystem.commands.help.SoulBossSystemHelpCommand;
 import de.elia.soulbosssystem.commands.idea.SoulBossSystemIdeaCommand;
 import de.elia.soulbosssystem.commands.plugin.SoulBossSystemCommand;
@@ -15,16 +16,16 @@ import org.bukkit.command.Command;
 
 import java.util.HashMap;
 import java.util.Map;
-/**
- * @author Elia
- * @description This class register all commands.
- */
+
 public class CommandRegister {
-  
-  private static final Map<String, Command> COMMANDS = new HashMap<>();
+  private static final Map<String, Command> COMMANDS = new HashMap<String, Command>();
 
   public static void registerCommands(Server server) {
     COMMANDS.forEach((s, command) -> server.getCommandMap().register(s, "Soulbosssytem", command));
+  }
+
+  public static void registerCommands() {
+    CommandRegister.registerCommands(Bukkit.getServer());
   }
 
   static {
@@ -37,9 +38,6 @@ public class CommandRegister {
     COMMANDS.put("soulbosssystemhelp", new SoulBossSystemHelpCommand());
     COMMANDS.put("soulbosssystemidea", new SoulBossSystemIdeaCommand());
     COMMANDS.put("soulbosssystem", new SoulBossSystemCommand());
-  }
-
-  public static void registerCommands() {
-    CommandRegister.registerCommands(Bukkit.getServer());
+    COMMANDS.put("party", new PartyCommand());
   }
 }

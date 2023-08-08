@@ -1,50 +1,74 @@
 package de.elia.soulboss.entity.mobs.boss.magic.attackaction;
 
+import de.elia.api.timing.StartTasks;
+import de.elia.api.timing.TimerUtils;
 import de.elia.soulboss.SoulBoss;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.World;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Random;
 
 /**
  * @author ELia, Zopnote
  * @description This class has all attacks.
  */
 public class Actions {
-
-  public void actionTeleport(Vector vector, final Player player) {
+  public static void actionTeleport(Vector vector, final Player player, final Entity entity) {
     new BukkitRunnable(){
-
+      @Override
       public void run() {
-        Location playerLocation = player.getLocation();
-        Random random = new Random();
-        Location randomLocation = null;
-        while (randomLocation == null) {
-          double x = playerLocation.getX() + (random.nextDouble() - 0.5) * 15.0;
-          double y = playerLocation.getY() + (random.nextDouble() - 0.5) * 15.0;
-          double z = playerLocation.getZ() + (random.nextDouble() - 0.5) * 15.0;
-          randomLocation = new Location(player.getWorld(), x, y, z);
-          if (randomLocation.getBlock().getType() == Material.AIR) continue;
-          randomLocation = null;
-        }
-        player.teleport(randomLocation);
-        player.playSound(playerLocation, Sound.ENTITY_ENDERMAN_TELEPORT, 0.5f, 1.0f);
+        Location location = entity.getLocation().clone();
+        entity.teleport(player.getLocation());
+        Location newLocation = new Location(location.getWorld(), location.x(), location.y() + 15d, location.z());
+        player.teleport(newLocation);
+        player.playSound(newLocation, Sound.ENTITY_ENDERMAN_TELEPORT, 0.5f, 1.0f);
       }
-    }.runTaskLater((Plugin)SoulBoss.soulBoss().main(), 10L);
+    }.runTaskLater(SoulBoss.soulBoss().main(), 10L);
   }
 
-  public void actionFire(@NotNull Player player, int ticks) {
+  public static void actionFire(@NotNull Player player, int ticks) {
     player.setFireTicks(ticks);
   }
 
-  public void actionStrikeLightning(@NotNull World world, @NotNull Player player) {
+  public static void actionStrikeLightning(@NotNull World world, @NotNull Player player) {
     world.strikeLightning(player.getLocation());
+    player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 15, 255, false, false, false));
+    new Timer().start(20*20, player, null, SoulBoss.soulBoss().main());
+  }
+
+  private static class Timer extends StartTasks {
+    @Override
+    public void start(int time, @NotNull Player player, Location location, Plugin plugin) {
+      TimerUtils.countdownAndRun(time, new Runnable() {
+        public void run() {
+        }
+      }, plugin);
+      TimerUtils.countdownInterval(time, new TimerUtils.TimeRunnable() {
+        @Override
+        public void run(int ticks) {
+          if (ticks % 20 == 0) {
+            int var2 = ticks / 20;
+          }
+
+        }
+      }, new Runnable() {
+        @Override
+        public void run() {
+          new BukkitRunnable() {
+            @Override
+            public void run() {
+              player.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 15, 255, false, false, false));
+            }
+          }.runTask(SoulBoss.soulBoss().main());
+        }
+      }, plugin);
+    }
   }
 }

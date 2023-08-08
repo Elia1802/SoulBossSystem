@@ -4,21 +4,14 @@ import de.elia.api.logging.PluginLogger;
 import de.elia.soulbosssystem.SoulBossSystemMain;
 import de.elia.soulbosssystem.configuation.SoulBossSystemConfigurationLoader;
 import de.elia.systemclasses.messages.PluginMessages;
-
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * @author Elia
- * @description With this command can the player create a idea.
- * @extends {@link Command}
- */
 public class SoulBossSystemIdeaCommand extends Command {
 
   public SoulBossSystemIdeaCommand() {
@@ -29,9 +22,9 @@ public class SoulBossSystemIdeaCommand extends Command {
     super(name, description, usageMessage, aliases);
   }
 
+  @Override
   public boolean execute(@NotNull CommandSender sender, @NotNull String commandLabel, @NotNull String[] args) {
     PluginMessages message = new PluginMessages();
-    SoulBossSystemConfigurationLoader soulBossSystemConfigurationLoader = new SoulBossSystemConfigurationLoader();
     PluginLogger logger = SoulBossSystemMain.soulBossSystemMain().soulBossSystemLogger();
     if (sender instanceof Player player) {
       if (args.length > 1) {
@@ -39,9 +32,9 @@ public class SoulBossSystemIdeaCommand extends Command {
         for (int i = 0; i < args.length; ++i) {
           idea.append(args[i]).append(" ");
         }
-        if (soulBossSystemConfigurationLoader.ideasStorage().get(player.getName()) == null) {
+        if (SoulBossSystemConfigurationLoader.ideasStorage().get(player.getName()) == null) {
           String string = idea.toString();
-          soulBossSystemConfigurationLoader.ideasStorage().set(player.getName(), (Object)string);
+          SoulBossSystemConfigurationLoader.ideasStorage().set(player.getName(), (Object)string);
           message.messageWithPrefix(player, message.gray("Du hast die Idee erfolgreich abgesendet!"));
           message.messageWithPrefix(player, message.gray("Deine Idee: "));
           message.messageWithPrefix(player, message.aqua(string));

@@ -3,12 +3,15 @@ package de.elia.achivements.commands.give;
 import de.elia.achivements.AchievementMain;
 import de.elia.achivements.achievement.process.Achievement;
 import de.elia.achivements.achievement.storage.Achievements;
-import de.elia.api.logging.PluginLogger;
 import de.elia.systemclasses.messages.PluginMessages;
+
+import de.elia.api.logging.PluginLogger;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -17,7 +20,7 @@ import java.util.List;
 
 /**
  * @author Elia
- * @description A Command to give a specify {@link Player} a Achievement.
+ * @description This command give a {@link Player} a achievement.
  * @extends {@link Command}
  */
 public class AchievementGiveCommand extends Command {
@@ -115,4 +118,3 @@ public class AchievementGiveCommand extends Command {
     return null;
   }
 }
-

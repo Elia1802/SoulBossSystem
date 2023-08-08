@@ -1,21 +1,17 @@
 name: SoulBossSystem
 main: de.elia.PluginMain
-depend:
-  - WorldEdit
-  - SoulLibrary
-api-version: 1.19
-version: 1.0.0.pre.1
-author: Elia, D1p4k, Zopnote, Sinan
+bootstrapper: de.elia.BootsTrapper
+loader: de.elia.Loader
+api-version: '1.20'
+version: '1.0.0'
+authors:
+  - Elia
+  - D1p4k
+  - Zopnote
+  - Sinan
 description: This plugin was written for SoulSMP. I put a lot of effort into it and I hope you really like it.
   I know this plugin changes the entire server, but sometimes a change is important. This plugin
   ensures that you can earn your own bossfight. But since I still need a lot of ideas, feel free
   to write an idea with the command /mobidea an idea.
 permissions:
-  soulbosssystem:
-    achievement:
-      give:
-    bossfightgenerator:
-      tpworld:
-    items:
-      give:
-    plugin:
+has-open-classloader: true

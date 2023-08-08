@@ -12,7 +12,6 @@ import org.bukkit.inventory.meta.ItemMeta;
  * @description  Create the axe for the {@link Zombie}
  */
 public class Axe {
-
   public void axe(Zombie zombie) {
     ItemStack diamond = new ItemStack(Material.DIAMOND_AXE);
     ItemMeta diamondMeta = diamond.getItemMeta();

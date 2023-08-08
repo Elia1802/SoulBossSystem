@@ -1,56 +1,57 @@
 package de.elia.bossfightcreator.arena;
 
 import com.sk89q.worldedit.WorldEditException;
-import de.elia.PluginMain;
+
 import de.elia.api.annotation.AnnotationChecker;
 import de.elia.api.annotation.Beta;
-import de.elia.api.logging.SaveError;
+import de.elia.api.logging.error.SaveError;
+
+import de.elia.PluginMain;
 import de.elia.bossfightcreator.BossFightCreatorMain;
 import de.elia.bossfightcreator.arena.utils.SchematicBuilder;
 import de.elia.bossfightcreator.game.Game;
 import de.elia.systemclasses.PluginInstances;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 
 /**
- * @author Elia, D1p4k and Sinan
- * @description This class create a Arena for the {@link Game}s.
- * @beta There may still be errors when loading the arenas
+ * @author Sinan, D1p4k, Elia
+ * @description This is the Arena class. This class gives for all schematics.
+ * @beta Because: This is unstable!!!
  */
 @Beta
 public class Arena {
 
   private final Location location;
-  private final String schematicName;
+  private final String name;
   private final String arenaID;
   private ArenaState state = ArenaState.UNINITIALIZED;
   private Game game;
 
   /**
-   * @description Create a new Arena.
-   * @param schematicName Requires a schematic name.
-   * @param location Requires a {@link Location}.
-   * @param arenaID Requires a id.
+   * @description This Constructer create a new Arena
+   * @param name Requires a name for the arena.
+   * @param location Requires a {@link Location} of the arena
+   * @param arenaID Requires a id for the arena.
    */
-  public Arena(String schematicName, Location location, String arenaID) {
-    this.schematicName = schematicName;
+  public Arena(String name, Location location, String arenaID) {
+    this.name = name;
     this.location = location;
     this.arenaID = arenaID;
     this.buildArena();
-    //Start Elia
     AnnotationChecker.processAnnotations(Arena.class);
-    //End Elia
   }
 
   /**
    * @author Elia
-   * @description Gets the spawn location of the arena.
-   * @return The {@link Location} of the Arena or if the id none exist null.
+   * @description This gets the spawn location for the arena.
+   * @return Return a {@link Location} if the arena id the same as a exist id, else null.
    */
   public Location getSpawnLocation() {
     switch (this.arenaID) {
@@ -119,115 +120,112 @@ public class Arena {
   }
 
   /**
-   * @description add a Player to the {@link Game}.
-   * @param player Requires a {@link Player}
+   * @deprecated Use {@link de.elia.party.Party#addPlayer(Player)}
+   * @description This methode add a {@link Player} to the {@link Game} of the arena.
+   * @param player Requires a player.
    */
+  @Deprecated
   public void addPlayer(@NotNull Player player) {
-    //Start Elia
     BossFightCreatorMain.playerStatusMap().replace(player, 1);
-    //End Elia
-    this.game.addPlayer(player);
+    this.game.party.members().add(player);
   }
 
   /**
-   * @author Elia, D1p4k and Sinan
-   * @description This Methode build a arena if a new arena created.
+   * @description This methode build the arena.
    */
   private void buildArena() {
-    PluginInstances.BOSS_FIGHT_CREATOR_LOGGER.logInfo(this.schematicName + " is being build at " + this.location + "!");
+    PluginInstances.BOSS_FIGHT_CREATOR_LOGGER.logInfo(this.name + " is being build at " + this.location + "!");
     try {
       this.state = ArenaState.LOADING;
       PluginInstances.BOSS_FIGHT_CREATOR_LOGGER.logInfo("Paste the schematic of the arena");
-      SchematicBuilder.pasteSchematic(this.location, SchematicBuilder.schematic(ArenaHandler.FILE_PATH, this.schematicName));
-      File arenaFile = new File(ArenaHandler.FILE_PATH, this.schematicName + ".schem");
+      SchematicBuilder.pasteSchematic(this.location, SchematicBuilder.schematic(ArenaHandler.FILE_PATH, this.name));
+      File arenaFile = new File(ArenaHandler.FILE_PATH, this.name + ".schem");
       PluginInstances.BOSS_FIGHT_CREATOR_LOGGER.logInfo(arenaFile + "  !  " + arenaFile.exists());
       this.state = ArenaState.FREE;
       PluginInstances.BOSS_FIGHT_CREATOR_LOGGER.logInfo("The arena " + this.arenaID + " is " + this.state);
-    }catch (WorldEditException exception) {
-      new SaveError().saveError((JavaPlugin)PluginMain.main(), (Exception)((Object)exception), "Arena-buildArena-line_108=worldedit");
+    } catch (WorldEditException exception) {
+      new SaveError().saveError(PluginMain.main(), exception, "Arena-buildArena-line_139=worldedit");
       exception.printStackTrace();
       this.state = ArenaState.ERROR_BUILDING;
     }
-    PluginInstances.BOSS_FIGHT_CREATOR_LOGGER.logInfo(this.schematicName + " was build at " + this.location + "! And now the State is " + this.state);
+    PluginInstances.BOSS_FIGHT_CREATOR_LOGGER.logInfo(this.name + " was build at " + this.location + "! And now the State is " + this.state);
   }
 
   /**
-   * @author Elia
-   * @description Rebuild a arena.
-   * @param arena Requires the arena to be reloaded..
+   * @description This methode rebuild the arena.
+   * @param arena Requires the arena.
    */
   public void reBuildArena(@NotNull Arena arena) {
-    BossFightCreatorMain.bossFightCreator().bossFightCreatorLogger().logInfo(arena.getSchematicName() + " is being build at " + arena.getLocation() + "!");
+    BossFightCreatorMain.bossFightCreator().bossFightCreatorLogger().logInfo(arena.getName() + " is being build at " + arena.getLocation() + "!");
     try {
       arena.setState(ArenaState.LOADING);
       BossFightCreatorMain.bossFightCreator().bossFightCreatorLogger().logInfo("Paste the schematic of the arena");
-      SchematicBuilder.pasteSchematic(arena.getLocation(), SchematicBuilder.schematic(ArenaHandler.FILE_PATH, arena.getSchematicName()));
-      File arenaFile = new File(ArenaHandler.FILE_PATH, arena.getSchematicName() + ".schem");
-      BossFightCreatorMain.bossFightCreator().bossFightCreatorLogger().logInfo(arenaFile + "  !  " + arenaFile.exists());
+      SchematicBuilder.pasteSchematic(arena.getLocation(), SchematicBuilder.schematic(ArenaHandler.FILE_PATH, arena.getName()));
       arena.setState(ArenaState.USED);
       BossFightCreatorMain.bossFightCreator().bossFightCreatorLogger().logInfo("The arena " + arena.getArenaID() + " is " + arena.getState());
     } catch (WorldEditException exception) {
-      new SaveError().saveError((JavaPlugin)PluginMain.main(), (Exception)((Object)exception), "Arena-buildArena-line_131=worldedit");
+      new SaveError().saveError(PluginMain.main(), exception, "Arena-buildArena-line_131=worldedit");
       exception.printStackTrace();
       this.state = ArenaState.ERROR_BUILDING;
     }
-    BossFightCreatorMain.bossFightCreator().bossFightCreatorLogger().logInfo(arena.getSchematicName() + " was build at " + arena.getLocation() + "! And now the State is " + arena.getState());
+    BossFightCreatorMain.bossFightCreator().bossFightCreatorLogger().logInfo(arena.getName() + " was build at " + arena.getLocation() + "! And now the State is " + arena.getState());
   }
 
   /**
-   * @description Gets the {@link Location} of the Arena.
-   * @return a {@link Location}
+   * @description Gets the location of the Arena.
+   * @return Return the {@link Location} where the arena is generated
    */
   public Location getLocation() {
     return this.location;
   }
 
   /**
-   * @description Gets the schematic name of the Arena.
-   * @return the name of the schematic
+   * @description Gets the name of the Arena.
+   * @return Return the name
    */
-  public String getSchematicName() {
-    return this.schematicName;
+  public String getName() {
+    return this.name;
   }
 
   /**
-   * @description Gets the id of the Arena.
-   * @return the id of the arena
+   * @description Gets the arena id of the Arena.
+   * @return Return the arena id
    */
   public String getArenaID() {
     return this.arenaID;
   }
 
   /**
-   * @description Gets the {@link Game} of the Arena.
-   * @return a {@link Game}
+   * @description Gets the game of the Arena.
+   * @return Return the game
    */
   public Game getGame() {
     return this.game;
   }
 
-  /**
-   * @description Set a Game to the arena.
-   * @param game Requires a {@link Game}
-   */
-  public void setGame(@NotNull Game game) {
-    this.game = game;
-  }
 
   /**
    * @description Gets the state of the Arena.
-   * @return a {@link ArenaState}
+   * @return Return the state
    */
   public ArenaState getState() {
     return this.state;
   }
 
   /**
-   * @description Set a state of the Arena.
-   * @param state Requires a state for the Arena
+   * @description This set the game to the arena.
+   * @param game Requires the game.
+   */
+  public void setGame(@NotNull Game game) {
+    this.game = game;
+  }
+
+  /**
+   * @description This set the state of the arena.
+   * @param state Requires the state
    */
   public void setState(@NotNull ArenaState state) {
     this.state = state;
   }
-}
 
+}

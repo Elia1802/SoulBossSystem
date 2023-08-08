@@ -1,9 +1,16 @@
 package de.elia.bossfightcreator;
 
-import de.elia.PluginMain;
+import de.elia.api.loader.SoulPlugin;
+import de.elia.api.loader.exceptions.SoulPluginLoadException;
 import de.elia.api.logging.PluginLogger;
+
+import de.elia.PluginMain;
 import de.elia.systemclasses.PluginInstances;
+
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -12,25 +19,30 @@ import java.util.Map;
 /**
  * @author Elia
  * @description This is the main class for the bossfightcreator plugin.
+ * @implememnts {@link SoulPlugin}
  */
-public class BossFightCreatorMain {
+public class BossFightCreatorMain implements SoulPlugin {
 
   private static BossFightCreatorMain bossFightCreatorMain;
   private static final Map<Player, Integer> playerStatusMap = new HashMap<>();
 
   /**
    * @description This methode load this plugin.
+   * @param javaPlugin Requires the instance of the system main class.
    */
-  public void enable() {
+  @Override
+  public void enable(@NotNull JavaPlugin javaPlugin) throws SoulPluginLoadException {
     this.bossFightCreatorLogger().logInfo("Load BossFightCreator plugin...");
     bossFightCreatorMain = this;
     this.bossFightCreatorLogger().logInfo("BossFightCreator plugin loaded!");
   }
 
   /**
-   * @description This methode unload this plugin.
+   * @description This methode load this plugin.
+   * @param javaPlugin Requires the instance of the system main class.
    */
-  public void disable() {
+  @Override
+  public void disable(@NotNull JavaPlugin javaPlugin) throws SoulPluginLoadException {
     this.bossFightCreatorLogger().logInfo("Disable BossFightCreator...");
     this.bossFightCreatorLogger().logInfo("BossFightCreator disabled!");
   }
@@ -70,4 +82,3 @@ public class BossFightCreatorMain {
     return PluginInstances.BOSS_FIGHT_CREATOR_LOGGER;
   }
 }
-

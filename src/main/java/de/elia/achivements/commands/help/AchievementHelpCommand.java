@@ -1,11 +1,14 @@
 package de.elia.achivements.commands.help;
 
-import de.elia.achivements.AchievementMain;
 import de.elia.api.logging.PluginLogger;
+
+import de.elia.achivements.AchievementMain;
 import de.elia.systemclasses.messages.PluginMessages;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -14,7 +17,7 @@ import java.util.List;
 
 /**
  * @author Elia
- * @description A command to give the {@link Player} a help about the achievement plugin.
+ * @description Give the {@link Player} a help about the achievement plugin.
  * @extends {@link Command}
  */
 public class AchievementHelpCommand extends Command {
@@ -69,4 +72,3 @@ public class AchievementHelpCommand extends Command {
     return null;
   }
 }
-

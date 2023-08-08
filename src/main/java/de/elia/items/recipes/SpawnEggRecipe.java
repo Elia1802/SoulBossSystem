@@ -1,8 +1,10 @@
 package de.elia.items.recipes;
 
 import de.elia.api.thezepserapi.Complex;
+
 import de.elia.items.Item;
 import de.elia.systemclasses.keys.PluginKeys;
+
 import org.bukkit.Material;
 import org.bukkit.inventory.ShapedRecipe;
 import org.jetbrains.annotations.NotNull;
@@ -29,10 +31,6 @@ public class SpawnEggRecipe {
     this.bossSpawnEggRecipe = recipe;
   }
 
-  /**
-   * @description Gets the zombie spawn egg recipe
-   * @return the zombie spawn egg recipe
-   */
   @NotNull
   public ShapedRecipe bossSpawnEggRecipe() {
     return this.bossSpawnEggRecipe;

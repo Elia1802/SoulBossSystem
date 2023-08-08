@@ -4,17 +4,15 @@ import de.elia.api.configuration.SoulConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
-/**
- * @author Elia
- * @description This class load all config files.
- */
 public class SoulBossSystemConfigurationLoader {
   private static SoulConfiguration achievementStorage;
   private static SoulConfiguration ideasStorage;
+  private static SoulConfiguration ifArenasLoaded;
 
   private static void setConfiguration(Plugin plugin) {
     achievementStorage = new SoulConfiguration(plugin, "achievements/", "Achievements.yml");
     ideasStorage = new SoulConfiguration(plugin, "ideas/", "Ideas.yml");
+    ifArenasLoaded = new SoulConfiguration(plugin, "ifArenasloaded.yml");
   }
 
   public static void loadFiles(Plugin plugin) {
@@ -23,6 +21,9 @@ public class SoulBossSystemConfigurationLoader {
     achievementStorage.save();
     ideasStorage.copyDefaults(true);
     ideasStorage.save();
+    ifArenasLoaded.copyDefaults(true);
+    ifArenasLoaded.addDefault("loaded", (Object)false);
+    ifArenasLoaded.save();
   }
 
   public static void save(Plugin plugin) {
@@ -39,12 +40,17 @@ public class SoulBossSystemConfigurationLoader {
   }
 
   @NotNull
-  public SoulConfiguration achievementStorage() {
+  public static SoulConfiguration achievementStorage() {
     return achievementStorage;
   }
 
   @NotNull
-  public SoulConfiguration ideasStorage() {
+  public static SoulConfiguration ideasStorage() {
     return ideasStorage;
+  }
+
+  @NotNull
+  public static SoulConfiguration ifArenasLoaded() {
+    return ifArenasLoaded;
   }
 }

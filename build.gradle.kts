@@ -5,12 +5,12 @@ plugins {
 }
 
 group = "de.elia"
-version = "1.0.0.pre.1"
+version = "1.0.0"
 description = "The Boss Fight Plugin für Soul"
 
 java {
-  // Configure the java toolchain. This allows gradle to auto-provision JDK 17 on systems that only have JDK 8 installed for example.
-  toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+  // Configure the java toolchain. This allows gradle to auto-provision JDK 19 on systems that only have JDK 8 installed for example.
+  toolchain.languageVersion.set(JavaLanguageVersion.of(19))
 }
 
 repositories {
@@ -24,7 +24,7 @@ repositories {
 dependencies {
   paperDevBundle("1.20.1-R0.1-SNAPSHOT")
   implementation("com.sk89q.worldedit:worldedit-bukkit:7.2.16-SNAPSHOT")
-  implementation("de.elia.api:SoullLibrary:2.0.1")
+  implementation("de.elia.api:SoullLibrary:2.1.0")
   implementation("org.apache.logging.log4j:log4j-api:2.20.0")
   implementation("org.apache.logging.log4j:log4j-core:2.20.0")
   paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.20.1-R0.1-SNAPSHOT")
@@ -45,7 +45,7 @@ tasks {
 
     // Set the release flag. This configures what version bytecode the compiler will emit, as well as what JDK APIs are usable.
     // See https://openjdk.java.net/jeps/247 for more information.
-    options.release.set(17)
+    options.release.set(19)
   }
   javadoc {
     options.encoding = Charsets.UTF_8.name() // We want UTF-8 for everything

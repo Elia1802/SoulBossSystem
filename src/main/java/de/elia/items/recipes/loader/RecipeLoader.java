@@ -1,10 +1,14 @@
 package de.elia.items.recipes.loader;
 
-import de.elia.api.logging.SaveError;
+import de.elia.api.logging.error.SaveError;
+
 import de.elia.items.ItemMain;
 import de.elia.items.recipes.SpawnEggRecipe;
+
 import org.bukkit.inventory.Recipe;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
+
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -17,7 +21,6 @@ public class RecipeLoader {
    * @description This load the recipe of the spawn eggs
    */
   public static class SpawnEggLoader {
-
     public void loadRecipe(Plugin plugin) {
       this.registerEggRecipe(plugin);
     }
@@ -27,7 +30,8 @@ public class RecipeLoader {
       try {
         spawnEggRecipe.eggRecipe();
         plugin.getServer().addRecipe((Recipe)spawnEggRecipe.bossSpawnEggRecipe());
-      }catch (CloneNotSupportedException exception) {
+      }
+      catch (CloneNotSupportedException exception) {
         new SaveError().saveError(ItemMain.itemMain().main(), exception, "RecipeLoader-registerEggRecipe-line_28=clonenotsupported");
         exception.printStackTrace();
       }

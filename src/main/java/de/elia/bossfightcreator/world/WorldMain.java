@@ -46,4 +46,3 @@ public class WorldMain {
     return this.file;
   }
 }
-

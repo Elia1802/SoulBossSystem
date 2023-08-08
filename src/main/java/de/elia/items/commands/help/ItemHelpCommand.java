@@ -1,11 +1,14 @@
 package de.elia.items.commands.help;
 
 import de.elia.api.logging.PluginLogger;
+
 import de.elia.items.ItemMain;
 import de.elia.systemclasses.messages.PluginMessages;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -27,6 +30,7 @@ public class ItemHelpCommand extends Command {
     super(name, description, usageMessage, aliases);
   }
 
+  @Override
   public boolean execute(@NotNull CommandSender sender, @NotNull String commandLabel, @NotNull String[] args) {
     PluginLogger logger = ItemMain.itemMain().itemLogger();
     PluginMessages message = new PluginMessages();
@@ -55,6 +59,7 @@ public class ItemHelpCommand extends Command {
     return false;
   }
 
+  @Override
   @NotNull
   public List<String> tabComplete(@NotNull CommandSender sender, @NotNull String alias, @NotNull String[] args) throws IllegalArgumentException {
     ArrayList<String> tab = new ArrayList<>();

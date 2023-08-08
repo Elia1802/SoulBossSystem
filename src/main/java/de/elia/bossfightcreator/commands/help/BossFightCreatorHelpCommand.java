@@ -1,11 +1,14 @@
 package de.elia.bossfightcreator.commands.help;
 
 import de.elia.api.logging.PluginLogger;
+
 import de.elia.bossfightcreator.BossFightCreatorMain;
 import de.elia.systemclasses.messages.PluginMessages;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -27,6 +30,7 @@ public class BossFightCreatorHelpCommand extends Command {
     super(name, description, usageMessage, aliases);
   }
 
+  @Override
   public boolean execute(@NotNull CommandSender sender, @NotNull String commandLabel, @NotNull String[] args) {
     PluginLogger logger = BossFightCreatorMain.bossFightCreator().bossFightCreatorLogger();
     PluginMessages message = new PluginMessages();
@@ -55,6 +59,7 @@ public class BossFightCreatorHelpCommand extends Command {
     return false;
   }
 
+  @Override
   @NotNull
   public List<String> tabComplete(@NotNull CommandSender sender, @NotNull String alias, @NotNull String[] args) throws IllegalArgumentException {
     ArrayList<String> tab = new ArrayList<>();
@@ -67,4 +72,3 @@ public class BossFightCreatorHelpCommand extends Command {
     return null;
   }
 }
-

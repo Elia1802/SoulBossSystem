@@ -12,7 +12,6 @@ import org.bukkit.inventory.meta.ItemMeta;
  * @description  Create the helmet for the {@link Zombie}
  */
 public class Helmet {
-
   public void helmet(Zombie zombie) {
     ItemStack diamond = new ItemStack(Material.DIAMOND_HELMET);
     ItemMeta diamondMeta = diamond.getItemMeta();
