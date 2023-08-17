@@ -12,7 +12,7 @@ Am besten macht ihr das an den unten stehenden Discord.
 
 **Informationen über dieses Plugins:**
 
-  Version: 1.0.0.pre1
+  Version: 1.0.0
 
   Server Version: 1.20.x
 
@@ -37,7 +37,7 @@ The best way to do this is on the Discord below.
 
 **Information about this Plugin**
 
-  Version: 1.0.0.pre1
+  Version: 1.0.0
   
   Server Version: 1.20.x
 
