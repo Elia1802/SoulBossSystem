@@ -1,4 +1,4 @@
-# **SoulBoss Informationen**
+# **SoulBossSystem Informationen**
 
 ## DEUTSCH
 
