@@ -13,5 +13,6 @@ public class Loader implements PluginLoader {
     String projectPath = System.getProperty("user.dir");
     String libraryPath = projectPath + "/plugins/";
     classpathBuilder.addLibrary(new JarLibrary(Path.of(libraryPath + "SoullLibrary-3.0.0.jar")));
+    short s = 9;
   }
 }
