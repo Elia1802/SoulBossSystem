@@ -1,0 +1,171 @@
+[22:14:31] [ServerMain/ERROR]: [PluginFlagProviderSource] Error loading plugin: File 'A:\Programmieren\SoulSMP\Entwicklungen\Code\SoulBoss\build\libs\SoulBossSystem-1.0.0.pre.1.jar' specified through 'add-plugin' argument failed to load!
+java.lang.RuntimeException: File 'A:\Programmieren\SoulSMP\Entwicklungen\Code\SoulBoss\build\libs\SoulBossSystem-1.0.0.pre.1.jar' specified through 'add-plugin' argument failed to load!
+	at io.papermc.paper.plugin.provider.source.FileProviderSource.registerProviders(FileProviderSource.java:59) ~[paper-1.20.1.jar:git-Paper-61]
+	at io.papermc.paper.plugin.provider.source.PluginFlagProviderSource.registerProviders(PluginFlagProviderSource.java:23) ~[paper-1.20.1.jar:git-Paper-61]
+	at io.papermc.paper.plugin.provider.source.PluginFlagProviderSource.registerProviders(PluginFlagProviderSource.java:13) ~[paper-1.20.1.jar:git-Paper-61]
+	at io.papermc.paper.plugin.util.EntrypointUtil.registerProvidersFromSource(EntrypointUtil.java:14) ~[paper-1.20.1.jar:git-Paper-61]
+	at io.papermc.paper.plugin.PluginInitializerManager.load(PluginInitializerManager.java:104) ~[paper-1.20.1.jar:git-Paper-61]
+	at net.minecraft.server.Main.main(Main.java:126) ~[paper-1.20.1.jar:git-Paper-61]
+	at org.bukkit.craftbukkit.Main.main(Main.java:316) ~[paper-1.20.1.jar:git-Paper-61]
+	at io.papermc.paperclip.Paperclip.lambda$main$0(Paperclip.java:42) ~[app:?]
+	at java.lang.Thread.run(Thread.java:833) ~[?:?]
+Caused by: java.lang.ClassNotFoundException
+	at io.papermc.paper.plugin.entrypoint.classloader.PaperSimplePluginClassLoader.findClass(PaperSimplePluginClassLoader.java:64) ~[paper-1.20.1.jar:git-Paper-61]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:587) ~[?:?]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:520) ~[?:?]
+	at java.lang.Class.forName0(Native Method) ~[?:?]
+	at java.lang.Class.forName(Class.java:467) ~[?:?]
+	at io.papermc.paper.plugin.provider.util.ProviderUtil.loadClass(ProviderUtil.java:51) ~[paper-api-1.20.1-R0.1-SNAPSHOT.jar:?]
+	at io.papermc.paper.plugin.provider.util.ProviderUtil.loadClass(ProviderUtil.java:29) ~[paper-api-1.20.1-R0.1-SNAPSHOT.jar:?]
+	at io.papermc.paper.plugin.provider.type.paper.PaperPluginProviderFactory.build(PaperPluginProviderFactory.java:37) ~[paper-1.20.1.jar:git-Paper-61]
+	at io.papermc.paper.plugin.provider.type.paper.PaperPluginProviderFactory.build(PaperPluginProviderFactory.java:23) ~[paper-1.20.1.jar:git-Paper-61]
+	at io.papermc.paper.plugin.provider.type.PluginFileType.register(PluginFileType.java:71) ~[paper-1.20.1.jar:git-Paper-61]
+	at io.papermc.paper.plugin.provider.source.FileProviderSource.registerProviders(FileProviderSource.java:57) ~[paper-1.20.1.jar:git-Paper-61]
+	... 8 more
+[22:14:36] [ServerMain/INFO]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
+[22:14:38] [ServerMain/INFO]: Loaded 7 recipes
+[22:14:39] [Server thread/INFO]: Starting minecraft server version 1.20.1
+[22:14:39] [Server thread/INFO]: Loading properties
+[22:14:39] [Server thread/INFO]: This server is running Paper version git-Paper-61 (MC: 1.20.1) (Implementing API version 1.20.1-R0.1-SNAPSHOT) (Git: 171ba7c)
+[22:14:39] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[22:14:39] [Server thread/INFO]: Using 4 threads for Netty based IO
+[22:14:39] [Server thread/WARN]: [!] The timings profiler has been enabled but has been scheduled for removal from Paper in the future.
+    We recommend installing the spark profiler as a replacement: https://spark.lucko.me/
+    For more information please visit: https://github.com/PaperMC/Paper/issues/8948
+[22:14:39] [Server thread/INFO]: [ChunkTaskScheduler] Chunk system is using 1 I/O threads, 4 worker threads, and gen parallelism of 4 threads
+[22:14:40] [Server thread/INFO]: Default game type: SURVIVAL
+[22:14:40] [Server thread/INFO]: Generating keypair
+[22:14:40] [Server thread/INFO]: Starting Minecraft server on *:25565
+[22:14:40] [Server thread/INFO]: Using default channel type
+[22:14:40] [Server thread/INFO]: Paper: Using Java compression from Velocity.
+[22:14:40] [Server thread/INFO]: Paper: Using Java cipher from Velocity.
+[22:14:40] [Server thread/INFO]: [WorldEdit] Loading server plugin WorldEdit v7.2.15-SNAPSHOT+6361-de453b9
+[22:14:41] [Server thread/INFO]: Got request to register class com.sk89q.worldedit.bukkit.BukkitServerInterface with WorldEdit [com.sk89q.worldedit.extension.platform.PlatformManager@6ecfccc6]
+[22:14:41] [Server thread/ERROR]: [WorldEdit] Error initializing plugin 'worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar' in folder 'plugins' (Is it up to date?)
+java.lang.NoSuchMethodError: org.yaml.snakeyaml.representer.Representer: method 'void <init>()' not found
+	at com.sk89q.util.yaml.YAMLProcessor$FancyRepresenter.<init>(YAMLProcessor.java:310) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	at com.sk89q.util.yaml.YAMLProcessor$FancyRepresenter.<init>(YAMLProcessor.java:309) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	at com.sk89q.util.yaml.YAMLProcessor.<init>(YAMLProcessor.java:96) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	at com.sk89q.util.yaml.YAMLProcessor.<init>(YAMLProcessor.java:113) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	at com.sk89q.worldedit.bukkit.WorldEditPlugin.onLoad(WorldEditPlugin.java:141) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	at io.papermc.paper.plugin.storage.ServerPluginProviderStorage.processProvided(ServerPluginProviderStorage.java:59) ~[paper-1.20.1.jar:git-Paper-61]
+	at io.papermc.paper.plugin.storage.ServerPluginProviderStorage.processProvided(ServerPluginProviderStorage.java:18) ~[paper-1.20.1.jar:git-Paper-61]
+	at io.papermc.paper.plugin.storage.SimpleProviderStorage.enter(SimpleProviderStorage.java:40) ~[paper-1.20.1.jar:git-Paper-61]
+	at io.papermc.paper.plugin.entrypoint.LaunchEntryPointHandler.enter(LaunchEntryPointHandler.java:36) ~[paper-1.20.1.jar:git-Paper-61]
+	at org.bukkit.craftbukkit.v1_20_R1.CraftServer.loadPlugins(CraftServer.java:504) ~[paper-1.20.1.jar:git-Paper-61]
+	at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:273) ~[paper-1.20.1.jar:git-Paper-61]
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1101) ~[paper-1.20.1.jar:git-Paper-61]
+	at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:318) ~[paper-1.20.1.jar:git-Paper-61]
+	at java.lang.Thread.run(Thread.java:833) ~[?:?]
+[22:14:41] [Server thread/INFO]: [WorldGuard] Loading server plugin WorldGuard v7.0.8-SNAPSHOT+2230-ece376a
+[22:14:41] [Server thread/INFO]: [SoulMain] Loading server plugin SoulMain v1.2
+[22:14:41] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
+[22:14:41] [Server thread/INFO]: [WorldEdit] Enabling WorldEdit v7.2.15-SNAPSHOT+6361-de453b9
+[22:14:41] [Server thread/ERROR]: Could not dispatch event: com.sk89q.worldedit.event.platform.PlatformsRegisteredEvent@4eb222a to handler EventHandler{priority=NORMAL}
+java.lang.reflect.InvocationTargetException: null
+	at com.sk89q.worldedit.util.eventbus.EventHandler.handleEvent(EventHandler.java:75) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	at com.sk89q.worldedit.util.eventbus.EventBus.dispatch(EventBus.java:193) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	at com.sk89q.worldedit.util.eventbus.EventBus.post(EventBus.java:181) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	at com.sk89q.worldedit.bukkit.WorldEditPlugin.onEnable(WorldEditPlugin.java:160) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	at org.bukkit.plugin.java.JavaPlugin.setEnabled(JavaPlugin.java:281) ~[paper-api-1.20.1-R0.1-SNAPSHOT.jar:?]
+	at io.papermc.paper.plugin.manager.PaperPluginInstanceManager.enablePlugin(PaperPluginInstanceManager.java:189) ~[paper-1.20.1.jar:git-Paper-61]
+	at io.papermc.paper.plugin.manager.PaperPluginManagerImpl.enablePlugin(PaperPluginManagerImpl.java:104) ~[paper-1.20.1.jar:git-Paper-61]
+	at org.bukkit.plugin.SimplePluginManager.enablePlugin(SimplePluginManager.java:507) ~[paper-api-1.20.1-R0.1-SNAPSHOT.jar:?]
+	at org.bukkit.craftbukkit.v1_20_R1.CraftServer.enablePlugin(CraftServer.java:636) ~[paper-1.20.1.jar:git-Paper-61]
+	at org.bukkit.craftbukkit.v1_20_R1.CraftServer.enablePlugins(CraftServer.java:547) ~[paper-1.20.1.jar:git-Paper-61]
+	at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:274) ~[paper-1.20.1.jar:git-Paper-61]
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1101) ~[paper-1.20.1.jar:git-Paper-61]
+	at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:318) ~[paper-1.20.1.jar:git-Paper-61]
+	at java.lang.Thread.run(Thread.java:833) ~[?:?]
+Caused by: java.lang.NullPointerException: Cannot invoke "com.sk89q.worldedit.LocalConfiguration.getWorkingDirectoryPath()" because the return value of "com.sk89q.worldedit.WorldEdit.getConfiguration()" is null
+	at com.sk89q.worldedit.WorldEdit.getWorkingDirectoryPath(WorldEdit.java:462) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	at com.sk89q.worldedit.util.asset.AssetLoaders.init(AssetLoaders.java:67) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	at com.sk89q.worldedit.extension.platform.Capability$2.initialize(Capability.java:55) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	at com.sk89q.worldedit.extension.platform.PlatformManager.choosePreferred(PlatformManager.java:193) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	at com.sk89q.worldedit.extension.platform.PlatformManager.handlePlatformsRegistered(PlatformManager.java:333) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	at com.sk89q.worldedit.util.eventbus.MethodHandleEventHandler.dispatch(MethodHandleEventHandler.java:51) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	at com.sk89q.worldedit.util.eventbus.EventHandler.handleEvent(EventHandler.java:73) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	... 13 more
+[22:14:41] [Server thread/ERROR]: Error occurred while enabling WorldEdit v7.2.15-SNAPSHOT+6361-de453b9 (Is it up to date?)
+java.lang.NoSuchMethodError: org.yaml.snakeyaml.representer.Representer: method 'void <init>()' not found
+	at com.sk89q.util.yaml.YAMLProcessor$FancyRepresenter.<init>(YAMLProcessor.java:310) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	at com.sk89q.util.yaml.YAMLProcessor$FancyRepresenter.<init>(YAMLProcessor.java:309) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	at com.sk89q.util.yaml.YAMLProcessor.<init>(YAMLProcessor.java:96) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	at com.sk89q.wepif.PermissionsResolverManager.loadConfig(PermissionsResolverManager.java:197) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	at com.sk89q.wepif.PermissionsResolverManager.<init>(PermissionsResolverManager.java:103) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	at com.sk89q.wepif.PermissionsResolverManager.initialize(PermissionsResolverManager.java:67) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	at com.sk89q.worldedit.bukkit.WorldEditPlugin.onEnable(WorldEditPlugin.java:162) ~[worldedit-bukkit-7.2.15-SNAPSHOT-dist.jar:?]
+	at org.bukkit.plugin.java.JavaPlugin.setEnabled(JavaPlugin.java:281) ~[paper-api-1.20.1-R0.1-SNAPSHOT.jar:?]
+	at io.papermc.paper.plugin.manager.PaperPluginInstanceManager.enablePlugin(PaperPluginInstanceManager.java:189) ~[paper-1.20.1.jar:git-Paper-61]
+	at io.papermc.paper.plugin.manager.PaperPluginManagerImpl.enablePlugin(PaperPluginManagerImpl.java:104) ~[paper-1.20.1.jar:git-Paper-61]
+	at org.bukkit.plugin.SimplePluginManager.enablePlugin(SimplePluginManager.java:507) ~[paper-api-1.20.1-R0.1-SNAPSHOT.jar:?]
+	at org.bukkit.craftbukkit.v1_20_R1.CraftServer.enablePlugin(CraftServer.java:636) ~[paper-1.20.1.jar:git-Paper-61]
+	at org.bukkit.craftbukkit.v1_20_R1.CraftServer.enablePlugins(CraftServer.java:547) ~[paper-1.20.1.jar:git-Paper-61]
+	at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:274) ~[paper-1.20.1.jar:git-Paper-61]
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1101) ~[paper-1.20.1.jar:git-Paper-61]
+	at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:318) ~[paper-1.20.1.jar:git-Paper-61]
+	at java.lang.Thread.run(Thread.java:833) ~[?:?]
+[22:14:41] [Server thread/INFO]: [WorldEdit] Disabling WorldEdit v7.2.15-SNAPSHOT+6361-de453b9
+[22:14:41] [Server thread/INFO]: Unregistering com.sk89q.worldedit.bukkit.BukkitServerInterface from WorldEdit
+[22:14:41] [Server thread/INFO]: Preparing level "world"
+[22:14:42] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[22:14:42] [Server thread/INFO]: Time elapsed: 232 ms
+[22:14:42] [Server thread/INFO]: Preparing start region for dimension minecraft:the_nether
+[22:14:42] [Server thread/INFO]: Time elapsed: 42 ms
+[22:14:42] [Server thread/INFO]: Preparing start region for dimension minecraft:the_end
+[22:14:42] [Server thread/INFO]: Time elapsed: 28 ms
+[22:14:42] [Server thread/INFO]: [WorldGuard] Enabling WorldGuard v7.0.8-SNAPSHOT+2230-ece376a
+[22:14:42] [Server thread/ERROR]: Error occurred while enabling WorldGuard v7.0.8-SNAPSHOT+2230-ece376a (Is it up to date?)
+java.lang.NoClassDefFoundError: com/sk89q/wepif/PermissionsResolverManager
+	at com.sk89q.worldguard.bukkit.WorldGuardPlugin.onEnable(WorldGuardPlugin.java:148) ~[worldguard-bukkit-7.0.8-SNAPSHOT-dist.jar:?]
+	at org.bukkit.plugin.java.JavaPlugin.setEnabled(JavaPlugin.java:281) ~[paper-api-1.20.1-R0.1-SNAPSHOT.jar:?]
+	at io.papermc.paper.plugin.manager.PaperPluginInstanceManager.enablePlugin(PaperPluginInstanceManager.java:189) ~[paper-1.20.1.jar:git-Paper-61]
+	at io.papermc.paper.plugin.manager.PaperPluginManagerImpl.enablePlugin(PaperPluginManagerImpl.java:104) ~[paper-1.20.1.jar:git-Paper-61]
+	at org.bukkit.plugin.SimplePluginManager.enablePlugin(SimplePluginManager.java:507) ~[paper-api-1.20.1-R0.1-SNAPSHOT.jar:?]
+	at org.bukkit.craftbukkit.v1_20_R1.CraftServer.enablePlugin(CraftServer.java:636) ~[paper-1.20.1.jar:git-Paper-61]
+	at org.bukkit.craftbukkit.v1_20_R1.CraftServer.enablePlugins(CraftServer.java:547) ~[paper-1.20.1.jar:git-Paper-61]
+	at net.minecraft.server.MinecraftServer.loadWorld0(MinecraftServer.java:636) ~[paper-1.20.1.jar:git-Paper-61]
+	at net.minecraft.server.MinecraftServer.loadLevel(MinecraftServer.java:435) ~[paper-1.20.1.jar:git-Paper-61]
+	at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:308) ~[paper-1.20.1.jar:git-Paper-61]
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1101) ~[paper-1.20.1.jar:git-Paper-61]
+	at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:318) ~[paper-1.20.1.jar:git-Paper-61]
+	at java.lang.Thread.run(Thread.java:833) ~[?:?]
+Caused by: java.lang.ClassNotFoundException: com.sk89q.wepif.PermissionsResolverManager
+	at org.bukkit.plugin.java.PluginClassLoader.loadClass0(PluginClassLoader.java:183) ~[paper-api-1.20.1-R0.1-SNAPSHOT.jar:?]
+	at org.bukkit.plugin.java.PluginClassLoader.loadClass(PluginClassLoader.java:150) ~[paper-api-1.20.1-R0.1-SNAPSHOT.jar:?]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:520) ~[?:?]
+	... 13 more
+[22:14:42] [Server thread/INFO]: [WorldGuard] Disabling WorldGuard v7.0.8-SNAPSHOT+2230-ece376a
+[22:14:42] [Server thread/ERROR]: Error occurred (in the plugin loader) while disabling WorldGuard v7.0.8-SNAPSHOT+2230-ece376a (Is it up to date?)
+java.lang.NoClassDefFoundError: com/sk89q/worldedit/util/task/Supervisor
+	at com.sk89q.worldguard.bukkit.WorldGuardPlugin.onDisable(WorldGuardPlugin.java:266) ~[worldguard-bukkit-7.0.8-SNAPSHOT-dist.jar:?]
+	at org.bukkit.plugin.java.JavaPlugin.setEnabled(JavaPlugin.java:283) ~[paper-api-1.20.1-R0.1-SNAPSHOT.jar:?]
+	at io.papermc.paper.plugin.manager.PaperPluginInstanceManager.disablePlugin(PaperPluginInstanceManager.java:224) ~[paper-1.20.1.jar:git-Paper-61]
+	at io.papermc.paper.plugin.manager.PaperPluginManagerImpl.disablePlugin(PaperPluginManagerImpl.java:109) ~[paper-1.20.1.jar:git-Paper-61]
+	at org.bukkit.plugin.SimplePluginManager.disablePlugin(SimplePluginManager.java:537) ~[paper-api-1.20.1-R0.1-SNAPSHOT.jar:?]
+	at io.papermc.paper.plugin.manager.PaperPluginInstanceManager.enablePlugin(PaperPluginInstanceManager.java:193) ~[paper-1.20.1.jar:git-Paper-61]
+	at io.papermc.paper.plugin.manager.PaperPluginManagerImpl.enablePlugin(PaperPluginManagerImpl.java:104) ~[paper-1.20.1.jar:git-Paper-61]
+	at org.bukkit.plugin.SimplePluginManager.enablePlugin(SimplePluginManager.java:507) ~[paper-api-1.20.1-R0.1-SNAPSHOT.jar:?]
+	at org.bukkit.craftbukkit.v1_20_R1.CraftServer.enablePlugin(CraftServer.java:636) ~[paper-1.20.1.jar:git-Paper-61]
+	at org.bukkit.craftbukkit.v1_20_R1.CraftServer.enablePlugins(CraftServer.java:547) ~[paper-1.20.1.jar:git-Paper-61]
+	at net.minecraft.server.MinecraftServer.loadWorld0(MinecraftServer.java:636) ~[paper-1.20.1.jar:git-Paper-61]
+	at net.minecraft.server.MinecraftServer.loadLevel(MinecraftServer.java:435) ~[paper-1.20.1.jar:git-Paper-61]
+	at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:308) ~[paper-1.20.1.jar:git-Paper-61]
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1101) ~[paper-1.20.1.jar:git-Paper-61]
+	at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:318) ~[paper-1.20.1.jar:git-Paper-61]
+	at java.lang.Thread.run(Thread.java:833) ~[?:?]
+Caused by: java.lang.ClassNotFoundException: com.sk89q.worldedit.util.task.Supervisor
+	at org.bukkit.plugin.java.PluginClassLoader.loadClass0(PluginClassLoader.java:183) ~[paper-api-1.20.1-R0.1-SNAPSHOT.jar:?]
+	at org.bukkit.plugin.java.PluginClassLoader.loadClass(PluginClassLoader.java:150) ~[paper-api-1.20.1-R0.1-SNAPSHOT.jar:?]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:520) ~[?:?]
+	... 16 more
+[22:14:42] [Server thread/INFO]: [SoulMain] Enabling SoulMain v1.2
+[22:14:42] [Server thread/INFO]: [SoulSMP] Start Soul Main...
+[22:14:42] [Server thread/INFO]: [SoulSMP] load Configurations...
+[22:14:42] [Server thread/INFO]: [SoulSMP] Configurations loaded!
+[22:14:42] [Server thread/INFO]: [SoulSMP] Load Commands...
+[22:14:42] [Server thread/INFO]: [SoulSMP] Commands loaded!
+[22:14:42] [Server thread/INFO]: [SoulSMP] Soul Main started!
+[22:14:42] [Server thread/INFO]: Running delayed init tasks
+[22:14:42] [Server thread/INFO]: Done (3.302s)! For help, type "help"
+[22:14:42] [Server thread/INFO]: Timings Reset
