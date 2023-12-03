@@ -3,7 +3,7 @@ main: de.elia.PluginMain
 bootstrapper: de.elia.BootsTrapper
 loader: de.elia.Loader
 api-version: '1.20'
-version: '1.0.0'
+version: '1.1.1'
 authors:
   - Elia
   - D1p4k

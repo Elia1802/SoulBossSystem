@@ -2,7 +2,7 @@ package de.elia.items.events.magicbook;
 
 import de.elia.api.thezepserapi.Complex;
 import de.elia.api.thezepserapi.TheZepserAPI;
-import de.elia.api.thezepserapi.datatypes.Region;
+import de.elia.api.thezepserapi.datatypes.ItemRegion;
 import de.elia.api.thezepserapi.spells.Spells;
 
 import de.elia.systemclasses.messages.PluginMessages;
@@ -28,7 +28,7 @@ import java.util.Map;
 public class MagicBookEvent implements Listener {
 
   private final Plugin plugin;
-  private static final Collection<Region> REGIONS = new ArrayList<>();
+  private static final Collection<ItemRegion> REGIONS = new ArrayList<>();
   private int count;
   public final Map<Player, Integer> cooldowns = new HashMap<>();
 
@@ -39,7 +39,7 @@ public class MagicBookEvent implements Listener {
   @EventHandler
   private void onRightClick(@NotNull PlayerInteractEvent event) {
     PluginMessages message = new PluginMessages();
-    if (event.getAction().isRightClick() && TheZepserAPI.item.hasKey(event.getItem(), TheZepserAPI.item.createKey(Complex.MAGIC_BOOK), this.plugin)) {
+    if (event.getAction().isRightClick() && TheZepserAPI.Item.hasKey(event.getItem(), TheZepserAPI.Item.createKey(Complex.MAGIC_BOOK), this.plugin)) {
       if (!this.cooldowns.containsKey(event.getPlayer())) {
         this.startCooldown(event.getPlayer(), 20*30);
         Spells.FIRE_ATTACK(event.getPlayer(), true, this.plugin);
@@ -47,7 +47,7 @@ public class MagicBookEvent implements Listener {
         event.setCancelled(true);
         message.message(event.getPlayer(), message.gray("Das Item lädt grade nach"));
       }
-    } else if (event.getAction().isLeftClick() && TheZepserAPI.item.hasKey(event.getItem(), TheZepserAPI.item.createKey(Complex.MAGIC_BOOK), this.plugin)) {
+    } else if (event.getAction().isLeftClick() && TheZepserAPI.Item.hasKey(event.getItem(), TheZepserAPI.Item.createKey(Complex.MAGIC_BOOK), this.plugin)) {
       if (!this.cooldowns.containsKey(event.getPlayer())) {
         this.startCooldown(event.getPlayer(), 20*20);
         Spells.GRAVITATION_ATTACK(event.getPlayer(), true, this.plugin);

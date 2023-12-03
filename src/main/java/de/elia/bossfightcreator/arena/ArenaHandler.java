@@ -1,26 +1,18 @@
 package de.elia.bossfightcreator.arena;
 
-import de.elia.api.annotation.AnnotationChecker;
-import de.elia.api.annotation.Beta;
 import de.elia.PluginMain;
 import de.elia.systemclasses.PluginInstances;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @description This class initialized the arenas and gets arenas with specify states.
  */
-@Beta
 public class ArenaHandler {
 
   public static final File FILE_PATH = new File(PluginMain.main().getDataFolder() + "/arenas/");
@@ -46,7 +38,11 @@ public class ArenaHandler {
    */
   @NotNull
   public static Optional<Arena> getArenaWithType(@NotNull ArenaState arenaState) {
-    return Optional.ofNullable(ArenaHandler.getArenasWithType(arenaState).get(0));
+    Optional<ArrayList<Arena>> t = Optional.of(ArenaHandler.getArenasWithType(arenaState));
+    Random random = new Random();
+    int x = random.nextInt(t.get().size());
+    System.out.println(x);
+    return Optional.ofNullable(ArenaHandler.getArenasWithType(arenaState).get(x));
   }
 
   /**
@@ -65,7 +61,6 @@ public class ArenaHandler {
    * @description Initialized the arenas by server start.
    */
   public static void init() {
-    AnnotationChecker.processAnnotations(ArenaHandler.class);
     if (!FILE_PATH.exists()) {
       FILE_PATH.mkdir();
     }

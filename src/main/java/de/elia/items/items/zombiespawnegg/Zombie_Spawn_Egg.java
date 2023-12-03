@@ -20,7 +20,7 @@ public class Zombie_Spawn_Egg {
       ArrayList<Component> list = new ArrayList<>();
       list.add(ItemMain.MINI_MESSAGE.deserialize("<gray>With this egg you can spawn the SoulBoss</gray>"));
       Component name = ItemMain.MINI_MESSAGE.deserialize("<green>Soul Boss</green> <gray>Spawn Egg</gray>");
-      ZSE = TheZepserAPI.item.create(Material.ZOMBIE_SPAWN_EGG, name, list).setCustomModelData(1).setAmount(1).setKey(Complex.ZOMBIE_SPAWN_EGG, plugin).save();
+      ZSE = TheZepserAPI.Item.create(Material.ZOMBIE_SPAWN_EGG, name, list).setCustomModelData(1).setAmount(1).setKey(Complex.ZOMBIE_SPAWN_EGG, plugin).save();
     }
   }
 }

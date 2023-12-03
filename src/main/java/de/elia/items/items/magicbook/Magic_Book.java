@@ -48,7 +48,7 @@ public class Magic_Book {
             list.add(ItemMain.MINI_MESSAGE.deserialize("<gray>You can used this book</gray>"));
             list.add(ItemMain.MINI_MESSAGE.deserialize("<gray>to cast spells.</gray>"));
             Component name = ItemMain.MINI_MESSAGE.deserialize("<obfuscated>#</obfuscated> <dark_purple>Magic Book</dark_purple> <obfuscated>#</obfuscated>");
-            MB = TheZepserAPI.item.create(Material.BOOK, name, list).setCustomModelData(1).setKey(Complex.MAGIC_BOOK, plugin).setAmount(1).addAttribute(Attribute.GENERIC_MAX_HEALTH, 20.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND).addFlag(ItemFlag.HIDE_ATTRIBUTES).addFlag(ItemFlag.HIDE_ENCHANTS).addEnchantment(Enchantment.ARROW_FIRE, 1).save();
+            MB = TheZepserAPI.Item.create(Material.BOOK, name, list).setCustomModelData(1).setKey(Complex.MAGIC_BOOK, plugin).setAmount(1).addAttribute(Attribute.GENERIC_MAX_HEALTH, 20.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND).addFlag(ItemFlag.HIDE_ATTRIBUTES).addFlag(ItemFlag.HIDE_ENCHANTS).addEnchantment(Enchantment.ARROW_FIRE, 1).save();
         }
     }
 }

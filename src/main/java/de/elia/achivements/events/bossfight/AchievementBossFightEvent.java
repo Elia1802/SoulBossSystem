@@ -4,9 +4,6 @@ import de.elia.achivements.achievement.process.Achievement;
 import de.elia.achivements.achievement.storage.Achievements;
 import de.elia.systemclasses.keys.PluginKeys;
 
-import de.elia.api.annotation.AnnotationChecker;
-import de.elia.api.annotation.Planned;
-
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -22,11 +19,9 @@ import org.jetbrains.annotations.NotNull;
  * @implements {@link Listener}
  * @planned Because: Fix that this event not working
  */
-@Planned("Fix that this event not working")
 public class AchievementBossFightEvent implements Listener {
 
   public AchievementBossFightEvent() {
-    AnnotationChecker.processAnnotations(AchievementBossFightEvent.class);
   }
 
   @EventHandler

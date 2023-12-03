@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "de.elia"
-version = "1.0.0"
+version = "1.1.1"
 description = "The Boss Fight Plugin für Soul"
 
 java {
@@ -24,7 +24,7 @@ repositories {
 dependencies {
   paperDevBundle("1.20.1-R0.1-SNAPSHOT")
   implementation("com.sk89q.worldedit:worldedit-bukkit:7.2.16-SNAPSHOT")
-  implementation("de.elia.api:SoullLibrary:2.1.0")
+  implementation("de.elia.api:SoullLibrary:3.0.0")
   implementation("org.apache.logging.log4j:log4j-api:2.20.0")
   implementation("org.apache.logging.log4j:log4j-core:2.20.0")
   paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.20.1-R0.1-SNAPSHOT")

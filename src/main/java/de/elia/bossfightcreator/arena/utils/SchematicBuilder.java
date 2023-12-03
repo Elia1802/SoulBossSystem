@@ -13,8 +13,6 @@ import com.sk89q.worldedit.function.operation.Operations;
 import com.sk89q.worldedit.math.BlockVector3;
 import com.sk89q.worldedit.session.ClipboardHolder;
 
-import de.elia.api.annotation.AnnotationChecker;
-import de.elia.api.annotation.Beta;
 import de.elia.api.logging.error.SaveError;
 
 import de.elia.bossfightcreator.BossFightCreatorMain;
@@ -32,7 +30,6 @@ import java.io.IOException;
  * @description This class load and paste schematic file of worldedit.
  * @beta This function can create errors!!!
  */
-@Beta
 public class SchematicBuilder {
 
   /**
@@ -43,7 +40,6 @@ public class SchematicBuilder {
    */
   @NotNull
   public static Clipboard schematic(@NotNull File path, @NotNull String schematicName) {
-    AnnotationChecker.processAnnotations(SchematicBuilder.class);
     Clipboard clipboard;
     File arenaFile = new File(path, schematicName + ".schem");
     ClipboardFormat format = ClipboardFormats.findByFile(arenaFile);
@@ -65,7 +61,6 @@ public class SchematicBuilder {
    * @throws WorldEditException The Operation can create an error.
    */
   public static void pasteSchematic(@NotNull Location location, @NotNull Clipboard clipboard) throws WorldEditException {
-    AnnotationChecker.processAnnotations(SchematicBuilder.class);
     EditSession session = WorldEdit.getInstance().newEditSession(new BukkitWorld(location.getWorld()));
     Operation operation = new ClipboardHolder(clipboard).createPaste(session).to(BlockVector3.at(location.x(), location.y(), location.z())).ignoreAirBlocks(false).copyEntities(false).build();
     Operations.complete(operation);

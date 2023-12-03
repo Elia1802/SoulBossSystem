@@ -2,8 +2,6 @@ package de.elia.bossfightcreator.game.executer;
 
 import de.elia.achivements.achievement.process.Achievement;
 import de.elia.achivements.achievement.storage.Achievements;
-import de.elia.api.annotation.AnnotationChecker;
-import de.elia.api.annotation.Beta;
 import de.elia.api.thezepserapi.Complex;
 import de.elia.api.thezepserapi.TheZepserAPI;
 
@@ -32,7 +30,6 @@ import java.util.Optional;
  * @implements {@link Listener}
  * @beta Because: Its unstable
  */
-@Beta
 public class NewGameExecuter implements Listener {
 
   private final Plugin plugin;
@@ -40,14 +37,13 @@ public class NewGameExecuter implements Listener {
 
   public NewGameExecuter(Plugin plugin) {
     this.plugin = plugin;
-    AnnotationChecker.processAnnotations(NewGameExecuter.class);
   }
 
   @EventHandler
   private void newGameExecuter(@NotNull PlayerInteractEvent event) {
     Player player = event.getPlayer();
     PluginMessages message = new PluginMessages();
-    if ((event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) && TheZepserAPI.item.hasKey(event.getItem(), TheZepserAPI.item.createKey(Complex.ZOMBIE_SPAWN_EGG), BossFightCreatorMain.bossFightCreator().main())) {
+    if ((event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) && TheZepserAPI.Item.hasKey(event.getItem(), TheZepserAPI.Item.createKey(Complex.ZOMBIE_SPAWN_EGG), BossFightCreatorMain.bossFightCreator().main())) {
       if (BossFightCreatorMain.playerStatusMap().get(player) == 0) {
         event.setCancelled(true);
         Party party = new Party(player, player.getName() + "-Party");
@@ -70,10 +66,11 @@ public class NewGameExecuter implements Listener {
           BossFightCreatorMain.bossFightCreator().bossFightCreatorLogger().logInfo("The Game of " + arena.getArenaID() + " is " + this.game);
           BossFightCreatorMain.bossFightCreator().bossFightCreatorLogger().logInfo("A new GameExecuter was created for " + player.getName());
           return;
+        }else {
+          message.message(player, message.red("Ein Fehler beim starten des Spiels ist vorgefallen! (ERROR: NO ARENAS AVIABLE)"));
+          BossFightCreatorMain.bossFightCreator().bossFightCreatorLogger().logWarning("There was a problem by creating a new GameExecuter");
+          BossFightCreatorMain.bossFightCreator().bossFightCreatorLogger().logError("Problem: NO ARENAS AVIABLE");
         }
-        message.messageWithPrefix(player, message.red("Zur Zeit ist keine Arena verfügbar!"));
-        BossFightCreatorMain.bossFightCreator().bossFightCreatorLogger().logWarning("There was a problem by creating a new GameExecuter");
-        BossFightCreatorMain.bossFightCreator().bossFightCreatorLogger().logError("Problem: NO ARENAS AVIABLE");
       }else {
         message.message(player, message.red("Du hast grade ein Spiel am laufen!"));
       }

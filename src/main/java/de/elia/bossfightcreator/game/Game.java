@@ -1,7 +1,5 @@
 package de.elia.bossfightcreator.game;
 
-import de.elia.api.annotation.AnnotationChecker;
-import de.elia.api.annotation.Beta;
 import de.elia.api.timing.StartTasks;
 import de.elia.api.timing.TimerUtils;
 import de.elia.api.timing.TimerUtils.TimeRunnable;
@@ -32,7 +30,6 @@ import org.jetbrains.annotations.NotNull;
 /**
  * @description This class is the game for the bosses.
  */
-@Beta
 public class Game implements Listener {
 
   private final Arena arena;
@@ -58,7 +55,6 @@ public class Game implements Listener {
     this.spawnLocation = arena.getSpawnLocation();
     this.bossName = "boss_" + arena.getArenaID() + "_" + gameOwner.getUniqueId();
     this.party = party;
-    AnnotationChecker.processAnnotations(Game.class);
     BossFightCreatorMain.bossFightCreator().bossFightCreatorLogger().logInfo("Start Timer GameStartTimer");
     new GameStartTimer().start(121*20, gameOwner, this.spawnLocation, plugin);
     Bukkit.getPluginManager().registerEvents(this, plugin);
